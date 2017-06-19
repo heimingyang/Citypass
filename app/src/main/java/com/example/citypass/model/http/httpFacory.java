@@ -4,7 +4,7 @@ package com.example.citypass.model.http;
  * Created by 黑明阳 on 2017/5/11.
  */
 
-public  class httpFacory {
+public  class HttpFacory {
     private static final int OKHTTP=0;
     private static final int VOLLEY=1;
 
