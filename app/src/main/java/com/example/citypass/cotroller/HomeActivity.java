@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.citypass.R;
+import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.MyViewPager;
 import com.example.citypass.cotroller.fragment.FaXianFragment;
@@ -63,6 +65,8 @@ public class HomeActivity extends BaseActivity {
     private SheQuFragment sheQuFragment;
     private LifeFragment lifeFragment;
     private FaXianFragment faXianFragment;
+    //这是用来判断是否登录的值，在SharedPreferences中以login参数保存
+    private boolean login;
 
 
     @Override
@@ -77,7 +81,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        login= SpUtils.getSp().getBoolean("login",false);
     }
 
     @Override
@@ -100,7 +104,8 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.main_The_headlines, R.id.main_Community, R.id.main_Show, R.id.main_Life, R.id.main_find})
+    @OnClick({R.id.main_The_headlines, R.id.main_Community, R.id.main_Show, R.id.main_Life, R.id.main_find
+    ,R.id.main_Img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_The_headlines:
@@ -122,6 +127,14 @@ public class HomeActivity extends BaseActivity {
             case R.id.main_find:
                 changeView(4);
 
+                break;
+            case R.id.main_Img:
+                if(login){
+
+                }else{
+                    Intent intent=new Intent(HomeActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

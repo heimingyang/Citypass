@@ -73,7 +73,7 @@
         android:id="@+id/infor_dibu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/city_choice_kuang"
+        android:background="#180202"
         android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/infor_setting"
@@ -103,5 +103,6 @@
         android:layout_width="match_parent"
         android:layout_above="@id/infor_dibu"
         android:layout_below="@id/infor_login"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        ></ListView>
 </RelativeLayout>
