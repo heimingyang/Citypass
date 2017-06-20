@@ -38,17 +38,19 @@
 
             <ImageView
                 android:id="@+id/main_right_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
                 android:src="@drawable/mall_changeadd" />
 
             <ImageView
                 android:id="@+id/main_right_imgTwo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/main_right_img"
                 android:src="@drawable/ccoo_icon_mes" />
         </RelativeLayout>
