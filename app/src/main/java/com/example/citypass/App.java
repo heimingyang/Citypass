@@ -3,6 +3,8 @@ package com.example.citypass;
 import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.citypass.base.BaseActivity;
+
 /**
  * /**
  * 项目名称: 血压卫士
@@ -39,5 +41,5 @@ import android.support.v7.app.AppCompatActivity;
 
 
 public class App extends Application {
-    public static AppCompatActivity activity;
+    public static BaseActivity activity;
 }

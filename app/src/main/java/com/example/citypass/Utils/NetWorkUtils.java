@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import com.example.citypass.App;
 import com.example.citypass.R;
-
 
 /**
  * Created by dell on 2017/5/30.

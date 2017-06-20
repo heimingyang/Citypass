@@ -1,7 +1,9 @@
 package com.example.citypass.cotroller;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,9 +14,10 @@ import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
-
 
     @BindView(R.id.main_Img)
     ImageView mainImg;
@@ -40,27 +43,51 @@ public class MainActivity extends BaseActivity {
     RadioGroup mainGroup;
     @BindView(R.id.main_Viewpager)
     ViewPager mainViewpager;
-
     @BindView(R.id.main_drawlayout)
     DrawerLayout mainDrawlayout;
 
     @Override
-    public int getLayoutId() {
+    protected int getLayoutId() {
         return R.layout.activity_main;
     }
 
     @Override
-    public void initListener() {
+    protected void initListener() {
 
     }
 
     @Override
-    public void initData() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
+    protected void initView() {
 
+    }
+
+
+    @OnClick({R.id.main_Img, R.id.main_Title, R.id.main_right_img, R.id.main_right_imgTwo, R.id.main_The_headlines, R.id.main_Community, R.id.main_Show, R.id.main_Life, R.id.main_find})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.main_Img:
+                break;
+            case R.id.main_Title:
+                break;
+            case R.id.main_right_img:
+                break;
+            case R.id.main_right_imgTwo:
+                break;
+            case R.id.main_The_headlines:
+                break;
+            case R.id.main_Community:
+                break;
+            case R.id.main_Show:
+                break;
+            case R.id.main_Life:
+                break;
+            case R.id.main_find:
+                break;
+        }
     }
 }

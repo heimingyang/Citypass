@@ -2,6 +2,7 @@ package com.example.citypass.base;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.citypass.App;
@@ -44,27 +45,30 @@ import butterknife.ButterKnife;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         App.activity = this;
-
         initView();
         initListener();
-        initData();
-
     }
 
     //加载布局
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
     //点击事件·
-    public abstract void initListener();
+    protected abstract void initListener();
     //加载数据
-    public abstract void initData() ;
+    protected abstract void initData() ;
     //寻找控件
-    public abstract  void initView() ;
+    protected abstract  void initView() ;
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        App.activity = this;
+        initData();
+    }
 }
