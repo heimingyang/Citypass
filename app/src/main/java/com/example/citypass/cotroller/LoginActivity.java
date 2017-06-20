@@ -80,6 +80,8 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.login_register:
+                Intent intentOne=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intentOne);
                 break;
         }
     }

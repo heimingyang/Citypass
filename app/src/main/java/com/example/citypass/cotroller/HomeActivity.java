@@ -155,7 +155,7 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.main_Img:
                 if (login) {
-
+                    mainDrawlayout.openDrawer(Gravity.LEFT);
                 } else {
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);

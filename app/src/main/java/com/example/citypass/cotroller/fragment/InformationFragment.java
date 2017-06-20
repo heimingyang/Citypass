@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.citypass.R;
 import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.CooperationActivity;
 import com.example.citypass.cotroller.LoginActivity;
 import com.example.citypass.cotroller.adapter.InforAdapter;
 
@@ -158,7 +159,7 @@ public class InformationFragment extends BaseFragment {
                 login(null);
                 break;
             case R.id.infor_hezuo:
-                login(null);
+                login(CooperationActivity.class);
                 break;
         }
     }
