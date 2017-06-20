@@ -8,4 +8,8 @@
     <color name="gray_bg">#F0F0F0</color>
     <color name="color_999">#999999</color>
     <color name="blue">#0099ff</color>
+    <color name="red">#FF0000</color>
+
+    <color name="tv_red">#FF0000</color>
+    <color name="tv_black">#000000</color>
 </resources>

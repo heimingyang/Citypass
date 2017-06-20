@@ -61,34 +61,34 @@ public class InforAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
-        if(position==3) {
+//        if(position==3) {
+//            holder.mText.setText(str[position]);
+//            Drawable drawable = context.getResources().getDrawable(img[position]);
+//            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//            Drawable drawable1 = context.getResources().getDrawable(R.drawable.newlife_arrow);
+//            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
+//            RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,45);
+//            layoutParams.setMargins(0,5,0,0);
+//            holder.mText.setLayoutParams(layoutParams);
+//            holder.mText.setCompoundDrawables(drawable, null, drawable1, null);
+//        }else if(position==8){
+//            holder.mText.setText(str[position]);
+//            Drawable drawable = context.getResources().getDrawable(img[position]);
+//            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//            Drawable drawable1 = context.getResources().getDrawable(R.drawable.newlife_arrow);
+//            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
+//            RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,45);
+//            layoutParams.setMargins(0,5,0,0);
+//            holder.mText.setLayoutParams(layoutParams);
+//            holder.mText.setCompoundDrawables(drawable, null, drawable1, null);
+//        }else{
             holder.mText.setText(str[position]);
             Drawable drawable = context.getResources().getDrawable(img[position]);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             Drawable drawable1 = context.getResources().getDrawable(R.drawable.newlife_arrow);
             drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
-            RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,45);
-            layoutParams.setMargins(0,5,0,0);
-            holder.mText.setLayoutParams(layoutParams);
             holder.mText.setCompoundDrawables(drawable, null, drawable1, null);
-        }else if(position==8){
-            holder.mText.setText(str[position]);
-            Drawable drawable = context.getResources().getDrawable(img[position]);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            Drawable drawable1 = context.getResources().getDrawable(R.drawable.newlife_arrow);
-            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
-            RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,45);
-            layoutParams.setMargins(0,5,0,0);
-            holder.mText.setLayoutParams(layoutParams);
-            holder.mText.setCompoundDrawables(drawable, null, drawable1, null);
-        }else{
-            holder.mText.setText(str[position]);
-            Drawable drawable = context.getResources().getDrawable(img[position]);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            Drawable drawable1 = context.getResources().getDrawable(R.drawable.newlife_arrow);
-            drawable1.setBounds(0, 0, drawable1.getMinimumWidth(), drawable1.getMinimumHeight());
-            holder.mText.setCompoundDrawables(drawable, null, drawable1, null);
-        }
+//        }
         return convertView;
     }
     class ViewHolder{
