@@ -6,45 +6,7 @@
  <RelativeLayout
      android:layout_width="match_parent"
      android:layout_height="match_parent">
-     <RelativeLayout
-         android:id="@+id/main_Relative"
-         android:layout_width="match_parent"
-         android:layout_height="50dp"
-         android:background="#FF0000">
-         <ImageView
-             android:id="@+id/main_Img"
-             android:layout_width="40dp"
-             android:layout_height="40dp"
-             android:layout_marginLeft="15dp"
-             android:layout_centerVertical="true"
-             android:src="@drawable/login_icon_accounta"/>
-         <TextView
-             android:id="@+id/main_Title"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerHorizontal="true"
-             android:layout_centerVertical="true"
-             android:textSize="30dp"
-             android:textColor="#ffffff"
-             android:gravity="center"
-             android:drawableRight="@mipmap/ccoo_icon_jiantou_down"
-             android:padding="5dp"
-             android:text="标题"/>
-         <ImageView
-             android:id="@+id/main_right_img"
-             android:src="@drawable/mall_changeadd"
-             android:layout_centerVertical="true"
-             android:layout_alignParentRight="true"
-             android:layout_width="40dp"
-             android:layout_height="40dp" />
-         <ImageView
-             android:id="@+id/main_right_imgTwo"
-             android:src="@drawable/ccoo_icon_mes"
-             android:layout_centerVertical="true"
-             android:layout_toLeftOf="@id/main_right_img"
-             android:layout_width="40dp"
-             android:layout_height="40dp" />
-     </RelativeLayout>
+
      <RadioGroup
          android:id="@+id/main_group"
          android:layout_width="match_parent"
@@ -103,12 +65,16 @@
              android:textSize="15dp"
              android:drawableTop="@drawable/find_selector"/>
      </RadioGroup>
+
      <android.support.v4.view.ViewPager
+         android:layout_above="@id/main_group"
          android:id="@+id/main_Viewpager"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
-         android:layout_above="@id/main_group"
-         android:layout_below="@id/main_Relative"></android.support.v4.view.ViewPager>
+         android:layout_centerVertical="true"
+         android:layout_alignParentLeft="true">
+
+     </android.support.v4.view.ViewPager>
  </RelativeLayout>
     <fragment
 

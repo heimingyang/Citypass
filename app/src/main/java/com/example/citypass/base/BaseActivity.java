@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 
 /**
  * /**
- * 项目名称: 血压卫士
+ * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
  * 创建时间: 2017/6/19 14:21
