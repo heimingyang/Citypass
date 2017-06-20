@@ -19,6 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".cotroller.LoginActivity"/>
-
+        <activity android:name=".cotroller.PasswordActivity"/>
     </application>
 </manifest>

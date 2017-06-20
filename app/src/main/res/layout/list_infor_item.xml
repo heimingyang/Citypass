@@ -12,6 +12,6 @@
     android:textSize="15dp"
     android:text="消息通知"
     android:textColor="#ffffff"
-    android:background="#180202"
+    android:background="@drawable/list_item_selector"
     />
 </RelativeLayout>

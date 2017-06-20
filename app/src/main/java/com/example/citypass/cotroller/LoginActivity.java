@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -70,10 +71,13 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_back:
+                onBackPressed();
                 break;
             case R.id.login_Btn:
                 break;
             case R.id.login_wangji:
+                Intent intent=new Intent(LoginActivity.this,PasswordActivity.class);
+                startActivity(intent);
                 break;
             case R.id.login_register:
                 break;
