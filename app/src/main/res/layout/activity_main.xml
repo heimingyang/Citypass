@@ -113,7 +113,7 @@
     <fragment
         android:name="com.example.citypass.cotroller.fragment.InformationFragment"
         android:id="@+id/main_left"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         />
