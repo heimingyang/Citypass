@@ -1,16 +1,17 @@
-package com.example.citypass;
+package com.example.citypass.cotroller;
 
-import android.app.Application;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.citypass.base.BaseActivity;
+import java.util.List;
 
 /**
  * /**
  * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 14:23
+ * 创建人: Administrator
+ * 创建时间: 2017/6/20 0020 8:32
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,7 +40,21 @@ import com.example.citypass.base.BaseActivity;
  * #                                                   #
  */
 
+public class HomeAdapter extends FragmentStatePagerAdapter {
+    private List<Fragment> mflist;
 
-public class App extends Application {
-    public static BaseActivity activity;
+    public HomeAdapter(FragmentManager fm, List<Fragment> mflist) {
+        super(fm);
+        this.mflist = mflist;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return mflist.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return mflist.size();
+    }
 }

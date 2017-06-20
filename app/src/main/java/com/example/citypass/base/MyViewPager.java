@@ -1,16 +1,11 @@
-package com.example.citypass;
-
-import android.app.Application;
-import android.support.v7.app.AppCompatActivity;
-
-import com.example.citypass.base.BaseActivity;
+package com.example.citypass.base;
 
 /**
  * /**
  * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 14:23
+ * 创建人: Administrator
+ * 创建时间: 2017/6/20 0020 8:15
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,7 +34,30 @@ import com.example.citypass.base.BaseActivity;
  * #                                                   #
  */
 
+import android.content.Context;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
 
-public class App extends Application {
-    public static BaseActivity activity;
+//自定义不可滑动的viewpager
+
+public class MyViewPager extends ViewPager {
+    public MyViewPager(Context context) {
+        super(context);
+    }
+
+    public MyViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent arg0) {
+        return false;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent arg0) {
+        return false;
+    }
+
 }

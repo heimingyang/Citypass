@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.citypass.App;
 import com.example.citypass.Utils.NetWorkUtils;
 
 import butterknife.ButterKnife;
@@ -47,7 +48,7 @@ import butterknife.Unbinder;
  */
 
 
-public abstract  class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     private Unbinder unbinder;
     @Nullable
     @Override
@@ -59,7 +60,6 @@ public abstract  class BaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-
         initView(view);
         initListener();
 
@@ -84,7 +84,7 @@ public abstract  class BaseFragment extends Fragment {
 
 
     //加载布局
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
 
     @Override
     public void onDestroyView() {

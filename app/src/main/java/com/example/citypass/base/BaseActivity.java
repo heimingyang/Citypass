@@ -1,10 +1,20 @@
 package com.example.citypass.base;
 
+import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.citypass.App;
+import com.example.citypass.R;
 
 import butterknife.ButterKnife;
 
@@ -43,28 +53,52 @@ import butterknife.ButterKnife;
  */
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends FragmentActivity {
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.red));
+        }
+
         ButterKnife.bind(this);
         App.activity = this;
-
         initView();
         initListener();
-        initData();
-
     }
 
     //加载布局
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
+
     //点击事件·
-    public abstract void initListener();
+    protected abstract void initListener();
+
     //加载数据
-    public abstract void initData() ;
+    protected abstract void initData();
     //寻找控件
-    public abstract  void initView() ;
 
+    protected abstract void initView();
 
+    public TextView getText() {
+        return null;
+    }
+
+    public ImageView getImgOne() {
+        return null;
+    }
+
+    public ImageView getImgTwo() {
+        return null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        App.activity = this;
+        initData();
+    }
 }

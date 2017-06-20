@@ -1,16 +1,17 @@
-package com.example.citypass;
+package com.example.citypass.cotroller.fragment;
 
-import android.app.Application;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import com.example.citypass.base.BaseActivity;
+import com.example.citypass.App;
+import com.example.citypass.R;
+import com.example.citypass.base.BaseFragment;
 
 /**
  * /**
  * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 14:23
+ * 创建人: Administrator
+ * 创建时间: 2017/6/20 0020 8:27
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,7 +40,34 @@ import com.example.citypass.base.BaseActivity;
  * #                                                   #
  */
 
+public class FaXianFragment extends BaseFragment {
+    @Override
+    protected void initData() {
 
-public class App extends Application {
-    public static BaseActivity activity;
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_faxian;
+    }
+
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        App.activity.getText().setText("发现");
+        App.activity.getText().setCompoundDrawables(null, null, null, null);
+
+    }
 }
