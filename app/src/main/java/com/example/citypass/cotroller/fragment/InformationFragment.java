@@ -70,7 +70,7 @@ public class InformationFragment extends BaseFragment {
     @BindView(R.id.infor_list)
     ListView inforList;
     Unbinder unbinder1;
-    private boolean login=false;
+    private boolean login=true;
     private Information information;
     private ImageView image;
 

@@ -2,7 +2,9 @@ package com.example.citypass.cotroller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,9 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.citypass.R;
+import com.example.citypass.Utils.ClearDateUtils;
 import com.example.citypass.Utils.LoginUtils;
 import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.model.http.HttpFacory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,7 +78,13 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        String url=SpUtils.getSp().getString(LoginUtils.MYIMG,"");
+        HttpFacory.create().loadImage(url,settingImg,true);
+        try {
+            settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -89,6 +99,13 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_name:
                 break;
             case R.id.setting_clear:
+                ClearDateUtils.cleanInternalCache(SettingActivity.this);
+                try {
+                    settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(SettingActivity.this,"清理成功",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_message:
                 break;
