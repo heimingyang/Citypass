@@ -17,9 +17,11 @@
         <activity android:name=".cotroller.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".cotroller.toutiao.CityFoloActivity"></activity>
         <activity android:name=".cotroller.LoginActivity"/>
         <activity android:name=".cotroller.PasswordActivity"/>
         <activity android:name=".cotroller.RegisterActivity"/>
@@ -27,4 +29,5 @@
         <activity android:name=".cotroller.SettingActivity"/>
         <activity android:name=".cotroller.fragment.FeedBackActivity"/>
     </application>
+
 </manifest>

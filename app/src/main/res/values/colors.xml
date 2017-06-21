@@ -10,9 +10,11 @@
     <color name="color_999">#999999</color>
     <color name="blue">#0099ff</color>
     <color name="red">#FF0000</color>
-
+    <color name="httbluetv">#0004ff</color>
     <color name="tv_red">#FF0000</color>
     <color name="tv_black">#000000</color>
+    <color name="tv_black_touming">#7F000000</color>
+    <color name="hcfmorecity">#FFA500</color>
     <color name="color_ccc">#cccccc</color>
     <drawable name="login">#f5681d</drawable>
     <drawable name="list_one">#180202</drawable>
@@ -21,4 +23,5 @@
     <drawable name="setting_two">#aaedd6d6</drawable>
     <color name="color_333">#333333</color>
     <color name="color_666">#666666</color>
+    <color name="colorWhite">#ffffff</color>
 </resources>
