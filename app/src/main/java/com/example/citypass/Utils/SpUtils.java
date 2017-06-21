@@ -45,12 +45,13 @@ import java.util.Date;
 
 public class SpUtils {
 
-    static SharedPreferences shared= App.activity.getSharedPreferences("data",Context.MODE_PRIVATE);
-    private static SharedPreferences getSp() {
+    private static SharedPreferences shared= App.activity.getSharedPreferences("data",Context.MODE_PRIVATE);
+    private static SharedPreferences.Editor editor=shared.edit();
+    public static SharedPreferences getSp() {
         return shared;
     }
-    private static SharedPreferences.Editor upSp() {
+    public static SharedPreferences.Editor upSp() {
 
-        return getSp().edit();
+        return editor;
     }
 }

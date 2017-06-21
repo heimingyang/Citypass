@@ -1,16 +1,22 @@
 package com.example.citypass.cotroller;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.citypass.R;
+import com.example.citypass.Utils.LoginUtils;
+import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.MyViewPager;
 import com.example.citypass.cotroller.fragment.FaXianFragment;
@@ -18,6 +24,7 @@ import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
 import com.example.citypass.cotroller.fragment.SheQuFragment;
 import com.example.citypass.cotroller.fragment.TouTiaoFragment;
+import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +70,8 @@ public class HomeActivity extends BaseActivity {
     private SheQuFragment sheQuFragment;
     private LifeFragment lifeFragment;
     private FaXianFragment faXianFragment;
+    //这是用来判断是否登录的值，在SharedPreferences中以login参数保存
+    private boolean login;
 
 
     @Override
@@ -72,12 +81,33 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        mainDrawlayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                Log.i("lenve", "onDrawerStateChanged");
+            }
 
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                slideAnim(drawerView, slideOffset);
+                Log.i("lenve", "onDrawerSlide");
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                Log.i("lenve", "onDrawerOpened");
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Log.i("lenve", "onDrawerClosed");
+            }
+        });
     }
 
     @Override
     public void initData() {
-
+        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
     }
 
     @Override
@@ -100,7 +130,8 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.main_The_headlines, R.id.main_Community, R.id.main_Show, R.id.main_Life, R.id.main_find})
+    @OnClick({R.id.main_The_headlines, R.id.main_Community, R.id.main_Show, R.id.main_Life, R.id.main_find
+            , R.id.main_Img})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_The_headlines:
@@ -123,6 +154,14 @@ public class HomeActivity extends BaseActivity {
                 changeView(4);
 
                 break;
+            case R.id.main_Img:
+                if (login) {
+                    mainDrawlayout.openDrawer(Gravity.LEFT);
+                } else {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
         }
     }
 
@@ -141,8 +180,52 @@ public class HomeActivity extends BaseActivity {
         return this.mainRightImg;
     }
 
+    @Override
+    public ImageView getImg() {
+        return this.mainImg;
+    }
+
     private void changeView(int desTab) {
         mainViewpager.setCurrentItem(desTab, true);
     }
 
+
+    private void slideAnim(View drawerView, float slideOffset) {
+        View contentView = mainDrawlayout.getChildAt(0);
+        // slideOffset表示菜单项滑出来的比例，打开菜单时取值为0->1,关闭菜单时取值为1->0
+        float scale = 1 - slideOffset;
+        float rightScale = 0.8f + scale * 0.2f;
+        float leftScale = 1 - 0.3f * scale;
+
+        ViewHelper.setScaleX(drawerView, leftScale);
+        ViewHelper.setScaleY(drawerView, leftScale);
+        ViewHelper.setAlpha(drawerView, 0.6f + 0.4f * (1 - scale));
+        ViewHelper.setTranslationX(contentView, drawerView.getMeasuredWidth()
+                * (1 - scale));
+        ViewHelper.setPivotX(contentView, 0);
+        ViewHelper.setPivotY(contentView, contentView.getMeasuredHeight() / 2);
+        contentView.invalidate();
+        ViewHelper.setScaleX(contentView, rightScale);
+        ViewHelper.setScaleY(contentView, rightScale);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 100:
+                switch (resultCode){
+                    case 101:
+                        break;
+                }
+                break;
+            case 200:
+                switch (resultCode){
+                    case 201:
+                        mainImg.setImageResource(R.drawable.login_icon_accounta);
+                        break;
+                }
+                break;
+        }
+    }
 }

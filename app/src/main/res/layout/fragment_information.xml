@@ -8,34 +8,36 @@
     android:layout_height="140dp">
     <ImageView
         android:id="@+id/infor_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/login_icon_accounta"
         />
     <TextView
         android:id="@+id/infor_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/infor_img"
+        android:layout_marginLeft="10dp"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:text="城市游客"
         android:layout_marginTop="25dp"/>
     <TextView
         android:id="@+id/infor_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/infor_img"
+        android:layout_marginLeft="10dp"
         android:textColor="#ffffff"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:text="请先登录或注册"
         android:layout_below="@id/infor_name"
         android:layout_marginTop="5dp"/>
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:src="@drawable/ic_browser_forward_normal"/>
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="0关注"
+        android:background="@drawable/text_item_selector"
         android:layout_marginTop="10dp"
         android:textColor="#ffffff"
         android:gravity="center_vertical"
@@ -62,6 +65,7 @@
         android:text="0粉丝"
         android:layout_marginTop="10dp"
         android:textColor="#ffffff"
+        android:background="@drawable/text_item_selector"
         android:gravity="center_vertical"
         android:drawableLeft="@drawable/mainccooactivity_icon_fans"
         android:layout_toRightOf="@id/infor_guanzhu"
@@ -73,25 +77,27 @@
         android:id="@+id/infor_dibu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/city_choice_kuang"
+        android:background="#180202"
         android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/infor_setting"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:textColor="#aaaa"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:text="设置"
+            android:background="@drawable/list_item_selector"
             android:drawableLeft="@drawable/mainccooactivity_icon_set"
             android:layout_margin="10dp"
             android:gravity="center_vertical"/>
         <TextView
             android:id="@+id/infor_hezuo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:textColor="#aaaa"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:text="商务合作"
+            android:background="@drawable/list_item_selector"
             android:layout_toRightOf="@id/infor_setting"
             android:drawableLeft="@drawable/hezuo"
             android:layout_margin="10dp"
@@ -103,5 +109,6 @@
         android:layout_width="match_parent"
         android:layout_above="@id/infor_dibu"
         android:layout_below="@id/infor_login"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        ></ListView>
 </RelativeLayout>

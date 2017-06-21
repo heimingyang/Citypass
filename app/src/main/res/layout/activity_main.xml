@@ -2,7 +2,8 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_drawlayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#180202">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -53,6 +54,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/main_right_img"
                 android:src="@drawable/ccoo_icon_mes" />
+
         </RelativeLayout>
 
 
@@ -150,7 +152,7 @@
     <fragment
         android:id="@+id/main_left"
         android:name="com.example.citypass.cotroller.fragment.InformationFragment"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="left" />
 </android.support.v4.widget.DrawerLayout>

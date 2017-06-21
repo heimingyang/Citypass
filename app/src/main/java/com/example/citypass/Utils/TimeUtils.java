@@ -40,13 +40,13 @@ import java.util.Date;
 
 
 public class TimeUtils {
-    private static String getStringTime(long time, String geshi) {
+    public static String getStringTime(long time, String geshi) {
         SimpleDateFormat sdf = new SimpleDateFormat(geshi);
         Date date = new Date(time);
         return sdf.format(date);
     }
 
-    private static Long getLongTime(String strTime, String geshi) {
+    public static Long getLongTime(String strTime, String geshi) {
         SimpleDateFormat sdf = new SimpleDateFormat(geshi);
         try {
             return sdf.parse(strTime).getTime();

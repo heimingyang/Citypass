@@ -58,15 +58,14 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.activity = this;
         setContentView(getLayoutId());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(this.getResources().getColor(R.color.red));
         }
-
         ButterKnife.bind(this);
-        App.activity = this;
         initView();
         initListener();
     }
@@ -92,6 +91,10 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     public ImageView getImgTwo() {
+        return null;
+    }
+
+    public ImageView getImg(){
         return null;
     }
 
