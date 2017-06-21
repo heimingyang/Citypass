@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="fafafa">#FAFAFA</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorWhite">#ffffff</color>
+    <color name="white">#ffffff</color>
     <color name="line">#E2E2E2</color>
     <color name="gray_bg">#F0F0F0</color>
     <color name="color_999">#999999</color>
     <color name="blue">#0099ff</color>
     <color name="red">#FF0000</color>
-
     <color name="tv_red">#FF0000</color>
     <color name="tv_black">#000000</color>
+    <color name="color_ccc">#cccccc</color>
     <drawable name="login">#f5681d</drawable>
     <drawable name="list_one">#180202</drawable>
     <drawable name="list_two">#aaaa</drawable>
+    <color name="color_333">#333333</color>
+    <color name="color_666">#666666</color>
 </resources>

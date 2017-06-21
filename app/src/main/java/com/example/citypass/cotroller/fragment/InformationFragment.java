@@ -2,11 +2,7 @@ package com.example.citypass.cotroller.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,7 +28,6 @@ import com.example.citypass.model.http.MyCallBack;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -70,7 +65,7 @@ public class InformationFragment extends BaseFragment {
     @BindView(R.id.infor_list)
     ListView inforList;
     Unbinder unbinder1;
-    private boolean login=true;
+    private boolean login=false;
     private Information information;
     private ImageView image;
 

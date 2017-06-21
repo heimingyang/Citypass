@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/my_listview_shape2" android:state_pressed="true" /><!-- 按压的时候选用的样式,必须可以被点击才会生效 -->
+    <!--滑动按钮滑动的时候选用的样式 -->
+    <item android:drawable="@drawable/my_listview_shape2" android:state_focused="true" />
+    <item android:drawable="@drawable/my_listview_shape2" android:state_hovered="true" />
+    <!--平常的样式 -->
+
+    <item android:drawable="@drawable/my_listview_shape1"/>
+</selector>
