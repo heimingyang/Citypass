@@ -58,7 +58,7 @@ public class LifeFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_life;
+        return R.layout.new_life_layout_mainitem;
     }
 
 

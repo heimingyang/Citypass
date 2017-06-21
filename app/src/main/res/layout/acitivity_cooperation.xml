@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="5dp"
-            android:text="标题"
+            android:text="商务合作"
             android:textColor="#ffffff"
             android:textSize="23dp" />
     </RelativeLayout>

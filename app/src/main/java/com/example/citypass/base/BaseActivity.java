@@ -95,6 +95,10 @@ public abstract class BaseActivity extends FragmentActivity {
         return null;
     }
 
+    public ImageView getImg(){
+        return null;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.citypass.R;
+import com.example.citypass.Utils.LoginUtils;
 import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.MyViewPager;
@@ -106,7 +107,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        login = SpUtils.getSp().getBoolean("login", false);
+        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
     }
 
     @Override
@@ -179,6 +180,11 @@ public class HomeActivity extends BaseActivity {
         return this.mainRightImg;
     }
 
+    @Override
+    public ImageView getImg() {
+        return this.mainImg;
+    }
+
     private void changeView(int desTab) {
         mainViewpager.setCurrentItem(desTab, true);
     }
@@ -201,5 +207,25 @@ public class HomeActivity extends BaseActivity {
         contentView.invalidate();
         ViewHelper.setScaleX(contentView, rightScale);
         ViewHelper.setScaleY(contentView, rightScale);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 100:
+                switch (resultCode){
+                    case 101:
+                        break;
+                }
+                break;
+            case 200:
+                switch (resultCode){
+                    case 201:
+                        mainImg.setImageResource(R.drawable.login_icon_accounta);
+                        break;
+                }
+                break;
+        }
     }
 }
