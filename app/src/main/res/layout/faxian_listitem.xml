@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
+    android:orientation="vertical">
+
+    <View
+        android:theme="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="2dp"
+        android:background="@color/color_999" />
+
+    <LinearLayout
+        android:theme="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:theme="@style/AppTheme"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@color/orange" />
+
+        <TextView
+            android:theme="@style/AppTheme"
+            android:id="@+id/faxian_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="热门推荐" />
+
+    </LinearLayout>
+
+    <com.example.citypass.view.MyGridView
+        android:theme="@style/AppTheme"
+        android:id="@+id/faxian_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"
+        />
+
+    <View
+        android:theme="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="2dp"
+        android:background="@color/color_999" />
+
+    <View
+        android:theme="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/line" />
+
+
+
+</LinearLayout>

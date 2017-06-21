@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.citypass.R;
-import com.example.citypass.Utils.LoginUtils;
 import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.MyViewPager;
@@ -24,7 +24,9 @@ import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
 import com.example.citypass.cotroller.fragment.SheQuFragment;
 import com.example.citypass.cotroller.fragment.TouTiaoFragment;
+
 import com.nineoldandroids.view.ViewHelper;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity {
 
@@ -112,6 +116,8 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ZXingLibrary.initDisplayOpinion(this);
+
         touTiaoFragment = new TouTiaoFragment();
         naoNaoFragment = new NaoNaoFragment();
         sheQuFragment = new SheQuFragment();
