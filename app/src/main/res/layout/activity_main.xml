@@ -152,7 +152,7 @@
     <fragment
         android:id="@+id/main_left"
         android:name="com.example.citypass.cotroller.fragment.InformationFragment"
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="match_parent"
         android:layout_gravity="left" />
 </android.support.v4.widget.DrawerLayout>

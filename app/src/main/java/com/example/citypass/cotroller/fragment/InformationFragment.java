@@ -72,7 +72,6 @@ public class InformationFragment extends BaseFragment {
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
-
     }
 
     @Override
@@ -124,6 +123,7 @@ public class InformationFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
         InforAdapter adapter = new InforAdapter(getContext());
         inforList.setAdapter(adapter);
         if(login){
@@ -214,7 +214,12 @@ public class InformationFragment extends BaseFragment {
                 int code = information.getMessageList().getCode();
                 if(code==1000){
                     inforName.setText(information.getServerInfo().getNick());
-                    Drawable drawable=getResources().getDrawable(R.drawable.regist_man_check);
+                    Drawable drawable=null;
+                    if(information.getServerInfo().getSex().equals("男")) {
+                        drawable = getResources().getDrawable(R.drawable.regist_man_check);
+                    }else{
+                        drawable = getResources().getDrawable(R.drawable.regist_woman_check);
+                    }
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     inforName.setCompoundDrawables(null,null,drawable,null);
                     inforOrder.setText(information.getServerInfo().getInfo());

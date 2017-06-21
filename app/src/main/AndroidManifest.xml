@@ -25,5 +25,6 @@
         <activity android:name=".cotroller.RegisterActivity"/>
         <activity android:name=".cotroller.CooperationActivity"/>
         <activity android:name=".cotroller.SettingActivity"/>
+        <activity android:name=".cotroller.fragment.FeedBackActivity"/>
     </application>
 </manifest>

@@ -2,6 +2,7 @@ package com.example.citypass.cotroller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -17,6 +18,7 @@ import com.example.citypass.Utils.ClearDateUtils;
 import com.example.citypass.Utils.LoginUtils;
 import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.FeedBackActivity;
 import com.example.citypass.model.http.HttpFacory;
 
 import butterknife.BindView;
@@ -99,13 +101,27 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_name:
                 break;
             case R.id.setting_clear:
-                ClearDateUtils.cleanInternalCache(SettingActivity.this);
-                try {
-                    settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(SettingActivity.this,"清理成功",Toast.LENGTH_SHORT).show();
+                AlertDialog dialog=new AlertDialog.Builder(SettingActivity.this)
+                        .setTitle("确定要清除缓存么")
+                        .setMessage("清楚缓存可能导致你在没有网络的时候无法查看信息或者图片，你确定操作吗？")
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ClearDateUtils.cleanInternalCache(SettingActivity.this);
+                                try {
+                                    settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                Toast.makeText(SettingActivity.this,"清理成功",Toast.LENGTH_SHORT).show();
+                            }
+                        }).create();
+                dialog.show();
                 break;
             case R.id.setting_message:
                 break;
@@ -114,8 +130,11 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_pwd:
                 break;
             case R.id.setting_version:
+                Toast.makeText(SettingActivity.this,"已是最新版本~",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_suggested:
+                Intent intent=new Intent(SettingActivity.this, FeedBackActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_about:
                 break;

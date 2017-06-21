@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/setting_two"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/feedback_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+            android:id="@+id/feedback_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_browser_back_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="建议反馈"
+            android:textColor="#ffffff"
+            android:textSize="23dp" />
+    </RelativeLayout>
+    <EditText
+    android:id="@+id/feedback_phone"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:textSize="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_below="@id/feedback_Relative"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:background="#ffffff"
+    android:hint="你的联系手机"/>
+
+    <EditText
+        android:id="@+id/feedback_order"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/feedback_phone"
+        android:gravity="left"
+        android:padding="10dp"
+        android:background="#ffffff"
+        android:hint="你的反馈使我们产品进步的动力"/>
+
+    <Button
+        android:id="@+id/feedback_feed"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/login_item_select"
+        android:layout_below="@id/feedback_order"
+        android:layout_margin="10dp"
+        android:textSize="18dp"
+        android:textColor="#ffffff"
+        android:text="提交"
+        android:gravity="center"/>
+</RelativeLayout>
