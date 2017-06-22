@@ -72,6 +72,27 @@ public class InformationFragment extends BaseFragment {
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
+        if(login){
+            if(LoginUtils.information!=null) {
+                inforName.setText(information.getServerInfo().getNick());
+                Drawable drawable = null;
+                if (information.getServerInfo().getSex().equals("男")) {
+                    drawable = getResources().getDrawable(R.drawable.regist_man_check);
+                } else {
+                    drawable = getResources().getDrawable(R.drawable.regist_woman_check);
+                }
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                inforName.setCompoundDrawables(null, null, drawable, null);
+                inforOrder.setText(information.getServerInfo().getInfo());
+                inforFensi.setText(information.getServerInfo().getFansNum() + "粉丝");
+                inforGuanzhu.setText(information.getServerInfo().getFrendNum() + "关注");
+                HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), inforImg, true);
+                image = App.activity.getImg();
+                HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image, true);
+            }
+        }else{
+
+        }
     }
 
     @Override
@@ -131,6 +152,7 @@ public class InformationFragment extends BaseFragment {
         }else{
 
         }
+
     }
 
     private void login(Class c) {
@@ -179,8 +201,7 @@ public class InformationFragment extends BaseFragment {
                 break;
         }
     }
-
-    private void getInformation(){
+    public void getInformation(){
         final Informations informations=new Informations();
         informations.setCustomerID(8001);
         informations.setRequestTime(TimeUtils.getStringTime(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
@@ -209,8 +230,8 @@ public class InformationFragment extends BaseFragment {
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                information = JSON.parseObject(result, Information.class);
-                LoginUtils.information=information;
+                LoginUtils.information = JSON.parseObject(result, Information.class);
+                information=LoginUtils.information;
                 int code = information.getMessageList().getCode();
                 if(code==1000){
                     inforName.setText(information.getServerInfo().getNick());
@@ -226,7 +247,7 @@ public class InformationFragment extends BaseFragment {
                     inforFensi.setText(information.getServerInfo().getFansNum()+"粉丝");
                     inforGuanzhu.setText(information.getServerInfo().getFrendNum()+"关注");
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
-                    image=App.activity.getImg();
+                    image= App.activity.getImg();
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
                 }
             }
@@ -238,14 +259,29 @@ public class InformationFragment extends BaseFragment {
         });
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case 100:
                 switch (resultCode){
-                    case 101:
-                        getInformation();
+                    case 111:
+                        inforName.setText(information.getServerInfo().getNick());
+                        Drawable drawable=null;
+                        if(information.getServerInfo().getSex().equals("男")) {
+                            drawable = getResources().getDrawable(R.drawable.regist_man_check);
+                        }else{
+                            drawable = getResources().getDrawable(R.drawable.regist_woman_check);
+                        }
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        inforName.setCompoundDrawables(null,null,drawable,null);
+                        inforOrder.setText(information.getServerInfo().getInfo());
+                        inforFensi.setText(information.getServerInfo().getFansNum()+"粉丝");
+                        inforGuanzhu.setText(information.getServerInfo().getFrendNum()+"关注");
+                        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
+                        image= App.activity.getImg();
+                        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
                         break;
                 }
                 break;

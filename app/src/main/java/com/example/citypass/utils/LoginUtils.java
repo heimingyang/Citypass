@@ -14,7 +14,7 @@ import com.example.citypass.model.bean.Information;
 
 public class LoginUtils {
     public static Information information;
-    public static String LOGIN="login";
+    public static String LOGIN="login";//boolean
     public static String NAME="name";
     public static String USERID="userID";
     public static String USERNAME="userName";

@@ -2,6 +2,7 @@ package com.example.citypass.cotroller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -16,7 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.model.bean.Information;
+import com.example.citypass.model.bean.Informations;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -30,6 +34,8 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.example.citypass.utils.LoginUtils.information;
 
 /**
  * 项目名称: 血压卫士
@@ -136,7 +142,6 @@ public class LoginActivity extends BaseActivity {
                 IsLogin isLogin = JSON.parseObject(result, IsLogin.class);
                 int code = isLogin.getMessageList().getCode();
                 if(code==1000){
-                    setResult(101);
                     SpUtils.upSp().putBoolean(LoginUtils.LOGIN,true);
                     SpUtils.upSp().putString(LoginUtils.MYIMG,isLogin.getServerInfo().getRoleImg());
                     SpUtils.upSp().putString(LoginUtils.NAME,isLogin.getServerInfo().getRoleName());
@@ -147,7 +152,7 @@ public class LoginActivity extends BaseActivity {
                     SpUtils.upSp().putString(LoginUtils.PHONE, "+86"+username);
                     SpUtils.upSp().commit();
                     handler.sendEmptyMessage(1);
-                    onBackPressed();
+                    getInformation();
                 }else{
                     handler.sendEmptyMessage(0);
                 }
@@ -160,7 +165,7 @@ public class LoginActivity extends BaseActivity {
         });
     }
     private String getIP(){
-        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) getApplication().getSystemService(Context.WIFI_SERVICE);
         //判断wifi是否开启,wifi未开启时，返回的ip为0.0.0.0
         if (!wifiManager.isWifiEnabled())
         {
@@ -189,4 +194,47 @@ public class LoginActivity extends BaseActivity {
             }
         }
     };
+    public void getInformation(){
+        final Informations informations=new Informations();
+        informations.setCustomerID(8001);
+        informations.setRequestTime(TimeUtils.getStringTime(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
+        informations.setMethod("PHSocket_GetBBSUsersInfoNew");
+        informations.setCustomerKey("D5607EBE573BE2B59A4D5A1CAE882615");
+        informations.setAppName("CcooCity");
+        informations.setVersion("4.5");
+        Informations.ParamBean paramBean=new Informations.ParamBean();
+        paramBean.setSiteID(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USITEID,"")));
+        paramBean.setUserName(SpUtils.getSp().getString(LoginUtils.USERNAME,""));
+        informations.setParam(paramBean);
+        Informations.StatisBean statisBean=new Informations.StatisBean();
+        statisBean.setSiteId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USITEID,"")));
+        statisBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+        String  model= android.os.Build.MODEL;
+        statisBean.setPhoneNo(model);
+        statisBean.setSystemNo(2);
+        int currentapiVersion=android.os.Build.VERSION.SDK_INT;
+        statisBean.setSystem_VersionNo(currentapiVersion+"");
+        statisBean.setPhoneId("863181036606964");
+        statisBean.setPhoneNum(SpUtils.getSp().getString(LoginUtils.PHONE,""));
+        informations.setStatis(statisBean);
+        String s = JSON.toJSONString(informations);
+        HashMap<String,String> map=new HashMap<>();
+        map.put("param",s);
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                information = JSON.parseObject(result, Information.class);
+                int code = information.getMessageList().getCode();
+                if(code==1000){
+                    setResult(111);
+                    onBackPressed();
+                }
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
+    }
 }

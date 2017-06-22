@@ -101,7 +101,7 @@ public class FaXianFragment extends BaseFragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), CaptureActivity.class);
-                startActivityForResult(intent, 100);
+                startActivityForResult(intent, 1);
 
 
             }
@@ -136,11 +136,11 @@ public class FaXianFragment extends BaseFragment {
 
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
-        if (requestCode == 100) {
+        if (requestCode == 1) {
             //处理扫描结果（在界面上显示）if (null != data) {
             Bundle bundle = data.getExtras();
             if (bundle == null) {
@@ -153,8 +153,6 @@ public class FaXianFragment extends BaseFragment {
                 Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
             }
         }
+
     }
-
-
-
 }
