@@ -2,11 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:orientation="vertical">
+<android.support.design.widget.TabLayout
+    app:tabSelectedTextColor="#fd0303"
+    app:tabIndicatorColor="#fd0303"
+    android:id="@+id/naonao_tab"
+android:background="#eae8e8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#b1b1b1"/>
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="闹闹" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/NaoNao_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
 </LinearLayout>

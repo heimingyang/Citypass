@@ -1,15 +1,11 @@
-package com.example.citypass.utils;
-
-import android.app.ProgressDialog;
-
-import com.example.citypass.App;
+package com.example.citypass.view;
 
 /**
  * /**
- * 项目名称: City Pass
+ * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:41
+ * 创建人: XI
+ * 创建时间: 2017/6/20 0020 23:43
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,17 +35,15 @@ import com.example.citypass.App;
  */
 
 
-public class DialogUtils {
-    private static ProgressDialog dialog=new ProgressDialog(App.activity);
-     public static void dialog(){
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
-    }
-    public static void dismiss(){
-        if(dialog!=null){
-            dialog.dismiss();
-        }
-    }
+public interface BaseRefreshHeader {
+    int STATE_NORMAL = 0;
+    int STATE_RELEASE_TO_REFRESH = 1;
+    int STATE_REFRESHING = 2;
+    int STATE_DONE = 3;
+
+    void onMove(float delta);
+
+    boolean releaseAction();
+
+    void refreshComplete();
 }

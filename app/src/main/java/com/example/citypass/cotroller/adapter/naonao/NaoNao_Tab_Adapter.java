@@ -1,15 +1,17 @@
-package com.example.citypass.utils;
+package com.example.citypass.cotroller.adapter.naonao;
 
-import android.app.ProgressDialog;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.citypass.App;
+import java.util.List;
 
 /**
  * /**
- * 项目名称: City Pass
+ * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:41
+ * 创建人: XI
+ * 创建时间: 2017/6/20 0020 16:53
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,17 +41,28 @@ import com.example.citypass.App;
  */
 
 
-public class DialogUtils {
-    private static ProgressDialog dialog=new ProgressDialog(App.activity);
-     public static void dialog(){
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
+public class NaoNao_Tab_Adapter extends FragmentStatePagerAdapter {
+    private List<Fragment> mFraList;
+    private List<String> mStrList;
+
+    public NaoNao_Tab_Adapter(FragmentManager fm, List<Fragment> mFraList, List<String> mStrList) {
+        super(fm);
+        this.mFraList = mFraList;
+        this.mStrList = mStrList;
     }
-    public static void dismiss(){
-        if(dialog!=null){
-            dialog.dismiss();
-        }
+
+    @Override
+    public Fragment getItem(int position) {
+        return mFraList.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return mFraList.isEmpty()?0:mFraList.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mStrList.get(position);
     }
 }

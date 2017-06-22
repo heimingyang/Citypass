@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/di_naonao"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/tieba_top_bg3">
+
+        <RelativeLayout
+            android:id="@+id/second_tou_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/tieba_top_tou2">
+
+            <com.example.citypass.base.CircleImageView
+                android:id="@+id/wang_naonao_image_second"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/girl" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/wang_naonao_name_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/second_tou_img"
+            android:layout_marginLeft="53dp"
+
+            android:padding="2dp"
+            android:text="呵呵哒" />
+
+        <RelativeLayout
+            android:id="@+id/first_tou_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/tieba_top_tou1">
+
+            <com.example.citypass.base.CircleImageView
+                android:id="@+id/wang_naonao_image_first"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/girl" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/wang_naonao_name_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_tou_img"
+            android:layout_marginLeft="150dp"
+            android:text="呵呵哒" />
+
+        <RelativeLayout
+            android:id="@+id/third_tou_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="260dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/tieba_top_tou3">
+
+            <com.example.citypass.base.CircleImageView
+                android:id="@+id/wang_naonao_image_third"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_margin="4dp"
+                android:src="@drawable/girl" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/wang_naonao_name_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/third_tou_img"
+            android:layout_marginLeft="275dp"
+            android:padding="1dp"
+            android:text="呵呵哒" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/cover_homepage_podium">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="85dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/cover_homepage_podium1" />
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignEnd="@+id/imageView">
+
+                <TextView
+                    android:id="@+id/wang_naonao_count_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#fff"
+                    android:text="1" />
+
+                <TextView
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wang_naonao_count_second"
+                    android:layout_centerHorizontal="true"
+                    android:text="回帖数" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="95dp"
+            android:layout_height="84dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:src="@drawable/cover_homepage_podium2" />
+
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="107dp">
+
+            <TextView
+                android:id="@+id/wang_naonao_count_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:text="1" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/wang_naonao_count_first"
+                android:layout_centerHorizontal="true"
+                android:text="回帖数" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="117dp"
+            android:src="@drawable/cover_homepage_podium3" />
+        <RelativeLayout
+            android:layout_marginLeft="265dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="148dp">
+
+            <TextView
+                android:id="@+id/wang_naonao_count_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:text="1" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/wang_naonao_count_third"
+                android:layout_centerHorizontal="true"
+                android:text="回帖数" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#cdcdcd"
+        />
+</LinearLayout>

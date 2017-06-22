@@ -1,15 +1,16 @@
-package com.example.citypass.utils;
+package com.example.citypass.cotroller.fragment.naonao;
 
-import android.app.ProgressDialog;
+import android.view.View;
 
-import com.example.citypass.App;
+import com.example.citypass.R;
+import com.example.citypass.base.BaseFragment;
 
 /**
  * /**
- * 项目名称: City Pass
+ * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:41
+ * 创建人: XI
+ * 创建时间: 2017/6/20 0020 17:02
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,17 +40,24 @@ import com.example.citypass.App;
  */
 
 
-public class DialogUtils {
-    private static ProgressDialog dialog=new ProgressDialog(App.activity);
-     public static void dialog(){
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
+public class Recommond_NaoNao_Fragment extends BaseFragment {
+    @Override
+    protected void initData() {
+
     }
-    public static void dismiss(){
-        if(dialog!=null){
-            dialog.dismiss();
-        }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.recommond_naonao_fragment;
     }
 }

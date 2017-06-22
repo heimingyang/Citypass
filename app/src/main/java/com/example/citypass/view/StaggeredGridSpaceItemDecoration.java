@@ -1,15 +1,15 @@
-package com.example.citypass.utils;
+package com.example.citypass.view;
 
-import android.app.ProgressDialog;
-
-import com.example.citypass.App;
+import android.graphics.Rect;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 /**
  * /**
- * 项目名称: City Pass
+ * 项目名称: 血压卫士
  * 类描述:
- * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:41
+ * 创建人: XI
+ * 创建时间: 2017/6/21 0021 10:23
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,17 +39,18 @@ import com.example.citypass.App;
  */
 
 
-public class DialogUtils {
-    private static ProgressDialog dialog=new ProgressDialog(App.activity);
-     public static void dialog(){
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
+public class StaggeredGridSpaceItemDecoration extends RecyclerView.ItemDecoration {
+    private int space;
+
+    public StaggeredGridSpaceItemDecoration(int space) {
+        this.space = space;
     }
-    public static void dismiss(){
-        if(dialog!=null){
-            dialog.dismiss();
-        }
+
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        outRect.left = space;
+        outRect.right = space;
+        outRect.bottom = space;
+        outRect.top = space;
     }
 }
