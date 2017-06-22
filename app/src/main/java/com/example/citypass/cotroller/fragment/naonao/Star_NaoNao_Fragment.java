@@ -161,9 +161,5 @@ public class Star_NaoNao_Fragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
+
 }

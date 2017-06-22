@@ -3,6 +3,7 @@ package com.example.citypass.cotroller;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -46,6 +47,11 @@ public class HomeAdapter extends FragmentStatePagerAdapter {
     public HomeAdapter(FragmentManager fm, List<Fragment> mflist) {
         super(fm);
         this.mflist = mflist;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
     }
 
     @Override

@@ -125,6 +125,9 @@ public class NaoNaoFragment extends BaseFragment {
 
     }
 
+
+
+
     @Override
     protected void initView(View view) {
 

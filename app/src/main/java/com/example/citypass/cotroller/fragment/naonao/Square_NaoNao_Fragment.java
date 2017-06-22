@@ -1,8 +1,10 @@
 package com.example.citypass.cotroller.fragment.naonao;
 
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
@@ -67,7 +69,31 @@ public class Square_NaoNao_Fragment extends BaseFragment {
    protected void initData() {
         LinearLayoutManager man= new LinearLayoutManager(App.activity);
         initParsing();
+        TextView tv = new TextView(App.activity);
+        tv.setText("最新动态");
+        tv.setTextColor(Color.parseColor("#cdcdcd"));
+        tv.setPadding(5,5,5,5);
+        squareNaonaoRecycle.addHeaderView(tv);
         squareNaonaoRecycle.setLayoutManager(man);
+        squareNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+            @Override
+            public void onRvScrolled(int dx, int dy) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+                mList.clear();
+                initParsing();
+                squareNaonaoRecycle.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+                initParsing();
+                squareNaonaoRecycle.refreshComplete();
+            }
+        });
     }
 
     private void initParsing() {

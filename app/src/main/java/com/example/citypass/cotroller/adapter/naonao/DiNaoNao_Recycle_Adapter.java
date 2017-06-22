@@ -84,7 +84,7 @@ private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList;
 
     @Override
     public int getItemCount() {
-        return mList.isEmpty()?0:mList.size();
+        return mList.isEmpty()?0:mList.size()-3;
     }
     class  MyViewHolder extends RecyclerView.ViewHolder{
         private TextView mPaiMing,mName,mAddress,mLevel,mCount;

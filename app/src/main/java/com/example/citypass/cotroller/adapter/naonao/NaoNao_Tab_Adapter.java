@@ -3,6 +3,8 @@ package com.example.citypass.cotroller.adapter.naonao;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -52,6 +54,11 @@ public class NaoNao_Tab_Adapter extends FragmentStatePagerAdapter {
     }
 
     @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+    }
+
+    @Override
     public Fragment getItem(int position) {
         return mFraList.get(position);
     }
@@ -59,6 +66,11 @@ public class NaoNao_Tab_Adapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return mFraList.isEmpty()?0:mFraList.size();
+    }
+
+    @Override
+    public void destroyItem(View container, int position, Object object) {
+
     }
 
     @Override
