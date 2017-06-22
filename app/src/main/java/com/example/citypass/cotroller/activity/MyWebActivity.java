@@ -1,20 +1,13 @@
 package com.example.citypass.cotroller.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.citypass.R;
-import com.example.citypass.Utils.LogUtils;
 import com.example.citypass.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MyWebActivity extends BaseActivity {
 

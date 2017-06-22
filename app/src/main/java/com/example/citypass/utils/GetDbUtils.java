@@ -1,6 +1,4 @@
-package com.example.citypass.Utils;
-
-import android.content.Context;
+package com.example.citypass.utils;
 
 /**
  * /**

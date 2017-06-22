@@ -7,20 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.citypass.R;
-import com.example.citypass.Utils.LogUtils;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
 import com.example.citypass.view.MyGridView;
 
 import java.util.List;
-
-import static android.R.attr.name;
 
 /**
  * /**

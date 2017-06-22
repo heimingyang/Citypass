@@ -108,6 +108,7 @@
         android:id="@+id/infor_list"
         android:layout_width="match_parent"
         android:layout_above="@id/infor_dibu"
+        android:background="#180202"
         android:layout_below="@id/infor_login"
         android:layout_height="match_parent"
         ></ListView>

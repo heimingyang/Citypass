@@ -1,19 +1,15 @@
-package com.example.citypass.Utils;
+package com.example.citypass.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.ProgressDialog;
 
 import com.example.citypass.App;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * /**
- * 项目名称:City Pass
+ * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/19 16:02
+ * 创建时间: 2017/6/19 15:41
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -43,15 +39,18 @@ import java.util.Date;
  */
 
 
-public class SpUtils {
-
-    private static SharedPreferences shared= App.activity.getSharedPreferences("data",Context.MODE_PRIVATE);
-    private static SharedPreferences.Editor editor=shared.edit();
-    public static SharedPreferences getSp() {
-        return shared;
+public class DialogUtils {
+    private static ProgressDialog dialog;
+     public static void dialog(){
+        dialog=new ProgressDialog(App.activity);
+        dialog.setTitle("亲！我们正在拼命加载数据！");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMax(100);
+        dialog.show();
     }
-    public static SharedPreferences.Editor upSp() {
-
-        return editor;
+    public static void dismiss(){
+        if(dialog!=null){
+            dialog.dismiss();
+        }
     }
 }

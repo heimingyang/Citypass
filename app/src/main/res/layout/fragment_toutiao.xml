@@ -205,13 +205,13 @@
             android:background="@color/line"
             />
 
-        <com.example.citypass.View.Mylistview
+        <com.example.citypass.view.Mylistview
             android:layout_below="@id/htt_lin3"
             android:id="@+id/htt_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.example.citypass.View.Mylistview>
+        </com.example.citypass.view.Mylistview>
 
     </RelativeLayout>
 </ScrollView>

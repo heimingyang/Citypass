@@ -1,17 +1,15 @@
-package com.example.citypass.Utils;
+package com.example.citypass.utils;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-
-import com.example.citypass.App;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * /**
  * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:41
+ * 创建时间: 2017/6/19 15:59
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -41,18 +39,20 @@ import com.example.citypass.App;
  */
 
 
-public class DialogUtils {
-    private static ProgressDialog dialog;
-     public static void dialog(){
-        dialog=new ProgressDialog(App.activity);
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
+public class TimeUtils {
+    public static String getStringTime(long time, String geshi) {
+        SimpleDateFormat sdf = new SimpleDateFormat(geshi);
+        Date date = new Date(time);
+        return sdf.format(date);
     }
-    public static void dismiss(){
-        if(dialog!=null){
-            dialog.dismiss();
+
+    public static Long getLongTime(String strTime, String geshi) {
+        SimpleDateFormat sdf = new SimpleDateFormat(geshi);
+        try {
+            return sdf.parse(strTime).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 }

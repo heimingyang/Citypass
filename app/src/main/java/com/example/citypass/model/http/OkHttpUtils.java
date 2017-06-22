@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.App;
-import com.example.citypass.Utils.DialogUtils;
-import com.example.citypass.Utils.GlideCircleTransform;
+import com.example.citypass.utils.DialogUtils;
+import com.example.citypass.utils.GlideCircleTransform;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,10 +31,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Callback;
-
-import static android.R.attr.key;
-import static android.R.attr.value;
-import static java.lang.System.load;
 
 /**
  * Created by dell on 2017/6/9.

@@ -1,15 +1,13 @@
-package com.example.citypass.Utils;
+package com.example.citypass.utils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.alibaba.fastjson.JSON;
 
 /**
  * /**
  * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/19 15:59
+ * 创建时间: 2017/6/19 16:52
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -39,20 +37,9 @@ import java.util.Date;
  */
 
 
-public class TimeUtils {
-    public static String getStringTime(long time, String geshi) {
-        SimpleDateFormat sdf = new SimpleDateFormat(geshi);
-        Date date = new Date(time);
-        return sdf.format(date);
-    }
-
-    public static Long getLongTime(String strTime, String geshi) {
-        SimpleDateFormat sdf = new SimpleDateFormat(geshi);
-        try {
-            return sdf.parse(strTime).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+public class FastjsonUtils {
+    public static Object getResult(String str,Object obj){
+        obj= JSON.parseObject(str,obj.getClass());
+        return obj;
     }
 }

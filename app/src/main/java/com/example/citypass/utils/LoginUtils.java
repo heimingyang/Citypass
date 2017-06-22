@@ -1,4 +1,4 @@
-package com.example.citypass.Utils;
+package com.example.citypass.utils;
 
 import com.example.citypass.model.bean.Information;
 

@@ -12,12 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.citypass.R;
-import com.example.citypass.Utils.ClearDateUtils;
-import com.example.citypass.Utils.LoginUtils;
-import com.example.citypass.Utils.SpUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.fragment.FeedBackActivity;
 import com.example.citypass.model.http.HttpFacory;
+import com.example.citypass.utils.ClearDateUtils;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -126,6 +126,8 @@ public class SettingActivity extends BaseActivity {
                 dialog.show();
                 break;
             case R.id.setting_message:
+                Intent intentOne=new Intent(SettingActivity.this,ReminberActivity.class);
+                startActivity(intentOne);
                 break;
             case R.id.setting_blacklist:
                 break;

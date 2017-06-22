@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
-import com.example.citypass.Utils.LogUtils;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.cotroller.activity.FaXianActionActivity;
 import com.example.citypass.cotroller.activity.FaXianCityActivity;
 import com.example.citypass.cotroller.activity.FaXianLottoActivity;

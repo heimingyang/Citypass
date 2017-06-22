@@ -1,16 +1,16 @@
-package com.example.citypass.Utils;
+package com.example.citypass.utils;
 
-import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 
-import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 
 /**
  * /**
- * 项目名称: City Pass
+ * 项目名称:City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/19 16:52
+ * 创建时间: 2017/6/19 16:02
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -40,9 +40,15 @@ import com.example.citypass.App;
  */
 
 
-public class FastjsonUtils {
-    public static Object getResult(String str,Object obj){
-        obj= JSON.parseObject(str,obj.getClass());
-        return obj;
+public class SpUtils {
+
+    private static SharedPreferences shared= App.activity.getSharedPreferences("data",Context.MODE_PRIVATE);
+    private static SharedPreferences.Editor editor=shared.edit();
+    public static SharedPreferences getSp() {
+        return shared;
+    }
+    public static SharedPreferences.Editor upSp() {
+
+        return editor;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.citypass.View;
+package com.example.citypass.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

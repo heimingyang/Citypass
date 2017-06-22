@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.Utils.LogUtils;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.faxian.MyFaxianAdapter;
 import com.example.citypass.model.http.HttpFacory;
@@ -28,8 +28,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.Unbinder;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * /**

@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +17,9 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
-import com.example.citypass.Utils.LoginUtils;
-import com.example.citypass.Utils.SpUtils;
-import com.example.citypass.Utils.TimeUtils;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
+import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.model.bean.IsLogin;
 import com.example.citypass.model.bean.Login;
@@ -31,7 +29,6 @@ import com.example.citypass.model.http.MyCallBack;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

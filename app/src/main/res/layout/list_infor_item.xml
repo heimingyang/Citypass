@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/list_item_textOne"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:visibility="gone"
         android:background="#aaaa"/>
 </RelativeLayout>
