@@ -132,15 +132,19 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_blacklist:
                 break;
             case R.id.setting_pwd:
+                Intent intentTwo=new Intent(SettingActivity.this,ModifyActivity.class);
+                startActivity(intentTwo);
                 break;
             case R.id.setting_version:
                 Toast.makeText(SettingActivity.this, "已是最新版本~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_suggested:
-                Intent intent = new Intent(SettingActivity.this, FeedBackActivity.class);
-                startActivity(intent);
+                Intent intentThree = new Intent(SettingActivity.this, FeedBackActivity.class);
+                startActivity(intentThree);
                 break;
             case R.id.setting_about:
+                Intent intentFour = new Intent(SettingActivity.this, AboutActivity.class);
+                startActivity(intentFour);
                 break;
             case R.id.setting_back_login:
                 backLoginDialog();
