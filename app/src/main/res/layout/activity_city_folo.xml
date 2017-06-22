@@ -64,6 +64,7 @@
               android:textColor="@color/colorWhite"
               />
             <RelativeLayout
+                android:id="@+id/allcity"
                 android:background="@drawable/hcityfolo_set"
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/hcityfolo_commoncity"
@@ -102,9 +103,8 @@
                         android:text="延庆在线"
                         android:textColor="@color/colorWhite"
                         android:textSize="18dp"
-                        android:layout_toLeftOf="@id/hcf_img1"
                         android:layout_marginRight="5dp"
-                        />
+                        android:layout_toStartOf="@+id/hcf_img1" />
                 </RelativeLayout>
                 <TextView
                     android:layout_below="@id/hcf_lin1"
@@ -323,6 +323,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
          <Button
+             android:id="@+id/morecity"
              android:layout_width="250dp"
              android:layout_height="40dp"
              android:text="更多城市选择"

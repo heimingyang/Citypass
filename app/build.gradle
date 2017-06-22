@@ -44,4 +44,5 @@ dependencies {
     compile 'com.jude:rollviewpager:1.2.9'
     compile files('libs/okhttp-3.4.1.jar')
     compile 'in.srain.cube:ptr-load-more:1.0.6'
+    compile 'com.belerweb:pinyin4j:2.5.0'
 }

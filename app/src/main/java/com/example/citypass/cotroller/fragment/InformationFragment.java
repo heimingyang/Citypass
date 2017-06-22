@@ -72,8 +72,10 @@ public class InformationFragment extends BaseFragment {
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
+
         if(login){
             if(LoginUtils.information!=null) {
+                information=LoginUtils.information;
                 inforName.setText(information.getServerInfo().getNick());
                 Drawable drawable = null;
                 if (information.getServerInfo().getSex().equals("男")) {
