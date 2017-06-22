@@ -3,9 +3,7 @@ package com.example.citypass.cotroller;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,6 +60,10 @@ public class SettingActivity extends BaseActivity {
     TextView settingAbout;
     @BindView(R.id.setting_back_login)
     Button settingBackLogin;
+    @BindView(R.id.setting_clearTwo)
+    TextView settingClearTwo;
+    @BindView(R.id.setting_versionTwo)
+    TextView settingVersionTwo;
 
     @Override
     protected int getLayoutId() {
@@ -80,10 +82,10 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        String url=SpUtils.getSp().getString(LoginUtils.MYIMG,"");
-        HttpFacory.create().loadImage(url,settingImg,true);
+        String url = SpUtils.getSp().getString(LoginUtils.MYIMG, "");
+        HttpFacory.create().loadImage(url, settingImg, true);
         try {
-            settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
+            settingClearTwo.setText(ClearDateUtils.getTotalCacheSize(SettingActivity.this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +103,7 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_name:
                 break;
             case R.id.setting_clear:
-                AlertDialog dialog=new AlertDialog.Builder(SettingActivity.this)
+                AlertDialog dialog = new AlertDialog.Builder(SettingActivity.this)
                         .setTitle("确定要清除缓存么")
                         .setMessage("清楚缓存可能导致你在没有网络的时候无法查看信息或者图片，你确定操作吗？")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -114,11 +116,11 @@ public class SettingActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 ClearDateUtils.cleanInternalCache(SettingActivity.this);
                                 try {
-                                    settingClear.setText("清理缓存                                         "+ClearDateUtils.getTotalCacheSize(SettingActivity.this));
+                                    settingClearTwo.setText(ClearDateUtils.getTotalCacheSize(SettingActivity.this));
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                Toast.makeText(SettingActivity.this,"清理成功",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SettingActivity.this, "清理成功", Toast.LENGTH_SHORT).show();
                             }
                         }).create();
                 dialog.show();
@@ -130,10 +132,10 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_pwd:
                 break;
             case R.id.setting_version:
-                Toast.makeText(SettingActivity.this,"已是最新版本~",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingActivity.this, "已是最新版本~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting_suggested:
-                Intent intent=new Intent(SettingActivity.this, FeedBackActivity.class);
+                Intent intent = new Intent(SettingActivity.this, FeedBackActivity.class);
                 startActivity(intent);
                 break;
             case R.id.setting_about:
@@ -143,8 +145,9 @@ public class SettingActivity extends BaseActivity {
                 break;
         }
     }
-    private void backLoginDialog(){
-        AlertDialog dialog=new AlertDialog.Builder(SettingActivity.this)
+
+    private void backLoginDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(SettingActivity.this)
                 .setTitle("确定要退出登录吗？")
                 .setMessage("退出登录讲清空您的用户名信息，您确定要退出吗")
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -153,15 +156,16 @@ public class SettingActivity extends BaseActivity {
                         dialog.dismiss();
                     }
                 }).setNeutralButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                SpUtils.upSp().putBoolean(LoginUtils.LOGIN,false);
-                SpUtils.upSp().commit();
-                setResult(201);
-                Toast.makeText(SettingActivity.this,"退出成功",Toast.LENGTH_SHORT).show();
-                onBackPressed();
-            }
-        }).create();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SpUtils.upSp().putBoolean(LoginUtils.LOGIN, false);
+                        SpUtils.upSp().commit();
+                        setResult(201);
+                        Toast.makeText(SettingActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
+                }).create();
         dialog.show();
     }
+
 }

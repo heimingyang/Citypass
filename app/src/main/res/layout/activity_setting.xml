@@ -75,9 +75,23 @@
         android:paddingRight="10dp"
         android:layout_marginTop="10dp"
         android:textSize="15dp"
-        android:text="清空缓存                                              0.00KB"
+        android:text="清空缓存"
         android:drawableRight="@drawable/ic_listitem_arrow_right"
         android:drawablePadding="20dp"/>
+    <TextView
+        android:id="@+id/setting_clearTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:textColor="#000000"
+        android:layout_below="@id/setting_name"
+        android:background="#ffffff"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:text="0.00KB"
+        android:layout_marginRight="40dp"
+        />
     <TextView
         android:id="@+id/setting_message"
         android:layout_width="match_parent"
@@ -135,8 +149,23 @@
         android:paddingRight="10dp"
         android:layout_marginTop="10dp"
         android:textSize="15dp"
-        android:text="版本更新                          已是最新版本 V1.0"
+        android:text="版本更新"
         android:drawableRight="@drawable/ic_listitem_arrow_right"
+        android:drawablePadding="20dp"/>
+
+    <TextView
+        android:id="@+id/setting_versionTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:textColor="#000000"
+        android:layout_below="@id/setting_pwd"
+        android:background="#ffffff"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:layout_marginRight="40dp"
+        android:text="已是最新版本 V1.0"
         android:drawablePadding="20dp"/>
     <TextView
         android:id="@+id/setting_suggested"
