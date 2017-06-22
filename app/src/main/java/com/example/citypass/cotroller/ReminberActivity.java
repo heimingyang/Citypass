@@ -1,6 +1,5 @@
 package com.example.citypass.cotroller;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -13,7 +12,6 @@ import com.example.citypass.utils.ReminderUtils;
 import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

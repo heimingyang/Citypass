@@ -32,5 +32,23 @@
         android:textColor="@color/godblue"
         android:textSize="15dp" />
 
+    <TextView
+        android:id="@+id/dialog_fengexian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/dialog_gotoboy"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_999" />
+
+    <Button
+        android:id="@+id/dialog_Button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/dialog_fengexian"
+        android:background="@null"
+        android:text="确定"
+        android:textColor="@color/godblue"
+        android:textSize="25dp" />
+
 
 </RelativeLayout>

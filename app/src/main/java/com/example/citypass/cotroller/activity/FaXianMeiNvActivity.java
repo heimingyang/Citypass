@@ -1,20 +1,16 @@
 package com.example.citypass.cotroller.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.LoginActivity;
@@ -23,7 +19,6 @@ import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -125,6 +120,8 @@ public class FaXianMeiNvActivity extends BaseActivity {
                 if (serverInfo.getName().isEmpty() || serverInfo.getJob().isEmpty() || serverInfo.getInfo().isEmpty()) {
                     //没有完善就跳转去完善
 
+                    Intent intent = new Intent(this, FaXianPerfectActivity.class);
+                    startActivity(intent);
                 } else {
                     //完善了就去发表
 
@@ -148,8 +145,6 @@ public class FaXianMeiNvActivity extends BaseActivity {
                     case 111:
                         cameraClicked();
                         break;
-
-
                 }
 
                 break;
@@ -158,28 +153,34 @@ public class FaXianMeiNvActivity extends BaseActivity {
     }
 
     private TextView gotoBoy;
+    private Button okBoy;
 
     //本页面男生的dialog
     private void showMyDialog() {
 
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+
         View inflate = LayoutInflater.from(this).inflate(R.layout.boy_dialog_item, null);
         gotoBoy = (TextView) inflate.findViewById(R.id.dialog_gotoboy);
+        okBoy = (Button) inflate.findViewById(R.id.dialog_Button);
         //点击去帅男秀场
         gotoBoy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(FaXianMeiNvActivity.this, "进入帅男秀场", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FaXianMeiNvActivity.this, FaXianPerfectActivity.class);
+                startActivity(intent);
+
 
             }
         });
-
-        alertDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        okBoy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+            public void onClick(View v) {
+                alertDialog.dismiss();
             }
         });
+
         alertDialog.setView(inflate);
         alertDialog.show();
 

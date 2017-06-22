@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    tools:context="com.example.citypass.cotroller.activity.FaXianPerfectActivity">
+
+    <RelativeLayout
+        android:id="@+id/Perfect_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/red">
+
+        <ImageView
+            android:id="@+id/Perfect_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_write" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="完善信息"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Perfect_text"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/Perfect_relativelayout"
+        android:background="@color/tuyellow"
+        android:gravity="center"
+        android:text="完善资料关注度可提高8倍"
+        android:textColor="@color/perfecttext" />
+
+    <ImageView
+        android:id="@+id/Perfect_guan"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/Perfect_relativelayout"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/guan" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/Perfect_text"
+        android:orientation="vertical">
+        <!--姓名-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="真实姓名:" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao" />
+
+        </LinearLayout>
+        <!--生日-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="生       日:" />
+
+            <EditText
+                android:editable="false"
+
+                android:id="@+id/Perfect_ed_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao" />
+
+        </LinearLayout>
+        <!--职业-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="职       业:" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao"
+                android:hint="从事职业" />
+
+        </LinearLayout>
+        <!--情感状态-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="情感状态:" />
+
+            <RadioGroup
+                android:id="@+id/Perfect_dariogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+
+                    android:id="@+id/radio_btn_danshen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="单身" />
+
+                <RadioButton
+
+                    android:id="@+id/radio_btn_lianai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="恋爱" />
+
+                <RadioButton
+
+                    android:id="@+id/radio_btn_yihun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="已婚" />
+
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+        <!--居住地-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="居  住  地" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_domicile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao" />
+
+        </LinearLayout>
+        <!--微信号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="微  信  号:" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_vx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao"
+                android:hint="选填，仅关注好友可见" />
+
+        </LinearLayout>
+        <!--QQ号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Q   Q  号:" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_qq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_yuanjiao"
+                android:hint="选填，仅关注好友可见" />
+
+        </LinearLayout>
+        <!--交友宣言-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="交友宣言:" />
+
+            <EditText
+                android:id="@+id/Perfect_ed_info"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/edittext_yuanjiao" />
+
+        </LinearLayout>
+        <!--按钮-->
+        <Button
+            android:id="@+id/Perfect_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/yellow"
+            android:text="下一步"
+            android:textColor="@color/orange"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

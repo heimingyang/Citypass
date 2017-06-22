@@ -43,6 +43,15 @@
         <activity android:name=".cotroller.AboutActivity" />
         <activity android:name=".cotroller.AboutActivity2" />
         <activity android:name=".cotroller.toutiao.SetCityActivity"></activity>
+        <activity android:name=".cotroller.activity.FaXianCityActivity" />
+        <activity android:name=".cotroller.toutiao.CityFoloActivity" />
+        <activity android:name=".cotroller.SettingActivity" />
+        <activity android:name=".cotroller.fragment.FeedBackActivity" />
+        <activity android:name=".cotroller.ReminberActivity" />
+        <activity android:name=".cotroller.ModifyActivity" />
+        <activity android:name=".cotroller.AboutActivity" />
+        <activity android:name=".cotroller.AboutActivity2" />
+        <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>
     </application>
 
 </manifest>

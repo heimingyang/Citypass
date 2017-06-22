@@ -2,7 +2,6 @@ package com.example.citypass.cotroller;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.Information;
 import com.example.citypass.model.bean.Informations;

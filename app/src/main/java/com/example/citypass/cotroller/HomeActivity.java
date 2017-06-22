@@ -2,7 +2,6 @@ package com.example.citypass.cotroller;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.utils.LoginUtils;
@@ -26,7 +24,6 @@ import com.example.citypass.cotroller.fragment.SheQuFragment;
 import com.example.citypass.cotroller.fragment.TouTiaoFragment;
 
 import com.nineoldandroids.view.ViewHelper;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.ArrayList;
@@ -34,8 +31,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity {
 

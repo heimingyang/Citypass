@@ -31,5 +31,8 @@
     <color name="color_333">#333333</color>
     <color name="color_666">#666666</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="godblue">#00b6fd</color>
+    <color name="godblue">#09a8e6</color>
+    <color name="tuyellow">#FFEBBE</color>
+    <color name="perfecttext">#B8874C</color>
+    <color name="yellow">#fff318</color>
 </resources>
