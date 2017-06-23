@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.IdRes;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -144,8 +143,16 @@ public class InforActivity extends BaseActivity {
     TextView informationCityTwo;
     @BindView(R.id.information_City)
     RelativeLayout informationCity;
+    @BindView(R.id.information_PhoneOne)
+    TextView informationPhoneOne;
+    @BindView(R.id.information_WeixinOne)
+    TextView informationWeixinOne;
+    @BindView(R.id.information_QQOne)
+    TextView informationQQOne;
+    @BindView(R.id.information_dengji)
+    TextView informationDengji;
     private InforModel model;
-    private String ffff,mm,dd;
+    private String ffff, mm, dd;
     private String s;
 
     @Override
@@ -165,13 +172,13 @@ public class InforActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        model=new IInforModel();
+        model = new IInforModel();
         initInfor();
     }
 
-    private void initInfor(){
+    private void initInfor() {
         String userFace = LoginUtils.information.getServerInfo().getUserFace();
-        HttpFacory.create().loadImage(userFace,informationHeadPortrait,true);
+        HttpFacory.create().loadImage(userFace, informationHeadPortrait, true);
         inforNumberTwo.setText(LoginUtils.information.getServerInfo().getUserName());
         informationNickTwo.setText(LoginUtils.information.getServerInfo().getNick());
         informationNameTwo.setText(LoginUtils.information.getServerInfo().getName());
@@ -183,25 +190,38 @@ public class InforActivity extends BaseActivity {
         informationAutographTwo.setText(LoginUtils.information.getServerInfo().getInfo());
         String tel = LoginUtils.information.getServerInfo().getTel();
         char[] chars = tel.toCharArray();
-        for(int i=0;i<chars.length;i++){
-            if(i>2||i<7){
-                chars[i]='*';
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < chars.length; i++) {
+            if (i > 2 && i < 7) {
+                chars[i] = '*';
             }
+            sb.append(chars[i]);
         }
-        String phone=new String(chars);
-        informationPhoneTwo.setText("已绑定手机"+phone);
+        String phone = sb.toString();
+        informationPhoneTwo.setText("已绑定手机" + phone);
         informationWeixinTwo.setText(LoginUtils.information.getServerInfo().getWeiXin());
         informationQQTwo.setText(LoginUtils.information.getServerInfo().getQQ());
         informationGradeTwo.setText(LoginUtils.information.getServerInfo().getHonorName());
+        int level = LoginUtils.information.getServerInfo().getLevel();
+        if(level<=10){
+            informationDengji.setText("LV."+level);
+        }else if(level<=20&&level>10){
+            informationDengji.setBackgroundResource(R.drawable.ccoo_bg_dengji2);
+            informationDengji.setText("LV."+level);
+        }else if(level<=30&&level>20){
+            informationDengji.setBackgroundResource(R.drawable.ccoo_bg_dengji3);
+            informationDengji.setText("LV."+level);
+        }
         int medalCount = LoginUtils.information.getServerInfo().getMedalCount();
-        if(medalCount==0) {
+        if (medalCount == 0) {
             informationMedalTwo.setText("无");
         }
-        informationCityTwo.setText(LoginUtils.information.getServerInfo().getCoin()+"枚");
+        informationCityTwo.setText(LoginUtils.information.getServerInfo().getCoin() + "枚");
     }
 
 
-    @OnClick({R.id.information_back, R.id.informations_Relative, R.id.information_Number, R.id.information_Nick, R.id.information_Name, R.id.information_Sex, R.id.information_Age, R.id.information_Occupation, R.id.information_Emotion, R.id.information_Residence, R.id.information_Autograph, R.id.information_Phone, R.id.information_Weixin, R.id.information_QQ, R.id.information_Grade, R.id.information_Medal, R.id.information_City})
+    @OnClick({R.id.information_back, R.id.informations_Relative, R.id.information_Number, R.id.information_Nick, R.id.information_Name, R.id.information_Sex, R.id.information_Age, R.id.information_Occupation, R.id.information_Emotion, R.id.information_Residence, R.id.information_Autograph, R.id.information_Phone, R.id.information_Weixin, R.id.information_QQ, R.id.information_Grade, R.id.information_Medal, R.id.information_City,
+            R.id.information_PhoneOne,R.id.information_WeixinOne,R.id.information_QQOne})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.information_back:
@@ -212,28 +232,28 @@ public class InforActivity extends BaseActivity {
             case R.id.information_Number:
                 break;
             case R.id.information_Nick:
-                getDialog("个性昵称",informationNickTwo.getText().toString(),"你的个性网名（10字内）",1,informationNickTwo);
+                getDialog("个性昵称", informationNickTwo.getText().toString(), "你的个性网名（10字内）", 1, informationNickTwo);
                 break;
             case R.id.information_Name:
-                getDialog("真实姓名",informationNameTwo.getText().toString(),"你的真实姓名",0,informationNameTwo);
+                getDialog("真实姓名", informationNameTwo.getText().toString(), "你的真实姓名", 0, informationNameTwo);
                 break;
             case R.id.information_Sex:
-                Toast.makeText(InforActivity.this,"性别已设置，无法修改~",Toast.LENGTH_SHORT).show();
+                Toast.makeText(InforActivity.this, "性别已设置，无法修改~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.information_Age:
-                getDate(LoginUtils.information.getServerInfo().getBirthday(),4,informationAgeTwo);
+                getDate(LoginUtils.information.getServerInfo().getBirthday(), 4, informationAgeTwo);
                 break;
             case R.id.information_Occupation:
-                getDialog("你的职业",informationOccupationTwo.getText().toString(),"你目前从事职业",14,informationOccupationTwo);
+                getDialog("你的职业", informationOccupationTwo.getText().toString(), "你目前从事职业", 14, informationOccupationTwo);
                 break;
             case R.id.information_Emotion:
-                getEmotion("情感状态",13,informationEmotionTwo);
+                getEmotion("情感状态", 13, informationEmotionTwo);
                 break;
             case R.id.information_Residence:
-                getDialog("居住地",informationResidenceTwo.getText().toString(),"你所住小区，街道或村镇（12字内）",12,informationResidenceTwo);
+                getDialog("居住地", informationResidenceTwo.getText().toString(), "你所住小区，街道或村镇（12字内）", 12, informationResidenceTwo);
                 break;
             case R.id.information_Autograph:
-                getDialog("个性签名",informationAutographTwo.getText().toString(),"设置签名，彰显个性~",9,informationAutographTwo);
+                getDialog("个性签名", informationAutographTwo.getText().toString(), "设置签名，彰显个性~", 9, informationAutographTwo);
                 break;
             case R.id.information_Phone:
                 break;
@@ -247,15 +267,21 @@ public class InforActivity extends BaseActivity {
                 break;
             case R.id.information_City:
                 break;
+            case R.id.information_PhoneOne:
+                break;
+            case R.id.information_WeixinOne:
+                break;
+            case R.id.information_QQOne:
+                break;
         }
     }
 
-    private void getDialog(String title, String content, String hint, final int keyId, final TextView v){
-        final View view= LayoutInflater.from(InforActivity.this).inflate(R.layout.infor_dialog_moban,null);
-        final EditText editText= (EditText) view.findViewById(R.id.infor_dialog_edit);
+    private void getDialog(String title, String content, String hint, final int keyId, final TextView v) {
+        final View view = LayoutInflater.from(InforActivity.this).inflate(R.layout.infor_dialog_moban, null);
+        final EditText editText = (EditText) view.findViewById(R.id.infor_dialog_edit);
         editText.setHint(hint);
         editText.setText(content);
-        AlertDialog dialog=new AlertDialog.Builder(InforActivity.this)
+        AlertDialog dialog = new AlertDialog.Builder(InforActivity.this)
                 .setTitle(title)
                 .setView(view)
                 .setNeutralButton("取消", new DialogInterface.OnClickListener() {
@@ -267,93 +293,95 @@ public class InforActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s = editText.getText().toString();
-                        upload(keyId,s,v);
-                    }
-                }).create();
-        dialog.show();
-    }
-    private void getDate(String title, final int keyId, final TextView v){
-        final View view= LayoutInflater.from(InforActivity.this).inflate(R.layout.date_dialog_moban,null);
-        DatePicker Datepicker= (DatePicker) view.findViewById(R.id.infor_dialog_date);
-        Long longTime = TimeUtils.getLongTime(LoginUtils.information.getServerInfo().getBirthday(), "yyyy-MM-dd");
-        ffff = TimeUtils.getStringTime(longTime, "yyyy");
-        mm = TimeUtils.getStringTime(longTime, "MM");
-        dd = TimeUtils.getStringTime(longTime, "dd");
-        Datepicker.init(Integer.parseInt(ffff), Integer.parseInt(mm),Integer.parseInt(dd), new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                ffff=year+"";
-                mm=monthOfYear+1+"";
-                dd=dayOfMonth+"";
-            }
-        });
-        AlertDialog dialog=new AlertDialog.Builder(InforActivity.this)
-                .setTitle(title)
-                .setView(view)
-                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String s=ffff+"-"+mm+"-"+dd;
-                        upload(keyId,s,v);
-                    }
-                }).create();
-        dialog.show();
-    }
-    private void getEmotion(String title, final int keyId, final TextView v){
-        final View view= LayoutInflater.from(InforActivity.this).inflate(R.layout.radio_dialog_moban,null);
-        RadioGroup editText= (RadioGroup) view.findViewById(R.id.radio_dialog);
-        editText.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId){
-                    case R.id.radio_one:
-                        s="单身";
-                        break;
-                    case R.id.radio_two:
-                        s="热恋";
-                        break;
-                    case R.id.radio_three:
-                        s="已婚";
-                        break;
-                    case R.id.radio_four:
-                        s="保密";
-                        break;
-                }
-            }
-        });
-        AlertDialog dialog=new AlertDialog.Builder(InforActivity.this)
-                .setTitle(title)
-                .setView(view)
-                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        upload(keyId,s,v);
+                        upload(keyId, s, v);
                     }
                 }).create();
         dialog.show();
     }
 
-    private void upload(int keyId, final String value, final TextView view){
+    private void getDate(String title, final int keyId, final TextView v) {
+        final View view = LayoutInflater.from(InforActivity.this).inflate(R.layout.date_dialog_moban, null);
+        DatePicker Datepicker = (DatePicker) view.findViewById(R.id.infor_dialog_date);
+        Long longTime = TimeUtils.getLongTime(LoginUtils.information.getServerInfo().getBirthday(), "yyyy-MM-dd");
+        ffff = TimeUtils.getStringTime(longTime, "yyyy");
+        mm = TimeUtils.getStringTime(longTime, "MM");
+        dd = TimeUtils.getStringTime(longTime, "dd");
+        Datepicker.init(Integer.parseInt(ffff), Integer.parseInt(mm), Integer.parseInt(dd), new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                ffff = year + "";
+                mm = monthOfYear + 1 + "";
+                dd = dayOfMonth + "";
+            }
+        });
+        AlertDialog dialog = new AlertDialog.Builder(InforActivity.this)
+                .setTitle(title)
+                .setView(view)
+                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String s = ffff + "-" + mm + "-" + dd;
+                        upload(keyId, s, v);
+                    }
+                }).create();
+        dialog.show();
+    }
+
+    private void getEmotion(String title, final int keyId, final TextView v) {
+        final View view = LayoutInflater.from(InforActivity.this).inflate(R.layout.radio_dialog_moban, null);
+        RadioGroup editText = (RadioGroup) view.findViewById(R.id.radio_dialog);
+        editText.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case R.id.radio_one:
+                        s = "单身";
+                        break;
+                    case R.id.radio_two:
+                        s = "热恋";
+                        break;
+                    case R.id.radio_three:
+                        s = "已婚";
+                        break;
+                    case R.id.radio_four:
+                        s = "保密";
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = new AlertDialog.Builder(InforActivity.this)
+                .setTitle(title)
+                .setView(view)
+                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        upload(keyId, s, v);
+                    }
+                }).create();
+        dialog.show();
+    }
+
+    private void upload(int keyId, final String value, final TextView view) {
         String upload = LoginUtils.upload(keyId, value);
         model.UpLoad(upload, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 IsLoad isLoad = JSON.parseObject(result, IsLoad.class);
                 int code = isLoad.getMessageList().getCode();
-                if(code==1000){
+                if (code == 1000) {
                     view.setText(value);
                     handler.sendEmptyMessage(0);
-                }else{
+                } else {
                     handler.sendEmptyMessage(1);
                 }
             }
@@ -364,18 +392,20 @@ public class InforActivity extends BaseActivity {
             }
         });
     }
-    private Handler handler=new Handler(){
+
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
-                    Toast.makeText(InforActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InforActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                     break;
                 case 1:
-                    Toast.makeText(InforActivity.this,"修改失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InforActivity.this, "修改失败", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
     };
+
 }

@@ -24,7 +24,7 @@ public class ClearDateUtils {
      * @param context
      */
     public static void cleanInternalCache(Context context) {
-        deleteFilesByDirectory(context.getExternalCacheDir());
+        deleteFilesByDirectory(context.getCacheDir());
     }
 
     /**
@@ -214,7 +214,7 @@ public class ClearDateUtils {
      * @throws Exception
      */
     public static String getTotalCacheSize(Context context) throws Exception {
-        long cacheSize = getFolderSize(context.getExternalCacheDir());
+        long cacheSize = getFolderSize(context.getCacheDir());
         return getFormatSize(cacheSize);
     }
 }

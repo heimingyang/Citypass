@@ -270,6 +270,7 @@ public class InformationFragment extends BaseFragment {
             case 100:
                 switch (resultCode){
                     case 111:
+                        information=LoginUtils.information;
                         inforName.setText(information.getServerInfo().getNick());
                         Drawable drawable=null;
                         if(information.getServerInfo().getSex().equals("男")) {

@@ -222,8 +222,8 @@ public class LoginActivity extends BaseActivity {
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                information = JSON.parseObject(result, Information.class);
-                int code = information.getMessageList().getCode();
+                LoginUtils.information = JSON.parseObject(result, Information.class);
+                int code = LoginUtils.information.getMessageList().getCode();
                 if(code==1000){
                     setResult(111);
                     onBackPressed();

@@ -213,10 +213,8 @@ public class HomeActivity extends BaseActivity {
         switch (requestCode) {
             case 100:
                 switch (resultCode) {
-                    case 101:
+                    case 111:
                         break;
-
-
                 }
                 break;
             case 200:

@@ -414,6 +414,15 @@
                     android:layout_alignParentRight="true"
                     />
                 <TextView
+                android:id="@+id/information_PhoneOne"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/information_imagenine"
+                android:text="更换"
+                android:gravity="center"
+                android:background="@drawable/bind_shape3"/>
+                <TextView
                     android:id="@+id/information_PhoneTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -423,7 +432,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="已绑定手机185****1714"
-                    android:layout_toLeftOf="@id/information_imagenine"/>
+                    android:layout_toLeftOf="@id/information_PhoneOne"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/information_Weixin"
@@ -451,6 +460,15 @@
                     android:layout_alignParentRight="true"
                     />
                 <TextView
+                android:id="@+id/information_WeixinOne"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/information_imageten"
+                android:text="绑定"
+                android:gravity="center"
+                android:background="@drawable/bind_shape1"/>
+                <TextView
                     android:id="@+id/information_WeixinTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -460,7 +478,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="仅关注好友可见"
-                    android:layout_toLeftOf="@id/information_imageten"/>
+                    android:layout_toLeftOf="@id/information_WeixinOne"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/information_QQ"
@@ -488,6 +506,15 @@
                     android:layout_alignParentRight="true"
                     />
                 <TextView
+                    android:id="@+id/information_QQOne"
+                    android:layout_width="55dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/information_imageeleven"
+                    android:text="绑定"
+                    android:gravity="center"
+                    android:background="@drawable/bind_shape1"/>
+                <TextView
                     android:id="@+id/information_QQTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -496,8 +523,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginRight="10dp"
                     android:text="仅关注好友可见"
-                    android:layout_toLeftOf="@id/information_imageeleven"/>
+                    android:layout_toLeftOf="@id/information_QQOne"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/information_Grade"
@@ -525,6 +553,15 @@
                     android:layout_alignParentRight="true"
                     />
                 <TextView
+                    android:id="@+id/information_dengji"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_toLeftOf="@id/information_imagetwelve"
+                    android:text="LV.1"
+                    android:background="@drawable/ccoo_drawable_dengji_bg_green"/>
+                <TextView
                     android:id="@+id/information_GradeTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -533,8 +570,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginRight="5dp"
                     android:text="新居民"
-                    android:layout_toLeftOf="@id/information_imagetwelve"/>
+                    android:layout_toLeftOf="@id/information_dengji"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/information_Medal"
@@ -589,7 +627,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:text="微信"/>
+                    android:text="城市币"/>
                 <ImageView
                     android:id="@+id/information_imagefourten"
                     android:layout_width="wrap_content"
@@ -607,8 +645,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:text="仅关注好友可见"
+                    android:text="0枚"
                     android:layout_toLeftOf="@id/information_imagefourten"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/information_CityTwo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ccoo_icon_coin"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
