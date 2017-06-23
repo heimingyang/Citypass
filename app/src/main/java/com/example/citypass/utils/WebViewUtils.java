@@ -21,9 +21,10 @@ public class WebViewUtils {
 
     //跳转到WebView页面
 
-    public static void UtilIntent(Context context,  String url) {
+    public static void UtilIntent(Context context,  String url,String title) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra("url", url);
+        intent.putExtra("webview_title",title);
         App.activity.startActivity(intent);
 
     }

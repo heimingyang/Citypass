@@ -134,19 +134,19 @@ public class FragmentOneVP extends BaseFragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.image:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(0).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(0).getChannelUrl(),"招聘信息");
                 break;
 
             case R.id.image1:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(1).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(1).getChannelUrl(),"房屋出售");
 
                 break;
             case R.id.image2:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(2).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(2).getChannelUrl(),"新楼盘");
 
                 break;
             case R.id.image3:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(3).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(3).getChannelUrl(),"二手信息");
 
                 break;
 

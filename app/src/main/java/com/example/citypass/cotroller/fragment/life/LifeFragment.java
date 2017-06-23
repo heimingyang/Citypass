@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.life;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -174,6 +176,9 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.Life_Scrollview)
     ScrollView LifeScrollview;
     Unbinder unbinder1;
+    @BindView(R.id.Life_MainLinear)
+    LinearLayout LifeMainLinear;
+    Unbinder unbinder2;
     private LifeModel model = new LifeModel();
     private Fragment_LifeGVAdapter adapter;
     private List<LifeFragmentBean.ServerInfoBean.GetPostListBeanX.GetPostListBean> mList = new ArrayList<>();
@@ -187,6 +192,8 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     private boolean anInt = true;
     private List<LifeFragmentBean.ServerInfoBean.GetPostWorkListBeanX.GetJobListBean> getJobList;
     private List<LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetHomeChuZuInfoListBean> getHomeChuZuInfoList;
+    private String memo;
+    private List<LifeFragmentBean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> getPostWorkList;
 
     @Override
     protected void initData() {
@@ -197,11 +204,11 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                     Log.d("LifeFragment", result);
                     bean = JSON.parseObject(result, LifeFragmentBean.class);
 //             这是找工作的解析
-                    List<LifeFragmentBean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> getPostWorkList = bean.getServerInfo().getGetPostWorkList().getGetPostWorkList();
+                    getPostWorkList = bean.getServerInfo().getGetPostWorkList().getGetPostWorkList();
 
                     Glide.with(getContext()).load(getPostWorkList.get(0).getChannelImg()).into(jobImage);
 
-                    String memo = getPostWorkList.get(0).getMemo();
+                    memo = getPostWorkList.get(0).getMemo();
 
                     zhanweiText1.setText(memo);
 
@@ -279,9 +286,9 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     if (type.equals("1")) {
-                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem1 + getHomeChuZuInfoList.get(Fi).getID());
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem1 + getHomeChuZuInfoList.get(Fi).getID(), "房屋出售");
                     } else if (type.equals("2")) {
-                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem2 + getHomeChuZuInfoList.get(Fi).getID());
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem2 + getHomeChuZuInfoList.get(Fi).getID(), "房屋出租");
                     }
 
 
@@ -314,9 +321,9 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     if (0 == isMQ) {
-                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemQuanZhi + getJobList.get(FintI).getJobID());
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemQuanZhi + getJobList.get(FintI).getJobID(), "职位详情");
                     } else if (1 == isMQ) {
-                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemJianZhi + getJobList.get(FintI).getJobID());
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemJianZhi + getJobList.get(FintI).getJobID(), "职位详情");
                     }
                 }
             });
@@ -381,12 +388,14 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
-
     @Override
     protected void initView(View view) {
-
-        LifeScrollview.scrollTo(0, 0);
-
+        //让scrollview默认显示在顶部
+        LifeMainLinear.setFocusable(true);
+        LifeMainLinear.setFocusableInTouchMode(true);
+        LifeMainLinear.requestFocus();
+        LifeScrollview.smoothScrollTo(0, 20);
+        LifeScrollview.setFocusable(true);
         //这是上方的viewpager
         LoadViewpager();
         //下面的viewpager的监听事件
@@ -478,19 +487,19 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
         switch (view.getId()) {
 
             case R.id.job_relay:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo, getPostWorkList.get(0).getChannelName());
 
                 break;
             case R.id.zhaopin_text1:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.QuanZhiZhaoPin);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.QuanZhiZhaoPin, "招聘信息");
 
                 break;
             case R.id.zhaopin_text2:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianZhi);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianZhi, "兼职招聘");
 
                 break;
             case R.id.zhaopin_text3:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianLiKu);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianLiKu, "求职简历");
 
                 break;
             case R.id.zhaopin_lay:
@@ -499,46 +508,32 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.house_relay:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi, "房屋交易");
 
                 break;
             case R.id.house_main_lay:
                 break;
             case R.id.houses_text1:
 
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.ErShouFang);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ErShouFang, "房屋出售");
                 break;
             case R.id.houses_text2:
 
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.XinHouses);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.XinHouses, "新楼盘");
                 break;
             case R.id.houses_text3:
 
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZuFangHouses);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZuFangHouses, "房屋出租");
                 break;
             case R.id.house_lay:
                 break;
             case R.id.houses_image1:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.WanKeCheng);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.WanKeCheng, "楼盘详情");
 
                 break;
             case R.id.houses_images1:
 
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.Shanghujun);
-                break;
-            case R.id.houses_relays1:
-                break;
-            case R.id.houses_names1:
-                break;
-            case R.id.houses_prices1:
-                break;
-            case R.id.houses_layouts1:
-                break;
-            case R.id.houses_lay:
-                break;
-            case R.id.house_Linearlayout:
-                break;
-            case R.id.yuan1_lay:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.Shanghujun, "楼盘详情");
                 break;
         }
     }
@@ -546,6 +541,20 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder2 = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder2.unbind();
     }
 }
 

@@ -127,16 +127,16 @@ public class FragmentTwoVP extends BaseFragment implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.image:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(4).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(4).getChannelUrl(), "车辆信息");
                 break;
             case R.id.image1:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(5).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(5).getChannelUrl(), "生活服务");
                 break;
             case R.id.image2:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(6).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(6).getChannelUrl(), "同城交友");
                 break;
             case R.id.image3:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(7).getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(7).getChannelUrl(), "宠物世界");
                 break;
 
 

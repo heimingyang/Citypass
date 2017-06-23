@@ -79,7 +79,7 @@ public class FragmentOneJop extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LifeFragmentBean.ServerInfoBean.GetTelListBeanX.GetTelListBean getTelListBean = mList.get(position);
 
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getTelListBean.getChannelUrl());
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getTelListBean.getChannelUrl(), "掌上通讯录");
 
             }
         });
