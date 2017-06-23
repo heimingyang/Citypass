@@ -117,7 +117,7 @@ public class SheQuFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         App.activity.getText().setText("社区");
         App.activity.getText().setCompoundDrawables(null, null, null, null);
-        App.activity.getImgOne().setImageResource(R.drawable.mainccooactivity_icon_fans);
+        App.activity.getImgOne().setImageResource(R.drawable.chazhao_back_normal);
         App.activity.getImgTwo().setImageResource(R.drawable.btn_release_normal);
     }
 
