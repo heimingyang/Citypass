@@ -61,7 +61,6 @@ public abstract class BaseFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         initView(view);
         initListener();
-
     }
 
     @Override
@@ -69,6 +68,7 @@ public abstract class BaseFragment extends Fragment {
         super.onResume();
         if(NetWorkUtils.getInstance().checkNetworkState()){
             initData();
+
         }
 
     }

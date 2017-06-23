@@ -51,7 +51,7 @@ import java.util.List;
 
 
 public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recycle_Adapter.MyViewHolder> {
-private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList;
+    private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList;
 
     public DiNaoNao_Recycle_Adapter(List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList) {
         this.mList = mList;

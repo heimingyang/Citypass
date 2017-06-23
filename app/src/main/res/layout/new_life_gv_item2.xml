@@ -8,7 +8,7 @@
 
     <TextView
         android:text="dada"
-        android:id="@+id/text"
+        android:id="@+id/Gv_textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"

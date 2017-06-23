@@ -102,7 +102,7 @@ public class MRecyclerView extends RecyclerView {
     public void setFootView(final View view) {
         mFootView = view;
     }
-     //加载更多的方法
+    //加载更多的方法
     public void loadMoreComplete() {
         isLoadingData = false;
         if (mFootView instanceof LoadingMoreFooter) {
@@ -157,7 +157,7 @@ public class MRecyclerView extends RecyclerView {
 
     public void setLoadingMoreProgressStyle(int style) {
         if (mFootView instanceof LoadingMoreFooter) {
-           // ((LoadingMoreFooter) mFootView).setProgressStyle(style);
+            // ((LoadingMoreFooter) mFootView).setProgressStyle(style);
         }
     }
 
