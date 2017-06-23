@@ -67,18 +67,19 @@ public class NaoNaoFragment extends BaseFragment {
     Unbinder unbinder;
     private List<Fragment> mFraList = new ArrayList<>();
     private List<String> mStrList = new ArrayList<>();
+    private int a=0;
 
     @Override
     protected void initData() {
-
-        mFraList.add(new Di_NaoNao_Fragment());
-        mFraList.add(new Wang_NaoNao_Fragment());
-        mFraList.add(new Star_NaoNao_Fragment());
-        mFraList.add(new Square_NaoNao_Fragment());
-        mFraList.add(new Title_NaoNao_Fragment());
-        mFraList.add(new Recommond_NaoNao_Fragment());
-        mFraList.add(new Picture_NaoNao_Fragment());
-        mFraList.add(new Net_Friend_NaoNao_Fragment());
+        if(a==0) {
+            mFraList.add(new Di_NaoNao_Fragment());
+            mFraList.add(new Wang_NaoNao_Fragment());
+            mFraList.add(new Star_NaoNao_Fragment());
+            mFraList.add(new Square_NaoNao_Fragment());
+            mFraList.add(new Title_NaoNao_Fragment());
+            mFraList.add(new Recommond_NaoNao_Fragment());
+            mFraList.add(new Picture_NaoNao_Fragment());
+            mFraList.add(new Net_Friend_NaoNao_Fragment());
 //        Map<String,String> map = new HashMap<>();
 //        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"type\":1,\"siteID\":2422},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"B8ABEBF85C69DC0B7D33F4317B5AC0CB\",\"Method\":\"PHSocket_GetUseNavigationInfo\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
 //        map.put("param",str);
@@ -99,24 +100,27 @@ public class NaoNaoFragment extends BaseFragment {
 //                Log.d("NaoNaoFragment", errormsg);
 //            }
 //        });
-        mStrList.add("闹闹帝");
-        mStrList.add("闹闹王");
-        mStrList.add("闹闹星");
-        mStrList.add("广场");
-        mStrList.add("话题");
-        mStrList.add("推荐");
-        mStrList.add("晒图");
-        mStrList.add("网友自荐");
-        naonaoTab.setTabMode(TabLayout.MODE_SCROLLABLE);
-        NaoNao_Tab_Adapter mAdapter = new NaoNao_Tab_Adapter(getActivity().getSupportFragmentManager(), mFraList, mStrList);
-        naonaoViewpager.setAdapter(mAdapter);
-        naonaoViewpager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(naonaoTab) {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-            }
-        });
-        naonaoTab.setupWithViewPager(naonaoViewpager);
+            mStrList.add("闹闹帝");
+            mStrList.add("闹闹王");
+            mStrList.add("闹闹星");
+            mStrList.add("广场");
+            mStrList.add("话题");
+            mStrList.add("推荐");
+            mStrList.add("晒图");
+            mStrList.add("网友自荐");
+            naonaoTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+            NaoNao_Tab_Adapter mAdapter = new NaoNao_Tab_Adapter(getActivity().getSupportFragmentManager(), mFraList, mStrList);
+            naonaoViewpager.setAdapter(mAdapter);
+            naonaoViewpager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(naonaoTab) {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                }
+            });
+            naonaoTab.setupWithViewPager(naonaoViewpager);
+            a=1;
+
+        }
     }
 
 
@@ -143,6 +147,12 @@ public class NaoNaoFragment extends BaseFragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         App.activity.getText().setText("闹闹");
+        App.activity.getText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         App.activity.getText().setCompoundDrawables(null, null, null, null);
         App.activity.getImgOne().setVisibility(View.INVISIBLE);
         App.activity.getImgTwo().setImageResource(R.drawable.mall_camera0);

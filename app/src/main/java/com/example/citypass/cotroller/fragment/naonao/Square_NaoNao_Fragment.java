@@ -64,42 +64,51 @@ public class Square_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.square_naonao_recycle)
     MRecyclerView squareNaonaoRecycle;
     Unbinder unbinder;
+    private int j = 1;
+    private int a=0;
     private List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList = new ArrayList<>();
     @Override
    protected void initData() {
-        LinearLayoutManager man= new LinearLayoutManager(App.activity);
-        initParsing();
-        TextView tv = new TextView(App.activity);
-        tv.setText("最新动态");
-        tv.setTextColor(Color.parseColor("#cdcdcd"));
-        tv.setPadding(5,5,5,5);
-        squareNaonaoRecycle.addHeaderView(tv);
-        squareNaonaoRecycle.setLayoutManager(man);
-        squareNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
-            @Override
-            public void onRvScrolled(int dx, int dy) {
+        if(a==0) {
+            LinearLayoutManager man = new LinearLayoutManager(App.activity);
+            initParsing();
+            TextView tv = new TextView(App.activity);
+            tv.setText("最新动态");
+            tv.setTextColor(Color.parseColor("#cdcdcd"));
+            tv.setPadding(5, 5, 5, 5);
+            squareNaonaoRecycle.addHeaderView(tv);
+            squareNaonaoRecycle.setLayoutManager(man);
+            squareNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+                @Override
+                public void onRvScrolled(int dx, int dy) {
 
-            }
+                }
 
-            @Override
-            public void onRefresh() {
-                mList.clear();
-                initParsing();
-                squareNaonaoRecycle.refreshComplete();
-            }
+                @Override
+                public void onRefresh() {
+                    mList.clear();
+                    initParsing();
+                    squareNaonaoRecycle.refreshComplete();
+                }
 
-            @Override
-            public void onLoadMore() {
-                initParsing();
-                squareNaonaoRecycle.refreshComplete();
-            }
-        });
+                @Override
+                public void onLoadMore() {
+                    j++;
+                    initParsing();
+                    squareNaonaoRecycle.refreshComplete();
+                }
+            });
+            a=1;
+        }
     }
 
     private void initParsing() {
         Map<String,String> map = new HashMap<>();
-        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422,\"order\":0,\"gambitid\":0,\"curPage\":1,\"pageSize\":10,\"oldTime\":\"\",\"type\":1},\"requestTime\":\"2017-06-21 20:56:33\",\"customerKey\":\"935A33F592C9C6509BAF3C887F29C205\",\"Method\":\"PHSocket_GetNewTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
-        map.put("param",str);
+        String a = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422,\"order\":0,\"gambitid\":0,\"curPage\":";
+        String str = j+"";
+        String b = ",\"pageSize\":10,\"oldTime\":\"\",\"type\":1},\"requestTime\":\"2017-06-21 20:56:33\",\"customerKey\":\"935A33F592C9C6509BAF3C887F29C205\",\"Method\":\"PHSocket_GetNewTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        String i = a+str+b;
+        map.put("param",i);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {

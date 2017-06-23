@@ -54,11 +54,6 @@ public class NaoNao_Tab_Adapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-
-    }
-
-    @Override
     public Fragment getItem(int position) {
         return mFraList.get(position);
     }
@@ -70,6 +65,11 @@ public class NaoNao_Tab_Adapter extends FragmentStatePagerAdapter {
 
     @Override
     public void destroyItem(View container, int position, Object object) {
+
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
 
     }
 

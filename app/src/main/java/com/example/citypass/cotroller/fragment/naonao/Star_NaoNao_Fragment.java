@@ -73,6 +73,7 @@ public class Star_NaoNao_Fragment extends BaseFragment {
     TextView diNaonaoCountThird;
     @BindView(R.id.star_naonao_recycle)
     MRecyclerView starNaonaoRecycle;
+    private int a=0;
 
     Unbinder unbinder;
 
@@ -81,38 +82,39 @@ public class Star_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        View v = LayoutInflater.from(App.activity).inflate(R.layout.star_naonao_tou, null);
-        diNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.star_naonao_image_second);
-        diNaonaoNameSecond = (TextView) v.findViewById(R.id.star_naonao_name_second);
-        diNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.star_naonao_image_first);
-        diNaonaoNameFirst = (TextView) v.findViewById(R.id.star_naonao_name_first);
-        diNaonaoImageThird = (CircleImageView) v.findViewById(R.id.star_naonao_image_third);
-        diNaonaoNameThird = (TextView) v.findViewById(R.id.star_naonao_name_third);
-        diNaonaoCountSecond = (TextView) v.findViewById(R.id.star_naonao_count_second);
-        diNaonaoCountFirst = (TextView) v.findViewById(R.id.star_naonao_count_first);
-        diNaonaoCountThird = (TextView) v.findViewById(R.id.star_naonao_count_third);
-        LinearLayoutManager man = new LinearLayoutManager(App.activity);
-        starNaonaoRecycle.addHeaderView(v);
-        initParsing();
-        starNaonaoRecycle.setLayoutManager(man);
-        starNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
-            @Override
-            public void onRvScrolled(int dx, int dy) {
+        if(a==0) {
+            View v = LayoutInflater.from(App.activity).inflate(R.layout.star_naonao_tou, null);
+            diNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.star_naonao_image_second);
+            diNaonaoNameSecond = (TextView) v.findViewById(R.id.star_naonao_name_second);
+            diNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.star_naonao_image_first);
+            diNaonaoNameFirst = (TextView) v.findViewById(R.id.star_naonao_name_first);
+            diNaonaoImageThird = (CircleImageView) v.findViewById(R.id.star_naonao_image_third);
+            diNaonaoNameThird = (TextView) v.findViewById(R.id.star_naonao_name_third);
+            diNaonaoCountSecond = (TextView) v.findViewById(R.id.star_naonao_count_second);
+            diNaonaoCountFirst = (TextView) v.findViewById(R.id.star_naonao_count_first);
+            diNaonaoCountThird = (TextView) v.findViewById(R.id.star_naonao_count_third);
+            LinearLayoutManager man = new LinearLayoutManager(App.activity);
+            starNaonaoRecycle.addHeaderView(v);
+            initParsing();
+            starNaonaoRecycle.setLayoutManager(man);
+            starNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+                @Override
+                public void onRvScrolled(int dx, int dy) {
 
-            }
+                }
 
-            @Override
-            public void onRefresh() {
-                starNaonaoRecycle.refreshComplete();
-            }
+                @Override
+                public void onRefresh() {
+                    starNaonaoRecycle.refreshComplete();
+                }
 
-            @Override
-            public void onLoadMore() {
+                @Override
+                public void onLoadMore() {
 
-            }
-        });
-
-
+                }
+            });
+            a=1;
+        }
     }
 
     private void initParsing() {

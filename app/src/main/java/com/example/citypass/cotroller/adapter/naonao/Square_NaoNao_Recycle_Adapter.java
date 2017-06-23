@@ -1,5 +1,8 @@
 package com.example.citypass.cotroller.adapter.naonao;
 
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.naonao.Square_NaoNao_Bean;
@@ -56,6 +60,7 @@ public class Square_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Square_N
 
     public Square_NaoNao_Recycle_Adapter(List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList) {
         this.mList = mList;
+        Log.e("aaa",mList.size()+"");
     }
 
     @Override
@@ -77,7 +82,16 @@ public class Square_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Square_N
         holder.mLevel.setText("lv." + bean.getLevel() + "");
         holder.mName.setText(bean.getNick() + "");
         holder.mTime.setText(bean.getLastTime() + "");
-        Glide.with(App.activity).load(bean.getUserFace()).into(holder.mTouXiang);
+        final ImageView img = holder.mTouXiang;
+        Glide.with(App.activity).load(bean.getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(App.activity.getResources(), resource);
+                ciDrawable.setCircular(true);
+                img.setImageDrawable(ciDrawable);
+            }
+        });
+
         if (bean.getReplyJson1() != null) {
             holder.mTextPinLunName.setText(bean.getReplyJson1().getNick() + " : ");
             holder.mTextPinLun.setText(bean.getReplyJson1().getContent()+"");
@@ -100,6 +114,7 @@ public class Square_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Square_N
                 holder.mImageView.setVisibility(View.VISIBLE);
                 holder.mImageView_One.setVisibility(View.GONE);
                 holder.mImageView_Two.setVisibility(View.GONE);
+
                 Glide.with(App.activity).load(bean.getImage()).into(holder.mImageView);
 
             }

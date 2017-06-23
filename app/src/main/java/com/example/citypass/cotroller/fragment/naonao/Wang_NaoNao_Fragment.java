@@ -73,42 +73,46 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.wang_naonao_recycle)
     MRecyclerView wangNaonaoRecycle;
     private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList = new ArrayList<>();
+    private int a=0;
 
     @Override
     protected void initData() {
-        View v = LayoutInflater.from(App.activity).inflate(R.layout.wang_naonao_tou,null);
-        wangNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.wang_naonao_image_second);
-        wangNaonaoNameSecond = (TextView) v.findViewById(R.id.wang_naonao_name_second);
-        wangNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.wang_naonao_image_first);
-        wangNaonaoNameFirst = (TextView) v.findViewById(R.id.wang_naonao_name_first);
-        wangNaonaoImageThird = (CircleImageView) v.findViewById(R.id.wang_naonao_image_third);
-        wangNaonaoNameThird = (TextView) v.findViewById(R.id.wang_naonao_name_third);
-        wangNaonaoCountSecond = (TextView) v.findViewById(R.id.wang_naonao_count_second);
-        wangNaonaoCountFirst = (TextView) v.findViewById(R.id.wang_naonao_count_first);
-        wangNaonaoCountThird = (TextView) v.findViewById(R.id.wang_naonao_count_third);
-        LinearLayoutManager man = new LinearLayoutManager(App.activity);
-        wangNaonaoRecycle.addHeaderView(v);
-        initParsing();
-        wangNaonaoRecycle.setLayoutManager(man);
-        wangNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
-            @Override
-            public void onRvScrolled(int dx, int dy) {
+        if(a==0) {
+            View v = LayoutInflater.from(App.activity).inflate(R.layout.wang_naonao_tou, null);
+            wangNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.wang_naonao_image_second);
+            wangNaonaoNameSecond = (TextView) v.findViewById(R.id.wang_naonao_name_second);
+            wangNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.wang_naonao_image_first);
+            wangNaonaoNameFirst = (TextView) v.findViewById(R.id.wang_naonao_name_first);
+            wangNaonaoImageThird = (CircleImageView) v.findViewById(R.id.wang_naonao_image_third);
+            wangNaonaoNameThird = (TextView) v.findViewById(R.id.wang_naonao_name_third);
+            wangNaonaoCountSecond = (TextView) v.findViewById(R.id.wang_naonao_count_second);
+            wangNaonaoCountFirst = (TextView) v.findViewById(R.id.wang_naonao_count_first);
+            wangNaonaoCountThird = (TextView) v.findViewById(R.id.wang_naonao_count_third);
+            LinearLayoutManager man = new LinearLayoutManager(App.activity);
+            wangNaonaoRecycle.addHeaderView(v);
+            initParsing();
+            wangNaonaoRecycle.setLayoutManager(man);
+            wangNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+                @Override
+                public void onRvScrolled(int dx, int dy) {
 
-            }
+                }
 
-            @Override
-            public void onRefresh() {
-                mList.clear();
-                initParsing();
-                wangNaonaoRecycle.refreshComplete();
-            }
+                @Override
+                public void onRefresh() {
+                    mList.clear();
+                    initParsing();
+                    wangNaonaoRecycle.refreshComplete();
+                }
 
-            @Override
-            public void onLoadMore() {
-                initParsing();
-                wangNaonaoRecycle.refreshComplete();
-            }
-        });
+                @Override
+                public void onLoadMore() {
+                    initParsing();
+                    wangNaonaoRecycle.refreshComplete();
+                }
+            });
+            a=1;
+        }
     }
 
     private void initParsing() {
