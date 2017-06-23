@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.IdRes;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import com.example.citypass.model.biz.infor.InforModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.TimeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -141,6 +145,8 @@ public class InforActivity extends BaseActivity {
     @BindView(R.id.information_City)
     RelativeLayout informationCity;
     private InforModel model;
+    private String ffff,mm,dd;
+    private String s;
 
     @Override
     protected int getLayoutId() {
@@ -215,11 +221,13 @@ public class InforActivity extends BaseActivity {
                 Toast.makeText(InforActivity.this,"性别已设置，无法修改~",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.information_Age:
+                getDate(LoginUtils.information.getServerInfo().getBirthday(),4,informationAgeTwo);
                 break;
             case R.id.information_Occupation:
                 getDialog("你的职业",informationOccupationTwo.getText().toString(),"你目前从事职业",14,informationOccupationTwo);
                 break;
             case R.id.information_Emotion:
+                getEmotion("情感状态",13,informationEmotionTwo);
                 break;
             case R.id.information_Residence:
                 getDialog("居住地",informationResidenceTwo.getText().toString(),"你所住小区，街道或村镇（12字内）",12,informationResidenceTwo);
@@ -259,6 +267,76 @@ public class InforActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s = editText.getText().toString();
+                        upload(keyId,s,v);
+                    }
+                }).create();
+        dialog.show();
+    }
+    private void getDate(String title, final int keyId, final TextView v){
+        final View view= LayoutInflater.from(InforActivity.this).inflate(R.layout.date_dialog_moban,null);
+        DatePicker Datepicker= (DatePicker) view.findViewById(R.id.infor_dialog_date);
+        Long longTime = TimeUtils.getLongTime(LoginUtils.information.getServerInfo().getBirthday(), "yyyy-MM-dd");
+        ffff = TimeUtils.getStringTime(longTime, "yyyy");
+        mm = TimeUtils.getStringTime(longTime, "MM");
+        dd = TimeUtils.getStringTime(longTime, "dd");
+        Datepicker.init(Integer.parseInt(ffff), Integer.parseInt(mm),Integer.parseInt(dd), new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                ffff=year+"";
+                mm=monthOfYear+1+"";
+                dd=dayOfMonth+"";
+            }
+        });
+        AlertDialog dialog=new AlertDialog.Builder(InforActivity.this)
+                .setTitle(title)
+                .setView(view)
+                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String s=ffff+"-"+mm+"-"+dd;
+                        upload(keyId,s,v);
+                    }
+                }).create();
+        dialog.show();
+    }
+    private void getEmotion(String title, final int keyId, final TextView v){
+        final View view= LayoutInflater.from(InforActivity.this).inflate(R.layout.radio_dialog_moban,null);
+        RadioGroup editText= (RadioGroup) view.findViewById(R.id.radio_dialog);
+        editText.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.radio_one:
+                        s="单身";
+                        break;
+                    case R.id.radio_two:
+                        s="热恋";
+                        break;
+                    case R.id.radio_three:
+                        s="已婚";
+                        break;
+                    case R.id.radio_four:
+                        s="保密";
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog=new AlertDialog.Builder(InforActivity.this)
+                .setTitle(title)
+                .setView(view)
+                .setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         upload(keyId,s,v);
                     }
                 }).create();
