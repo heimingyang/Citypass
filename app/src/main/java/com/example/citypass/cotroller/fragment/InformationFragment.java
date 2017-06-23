@@ -2,6 +2,7 @@ package com.example.citypass.cotroller.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -223,7 +224,7 @@ public class InformationFragment extends BaseFragment {
         statisBean.setSystemNo(2);
         int currentapiVersion=android.os.Build.VERSION.SDK_INT;
         statisBean.setSystem_VersionNo(currentapiVersion+"");
-        statisBean.setPhoneId("863181036606964");
+        statisBean.setPhoneId(Build.SERIAL);
         statisBean.setPhoneNum(SpUtils.getSp().getString(LoginUtils.PHONE,""));
         informations.setStatis(statisBean);
         String s = JSON.toJSONString(informations);

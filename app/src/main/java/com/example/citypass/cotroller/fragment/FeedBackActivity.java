@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,7 +109,7 @@ public class FeedBackActivity extends BaseActivity {
         statisBean.setSystemNo(2);
         int currentapiVersion=android.os.Build.VERSION.SDK_INT;
         statisBean.setSystem_VersionNo(currentapiVersion+"");
-        statisBean.setPhoneId("863181036606964");
+        statisBean.setPhoneId(Build.SERIAL);
         statisBean.setPhoneNum(SpUtils.getSp().getString(LoginUtils.PHONE,""));
         feed.setStatis(statisBean);
         String s = JSON.toJSONString(feed);

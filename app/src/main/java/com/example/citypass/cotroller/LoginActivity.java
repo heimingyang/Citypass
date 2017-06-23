@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -129,7 +130,7 @@ public class LoginActivity extends BaseActivity {
         statisBean.setSystemNo(2);
         int currentapiVersion=android.os.Build.VERSION.SDK_INT;
         statisBean.setSystem_VersionNo(currentapiVersion+"");
-        statisBean.setPhoneId("863181036606964");
+        statisBean.setPhoneId(Build.SERIAL);
         statisBean.setPhoneNum("86"+username);
         String s = JSON.toJSONString(login);
         HashMap<String,String> map=new HashMap<>();

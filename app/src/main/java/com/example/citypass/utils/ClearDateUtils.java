@@ -24,7 +24,7 @@ public class ClearDateUtils {
      * @param context
      */
     public static void cleanInternalCache(Context context) {
-        deleteFilesByDirectory(context.getCacheDir());
+        deleteFilesByDirectory(context.getExternalCacheDir());
     }
 
     /**

@@ -3,6 +3,7 @@ package com.example.citypass.cotroller;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -43,7 +45,7 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.setting_name)
     RelativeLayout settingName;
     @BindView(R.id.setting_clear)
-    TextView settingClear;
+    RelativeLayout settingClear;
     @BindView(R.id.setting_message)
     TextView settingMessage;
     @BindView(R.id.setting_blacklist)
@@ -51,7 +53,7 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.setting_pwd)
     TextView settingPwd;
     @BindView(R.id.setting_version)
-    TextView settingVersion;
+    RelativeLayout settingVersion;
     @BindView(R.id.setting_suggested)
     TextView settingSuggested;
     @BindView(R.id.setting_about)
@@ -60,7 +62,7 @@ public class SettingActivity extends BaseActivity {
     Button settingBackLogin;
     @BindView(R.id.setting_clearTwo)
     TextView settingClearTwo;
-    @BindView(R.id.setting_versionTwo)
+    @BindView(R.id.setting_versionOne)
     TextView settingVersionTwo;
 
     @Override
@@ -90,7 +92,8 @@ public class SettingActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.setting_back, R.id.setting_img, R.id.setting_name, R.id.setting_clear, R.id.setting_message, R.id.setting_blacklist, R.id.setting_pwd, R.id.setting_version, R.id.setting_suggested, R.id.setting_about, R.id.setting_back_login})
+    @OnClick({R.id.setting_back, R.id.setting_img, R.id.setting_name, R.id.setting_clear, R.id.setting_message, R.id.setting_blacklist, R.id.setting_pwd, R.id.setting_version, R.id.setting_suggested, R.id.setting_about, R.id.setting_back_login
+            , R.id.setting_clearTwo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.setting_back:
@@ -99,6 +102,8 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_img:
                 break;
             case R.id.setting_name:
+                Intent intent = new Intent(SettingActivity.this, InforActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_clear:
                 AlertDialog dialog = new AlertDialog.Builder(SettingActivity.this)
@@ -124,13 +129,13 @@ public class SettingActivity extends BaseActivity {
                 dialog.show();
                 break;
             case R.id.setting_message:
-                Intent intentOne=new Intent(SettingActivity.this,ReminberActivity.class);
+                Intent intentOne = new Intent(SettingActivity.this, ReminberActivity.class);
                 startActivity(intentOne);
                 break;
             case R.id.setting_blacklist:
                 break;
             case R.id.setting_pwd:
-                Intent intentTwo=new Intent(SettingActivity.this,ModifyActivity.class);
+                Intent intentTwo = new Intent(SettingActivity.this, ModifyActivity.class);
                 startActivity(intentTwo);
                 break;
             case R.id.setting_version:
@@ -147,6 +152,9 @@ public class SettingActivity extends BaseActivity {
             case R.id.setting_back_login:
                 backLoginDialog();
                 break;
+            case R.id.setting_clearTwo:
+                break;
+
         }
     }
 
@@ -172,4 +180,11 @@ public class SettingActivity extends BaseActivity {
         dialog.show();
     }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

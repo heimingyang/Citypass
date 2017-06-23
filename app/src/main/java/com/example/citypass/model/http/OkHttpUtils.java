@@ -177,7 +177,7 @@ public class OkHttpUtils implements FactoryIn {
                         cookie+=value+";";
                     }
                 }
-                if(cookie.length()>0){
+                if(cookie!=null){
                     cookie=cookie.substring(0,cookie.length()-1);
                 }
                 boolean coo=shared.getBoolean("login",false);
