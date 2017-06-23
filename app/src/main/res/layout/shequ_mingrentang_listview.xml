@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/MingRenTang_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" />
+
+        <RelativeLayout
+            android:id="@+id/MingRenTangItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_listview_selector"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
+
+            <RelativeLayout
+                android:id="@+id/level_relay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/ranking_image"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tieba_pai_num" />
+
+                <TextView
+                    android:id="@+id/MingRenTang_PaiMing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="4"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <com.example.citypass.base.CircleImageView
+                android:id="@+id/MingRenTang_userImage"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/level_relay"
+                android:background="@drawable/login_icon_accounta" />
+
+            <TextView
+                android:id="@+id/MingRenTang_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/MingRenTang_userImage"
+                android:text="忐忑的心"
+                android:textColor="#000000"
+                android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/MingRenTang_where_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/MingRenTang_userName"
+                android:layout_below="@id/MingRenTang_userName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="这是在哪"
+                android:textColor="@color/color_999"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/MingRenTang_user_level"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/MingRenTang_userName"
+                android:background="@drawable/ccoo_drawable_dengji_bg_green"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="lv.12"
+                android:textColor="#ffffff"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/MingRenTang_HuiTieShuCount"
+                android:text="回帖数："
+                android:textColor="@color/color_999" />
+
+            <TextView
+                android:id="@+id/MingRenTang_HuiTieShuCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="100"
+                android:textColor="#fe9917" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top_relay"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/tieba_top_bg2">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="105dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/cover_homepage_podium"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:id="@+id/week_relay"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/weekbelow_relay"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="25dp">
+
+            <RelativeLayout
+                android:id="@+id/ranking_relay2"
+                android:layout_width="78dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/tieba_top_tou2">
+                <com.example.citypass.base.CircleImageView
+                    android:id="@+id/mingrentang_TouXiang2"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="68dp"
+                    android:layout_height="66dp"
+                    android:src="@drawable/wang"
+                    />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/mingrentang_name_text2"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ranking_relay2"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="zz"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/month_relay"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/monthbelow_relay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp">
+
+            <RelativeLayout
+                android:id="@+id/ranking_relay1"
+                android:layout_width="78dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/tieba_top_tou1">
+
+                <com.example.citypass.base.CircleImageView
+                    android:id="@+id/mingrentang_TouXiang1"
+                    android:layout_width="68dp"
+                    android:layout_height="66dp"
+                    android:src="@drawable/wang"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/mingrentang_name_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ranking_relay1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="zz"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/year_relay"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/yearbelow_relay"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="22dp">
+
+            <RelativeLayout
+                android:id="@+id/ranking_relay3"
+                android:layout_width="78dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/tieba_top_tou3">
+                <com.example.citypass.base.CircleImageView
+                    android:id="@+id/mingrentang_TouXiang3"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="68dp"
+                    android:layout_height="66dp"
+                    android:src="@drawable/wang"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/mingrentang_name_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ranking_relay3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="zz"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/weekbelow_relay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="17dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/cover_homepage_podium1" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="2dp">
+
+                <TextView
+                    android:id="@+id/mingrentang_Text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="20"
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/gift_texts2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mingrentang_Text2"
+                    android:layout_centerHorizontal="true"
+                    android:text="获得回复"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/monthbelow_relay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp">
+
+            <ImageView
+                android:layout_width="86dp"
+                android:layout_height="80dp"
+                android:src="@drawable/cover_homepage_podium2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/mingrentang_Text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="3dp"
+                    android:text="zz"
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/gift_texts1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mingrentang_Text1"
+                    android:layout_centerHorizontal="true"
+                    android:text="获得回复"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yearbelow_relay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/cover_homepage_podium3" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="3dp">
+
+                <TextView
+                    android:id="@+id/mingrentang_Text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="  "
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/gift_texts3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mingrentang_Text3"
+                    android:layout_centerHorizontal="true"
+                    android:text="获得回复"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
