@@ -1,6 +1,8 @@
 package com.example.citypass.cotroller.activity;
 
 import android.content.Intent;
+import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -32,7 +34,6 @@ public class MyWebActivity extends BaseActivity {
         String title = intent.getStringExtra("title");
 
 
-
         myWebview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -50,8 +51,19 @@ public class MyWebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        WebSettings settings = myWebview.getSettings();
+        settings.setJavaScriptEnabled(true);
     }
 
+    //监听webview返回键
+    public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+        if (keyCode == keyEvent.KEYCODE_BACK) {
+            if (myWebview.canGoBack()) {
+                myWebview.goBack();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, keyEvent);
+    }
 
 }

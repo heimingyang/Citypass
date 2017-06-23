@@ -1,6 +1,8 @@
 package com.example.citypass.cotroller.fragment.webview;
 
 import android.content.Intent;
+import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -42,9 +44,21 @@ public class WebViewActivity extends BaseActivity {
     protected void initView() {
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
-        LifeWebView.setWebViewClient(new WebViewClient());
         LifeWebView.loadUrl(url);
+        LifeWebView.setWebViewClient(new WebViewClient());
+        WebSettings settings = LifeWebView.getSettings();
+        settings.setJavaScriptEnabled(true);
+    }
 
+    //监听webview返回键
+    public boolean onKeyDown(int keyCode ,KeyEvent keyEvent){
+        if(keyCode==keyEvent.KEYCODE_BACK){
+            if(LifeWebView.canGoBack()){
+                LifeWebView.goBack();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, keyEvent);
     }
 
 

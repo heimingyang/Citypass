@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import com.example.citypass.base.BaseFragment;
 import com.example.citypass.model.bean.life.LifeFragmentBean;
 import com.example.citypass.model.http.LifeModel;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.UrlUtils;
+import com.example.citypass.utils.WebViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +75,15 @@ public class FragmentTwoJop extends BaseFragment {
     protected void initView(View view) {
         model = new LifeModel();
 
+        FragGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LifeFragmentBean.ServerInfoBean.GetTelListBeanX.GetTelListBean getTelListBean = mList.get(position);
+
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getTelListBean.getChannelUrl());
+
+            }
+        });
 
     }
 

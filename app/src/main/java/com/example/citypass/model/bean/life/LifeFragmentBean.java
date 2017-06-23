@@ -1113,10 +1113,24 @@ public class LifeFragmentBean {
                 private String ChannelImg;
                 private int ChannelType;
                 private String ChannelUrl;
-                private int channelType;
-                private String channelUrl;
                 private String channelInfo;
                 private String NavId;
+
+                public int getChannelType() {
+                    return ChannelType;
+                }
+
+                public void setChannelType(int channelType) {
+                    ChannelType = channelType;
+                }
+
+                public String getChannelUrl() {
+                    return ChannelUrl;
+                }
+
+                public void setChannelUrl(String channelUrl) {
+                    ChannelUrl = channelUrl;
+                }
 
                 public int getId() {
                     return Id;
@@ -1158,6 +1172,8 @@ public class LifeFragmentBean {
                     this.NavId = NavId;
                 }
             }
+
+
         }
 
         public static class GetCmgListBean {

@@ -13,6 +13,8 @@ import com.example.citypass.base.BaseFragment;
 import com.example.citypass.model.bean.life.LifeFragmentBean;
 import com.example.citypass.model.http.LifeModel;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.UrlUtils;
+import com.example.citypass.utils.WebViewUtils;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ import butterknife.Unbinder;
  * 修改时间:
  */
 
-public class FragmentTwoVP extends BaseFragment {
+public class FragmentTwoVP extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.image)
     ImageView image;
     @BindView(R.id.text)
@@ -56,6 +58,7 @@ public class FragmentTwoVP extends BaseFragment {
     LinearLayout lay3;
     Unbinder unbinder;
     private LifeModel model;
+    private List<LifeFragmentBean.ServerInfoBean.GetPostListBeanX.GetPostListBean> getPostList;
 
     @Override
     protected void initData() {
@@ -66,30 +69,28 @@ public class FragmentTwoVP extends BaseFragment {
                 LifeFragmentBean bean = JSON.parseObject(result, LifeFragmentBean.class);
                 Log.d("FragmentOneVP", result);
 
-                List<LifeFragmentBean.ServerInfoBean.GetPostListBeanX.GetPostListBean> getPostList = bean.getServerInfo().getGetPostList().getGetPostList();
-                int size = getPostList.size();
+                getPostList = bean.getServerInfo().getGetPostList().getGetPostList();
+                String Mimg = getPostList.get(4).getChannelImg();
+                Glide.with(getContext()).load(Mimg).into(image);
+                String name = getPostList.get(4).getChannelName();
+                text.setText(name);
 
-                    String Mimg = getPostList.get(4).getChannelImg();
-                    Glide.with(getContext()).load(Mimg).into(image);
-                    String name = getPostList.get(4).getChannelName();
-                    text.setText(name);
+                String Mimg1 = getPostList.get(5).getChannelImg();
+                Glide.with(getContext()).load(Mimg1).into(image1);
 
-                    String Mimg1 = getPostList.get(5).getChannelImg();
-                    Glide.with(getContext()).load(Mimg1).into(image1);
+                String name1 = getPostList.get(5).getChannelName();
+                text1.setText(name1);
 
-                    String name1 = getPostList.get(5).getChannelName();
-                    text1.setText(name1);
+                String Mimg2 = getPostList.get(6).getChannelImg();
+                Glide.with(getContext()).load(Mimg2).into(image2);
 
-                    String Mimg2 = getPostList.get(6).getChannelImg();
-                    Glide.with(getContext()).load(Mimg2).into(image2);
+                String name2 = getPostList.get(6).getChannelName();
+                text2.setText(name2);
 
-                    String name2 = getPostList.get(6).getChannelName();
-                    text2.setText(name2);
-
-                    String Mimg3 = getPostList.get(7).getChannelImg();
-                    Glide.with(getContext()).load(Mimg3).into(image3);
-                    String name3 = getPostList.get(7).getChannelName();
-                    text3.setText(name3);
+                String Mimg3 = getPostList.get(7).getChannelImg();
+                Glide.with(getContext()).load(Mimg3).into(image3);
+                String name3 = getPostList.get(7).getChannelName();
+                text3.setText(name3);
 
 
             }
@@ -103,7 +104,10 @@ public class FragmentTwoVP extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        image.setOnClickListener(this);
+        image1.setOnClickListener(this);
+        image2.setOnClickListener(this);
+        image3.setOnClickListener(this);
     }
 
     @Override
@@ -118,4 +122,24 @@ public class FragmentTwoVP extends BaseFragment {
         return R.layout.new_life_gv_item;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.image:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(4).getChannelUrl());
+                break;
+            case R.id.image1:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(5).getChannelUrl());
+                break;
+            case R.id.image2:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(6).getChannelUrl());
+                break;
+            case R.id.image3:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(7).getChannelUrl());
+                break;
+
+
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.citypass.cotroller.fragment.life;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -15,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -25,11 +25,12 @@ import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.FragmentAdapter;
 import com.example.citypass.cotroller.adapter.Fragment_LifeGVAdapter;
 import com.example.citypass.cotroller.adapter.MyGridAdapter;
-import com.example.citypass.cotroller.fragment.webview.WebViewActivity;
 import com.example.citypass.model.bean.life.LifeFragmentBean;
 import com.example.citypass.model.http.LifeModel;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.TimeUtils;
+import com.example.citypass.utils.UrlUtils;
+import com.example.citypass.utils.WebViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ import butterknife.Unbinder;
  * #                                                   #
  */
 
-public class LifeFragment extends BaseFragment {
+public class LifeFragment extends BaseFragment implements View.OnClickListener {
 
 
     @BindView(R.id.textView)
@@ -170,6 +171,9 @@ public class LifeFragment extends BaseFragment {
     @BindView(R.id.Linear_ViewPager)
     ViewPager LinearViewPager;
     Unbinder unbinder;
+    @BindView(R.id.Life_Scrollview)
+    ScrollView LifeScrollview;
+    Unbinder unbinder1;
     private LifeModel model = new LifeModel();
     private Fragment_LifeGVAdapter adapter;
     private List<LifeFragmentBean.ServerInfoBean.GetPostListBeanX.GetPostListBean> mList = new ArrayList<>();
@@ -180,13 +184,13 @@ public class LifeFragment extends BaseFragment {
     private FragmentAdapter pagerAdapter;
     private List<Fragment> FragmList;
     private List<Fragment> JopFraList;
-    private int anInt = 0;
+    private boolean anInt = true;
     private List<LifeFragmentBean.ServerInfoBean.GetPostWorkListBeanX.GetJobListBean> getJobList;
     private List<LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetHomeChuZuInfoListBean> getHomeChuZuInfoList;
 
     @Override
     protected void initData() {
-        if (anInt == 0) {
+        if (anInt) {
             model.Post(new MyCallBack() {
                 @Override
                 public void onSuccess(String result) {
@@ -237,7 +241,7 @@ public class LifeFragment extends BaseFragment {
                     getOneList();
 //                  //第二个列表
                     getTwoList();
-                    anInt = 1;
+                    anInt = false;
                 }
 
 
@@ -268,9 +272,24 @@ public class LifeFragment extends BaseFragment {
             text2.setText(title);
             String time = getHomeChuZuInfoList.get(i).getTime();
             text3.setText(time);
-            houseLinearlayout.removeView(view);
+
+            final int Fi = i;
+            final String type = getHomeChuZuInfoList.get(Fi).getType();
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (type.equals("1")) {
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem1 + getHomeChuZuInfoList.get(Fi).getID());
+                    } else if (type.equals("2")) {
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem2 + getHomeChuZuInfoList.get(Fi).getID());
+                    }
+
+
+                }
+            });
+
+
             houseLinearlayout.addView(view);
-            continue;
 
         }
     }
@@ -282,13 +301,30 @@ public class LifeFragment extends BaseFragment {
             TextView text1 = (TextView) view.findViewById(R.id.text1);
             TextView text2 = (TextView) view.findViewById(R.id.text2);
             TextView text3 = (TextView) view.findViewById(R.id.text3);
+
+
             text1.setText(getJobList.get(i).getPosition());
             text2.setText(getJobList.get(i).getTitle());
             String editTime = getJobList.get(i).getEditTime();
             text3.setText(TimeUtils.getTime(editTime));
-            zhaopinListLay.removeView(view);
+            final int FintI = i;
+            final int isMQ = getJobList.get(FintI).getIsMQ();
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (0 == isMQ) {
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemQuanZhi + getJobList.get(FintI).getJobID());
+                    } else if (1 == isMQ) {
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.One_ItemJianZhi + getJobList.get(FintI).getJobID());
+                    }
+                }
+            });
+
+
             zhaopinListLay.addView(view);
-            continue;
+
+
         }
     }
 
@@ -348,6 +384,9 @@ public class LifeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+
+        LifeScrollview.scrollTo(0, 0);
+
         //这是上方的viewpager
         LoadViewpager();
         //下面的viewpager的监听事件
@@ -434,56 +473,79 @@ public class LifeFragment extends BaseFragment {
 
     }
 
-
-    @OnClick({R.id.job_relay, R.id.zhaopin_text1, R.id.zhaopin_text2, R.id.zhaopin_text3, R.id.zhaopin_lay, R.id.house_text1, R.id.zhan_text1, R.id.house_relay, R.id.houses_text1, R.id.houses_text2, R.id.houses_text3, R.id.house_lay})
+    @OnClick({R.id.textView, R.id.job_image, R.id.job_text1, R.id.zhanwei_text1, R.id.job_more_text, R.id.arrow_image, R.id.job_relay, R.id.zhaopin_text1, R.id.zhaopin_text2, R.id.zhaopin_text3, R.id.zhaopin_lay, R.id.zhaopin_list_lay, R.id.house_image, R.id.house_text1, R.id.zhan_text1, R.id.house_more_text, R.id.house_arrow_image, R.id.house_relay, R.id.house_main_lay, R.id.houses_text1, R.id.houses_text2, R.id.houses_text3, R.id.house_lay, R.id.houses_image1, R.id.houses_title1, R.id.houses_relay1, R.id.houses_name1, R.id.houses_price1, R.id.houses_layout1, R.id.houses_titles1, R.id.houses_images1, R.id.houses_relays1, R.id.houses_names1, R.id.houses_prices1, R.id.houses_layouts1, R.id.houses_lay, R.id.house_Linearlayout, R.id.yuan1_lay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+
             case R.id.job_relay:
-                String url = "http://m.yanqing.ccoo.cn/post/zhaopin/";
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                intent.putExtra("url", url);
-                startActivity(intent);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo);
 
                 break;
             case R.id.zhaopin_text1:
-                String Zhaourl = " http://m.yanqing.ccoo.cn/post/job/";
-                Intent Zhaointent = new Intent(getContext(), WebViewActivity.class);
-                Zhaointent.putExtra("url", Zhaourl);
-                startActivity(Zhaointent);
-
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.QuanZhiZhaoPin);
 
                 break;
             case R.id.zhaopin_text2:
-                String Zhaourl1 = " http://m.yanqing.ccoo.cn/post/jianzhi/";
-                Intent Zhaointent1 = new Intent(getContext(), WebViewActivity.class);
-                Zhaointent1.putExtra("url", Zhaourl1);
-                startActivity(Zhaointent1);
-
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianZhi);
 
                 break;
             case R.id.zhaopin_text3:
-                String Zhaourl2 = " http://m.yanqing.ccoo.cn/post/qiuzhi/";
-                Intent Zhaointent2 = new Intent(getContext(), WebViewActivity.class);
-                Zhaointent2.putExtra("url", Zhaourl2);
-                startActivity(Zhaointent2);
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.JianLiKu);
+
                 break;
             case R.id.zhaopin_lay:
                 break;
-            case R.id.house_text1:
+            case R.id.zhaopin_list_lay:
                 break;
-            case R.id.zhan_text1:
-                break;
+
             case R.id.house_relay:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi);
+
+                break;
+            case R.id.house_main_lay:
                 break;
             case R.id.houses_text1:
+
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ErShouFang);
                 break;
             case R.id.houses_text2:
+
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.XinHouses);
                 break;
             case R.id.houses_text3:
+
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZuFangHouses);
                 break;
             case R.id.house_lay:
                 break;
+            case R.id.houses_image1:
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.WanKeCheng);
+
+                break;
+            case R.id.houses_images1:
+
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.Shanghujun);
+                break;
+            case R.id.houses_relays1:
+                break;
+            case R.id.houses_names1:
+                break;
+            case R.id.houses_prices1:
+                break;
+            case R.id.houses_layouts1:
+                break;
+            case R.id.houses_lay:
+                break;
+            case R.id.house_Linearlayout:
+                break;
+            case R.id.yuan1_lay:
+                break;
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
 
