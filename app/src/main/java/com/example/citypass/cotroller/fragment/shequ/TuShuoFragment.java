@@ -4,6 +4,9 @@ import android.view.View;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.view.MRecyclerView;
+
+import butterknife.BindView;
 
 /**
  * 项目名称: 血压卫士
@@ -16,10 +19,19 @@ import com.example.citypass.base.BaseFragment;
  */
 public class TuShuoFragment extends BaseFragment {
 
+
+    @BindView(R.id.shequ_recyclerview)
+    MRecyclerView shequRecyclerview;
+
+
     @Override
     protected void initData() {
 
-    }
+
+        }
+
+
+
 
     @Override
     protected void initListener() {
@@ -31,8 +43,11 @@ public class TuShuoFragment extends BaseFragment {
 
     }
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.shequ_recycler;
     }
+
+
 }

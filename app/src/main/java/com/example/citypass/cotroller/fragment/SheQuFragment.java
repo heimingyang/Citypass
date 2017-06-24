@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.View;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
 import com.example.citypass.cotroller.adapter.shequ.MingRenTangFragment;
 import com.example.citypass.cotroller.adapter.shequ.SheQuAdapter;
 import com.example.citypass.cotroller.fragment.shequ.BanQuFragment;
@@ -117,8 +119,22 @@ public class SheQuFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         App.activity.getText().setText("社区");
         App.activity.getText().setCompoundDrawables(null, null, null, null);
+        App.activity.getImgOne().setVisibility(View.VISIBLE);
         App.activity.getImgOne().setImageResource(R.drawable.chazhao_back_normal);
+        App.activity.getImgOne().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SouSuoActivity.class);
+                startActivity(intent);
+            }
+        });
         App.activity.getImgTwo().setImageResource(R.drawable.btn_release_normal);
+        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 

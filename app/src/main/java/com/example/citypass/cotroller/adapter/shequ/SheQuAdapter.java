@@ -21,6 +21,7 @@ public class SheQuAdapter extends FragmentPagerAdapter {
 
     private List<BaseFragment> fragments;
     private List<String> strings;
+    private int itemCount;
 
     public SheQuAdapter(FragmentManager fm,List<BaseFragment> fragments,List<String> strings) {
         super(fm);
@@ -48,4 +49,6 @@ public class SheQuAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return strings.get(position);
     }
+
+
 }

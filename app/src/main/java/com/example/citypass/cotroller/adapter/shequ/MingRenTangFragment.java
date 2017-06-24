@@ -70,8 +70,8 @@ public class MingRenTangFragment extends BaseFragment {
         name2 = (TextView) view1.findViewById(R.id.mingrentang_name_text2);
         name3 = (TextView) view1.findViewById(R.id.mingrentang_name_text3);
         count1 = (TextView) view1.findViewById(R.id.mingrentang_Text1);
-        count2 = (TextView) view1.findViewById(R.id.mingrentang_Text1);
-        count3 = (TextView) view1.findViewById(R.id.mingrentang_Text1);
+        count2 = (TextView) view1.findViewById(R.id.mingrentang_Text2);
+        count3 = (TextView) view1.findViewById(R.id.mingrentang_Text3);
         LinearLayoutManager man = new LinearLayoutManager(App.activity);
         shequRecyclerview.addHeaderView(view1);
         init();
