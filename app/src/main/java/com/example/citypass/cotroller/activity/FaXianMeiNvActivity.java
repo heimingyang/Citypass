@@ -2,7 +2,10 @@ package com.example.citypass.cotroller.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +17,27 @@ import android.widget.Toast;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.adapter.faxian.FaXianMeiNv_Adapter;
+import com.example.citypass.cotroller.fragment.faxian_belle.FengMian_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.LengYan_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.MeiLi_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.MengMeiZi_Framgment;
+import com.example.citypass.cotroller.fragment.faxian_belle.NvHanZi_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.QiZhi_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.TuHao_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.XinRenXiu_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.XinShang_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.XingGan_Fragment;
+import com.example.citypass.cotroller.fragment.faxian_belle.ZuiXin_Fragment;
 import com.example.citypass.model.bean.Information;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -66,6 +85,23 @@ public class FaXianMeiNvActivity extends BaseActivity {
     RelativeLayout BelleRelative;
     @BindView(R.id.Belle_Tablayout)
     TabLayout BelleTablayout;
+    @BindView(R.id.Belle_viewpager)
+    ViewPager BelleViewpager;
+    private TuHao_Fragment tuHao_fragment;
+    private XinShang_Fragment xinShang_fragment;
+    private MeiLi_Fragment meiLi_fragment;
+    private ZuiXin_Fragment zuiXin_fragment;
+    private FengMian_Fragment fengMian_fragment;
+    private XinRenXiu_Fragment xinRenXiu_fragment;
+    private XingGan_Fragment xingGan_fragment;
+    private LengYan_Fragment lengYan_fragment;
+    private QiZhi_Fragment qiZhi_fragment;
+    private MengMeiZi_Framgment mengMeiZi_framgment;
+    private NvHanZi_Fragment nvHanZi_fragment;
+    private List<Fragment> flist = new ArrayList<>();
+    private List<String> mlist = new ArrayList<>();
+    //viewpager适配器
+    private FaXianMeiNv_Adapter faXianMeiNv_adapter;
 
 
     @Override
@@ -85,6 +121,49 @@ public class FaXianMeiNvActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        //实例化需要的所有Fragment，并且将其都添加到集合
+        tuHao_fragment = new TuHao_Fragment();
+        xinShang_fragment = new XinShang_Fragment();
+        meiLi_fragment = new MeiLi_Fragment();
+        zuiXin_fragment = new ZuiXin_Fragment();
+        fengMian_fragment = new FengMian_Fragment();
+        xinRenXiu_fragment = new XinRenXiu_Fragment();
+        xingGan_fragment = new XingGan_Fragment();
+        lengYan_fragment = new LengYan_Fragment();
+        qiZhi_fragment = new QiZhi_Fragment();
+        mengMeiZi_framgment = new MengMeiZi_Framgment();
+        nvHanZi_fragment = new NvHanZi_Fragment();
+
+        flist.add(tuHao_fragment);
+        flist.add(xinShang_fragment);
+        flist.add(meiLi_fragment);
+        flist.add(zuiXin_fragment);
+        flist.add(fengMian_fragment);
+        flist.add(xinRenXiu_fragment);
+        flist.add(xingGan_fragment);
+        flist.add(lengYan_fragment);
+        flist.add(qiZhi_fragment);
+        flist.add(mengMeiZi_framgment);
+        flist.add(nvHanZi_fragment);
+
+        //添加tablayout 的 title
+        mlist.add("土豪榜");
+        mlist.add("欣赏榜");
+        mlist.add("魅力榜");
+        mlist.add("最新");
+        mlist.add("封面女郎");
+        mlist.add("新人秀");
+        mlist.add("性感");
+        mlist.add("冷艳");
+        mlist.add("气质");
+        mlist.add("萌妹子");
+        mlist.add("女汉子");
+
+
+        faXianMeiNv_adapter = new FaXianMeiNv_Adapter(getSupportFragmentManager(), flist, mlist);
+        BelleViewpager.setAdapter(faXianMeiNv_adapter);
+        BelleTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        BelleTablayout.setupWithViewPager(BelleViewpager);
 
 
     }
@@ -185,5 +264,12 @@ public class FaXianMeiNvActivity extends BaseActivity {
         alertDialog.show();
 
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

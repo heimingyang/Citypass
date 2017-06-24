@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/xinshang_relative"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/tieba_top_bg2">
+
+        <RelativeLayout
+            android:id="@+id/second_tou_img"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="38dp"
+            android:background="@drawable/cover_ranking_top2"
+            android:layout_above="@+id/relativeLayout3"
+            android:layout_alignEnd="@+id/xinshang_tv2">
+
+        </RelativeLayout>
+
+        <com.example.citypass.base.CircleImageView
+            android:id="@+id/xinshang_img2"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_above="@+id/xinshang_tv2"
+            android:layout_alignStart="@id/second_tou_img"
+            android:src="@drawable/girl" />
+
+        <TextView
+            android:id="@+id/xinshang_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/second_tou_img"
+            android:layout_marginLeft="53dp"
+            android:padding="2dp"
+            android:text="呵呵哒" />
+
+        <RelativeLayout
+            android:id="@+id/first_tou_img"
+            android:layout_width="55dp"
+            android:layout_height="70dp"
+            android:layout_above="@id/di_naonao_image_third"
+
+            android:layout_marginLeft="155dp"
+            android:background="@drawable/cover_ranking_top1">
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/xinshang_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_tou_img"
+            android:layout_marginLeft="150dp"
+            android:text="呵呵哒" />
+
+        <com.example.citypass.base.CircleImageView
+            android:id="@+id/xinshang_img1"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_above="@id/xinshang_tv1"
+            android:layout_alignStart="@id/first_tou_img"
+            android:src="@drawable/girl" />
+
+
+        <RelativeLayout
+            android:id="@+id/third_tou_img"
+            android:layout_width="55dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="280dp"
+            android:background="@drawable/cover_ranking_top3"
+            android:layout_alignTop="@+id/second_tou_img"
+            android:layout_alignEnd="@+id/relativeLayout2">
+
+        </RelativeLayout>
+
+        <com.example.citypass.base.CircleImageView
+            android:id="@+id/xinshang_img3"
+            android:layout_width="55dp"
+            android:layout_height="56dp"
+            android:layout_above="@+id/xinshang_tv3"
+            android:layout_alignStart="@+id/third_tou_img"
+            android:src="@drawable/girl" />
+
+        <TextView
+            android:id="@+id/xinshang_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/third_tou_img"
+            android:layout_marginLeft="270dp"
+            android:padding="1dp"
+            android:text="呵呵哒" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/cover_homepage_podium"
+            android:id="@+id/relativeLayout3">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="85dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/cover_homepage_podium1" />
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp">
+
+                <TextView
+                    android:id="@+id/xinshang_zan2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="1"
+                    android:textColor="#fff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/xinshang_zan2"
+                    android:layout_centerHorizontal="true"
+                    android:text="回帖数"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="95dp"
+            android:layout_height="84dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:src="@drawable/cover_homepage_podium2" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="107dp">
+
+            <TextView
+                android:id="@+id/xinshang_zan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="1"
+                android:textColor="#fff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xinshang_zan1"
+                android:layout_centerHorizontal="true"
+                android:text="回帖数"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="117dp"
+            android:src="@drawable/cover_homepage_podium3" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="148dp">
+
+            <TextView
+                android:id="@+id/xinshang_zan3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="1"
+                android:textColor="#fff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xinshang_zan3"
+                android:layout_centerHorizontal="true"
+                android:text="回帖数"
+                android:textColor="#fff" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

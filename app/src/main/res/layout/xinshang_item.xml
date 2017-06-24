@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/news_ranking4">
+
+        <TextView
+            android:id="@+id/xinshang_item_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <com.example.citypass.base.CircleImageView
+        android:id="@+id/xinshang_item_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/xinshang_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="放松放松"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:id="@+id/xinshang_item_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xinshang_item_name"
+            android:background="@drawable/xinshang_back_nan"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/xinshang_item_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nan" />
+
+            <TextView
+                android:id="@+id/xinshang_item_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25  "
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/xinshang_item_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xinshang_item_name"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/xinshang_item_linear"
+            android:text="IT" />
+
+        <TextView
+            android:id="@+id/xinshang_item_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="点赞数：3" />
+
+    </RelativeLayout>
+
+</LinearLayout>
