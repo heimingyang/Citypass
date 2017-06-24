@@ -2,6 +2,7 @@ package com.example.citypass.cotroller;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -262,6 +263,8 @@ public class InforActivity extends BaseActivity {
             case R.id.information_QQ:
                 break;
             case R.id.information_Grade:
+                Intent intentTwo=new Intent(InforActivity.this,LevelActivity.class);
+                startActivity(intentTwo);
                 break;
             case R.id.information_Medal:
                 break;

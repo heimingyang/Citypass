@@ -46,6 +46,7 @@
       <activity android:name=".cotroller.fragment.webview.WebViewActivity"/>
         <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>
         <activity android:name=".cotroller.InforActivity"/>
+        <activity android:name=".cotroller.LevelActivity"/>
     </application>
 
 </manifest>

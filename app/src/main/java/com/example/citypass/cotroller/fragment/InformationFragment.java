@@ -73,26 +73,8 @@ public class InformationFragment extends BaseFragment {
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
-
         if(login){
-            if(LoginUtils.information!=null) {
-                information=LoginUtils.information;
-                inforName.setText(information.getServerInfo().getNick());
-                Drawable drawable = null;
-                if (information.getServerInfo().getSex().equals("男")) {
-                    drawable = getResources().getDrawable(R.drawable.regist_man_check);
-                } else {
-                    drawable = getResources().getDrawable(R.drawable.regist_woman_check);
-                }
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                inforName.setCompoundDrawables(null, null, drawable, null);
-                inforOrder.setText(information.getServerInfo().getInfo());
-                inforFensi.setText(information.getServerInfo().getFansNum() + "粉丝");
-                inforGuanzhu.setText(information.getServerInfo().getFrendNum() + "关注");
-                HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), inforImg, true);
-                image = App.activity.getImg();
-                HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image, true);
-            }
+            getInformation();
         }else{
 
         }
@@ -150,11 +132,6 @@ public class InformationFragment extends BaseFragment {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
         InforAdapter adapter = new InforAdapter(getContext());
         inforList.setAdapter(adapter);
-        if(login){
-            getInformation();
-        }else{
-
-        }
 
     }
 

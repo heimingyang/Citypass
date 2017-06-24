@@ -431,6 +431,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginRight="10dp"
                     android:text="已绑定手机185****1714"
                     android:layout_toLeftOf="@id/information_PhoneOne"/>
             </RelativeLayout>
@@ -477,6 +478,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginRight="10dp"
                     android:text="仅关注好友可见"
                     android:layout_toLeftOf="@id/information_WeixinOne"/>
             </RelativeLayout>
