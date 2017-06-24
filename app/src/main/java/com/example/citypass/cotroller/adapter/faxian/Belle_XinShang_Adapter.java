@@ -105,6 +105,7 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
         Glide.with(context).load(coverXinShangInfoListBean.getUserface()).into(holder.img_touxiang);
     }
 
+
     @Override
     public int getItemCount() {
         return coverXinShangInfoListBeanX.size();

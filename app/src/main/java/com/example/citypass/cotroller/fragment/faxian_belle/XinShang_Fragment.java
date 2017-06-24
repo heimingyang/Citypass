@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,26 +80,12 @@ public class XinShang_Fragment extends BaseFragment {
     private TextView xinshangTv1, xinshangTv2, xinshangTv3, xinshangZan1, xinshangZan2, xinshangZan3;
     //recycleview  适配器
     private Belle_XinShang_Adapter belle_xinShang_adapter;
+    private Handler handler = new Handler();
+    private List<Belle_Enjoy_Bean.ServerInfoBean.CoverXinShangInfoListBeanX.CoverXinShangInfoListBean> coverXinShangInfoList;
 
     @Override
     protected void initData() {
-        LinearLayoutManager man = new LinearLayoutManager(getActivity());
-        View mview = LayoutInflater.from(getActivity()).inflate(R.layout.meinv_tou, null);
 
-        xinshangImg1 = (CircleImageView) mview.findViewById(R.id.xinshang_img1);
-        xinshangImg2 = (CircleImageView) mview.findViewById(R.id.xinshang_img2);
-        xinshangImg3 = (CircleImageView) mview.findViewById(R.id.xinshang_img3);
-
-        xinshangTv1 = (TextView) mview.findViewById(R.id.xinshang_tv1);
-        xinshangTv2 = (TextView) mview.findViewById(R.id.xinshang_tv2);
-        xinshangTv3 = (TextView) mview.findViewById(R.id.xinshang_tv3);
-
-        xinshangZan1 = (TextView) mview.findViewById(R.id.xinshang_zan1);
-        xinshangZan2 = (TextView) mview.findViewById(R.id.xinshang_zan2);
-        xinshangZan3 = (TextView) mview.findViewById(R.id.xinshang_zan3);
-
-          xinsahngRecycle.setLayoutManager(man);
-        xinsahngRecycle.addHeaderView(mview);
 
         Map<String, String> map = new HashMap<>();
         map.put("param", "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":50,\"curPage\":1,\"siteID\":2422},\"requestTime\":\"2017-06-23 19:11:15\",\"customerKey\":\"8CB1DF6909EAAB3AA33200313F8B1003\",\"Method\":\"PHSocket_GetCoverXinShangInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\" 8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}");
@@ -162,7 +149,7 @@ public class XinShang_Fragment extends BaseFragment {
 
                 //除前三外剩下人的信息
 
-                List<Belle_Enjoy_Bean.ServerInfoBean.CoverXinShangInfoListBeanX.CoverXinShangInfoListBean> coverXinShangInfoList = serverInfo.getCoverXinShangInfoList().getCoverXinShangInfoList();
+                coverXinShangInfoList = serverInfo.getCoverXinShangInfoList().getCoverXinShangInfoList();
                 String age = coverXinShangInfoList.get(1).getAge();
                 LogUtils.e("age----->", age);
 
@@ -170,7 +157,7 @@ public class XinShang_Fragment extends BaseFragment {
                     belle_xinShang_adapter = new Belle_XinShang_Adapter(coverXinShangInfoList, getActivity());
                     xinsahngRecycle.setAdapter(belle_xinShang_adapter);
                 } else {
-                    xinsahngRecycle.setAdapter(belle_xinShang_adapter);
+
                 }
 
             }
@@ -186,12 +173,53 @@ public class XinShang_Fragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        xinsahngRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+            @Override
+            public void onRvScrolled(int dx, int dy) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        xinsahngRecycle.refreshComplete();
+
+                    }
+                }, 2000);
+
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+
 
     }
 
     @Override
     protected void initView(View view) {
+        LinearLayoutManager man = new LinearLayoutManager(getActivity());
+        View mview = LayoutInflater.from(getActivity()).inflate(R.layout.meinv_tou, null);
 
+        xinshangImg1 = (CircleImageView) mview.findViewById(R.id.xinshang_img1);
+        xinshangImg2 = (CircleImageView) mview.findViewById(R.id.xinshang_img2);
+        xinshangImg3 = (CircleImageView) mview.findViewById(R.id.xinshang_img3);
+
+        xinshangTv1 = (TextView) mview.findViewById(R.id.xinshang_tv1);
+        xinshangTv2 = (TextView) mview.findViewById(R.id.xinshang_tv2);
+        xinshangTv3 = (TextView) mview.findViewById(R.id.xinshang_tv3);
+
+        xinshangZan1 = (TextView) mview.findViewById(R.id.xinshang_zan1);
+        xinshangZan2 = (TextView) mview.findViewById(R.id.xinshang_zan2);
+        xinshangZan3 = (TextView) mview.findViewById(R.id.xinshang_zan3);
+
+        xinsahngRecycle.setLayoutManager(man);
+        xinsahngRecycle.addHeaderView(mview);
     }
 
     @Override

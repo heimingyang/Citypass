@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/yuan_white">
+
+    <ImageView
+        android:id="@+id/fengmian_item_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/fengmian_fengmian_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/cover_list_covergirl_people" />
+
+    <TextView
+        android:id="@+id/fengmian_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fengmian_fengmian_img"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/fengmian_item_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fengmian_item_name"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fengmian_yuantv"
+        android:drawableLeft="@drawable/ccoo_icon_boy_white"
+        android:text="双子座"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/fengmian_item_lianai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/fengmian_item_age"
+        android:layout_marginTop="60dp"
+        android:text="单身"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/fengmian_item_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/fengmian_item_lianai"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fengmian_from_tv"
+        android:text="来自金星"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/fengmian_item_job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/fengmian_item_from"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:drawableLeft="@drawable/bottom_person_after"
+        android:text="  职业不明"
+        android:textColor="@color/orange" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fengmian_item_job"
+        android:layout_margin="10dp"
+        android:text="还没有人点赞过" />
+
+    <TextView
+        android:id="@+id/fengmian_item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/fengmian_item_job"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/ccoo_icon_huifu_noral"
+        android:gravity="center"
+        android:text=" 0" />
+
+</RelativeLayout>

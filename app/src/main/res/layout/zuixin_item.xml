@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="5dp"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/yuan_white">
+
+        <com.example.citypass.view.ImageViewPlus
+            android:id="@+id/zuixin_item_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/yuan_white" />
+
+        <TextView
+            android:id="@+id/zuixin_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zuixin_item_img"
+            android:layout_centerVertical="true"
+            android:text="咎由自取"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/zuixin_item_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zuixin_item_img"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/zuixin_item_name"
+            android:text="28岁"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/zuixin_item_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zuixin_item_name"
+            android:layout_marginTop="10dp"
+            android:text="来自金星" />
+
+        <TextView
+            android:id="@+id/zuixin_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/zuixin_item_name"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/zuixin_item_from"
+            android:text="16小时前" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

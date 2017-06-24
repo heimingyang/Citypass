@@ -3,6 +3,7 @@ package com.example.citypass.cotroller.adapter.faxian;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -51,6 +52,11 @@ public class FaXianMeiNv_Adapter extends FragmentPagerAdapter {
     }
 
     @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+    }
+
+    @Override
     public Fragment getItem(int position) {
         return flist.get(position);
     }
@@ -59,6 +65,7 @@ public class FaXianMeiNv_Adapter extends FragmentPagerAdapter {
     public int getCount() {
         return flist.size();
     }
+
 
     @Override
     public CharSequence getPageTitle(int position) {
