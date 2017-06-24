@@ -49,6 +49,8 @@
         <activity android:name=".cotroller.InforActivity"/>
         <activity android:name=".cotroller.LevelActivity"/>
         <activity android:name=".cotroller.BlackActivity"/>
+        <activity android:name=".cotroller.PhoneActivity"/>
+        <activity android:name=".cotroller.MailActivity"/>
     </application>
 
 </manifest>

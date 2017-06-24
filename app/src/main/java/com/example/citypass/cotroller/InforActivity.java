@@ -221,6 +221,7 @@ public class InforActivity extends BaseActivity {
     }
 
 
+
     @OnClick({R.id.information_back, R.id.informations_Relative, R.id.information_Number, R.id.information_Nick, R.id.information_Name, R.id.information_Sex, R.id.information_Age, R.id.information_Occupation, R.id.information_Emotion, R.id.information_Residence, R.id.information_Autograph, R.id.information_Phone, R.id.information_Weixin, R.id.information_QQ, R.id.information_Grade, R.id.information_Medal, R.id.information_City,
             R.id.information_PhoneOne,R.id.information_WeixinOne,R.id.information_QQOne})
     public void onViewClicked(View view) {
@@ -257,6 +258,8 @@ public class InforActivity extends BaseActivity {
                 getDialog("个性签名", informationAutographTwo.getText().toString(), "设置签名，彰显个性~", 9, informationAutographTwo);
                 break;
             case R.id.information_Phone:
+                Intent intent=new Intent(InforActivity.this,PhoneActivity.class);
+                startActivity(intent);
                 break;
             case R.id.information_Weixin:
                 break;

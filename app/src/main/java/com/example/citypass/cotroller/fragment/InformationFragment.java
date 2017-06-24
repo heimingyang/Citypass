@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.LevelActivity;
+import com.example.citypass.cotroller.MailActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -157,19 +158,16 @@ public class InformationFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.infor_img:
-                login(null);
                 break;
             case R.id.infor_name:
-                login(null);
                 break;
             case R.id.infor_order:
-                login(null);
                 break;
             case R.id.infor_guanzhu:
-                login(null);
+                login(MailActivity.class);
                 break;
             case R.id.infor_fensi:
-                login(null);
+                login(MailActivity.class);
                 break;
             case R.id.infor_login:
                 login(null);
