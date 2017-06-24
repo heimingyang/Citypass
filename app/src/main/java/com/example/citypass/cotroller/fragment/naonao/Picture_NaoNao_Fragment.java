@@ -1,9 +1,25 @@
 package com.example.citypass.cotroller.fragment.naonao;
 
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 
+import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.adapter.naonao.Picture_NaoNao_Recycle_Adapter;
+import com.example.citypass.model.bean.naonao.Picture_NaoNao_Bean;
+import com.example.citypass.model.http.HttpFacory;
+import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LogUtils;
+import com.example.citypass.view.MRecyclerView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * /**
@@ -41,9 +57,55 @@ import com.example.citypass.base.BaseFragment;
 
 
 public class Picture_NaoNao_Fragment extends BaseFragment {
+    @BindView(R.id.picture_naonao_recycle)
+    MRecyclerView pictureNaonaoRecycle;
+    private List<Picture_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
+
     @Override
     protected void initData() {
 
+        pictureNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+            @Override
+            public void onRvScrolled(int dx, int dy) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+                mList.clear();
+                initParsing();
+                pictureNaonaoRecycle.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+                initParsing();
+                pictureNaonaoRecycle.refreshComplete();
+            }
+        });
+    }
+
+    private void initParsing() {
+        Map<String, String> map = new HashMap<>();
+        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":0,\"siteID\":2422,\"flag\":2,\"type\":1,\"gambitid\":0,\"curPage\":1},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"B77E5EE861C72727546387CAD3EFDFA9\",\"Method\":\"PHSocket_GetTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        map.put("param", str);
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("Picture_NaoNao_Fragment", result);
+                LogUtils.e("uiuiuiu", "走这里了爱的");
+                Picture_NaoNao_Bean picture_naoNao_bean = JSON.parseObject(result, Picture_NaoNao_Bean.class);
+                List<Picture_NaoNao_Bean.ServerInfoBean> serverInfo = new ArrayList<Picture_NaoNao_Bean.ServerInfoBean>();
+                serverInfo.addAll(picture_naoNao_bean.getServerInfo());
+                Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + serverInfo.size());
+                pictureNaonaoRecycle.setAdapter(new Picture_NaoNao_Recycle_Adapter(serverInfo));
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
     }
 
     @Override
@@ -53,6 +115,9 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        StaggeredGridLayoutManager man = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        initParsing();
+        pictureNaonaoRecycle.setLayoutManager(man);
 
     }
 
@@ -60,4 +125,6 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.picture_naonao_fragment;
     }
+
+
 }
