@@ -133,6 +133,8 @@ public class SettingActivity extends BaseActivity {
                 startActivity(intentOne);
                 break;
             case R.id.setting_blacklist:
+                Intent intent1=new Intent(SettingActivity.this,BlackActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.setting_pwd:
                 Intent intentTwo = new Intent(SettingActivity.this, ModifyActivity.class);
@@ -181,10 +183,4 @@ public class SettingActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

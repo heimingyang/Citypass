@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -96,7 +97,7 @@ public class InformationFragment extends BaseFragment {
                         login(null);
                         break;
                     case 3:
-                        login(null);
+                        login(LevelActivity.class);
                         break;
                     case 4:
                         login(null);
