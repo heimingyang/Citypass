@@ -13,6 +13,8 @@ public class UrlUtils {
     //这是主接口
     public static final String BaseUrl = "http://appnew.ccoo.cn/appserverapi.ashx";
 
+    public static final String LifeSearch = "http://m.yanqing.ccoo.cn/tel/tellist.aspx?keyword=";
+
     //跳转webview接口生活页面
 
     public static final String ZhaoGongZuo = "http://m.yanqing.ccoo.cn/post/job/jobshow.aspx?id=3800297";

@@ -13,20 +13,20 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.cotroller.LevelActivity;
-import com.example.citypass.cotroller.MailActivity;
-import com.example.citypass.utils.LoginUtils;
-import com.example.citypass.utils.SpUtils;
-import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.CooperationActivity;
+import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.MailActivity;
 import com.example.citypass.cotroller.SettingActivity;
 import com.example.citypass.cotroller.adapter.InforAdapter;
 import com.example.citypass.model.bean.Information;
 import com.example.citypass.model.bean.Informations;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
+import com.example.citypass.utils.TimeUtils;
 
 import java.util.HashMap;
 

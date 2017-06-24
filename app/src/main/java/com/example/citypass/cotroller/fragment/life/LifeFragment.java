@@ -1,13 +1,14 @@
 package com.example.citypass.cotroller.fragment.life;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
@@ -37,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -75,7 +76,7 @@ import butterknife.Unbinder;
  * #                                                   #
  */
 
-public class LifeFragment extends BaseFragment implements View.OnClickListener {
+public class LifeFragment extends BaseFragment {
 
 
     @BindView(R.id.textView)
@@ -155,7 +156,7 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.fangdajing)
     ImageView fangdajing;
     @BindView(R.id.edit)
-    EditText edit;
+    EditText mEdit;
     @BindView(R.id.RadioBut1)
     RadioButton RadioBut1;
     @BindView(R.id.RadioBut2)
@@ -166,8 +167,7 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     RadioButton yuan1;
     @BindView(R.id.yuan2)
     RadioButton yuan2;
-    @BindView(R.id.yuan1_lay)
-    LinearLayout yuan1Lay;
+
     @BindView(R.id.viewpagerBottom)
     ViewPager viewpagerBottom;
     @BindView(R.id.Linear_ViewPager)
@@ -194,6 +194,8 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
     private List<LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetHomeChuZuInfoListBean> getHomeChuZuInfoList;
     private String memo;
     private List<LifeFragmentBean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> getPostWorkList;
+    private LinearLayout mlinear;
+    private LinearLayout wlinear;
 
     @Override
     protected void initData() {
@@ -203,61 +205,65 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                 public void onSuccess(String result) {
                     Log.d("LifeFragment", result);
                     bean = JSON.parseObject(result, LifeFragmentBean.class);
-//             这是找工作的解析
-                    getPostWorkList = bean.getServerInfo().getGetPostWorkList().getGetPostWorkList();
-
-                    Glide.with(getContext()).load(getPostWorkList.get(0).getChannelImg()).into(jobImage);
-
-                    memo = getPostWorkList.get(0).getMemo();
-
-                    zhanweiText1.setText(memo);
-
-
-                    //这是找房子的解析
-
-                    LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetPostHouseListBean getPostHouseListBean = bean.getServerInfo().getGetPostHouseList().getGetPostHouseList().get(0);
-                    Glide.with(getContext()).load(getPostHouseListBean.getChannelImg()).into(houseImage);
-
-                    String memo1 = getPostHouseListBean.getMemo();
-
-                    zhanText1.setText(memo1);
-
-
-                    //最大图片那的解析
-                    List<LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetPostChushouBySiteIdListBean> been = bean.getServerInfo().getGetPostHouseList().getGetPostChushouBySiteIdList();
-
-                    String address = been.get(0).getAddress();
-                    String areazone = been.get(0).getAreazone();
-                    housesName1.setText(address);
-                    housesTitle1.setText(areazone);
-
-                    String pic = been.get(0).getPic();
-
-                    Glide.with(getContext()).load(pic).into(housesImage1);
-
-                    //第二张
-
-                    String address1 = been.get(1).getAddress();
-                    String areazone1 = been.get(1).getAreazone();
-                    String pic1 = been.get(1).getPic();
-                    housesTitles1.setText(areazone1);
-                    housesNames1.setText(address1);
-                    Glide.with(getContext()).load(pic1).into(housesImages1);
+                    getJop();
 
                     //解析第一个listview列表
                     getOneList();
-//                  //第二个列表
+                //第二个列表
                     getTwoList();
+
+                    LifeScrollview.setVisibility(View.VISIBLE);
                     anInt = false;
                 }
-
-
                 @Override
                 public void onError(String errormsg) {
 
                 }
             });
         }
+    }
+
+    private void getJop() {
+        //             这是找工作的解析
+        getPostWorkList = bean.getServerInfo().getGetPostWorkList().getGetPostWorkList();
+
+        Glide.with(getContext()).load(getPostWorkList.get(0).getChannelImg()).into(jobImage);
+
+        memo = getPostWorkList.get(0).getMemo();
+
+        zhanweiText1.setText(memo);
+
+
+        //这是找房子的解析
+
+        LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetPostHouseListBean getPostHouseListBean = bean.getServerInfo().getGetPostHouseList().getGetPostHouseList().get(0);
+        Glide.with(getContext()).load(getPostHouseListBean.getChannelImg()).into(houseImage);
+
+        String memo1 = getPostHouseListBean.getMemo();
+
+        zhanText1.setText(memo1);
+
+
+        //最大图片那的解析
+        List<LifeFragmentBean.ServerInfoBean.GetPostHouseListBeanX.GetPostChushouBySiteIdListBean> been = bean.getServerInfo().getGetPostHouseList().getGetPostChushouBySiteIdList();
+
+        String address = been.get(0).getAddress();
+        String areazone = been.get(0).getAreazone();
+        housesName1.setText(address);
+        housesTitle1.setText(areazone);
+
+        String pic = been.get(0).getPic();
+
+        Glide.with(getContext()).load(pic).into(housesImage1);
+
+        //第二张
+
+        String address1 = been.get(1).getAddress();
+        String areazone1 = been.get(1).getAreazone();
+        String pic1 = been.get(1).getPic();
+        housesTitles1.setText(areazone1);
+        housesNames1.setText(address1);
+        Glide.with(getContext()).load(pic1).into(housesImages1);
     }
 
     //找工作 加上图片
@@ -327,10 +333,7 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }
             });
-
-
             zhaopinListLay.addView(view);
-
 
         }
     }
@@ -390,6 +393,8 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initView(View view) {
+
+        wlinear = (LinearLayout) view.findViewById(R.id.Include_lifewelcome);
         //让scrollview默认显示在顶部
         LifeMainLinear.setFocusable(true);
         LifeMainLinear.setFocusableInTouchMode(true);
@@ -402,7 +407,31 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
 
         HuaDong();
 
+        mEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    EditSearch();
+                    return true;
+                }
+                return true;
+            }
+        });
+
     }
+
+    //搜索
+    public void EditSearch() {
+        String edit = mEdit.getText().toString().trim();
+        if (edit.isEmpty()) {
+            Toast.makeText(getContext(), "内容不能为空", Toast.LENGTH_SHORT).show();
+        } else {
+            WebViewUtils.UtilIntent(getContext(), UrlUtils.LifeSearch + edit, "");
+
+        }
+
+    }
+
 
     //加载viewpager
     private void LoadViewpager() {
@@ -482,7 +511,7 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
 
     }
 
-    @OnClick({R.id.textView, R.id.job_image, R.id.job_text1, R.id.zhanwei_text1, R.id.job_more_text, R.id.arrow_image, R.id.job_relay, R.id.zhaopin_text1, R.id.zhaopin_text2, R.id.zhaopin_text3, R.id.zhaopin_lay, R.id.zhaopin_list_lay, R.id.house_image, R.id.house_text1, R.id.zhan_text1, R.id.house_more_text, R.id.house_arrow_image, R.id.house_relay, R.id.house_main_lay, R.id.houses_text1, R.id.houses_text2, R.id.houses_text3, R.id.house_lay, R.id.houses_image1, R.id.houses_title1, R.id.houses_relay1, R.id.houses_name1, R.id.houses_price1, R.id.houses_layout1, R.id.houses_titles1, R.id.houses_images1, R.id.houses_relays1, R.id.houses_names1, R.id.houses_prices1, R.id.houses_layouts1, R.id.houses_lay, R.id.house_Linearlayout, R.id.yuan1_lay})
+    @OnClick({R.id.textView, R.id.job_image, R.id.job_text1, R.id.zhanwei_text1, R.id.job_more_text, R.id.arrow_image, R.id.job_relay, R.id.zhaopin_text1, R.id.zhaopin_text2, R.id.zhaopin_text3, R.id.zhaopin_lay, R.id.zhaopin_list_lay, R.id.house_image, R.id.house_text1, R.id.zhan_text1, R.id.house_more_text, R.id.house_arrow_image, R.id.house_relay, R.id.house_main_lay, R.id.houses_text1, R.id.houses_text2, R.id.houses_text3, R.id.house_lay, R.id.houses_image1, R.id.houses_title1, R.id.houses_relay1, R.id.houses_name1, R.id.houses_price1, R.id.houses_layout1, R.id.houses_titles1, R.id.houses_images1, R.id.houses_relays1, R.id.houses_names1, R.id.houses_prices1, R.id.houses_layouts1, R.id.houses_lay, R.id.house_Linearlayout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
@@ -538,24 +567,6 @@ public class LifeFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder2 = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder2.unbind();
-    }
 }
 
 

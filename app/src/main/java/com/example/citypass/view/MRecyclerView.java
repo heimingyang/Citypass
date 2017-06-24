@@ -267,6 +267,7 @@ public class MRecyclerView extends RecyclerView {
                         }
                     }
                 }
+
                 break;
         }
         return super.onTouchEvent(ev);

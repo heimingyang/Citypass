@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Life_MainLinear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:id="@+id/Life_MainLinear"
     android:orientation="vertical">
 
     <ScrollView
+        android:visibility="gone"
         android:id="@+id/Life_Scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,8 +44,7 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_centerVertical="true"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher" />
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/job_text1"
@@ -182,8 +182,7 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_centerVertical="true"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/house_text1"
@@ -504,11 +503,6 @@
                     android:textColor="@color/color_ccc"
                     android:textSize="18dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/line" />
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -536,11 +530,17 @@
                         android:layout_toLeftOf="@+id/fangdajing"
                         android:background="#00000000"
                         android:hint="请输入电话或关键词"
+                        android:imeOptions="actionSearch"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textColorHint="@color/color_999"
                         android:textSize="16dp" />
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/line" />
 
                 <include
                     android:id="@+id/Bottom_include"
@@ -554,4 +554,9 @@
         </LinearLayout>
     </ScrollView>
 
+    <include
+        android:id="@+id/Include_lifewelcome"
+        layout="@layout/fragment_life_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

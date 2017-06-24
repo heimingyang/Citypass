@@ -71,7 +71,6 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         holder.mCount.setText("回帖数："+in.getSum()+"");
         holder.mLevel.setText("LV."+in.getLevel()+"");
         Log.d("DiNaoNao_Recycle_Adapte", in.getLevel() + "");
-
         holder.mAddress.setText(in.getLifeAddr()+"");
         holder.mName.setText(in.getNick()+"");
         holder.mPaiMing.setText(position+4+"");

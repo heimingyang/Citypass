@@ -12,20 +12,23 @@
         <WebView
             android:id="@+id/Life_WebView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+        </WebView>
 
         <RelativeLayout
+            android:id="@+id/WebView_Relative"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/red">
 
             <ImageView
-                android:padding="5dp"
                 android:id="@+id/Life_Webview_Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="6dp"
+                android:padding="5dp"
                 android:src="@drawable/ccoo_icon_back" />
 
             <TextView
@@ -35,8 +38,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@+id/Life_Webview_Back"
-                android:text="关闭"
                 android:padding="5dp"
+                android:text="关闭"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -56,9 +59,19 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/new_con_share_2" />
 
+            <ProgressBar
+                android:id="@+id/Life_WebView_Progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/Life_WebView_Title"
+                android:background="@drawable/webview_progress"
+                />
         </RelativeLayout>
 
 
     </FrameLayout>
+
 
 </RelativeLayout>
