@@ -1,21 +1,56 @@
 package com.example.citypass.cotroller.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+
+import com.androidkun.PullToRefreshRecyclerView;
+import com.androidkun.callback.PullToRefreshListener;
 import com.example.citypass.App;
+
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
+import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
+import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
 import com.example.citypass.cotroller.toutiao.CityFoloActivity;
-import com.jude.rollviewpager.RollPagerView;
-import com.jude.rollviewpager.adapter.StaticPagerAdapter;
-import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.example.citypass.cotroller.toutiao.HttlunbofourFragment;
+import com.example.citypass.cotroller.toutiao.HttlunbooneFragment;
+import com.example.citypass.cotroller.toutiao.HttlunbothreeFragment;
+import com.example.citypass.cotroller.toutiao.HttlunbotwoFragment;
+import com.example.citypass.model.bean.Information;
+import com.example.citypass.model.bean.toutiao.Touqiaolistview;
+import com.example.citypass.model.bean.toutiao.Toutiao;
+import com.example.citypass.model.bean.toutiao.TtfourDJ;
+import com.example.citypass.model.http.HttpFacory;
+import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.DeviceUtils;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
+import com.example.citypass.utils.TimeUtils;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * /**
@@ -51,112 +86,377 @@ import com.jude.rollviewpager.hintview.ColorPointHintView;
  * #                                                   #
  */
 
-public class TouTiaoFragment extends BaseFragment  {
+public class TouTiaoFragment extends BaseFragment {
 
-    private RollPagerView mRollViewPager;
-    private ImageView imgOne;
-    private ImageView imgTwo;
-    private TextView textView;
+    private int page=1;
+    private ArrayList<Touqiaolistview.ServerInfoBean.HeadTInfoListBean> list;
+    private ArrayList<Fragment> fragments;
+    private PullToRefreshRecyclerView httrecyclerview;
+    private HttpurecyclerviewAdapter adapter;
+    private int pager = 5;
+    private int item;
+    private TextView httNo1;
+    private TextView httEntry;
+    private TextView httWelcome;
+    private RelativeLayout httBeforeEntry;
+    private TextView httName;
+    private ImageView httGenderMan;
+    private ImageView httGenderWoman;
+    private TextView httGrade;
+    private TextView httRanking;
+    private TextView httRanking1;
+    private TextView httNo2;
+    private TextView httSign;
+    private RelativeLayout httAfterEntry;
+    private RelativeLayout httLin1;
+    private ViewPager ttViewpager;
+    private GridView httgridview;
+
+    private RadioButton httRadiobt1;
+    private RadioButton httRadiobt2;
+    private RadioButton httRadiobt3;
+    private RadioButton httRadiobt4;
+    private TextView httLin3;
+    private RelativeLayout headerview;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 999:
+                    item = pager % 4;
+                    ttViewpager.setCurrentItem(item);
+                    pager++;
+                    break;
+            }
+        }
+    };
+    private ArrayList<TtfourDJ.ServerInfoBean> gridviewlist;
+    private String siteName;
+    private TextView honorname;
+    private TtfourDjGridAdapter gridAdapter;
 
     @Override
     protected void initData() {
+        boolean aBoolean = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
 
+        if (aBoolean) {
+            httBeforeEntry.setVisibility(View.VISIBLE);
+            httAfterEntry.setVisibility(View.GONE);
+            Information  information= LoginUtils.information;
+            if(information!=null){
+                Information.ServerInfoBean bean=information.getServerInfo();
+
+                siteName = bean.getSiteName();
+                String sex=bean.getSex();
+
+                httName.setText(bean.getNick());
+                if(sex.equals("男")){
+                    httGenderMan.setVisibility(View.VISIBLE);
+                    httGenderWoman.setVisibility(View.GONE);
+                }else if(sex.equals("女")){
+                    httGenderMan.setVisibility(View.GONE);
+                    httGenderWoman.setVisibility(View.VISIBLE);
+                }
+
+                httGrade.setText("Lv."+bean.getLevel());
+                honorname.setText(bean.getHonorName());
+                httRanking1.setText("排名："+bean.getIntegralRank());
+            }
+
+        } else {
+            httBeforeEntry.setVisibility(View.GONE);
+            httAfterEntry.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     protected void initListener() {
-        imgOne.setOnClickListener(new View.OnClickListener() {
+        App.activity.getImgOne().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        imgTwo.setOnClickListener(new View.OnClickListener() {
+        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        textView.setOnClickListener(new View.OnClickListener() {
+        App.activity.getText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), CityFoloActivity.class);
+                Intent intent = new Intent(getActivity(), CityFoloActivity.class);
                 getActivity().startActivity(intent);
             }
         });
+
     }
 
     @Override
     protected void initView(View view) {
-
-        mRollViewPager = (RollPagerView)view.findViewById(R.id.roll_view_pager);
-        initluenbo();
-        imgOne = App.activity.getImgOne();
-        imgTwo = App.activity.getImgTwo();
-        textView = App.activity.getText();
-
+        httrecyclerview = (PullToRefreshRecyclerView) view.findViewById(R.id.htt_recyclerview);
+        //加载recyclerview
+        initrecyclerview();
     }
+
+
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_toutiao;
     }
 
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        App.activity.getText().setText("头条");
+        App.activity.getImgOne().setVisibility(View.VISIBLE);
+        App.activity.getImgTwo().setVisibility(View.VISIBLE);
+        App.activity.getText().setVisibility(View.VISIBLE);
         Drawable drawable = App.activity.getResources().getDrawable(R.drawable.user_set_rigth_down);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
-
-    }
-    private void initluenbo() {
-
-        //设置播放时间间隔
-        mRollViewPager.setPlayDelay(2500);
-        //设置透明度
-        mRollViewPager.setAnimationDurtion(1000);
-        //设置适配器
-        mRollViewPager.setAdapter(new TestNormalAdapter());
-
-        //设置指示器（顺序依次）
-        //自定义指示器图片
-        //设置圆点指示器颜色
-        //设置文字指示器
-        //隐藏指示器
-        //mRollViewPager.setHintView(new IconHintView(view1.getContext(), R.drawable.only, R.mipmap.ic_launcher));
-        mRollViewPager.setHintView(new ColorPointHintView(getActivity(), Color.RED,Color.WHITE));
-        //mRollViewPager.setHintView(new TextHintView(view1.getContext()));
-        //mRollViewPager.setHintView(null);
-
+        App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_mes);
+        App.activity.getImgTwo().setImageResource(R.drawable.mall_changeadd);
+        App.activity.getText().setText(siteName);
     }
 
 
-    public class TestNormalAdapter extends StaticPagerAdapter {
-        private int[] imgs = {
-                R.drawable.my_main_advice1,
-                R.drawable.my_main_advice2,
-                R.drawable.my_main_advice3,
-                R.drawable.my_main_advice4,
-        };
+    private void gethttpdata(int page) {
+        this.page=page;
+        Toutiao.ParamBean param = new Toutiao.ParamBean();
+        param.setSiteID(2422);
+        param.setPageSize(10);
+        param.setPage(page);
+
+        Toutiao.StatisBean statis = new Toutiao.StatisBean();
+
+        statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(getActivity()));
+        statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
+        statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(getActivity()));
+        statis.setSiteId(2422);
+        statis.setSystemNo(2);
+        DeviceUtils.getInstance();
+        statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
+        statis.setUserId(0);
 
 
-        @Override
-        public View getView(ViewGroup container, int position) {
-            ImageView view = new ImageView(container.getContext());
-            view.setImageResource(imgs[position]);
-            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            return view;
-        }
+        Toutiao toutiao = new Toutiao();
+        toutiao.setMethod("PHSocket_GetHeadlinesInfoT");
+        toutiao.setParam(param);
+        toutiao.setStatis(statis);
+        toutiao.setAppName("CcooCity");
+        toutiao.setCustomerID(8001);
+        toutiao.setCustomerKey("BC3BE051462325B907AD613D4A4AD8CE");
+        toutiao.setRequestTime(TimeUtils.getdangqianshijian());
+        toutiao.setVersion("4.5");
+        Gson gson = new Gson();
+        String s = gson.toJson(toutiao);
+        Map<String, String> map = new HashMap<>();
+        map.put("param", s);
+        //Log.e("TTTTTTTTT",s);
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                // Log.e("onSuccess", result.toString());
+                Touqiaolistview ttt = JSON.parseObject(result, Touqiaolistview.class);
+                list.addAll(ttt.getServerInfo().getHeadTInfoList());
+                // Log.e("list", list.size() + "");
+            }
 
-
-        @Override
-        public int getCount() {
-            return imgs.length;
-        }
+            @Override
+            public void onError(String errormsg) {
+                Log.e("onError", errormsg);
+            }
+        });
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
+    }
+
+
+    private void initlunbo() {
+        fragments = new ArrayList<>();
+        fragments.add(new HttlunbooneFragment());
+        fragments.add(new HttlunbotwoFragment());
+        fragments.add(new HttlunbothreeFragment());
+        fragments.add(new HttlunbofourFragment());
+        HttviewpagerAdapter adapter = new HttviewpagerAdapter(getChildFragmentManager(), fragments);
+        ttViewpager.setAdapter(adapter);
+        ttViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                item = position;
+                String id = String.valueOf(position);
+                if (id.equals("0")) {
+                    httRadiobt1.setChecked(true);
+                } else if (id.equals("1")) {
+                    httRadiobt2.setChecked(true);
+                } else if (id.equals("2")) {
+                    httRadiobt3.setChecked(true);
+                } else if (id.equals("3")) {
+                    httRadiobt4.setChecked(true);
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        //轮播图send message
+        sendlunbomessage();
+
+    }
+
+    private void sendlunbomessage() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(999);
+
+            }
+        }, 2000, 2000);
+    }
+    private void initrecyclerview() {
+        //得到头布局
+        headerview = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.htoutiao_headrview, null);
+        honorname = (TextView) headerview.findViewById(R.id.honorname);
+        httNo1 = (TextView) headerview.findViewById(R.id.htt_no1);
+        httEntry = (TextView) headerview.findViewById(R.id.htt_entry);
+        httWelcome = (TextView) headerview.findViewById(R.id.htt_welcome);
+        httBeforeEntry = (RelativeLayout) headerview.findViewById(R.id.htt_before_entry);
+        httName= (TextView) headerview.findViewById(R.id.htt_name);
+        httGenderMan = (ImageView) headerview.findViewById(R.id.htt_gender_man);
+        httGenderWoman = (ImageView) headerview.findViewById(R.id.htt_gender_woman);
+        httGrade = (TextView) headerview.findViewById(R.id.htt_grade);
+        httRanking1 = (TextView) headerview.findViewById(R.id.htt_ranking);
+        httNo2 = (TextView) headerview.findViewById(R.id.htt_no2);
+        httSign = (TextView) headerview.findViewById(R.id.htt_sign);
+        httAfterEntry = (RelativeLayout) headerview.findViewById(R.id.htt_after_entry);
+        httLin1 = (RelativeLayout) headerview.findViewById(R.id.htt_lin1);
+        ttViewpager = (ViewPager) headerview.findViewById(R.id.tt_viewpager);
+        httgridview = (GridView) headerview.findViewById(R.id.htt_gridview);
+        httRadiobt1 = (RadioButton) headerview.findViewById(R.id.htt_radiobt1);
+        httRadiobt2 = (RadioButton) headerview.findViewById(R.id.htt_radiobt2);
+        httRadiobt3 = (RadioButton) headerview.findViewById(R.id.htt_radiobt3);
+        httRadiobt4 = (RadioButton) headerview.findViewById(R.id.htt_radiobt4);
+        httLin3 = (TextView) headerview.findViewById(R.id.htt_lin3);
+
+
+
+
+        //加载轮播
+        initlunbo();
+
+        //gridview网络请求
+        getgridviewdata();
+        //加载gridview
+        initgridview();
+
+        //recyclerview网络请求
+        gethttpdata(page);
+        list = new ArrayList<>();
+        adapter = new HttpurecyclerviewAdapter(getActivity(), list);
+        httrecyclerview.setAdapter(adapter);
+        httrecyclerview.addHeaderView(headerview);
+        adapter.notifyDataSetChanged();
+
+        //设置布局格式
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        httrecyclerview.setLayoutManager(manager);
+
+        //设置下拉刷新下拉加载
+        httrecyclerview.setLoadingMoreEnabled(true);
+        httrecyclerview.setPullRefreshEnabled(false);
+        httrecyclerview.displayLastRefreshTime(true);
+
+        httrecyclerview.setPullToRefreshListener(new PullToRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                httrecyclerview.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        page++;
+                        gethttpdata(page);
+                        httrecyclerview.setLoadMoreComplete();
+                    }
+                }, 2000);
+            }
+        });
+    }
+
+    private void initgridview() {
+
+        gridviewlist = new ArrayList<>();
+        gridAdapter = new TtfourDjGridAdapter(getActivity(),gridviewlist);
+        httgridview.setAdapter(gridAdapter);
+
+    }
+
+
+    public void getgridviewdata() {
+        Toutiao.ParamBean param = new Toutiao.ParamBean();
+        param.setSiteID(2422);
+
+        Toutiao.StatisBean statis = new Toutiao.StatisBean();
+
+        statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(getActivity()));
+        statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
+        statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(getActivity()));
+        statis.setSiteId(2422);
+        statis.setSystemNo(2);
+        DeviceUtils.getInstance();
+        statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
+        statis.setUserId(0);
+
+        Toutiao toutiao = new Toutiao();
+        toutiao.setMethod("PHSocket_GetHomeNavigationInfo");
+        toutiao.setParam(param);
+        toutiao.setStatis(statis);
+        toutiao.setAppName("CcooCity");
+        toutiao.setCustomerID(8001);
+        toutiao.setCustomerKey("BC3BE051462325B907AD613D4A4AD8CE");
+        toutiao.setRequestTime(TimeUtils.getdangqianshijian());
+        toutiao.setVersion("4.5");
+        Gson gson = new Gson();
+        String s = gson.toJson(toutiao);
+        Map<String, String> map = new HashMap<>();
+        map.put("param", s);
+        //Log.e("TTTTTTTTT",s);
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                //Log.e("onSuccess", result.toString());
+                TtfourDJ f = JSON.parseObject(result, TtfourDJ.class);
+                gridviewlist.addAll(f.getServerInfo());
+                gridAdapter.notifyDataSetChanged();
+                // Log.e("list", list.size() + "");
+            }
+
+            @Override
+            public void onError(String errormsg) {
+                Log.e("onError", errormsg);
+            }
+        });
+    }
 }

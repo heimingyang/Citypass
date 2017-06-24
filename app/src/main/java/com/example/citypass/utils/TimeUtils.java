@@ -102,4 +102,14 @@ public class TimeUtils {
             return Math.abs(s) + "秒前";
         }
     }
+    public static String getDate(long time, String geshi) {
+        SimpleDateFormat sdf = new SimpleDateFormat(geshi);
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+    public static String getdangqianshijian(){
+        //得到当前年月日
+        String systemDate = getDate(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss");
+        return systemDate;
+    }
 }

@@ -1,0 +1,69 @@
+package com.example.citypass.cotroller.adapter.toutiao;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.citypass.R;
+import com.example.citypass.model.bean.toutiao.TtfourDJ;
+
+import java.util.List;
+
+import static com.example.citypass.model.bean.life.LifeFragmentBean.ServerInfoBean;
+
+/**
+ * 项目名称: 城市通
+ * 类描述:
+ * 创建人: Administrator
+ * 创建时间: 2017/6/22 0:50
+ * 修改人:  张超
+ * 修改内容:
+ * 修改时间:
+ */
+
+public class TtfourDjGridAdapter extends BaseAdapter {
+    private List<TtfourDJ.ServerInfoBean> mList;
+    private Context context;
+
+
+    public TtfourDjGridAdapter(Context context, List<TtfourDJ.ServerInfoBean> mList) {
+        this.context = context;
+        this.mList = mList;
+    }
+
+    @Override
+    public int getCount() {
+        return mList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = LayoutInflater.from(context).inflate(R.layout.ttfourdj_gridview_item, null);
+       TextView textView= (TextView) v.findViewById(R.id.ttgridview_item_tv);
+      ImageView imageView= (ImageView) v.findViewById(R.id.ttgridview_item_img);
+        textView.setText(mList.get(position).getTitle());
+        String url=mList.get(position).getIcon();
+        if(url!=null){
+            Glide.with(parent.getContext())
+                    .load(url)
+                    .into(imageView);
+        }
+        return v;
+    }
+}
