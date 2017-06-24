@@ -1,9 +1,15 @@
 package com.example.citypass.cotroller.fragment.naonao;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.view.MRecyclerView;
+
+import butterknife.BindView;
+import butterknife.Unbinder;
 
 /**
  * /**
@@ -41,8 +47,18 @@ import com.example.citypass.base.BaseFragment;
 
 
 public class Net_Friend_NaoNao_Fragment extends BaseFragment {
+    @BindView(R.id.net_friend_naonao_recycle)
+    MRecyclerView netFriendNaonaoRecycle;
+    Unbinder unbinder;
+
     @Override
     protected void initData() {
+        LinearLayoutManager man = new LinearLayoutManager(getActivity());
+        TextView tv = new TextView(getActivity());
+        tv.setText("已经没有更多数据了");
+        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        netFriendNaonaoRecycle.addHeaderView(tv);
+        netFriendNaonaoRecycle.setLayoutManager(man);
 
     }
 
@@ -60,4 +76,6 @@ public class Net_Friend_NaoNao_Fragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.net_friend_naonao_fragment;
     }
+
+
 }
