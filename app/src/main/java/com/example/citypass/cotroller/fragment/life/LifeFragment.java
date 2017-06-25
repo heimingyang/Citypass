@@ -288,6 +288,8 @@ public class LifeFragment extends BaseFragment {
 
             final int Fi = i;
             final String type = getHomeChuZuInfoList.get(Fi).getType();
+
+            //这是判断得到的type等于1的时候跳转一个页面，等于2的时候跳转另一个页面
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -297,10 +299,8 @@ public class LifeFragment extends BaseFragment {
                         WebViewUtils.UtilIntent(getContext(), UrlUtils.TwoItem2 + getHomeChuZuInfoList.get(Fi).getID(), "房屋出租");
                     }
 
-
                 }
             });
-
 
             houseLinearlayout.addView(view);
 
@@ -314,8 +314,6 @@ public class LifeFragment extends BaseFragment {
             TextView text1 = (TextView) view.findViewById(R.id.text1);
             TextView text2 = (TextView) view.findViewById(R.id.text2);
             TextView text3 = (TextView) view.findViewById(R.id.text3);
-
-
             text1.setText(getJobList.get(i).getPosition());
             text2.setText(getJobList.get(i).getTitle());
             String editTime = getJobList.get(i).getEditTime();
