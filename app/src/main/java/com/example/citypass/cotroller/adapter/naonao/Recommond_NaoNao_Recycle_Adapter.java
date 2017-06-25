@@ -62,7 +62,10 @@ public class Recommond_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Recom
         this.mList = mList;
         Log.e("aaa",mList.size()+"");
     }
-
+    public void setNewData(List<Recommond_NaoNao_Bean.ServerInfoBean> mList){
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.square_naonao_recycle_item, null);

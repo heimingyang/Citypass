@@ -56,7 +56,10 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
     public Picture_NaoNao_Recycle_Adapter(List<Picture_NaoNao_Bean.ServerInfoBean> mList) {
         this.mList = mList;
     }
-
+   public void setNewData(List<Picture_NaoNao_Bean.ServerInfoBean> mList){
+       this.mList = mList;
+       notifyDataSetChanged();
+   }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.picture_naonao_recycle_item, null);

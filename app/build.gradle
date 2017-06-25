@@ -47,5 +47,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
-
 }

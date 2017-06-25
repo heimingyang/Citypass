@@ -34,17 +34,14 @@ package com.example.citypass.base;
  * #                                                   #
  */
 
-import android.graphics.Canvas;
-
-
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
 import android.graphics.Region;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * android circle imageView
@@ -55,7 +52,7 @@ import android.widget.ImageView;
 /**
  * 直接使用这个组件，如果要圆角效果，在组件里添加一个属性 ：android:layerType="software"  即可
  */
-public class CircleImageView extends ImageView {
+public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
 
     Path path;
     public PaintFlagsDrawFilter mPaintFlagsDrawFilter;// 毛边过滤

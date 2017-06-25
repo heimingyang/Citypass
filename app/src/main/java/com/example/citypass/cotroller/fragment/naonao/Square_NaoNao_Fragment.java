@@ -66,6 +66,7 @@ public class Square_NaoNao_Fragment extends BaseFragment {
     Unbinder unbinder;
     private int j = 1;
     private int a=0;
+    private Square_NaoNao_Recycle_Adapter adapter;
     private List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList = new ArrayList<>();
     @Override
    protected void initData() {
@@ -114,8 +115,14 @@ public class Square_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Square_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Square_NaoNao_Bean.class);
-                mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
-                squareNaonaoRecycle.setAdapter(new Square_NaoNao_Recycle_Adapter(mList));
+
+                    mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
+                if(adapter==null){
+                    adapter = new Square_NaoNao_Recycle_Adapter(mList);
+                    squareNaonaoRecycle.setAdapter(adapter);
+                }else {
+                    adapter.setNewData(mList);
+                }
             }
 
             @Override

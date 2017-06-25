@@ -6,7 +6,11 @@ import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.adapter.naonao.Net_Friend_NaoNao_Recycle_Adapter;
 import com.example.citypass.view.MRecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.Unbinder;
@@ -50,16 +54,40 @@ public class Net_Friend_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.net_friend_naonao_recycle)
     MRecyclerView netFriendNaonaoRecycle;
     Unbinder unbinder;
-
+    private Net_Friend_NaoNao_Recycle_Adapter adapter;
+    private List<String> mlist = new ArrayList<>();
     @Override
     protected void initData() {
         LinearLayoutManager man = new LinearLayoutManager(getActivity());
         TextView tv = new TextView(getActivity());
-        tv.setText("已经没有更多数据了");
+        tv.setText("已没有更多数据");
         tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        tv.setPadding(180,5,180,5);
         netFriendNaonaoRecycle.addHeaderView(tv);
         netFriendNaonaoRecycle.setLayoutManager(man);
+        mlist.add("");
+        if(adapter==null){
+            adapter = new Net_Friend_NaoNao_Recycle_Adapter(mlist);
+            netFriendNaonaoRecycle.setAdapter(adapter);
+        }else {
+            netFriendNaonaoRecycle.setAdapter(adapter);
+        }
+        netFriendNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+            @Override
+            public void onRvScrolled(int dx, int dy) {
 
+            }
+
+            @Override
+            public void onRefresh() {
+            netFriendNaonaoRecycle.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
     }
 
     @Override

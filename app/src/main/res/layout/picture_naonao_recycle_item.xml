@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/picture_naonao_recycle_bian"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -10,7 +12,7 @@
 
         <ImageView
             android:id="@+id/picture_naonao_recycle_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <LinearLayout
@@ -31,6 +33,7 @@
                 android:id="@+id/pricture_naonao_recycle_item_zan_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
                 android:padding="3dp" />
         </LinearLayout>
     </RelativeLayout>

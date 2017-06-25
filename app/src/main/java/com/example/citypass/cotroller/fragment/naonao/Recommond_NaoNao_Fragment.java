@@ -65,6 +65,7 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
     Unbinder unbinder;
     private int j = 1;
     private int a=0;
+    private Recommond_NaoNao_Recycle_Adapter adapter;
     private List<Recommond_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
 
     @Override
@@ -113,8 +114,14 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Recommond_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Recommond_NaoNao_Bean.class);
-                mList.addAll(square_naoNao_bean.getServerInfo());
-                recommondNaonaoRecycle.setAdapter(new Recommond_NaoNao_Recycle_Adapter(mList));
+
+                    mList.addAll(square_naoNao_bean.getServerInfo());
+                if(adapter==null){
+                    adapter = new Recommond_NaoNao_Recycle_Adapter(mList);
+                    recommondNaonaoRecycle.setAdapter(adapter);
+                }else {
+                    adapter.setNewData(mList);
+                }
             }
 
             @Override

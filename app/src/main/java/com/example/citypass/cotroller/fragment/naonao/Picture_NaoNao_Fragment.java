@@ -3,6 +3,7 @@ package com.example.citypass.cotroller.fragment.naonao;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
@@ -11,7 +12,6 @@ import com.example.citypass.cotroller.adapter.naonao.Picture_NaoNao_Recycle_Adap
 import com.example.citypass.model.bean.naonao.Picture_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
-import com.example.citypass.utils.LogUtils;
 import com.example.citypass.view.MRecyclerView;
 
 import java.util.ArrayList;
@@ -60,10 +60,12 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.picture_naonao_recycle)
     MRecyclerView pictureNaonaoRecycle;
     private List<Picture_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
-
+    private Picture_NaoNao_Recycle_Adapter adapter;
     @Override
     protected void initData() {
-
+        StaggeredGridLayoutManager man = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        initParsing();
+        pictureNaonaoRecycle.setLayoutManager(man);
         pictureNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
             @Override
             public void onRvScrolled(int dx, int dy) {
@@ -72,15 +74,12 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
 
             @Override
             public void onRefresh() {
-                mList.clear();
-                initParsing();
                 pictureNaonaoRecycle.refreshComplete();
             }
 
             @Override
             public void onLoadMore() {
-                initParsing();
-                pictureNaonaoRecycle.refreshComplete();
+
             }
         });
     }
@@ -93,12 +92,20 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
             @Override
             public void onSuccess(String result) {
                 Log.d("Picture_NaoNao_Fragment", result);
-                LogUtils.e("uiuiuiu", "走这里了爱的");
                 Picture_NaoNao_Bean picture_naoNao_bean = JSON.parseObject(result, Picture_NaoNao_Bean.class);
                 List<Picture_NaoNao_Bean.ServerInfoBean> serverInfo = new ArrayList<Picture_NaoNao_Bean.ServerInfoBean>();
-                serverInfo.addAll(picture_naoNao_bean.getServerInfo());
+
+                    serverInfo.addAll(picture_naoNao_bean.getServerInfo());
                 Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + serverInfo.size());
-                pictureNaonaoRecycle.setAdapter(new Picture_NaoNao_Recycle_Adapter(serverInfo));
+                if(adapter==null){
+                    adapter = new Picture_NaoNao_Recycle_Adapter(serverInfo);
+                    pictureNaonaoRecycle.setAdapter(adapter);
+                }else {
+                    adapter.setNewData(mList);
+                }
+                TextView tv = new TextView(getActivity());
+                tv.setText("没有更多内容啦~");
+                pictureNaonaoRecycle.setFootView(tv);
             }
 
             @Override
@@ -115,9 +122,6 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        StaggeredGridLayoutManager man = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        initParsing();
-        pictureNaonaoRecycle.setLayoutManager(man);
 
     }
 

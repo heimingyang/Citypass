@@ -74,6 +74,7 @@ public class Di_NaoNao_Fragment extends BaseFragment {
     TextView diNaonaoCountFirst;
     TextView diNaonaoCountThird;
     Unbinder unbinder;
+    private DiNaoNao_Recycle_Adapter adapter;
     private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList = new ArrayList<>();
     private int a=0;
 
@@ -132,8 +133,14 @@ public class Di_NaoNao_Fragment extends BaseFragment {
         Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
         Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
         Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
-        mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
-        diNaonaoRecycle.setAdapter(new DiNaoNao_Recycle_Adapter(mList));
+
+                    mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
+                if(adapter==null){
+                    adapter = new DiNaoNao_Recycle_Adapter(mList);
+                    diNaonaoRecycle.setAdapter(adapter);
+                }else {
+                    adapter.setNewData(mList);
+                }
 
     }
 

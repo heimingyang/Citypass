@@ -1,7 +1,6 @@
 package com.example.citypass.cotroller.adapter.toutiao;
 
 
-
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;

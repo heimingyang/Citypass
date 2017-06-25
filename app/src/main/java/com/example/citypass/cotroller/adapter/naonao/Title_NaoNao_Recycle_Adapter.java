@@ -64,7 +64,10 @@ public class Title_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Title_Nao
         MyViewHolder holder = new MyViewHolder(v);
         return holder;
     }
-
+    public void setNewData(List<Title_NaoNao_Bean.ServerInfoBean> mList){
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
           Title_NaoNao_Bean.ServerInfoBean bean = mList.get(position);

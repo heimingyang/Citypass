@@ -72,6 +72,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
     TextView wangNaonaoCountThird;
     @BindView(R.id.wang_naonao_recycle)
     MRecyclerView wangNaonaoRecycle;
+    private DiNaoNao_Recycle_Adapter adapter;
     private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList = new ArrayList<>();
     private int a=0;
 
@@ -133,8 +134,14 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(wangNaonaoImageFirst);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(wangNaonaoImageSecond);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(wangNaonaoImageThird);
+
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
-                wangNaonaoRecycle.setAdapter(new DiNaoNao_Recycle_Adapter(mList));
+                if(adapter==null){
+                    adapter = new DiNaoNao_Recycle_Adapter(mList);
+                    wangNaonaoRecycle.setAdapter(adapter);
+                }else {
+                   adapter.setNewData(mList);
+                }
             }
 
             @Override

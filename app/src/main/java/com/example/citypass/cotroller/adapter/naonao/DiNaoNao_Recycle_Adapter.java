@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -57,7 +58,10 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         this.mList = mList;
         Log.e("aaaaa",mList.size()+"");
     }
-
+    public void setNewData(List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList){
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.di_naonao_recycle_item,null);
@@ -74,6 +78,7 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         holder.mAddress.setText(in.getLifeAddr()+"");
         holder.mName.setText(in.getNick()+"");
         holder.mPaiMing.setText(position+4+"");
+
         Glide.with(App.activity).load(in.getUserFace()).into(holder.mImage);
 
     }
@@ -87,6 +92,7 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
     class  MyViewHolder extends RecyclerView.ViewHolder{
         private TextView mPaiMing,mName,mAddress,mLevel,mCount;
         private ImageView mImage;
+        private RelativeLayout mRela;
         public MyViewHolder(View itemView) {
             super(itemView);
             mPaiMing = (TextView) itemView.findViewById(R.id.di_naonao_recycle_item_paiming);
@@ -95,6 +101,8 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
             mLevel = (TextView) itemView.findViewById(R.id.di_naonao_recycle_item_level);
             mCount = (TextView) itemView.findViewById(R.id.di_naonao_recycle_item_count);
             mImage = (ImageView) itemView.findViewById(R.id.di_naonao_recycle_item_image);
+           mRela = (RelativeLayout) itemView.findViewById(R.id.di_naonao_recycle_item_hehe);
+
         }
     }
 }

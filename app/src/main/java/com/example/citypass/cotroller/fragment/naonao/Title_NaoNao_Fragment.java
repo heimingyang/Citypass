@@ -61,6 +61,7 @@ public class Title_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.title_naonao_recycle)
     MRecyclerView titleNaonaoRecycle;
     Unbinder unbinder;
+    private Title_NaoNao_Recycle_Adapter adapter;
     private List<Title_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
     private int a=0;
     @Override
@@ -82,8 +83,14 @@ public class Title_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Title_NaoNao_Fragment", result);
                 Title_NaoNao_Bean title_naoNao_bean = JSON.parseObject(result, Title_NaoNao_Bean.class);
-                mList.addAll(title_naoNao_bean.getServerInfo());
-                titleNaonaoRecycle.setAdapter(new Title_NaoNao_Recycle_Adapter(mList));
+
+                    mList.addAll(title_naoNao_bean.getServerInfo());
+                if(adapter==null){
+                    adapter = new Title_NaoNao_Recycle_Adapter(mList);
+                    titleNaonaoRecycle.setAdapter(adapter);
+                }else {
+                   adapter.setNewData(mList);
+                }
 
             }
 

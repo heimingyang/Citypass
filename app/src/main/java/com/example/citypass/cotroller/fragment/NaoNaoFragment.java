@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,8 @@ import android.view.View;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_NaoNao_PopupWindow_Activity;
 import com.example.citypass.cotroller.adapter.naonao.NaoNao_Tab_Adapter;
 import com.example.citypass.cotroller.fragment.naonao.Di_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Net_Friend_NaoNao_Fragment;
@@ -17,6 +20,8 @@ import com.example.citypass.cotroller.fragment.naonao.Square_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Star_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Title_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Wang_NaoNao_Fragment;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,6 +161,19 @@ public class NaoNaoFragment extends BaseFragment {
         App.activity.getText().setCompoundDrawables(null, null, null, null);
         App.activity.getImgOne().setVisibility(View.INVISIBLE);
         App.activity.getImgTwo().setImageResource(R.drawable.mall_camera0);
+        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //是否登录
+                if(SpUtils.getSp().getBoolean(LoginUtils.LOGIN,false)){
+                   Intent in = new Intent(getActivity(), Carmer_NaoNao_PopupWindow_Activity.class);
+                    startActivity(in);
+                }else {
+                    Intent in = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(in);
+                }
+            }
+        });
     }
 
 

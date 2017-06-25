@@ -73,6 +73,7 @@ public class Star_NaoNao_Fragment extends BaseFragment {
     TextView diNaonaoCountThird;
     @BindView(R.id.star_naonao_recycle)
     MRecyclerView starNaonaoRecycle;
+    private DiNaoNao_Recycle_Adapter adapter;
     private int a=0;
 
     Unbinder unbinder;
@@ -135,8 +136,14 @@ public class Star_NaoNao_Fragment extends BaseFragment {
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
-                mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
-                starNaonaoRecycle.setAdapter(new DiNaoNao_Recycle_Adapter(mList));
+
+                    mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
+                if(adapter==null){
+                    adapter = new DiNaoNao_Recycle_Adapter(mList);
+                    starNaonaoRecycle.setAdapter(adapter);
+                }else {
+                 adapter.setNewData(mList);
+                }
 
             }
 

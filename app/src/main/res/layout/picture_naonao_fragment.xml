@@ -2,9 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <com.example.citypass.view.MRecyclerView
+        android:background="#f5eeee"
+        android:padding="10dp"
         android:id="@+id/picture_naonao_recycle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.example.citypass.view.MRecyclerView>
