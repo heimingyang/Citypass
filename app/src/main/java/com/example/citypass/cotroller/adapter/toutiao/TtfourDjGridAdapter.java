@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.toutiao.TtfourDJ;
+import com.example.citypass.utils.GlideCircleTransform;
 
 import java.util.List;
 
@@ -44,26 +45,39 @@ public class TtfourDjGridAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = LayoutInflater.from(context).inflate(R.layout.ttfourdj_gridview_item, null);
-       TextView textView= (TextView) v.findViewById(R.id.ttgridview_item_tv);
-      ImageView imageView= (ImageView) v.findViewById(R.id.ttgridview_item_img);
-        textView.setText(mList.get(position).getTitle());
+        viewholder holder;
+        if(convertView == null){
+            holder=new viewholder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.ttfourdj_gridview_item, null);
+            holder.textView= (TextView) convertView.findViewById(R.id.ttgridview_item_tv);
+            holder.imageView= (ImageView) convertView.findViewById(R.id.ttgridview_item_img);
+
+            convertView.setTag(holder);
+        }else {
+            holder = (viewholder) convertView.getTag();
+        }
+        holder.textView.setText(mList.get(position).getTitle());
+        Log.e("TAG", mList.get(position).getTitle());
         String url=mList.get(position).getIcon();
         if(url!=null){
             Glide.with(parent.getContext())
                     .load(url)
-                    .into(imageView);
+                    .into(holder.imageView);
         }
-        return v;
+        return convertView;
+    }
+    class  viewholder{
+        TextView textView;
+        ImageView imageView;
     }
 }

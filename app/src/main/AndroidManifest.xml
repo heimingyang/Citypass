@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.citypass">
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -44,6 +44,13 @@
         <activity android:name=".cotroller.ModifyActivity" />
         <activity android:name=".cotroller.AboutActivity" />
         <activity android:name=".cotroller.AboutActivity2" />
+        <activity android:name=".cotroller.toutiao.SetCityActivity" />
+        <activity android:name=".cotroller.fragment.webview.WebViewActivity" />
+        <activity android:name=".cotroller.activity.FaXianPerfectActivity" />
+        <activity android:name=".cotroller.InforActivity" />
+        <activity android:name=".cotroller.LevelActivity" />
+        <activity android:name=".cotroller.BlackActivity" />
+        <activity android:name=".cotroller.toutiao.TtrecyclerXQActivity"></activity>
         <activity android:name=".cotroller.toutiao.SetCityActivity"></activity>
       <activity android:name=".cotroller.fragment.webview.WebViewActivity"/>
         <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>

@@ -132,6 +132,24 @@ public class Toutiao {
         private int page;
         private int pageSize;
         private int siteID;
+        private int newsID;
+        private int userID;
+
+        public int getNewsID() {
+            return newsID;
+        }
+
+        public void setNewsID(int newsID) {
+            this.newsID = newsID;
+        }
+
+        public int getUserID() {
+            return userID;
+        }
+
+        public void setUserID(int userID) {
+            this.userID = userID;
+        }
 
         public int getPage() {
             return page;

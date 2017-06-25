@@ -42,13 +42,13 @@ import com.example.citypass.App;
 public class DialogUtils {
     private static ProgressDialog dialog=new ProgressDialog(App.activity);
      public static void dialog(){
-        dialog.setTitle("亲！我们正在拼命加载数据！");
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMax(100);
-        dialog.show();
+//        dialog.setTitle("亲！我们正在拼命加载数据！");
+//        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        dialog.setMax(100);
+//        dialog.show();
     }
     public static void dismiss(){
-        if(dialog!=null){
+        if(dialog!=null&&dialog.isShowing()){
             dialog.dismiss();
         }
     }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ttrecycler_xq"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.citypass.cotroller.toutiao.TtrecyclerXQActivity">
+  <RelativeLayout
+      android:background="@color/red"
+    android:id="@+id/ttxq_title"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+
+      >
+    <ImageView
+        android:padding="5dp"
+        android:id="@+id/ttxq_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ccoo_icon_back_666"
+        android:scaleType="fitCenter"
+        />
+
+      <TextView
+          android:layout_marginTop="10dp"
+          android:gravity="center"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="城市详情"
+          android:textSize="18dp"
+          />
+
+      <ImageView
+          android:padding="5dp"
+          android:id="@+id/ttxq_more"
+          android:layout_alignParentRight="true"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ccoo_icon_more"
+          android:scaleType="fitCenter"
+          android:layout_margin="20dp"
+          />
+   </RelativeLayout>
+    <WebView
+        android:layout_below="@id/ttxq_title"
+        android:id="@+id/ttxq_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+</RelativeLayout>

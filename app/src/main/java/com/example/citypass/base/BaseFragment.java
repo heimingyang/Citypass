@@ -68,7 +68,6 @@ public abstract class BaseFragment extends Fragment {
         super.onResume();
         if(NetWorkUtils.getInstance().checkNetworkState()){
             initData();
-
         }
 
     }

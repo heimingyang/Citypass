@@ -144,6 +144,7 @@ public class TouTiaoFragment extends BaseFragment {
             httBeforeEntry.setVisibility(View.VISIBLE);
             httAfterEntry.setVisibility(View.GONE);
             Information  information= LoginUtils.information;
+
             if(information!=null){
                 Information.ServerInfoBean bean=information.getServerInfo();
 
@@ -198,8 +199,47 @@ public class TouTiaoFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         httrecyclerview = (PullToRefreshRecyclerView) view.findViewById(R.id.htt_recyclerview);
+
+        //得到头布局
+        headerview = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.htoutiao_headrview, null);
+        honorname = (TextView) headerview.findViewById(R.id.honorname);
+        httNo1 = (TextView) headerview.findViewById(R.id.htt_no1);
+        httEntry = (TextView) headerview.findViewById(R.id.htt_entry);
+        httWelcome = (TextView) headerview.findViewById(R.id.htt_welcome);
+        httBeforeEntry = (RelativeLayout) headerview.findViewById(R.id.htt_before_entry);
+        httName= (TextView) headerview.findViewById(R.id.htt_name);
+        httGenderMan = (ImageView) headerview.findViewById(R.id.htt_gender_man);
+        httGenderWoman = (ImageView) headerview.findViewById(R.id.htt_gender_woman);
+        httGrade = (TextView) headerview.findViewById(R.id.htt_grade);
+        httRanking1 = (TextView) headerview.findViewById(R.id.htt_ranking);
+        httNo2 = (TextView) headerview.findViewById(R.id.htt_no2);
+        httSign = (TextView) headerview.findViewById(R.id.htt_sign);
+        httAfterEntry = (RelativeLayout) headerview.findViewById(R.id.htt_after_entry);
+        httLin1 = (RelativeLayout) headerview.findViewById(R.id.htt_lin1);
+        ttViewpager = (ViewPager) headerview.findViewById(R.id.tt_viewpager);
+        httgridview = (GridView) headerview.findViewById(R.id.htt_gridview);
+        httRadiobt1 = (RadioButton) headerview.findViewById(R.id.htt_radiobt1);
+        httRadiobt2 = (RadioButton) headerview.findViewById(R.id.htt_radiobt2);
+        httRadiobt3 = (RadioButton) headerview.findViewById(R.id.htt_radiobt3);
+        httRadiobt4 = (RadioButton) headerview.findViewById(R.id.htt_radiobt4);
+        httLin3 = (TextView) headerview.findViewById(R.id.htt_lin3);
+        gridviewlist = new ArrayList<>();
+        gridAdapter = new TtfourDjGridAdapter(getActivity(),gridviewlist);
+
+        list = new ArrayList<>();
+        adapter = new HttpurecyclerviewAdapter(getActivity(), list);
+        httgridview.setAdapter(gridAdapter);
         //加载recyclerview
         initrecyclerview();
+
+        //加载轮播
+        initlunbo();
+
+        //gridview网络请求
+        getgridviewdata();
+
+        //加载gridview;
+
     }
 
 
@@ -263,6 +303,7 @@ public class TouTiaoFragment extends BaseFragment {
                 // Log.e("onSuccess", result.toString());
                 Touqiaolistview ttt = JSON.parseObject(result, Touqiaolistview.class);
                 list.addAll(ttt.getServerInfo().getHeadTInfoList());
+                adapter.notifyDataSetChanged();
                 // Log.e("list", list.size() + "");
             }
 
@@ -287,8 +328,8 @@ public class TouTiaoFragment extends BaseFragment {
         fragments.add(new HttlunbotwoFragment());
         fragments.add(new HttlunbothreeFragment());
         fragments.add(new HttlunbofourFragment());
-        HttviewpagerAdapter adapter = new HttviewpagerAdapter(getChildFragmentManager(), fragments);
-        ttViewpager.setAdapter(adapter);
+        HttviewpagerAdapter adapter1 = new HttviewpagerAdapter(getChildFragmentManager(), fragments);
+        ttViewpager.setAdapter(adapter1);
         ttViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -332,49 +373,14 @@ public class TouTiaoFragment extends BaseFragment {
         }, 2000, 2000);
     }
     private void initrecyclerview() {
-        //得到头布局
-        headerview = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.htoutiao_headrview, null);
-        honorname = (TextView) headerview.findViewById(R.id.honorname);
-        httNo1 = (TextView) headerview.findViewById(R.id.htt_no1);
-        httEntry = (TextView) headerview.findViewById(R.id.htt_entry);
-        httWelcome = (TextView) headerview.findViewById(R.id.htt_welcome);
-        httBeforeEntry = (RelativeLayout) headerview.findViewById(R.id.htt_before_entry);
-        httName= (TextView) headerview.findViewById(R.id.htt_name);
-        httGenderMan = (ImageView) headerview.findViewById(R.id.htt_gender_man);
-        httGenderWoman = (ImageView) headerview.findViewById(R.id.htt_gender_woman);
-        httGrade = (TextView) headerview.findViewById(R.id.htt_grade);
-        httRanking1 = (TextView) headerview.findViewById(R.id.htt_ranking);
-        httNo2 = (TextView) headerview.findViewById(R.id.htt_no2);
-        httSign = (TextView) headerview.findViewById(R.id.htt_sign);
-        httAfterEntry = (RelativeLayout) headerview.findViewById(R.id.htt_after_entry);
-        httLin1 = (RelativeLayout) headerview.findViewById(R.id.htt_lin1);
-        ttViewpager = (ViewPager) headerview.findViewById(R.id.tt_viewpager);
-        httgridview = (GridView) headerview.findViewById(R.id.htt_gridview);
-        httRadiobt1 = (RadioButton) headerview.findViewById(R.id.htt_radiobt1);
-        httRadiobt2 = (RadioButton) headerview.findViewById(R.id.htt_radiobt2);
-        httRadiobt3 = (RadioButton) headerview.findViewById(R.id.htt_radiobt3);
-        httRadiobt4 = (RadioButton) headerview.findViewById(R.id.htt_radiobt4);
-        httLin3 = (TextView) headerview.findViewById(R.id.htt_lin3);
 
-
-
-
-        //加载轮播
-        initlunbo();
-
-        //gridview网络请求
-        getgridviewdata();
-        //加载gridview
-        initgridview();
 
         //recyclerview网络请求
         gethttpdata(page);
-        list = new ArrayList<>();
-        adapter = new HttpurecyclerviewAdapter(getActivity(), list);
-        httrecyclerview.setAdapter(adapter);
-        httrecyclerview.addHeaderView(headerview);
-        adapter.notifyDataSetChanged();
 
+        httrecyclerview.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        httrecyclerview.addHeaderView(headerview);
         //设置布局格式
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -403,14 +409,6 @@ public class TouTiaoFragment extends BaseFragment {
                 }, 2000);
             }
         });
-    }
-
-    private void initgridview() {
-
-        gridviewlist = new ArrayList<>();
-        gridAdapter = new TtfourDjGridAdapter(getActivity(),gridviewlist);
-        httgridview.setAdapter(gridAdapter);
-
     }
 
 
@@ -446,9 +444,12 @@ public class TouTiaoFragment extends BaseFragment {
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                //Log.e("onSuccess", result.toString());
+                //Log.e("gridview", result.toString());
                 TtfourDJ f = JSON.parseObject(result, TtfourDJ.class);
-                gridviewlist.addAll(f.getServerInfo());
+                for (int i = 0; i < f.getServerInfo().size(); i++) {
+                    gridviewlist.add(f.getServerInfo().get(i));
+                }
+//                gridviewlist.addAll(f.getServerInfo());
                 gridAdapter.notifyDataSetChanged();
                 // Log.e("list", list.size() + "");
             }
