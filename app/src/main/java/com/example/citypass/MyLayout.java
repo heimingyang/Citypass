@@ -1,18 +1,18 @@
-package com.example.citypass.cotroller.adapter.faxian;
+package com.example.citypass;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
-
-import java.util.List;
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * /**
  * 项目名称: 血压卫士
  * 类描述:
  * 创建人: Administrator
- * 创建时间: 2017/6/23 0023 10:11
+ * 创建时间: 2017/6/26 0026 20:09
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -41,34 +41,23 @@ import java.util.List;
  * #                                                   #
  */
 
-public class FaXianMeiNv_Adapter extends FragmentPagerAdapter {
-    private List<Fragment> flist;
-    private List<String> mlist;
+public class MyLayout extends StaggeredGridLayoutManager{
 
-    public FaXianMeiNv_Adapter(FragmentManager fm, List<Fragment> flist, List<String> mlist) {
-        super(fm);
-        this.flist = flist;
-        this.mlist = mlist;
+
+    public MyLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    public MyLayout(int spanCount, int orientation) {
+        super(spanCount, orientation);
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-
-    }
-
-    @Override
-    public Fragment getItem(int position) {
-        return flist.get(position);
-    }
-
-    @Override
-    public int getCount() {
-        return flist.size();
-    }
-
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mlist.get(position);
+    public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+        try {
+            super.onLayoutChildren(recycler, state);
+        }catch (IndexOutOfBoundsException e){
+            Log.d("你好",e.getMessage());
+        }
     }
 }

@@ -15,7 +15,7 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.utils.LogUtils;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.adapter.faxian.MyFaxianAdapter;
+import com.example.citypass.cotroller.adapter.discover.MyDiscoverAdapter;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
@@ -68,7 +68,7 @@ public class FaXianFragment extends BaseFragment {
     ListView faxianListview;
     Unbinder unbinder;
 
-    private MyFaxianAdapter myFaxianAdapter;
+    private MyDiscoverAdapter myDiscoverAdapter;
 
     @Override
     protected void initData() {
@@ -81,8 +81,8 @@ public class FaXianFragment extends BaseFragment {
 
                 MyFaXian myFaXian = JSON.parseObject(result, MyFaXian.class);
                 List<MyFaXian.ServerInfoBean> mlist = myFaXian.getServerInfo();
-                myFaxianAdapter = new MyFaxianAdapter(mlist, getActivity());
-                faxianListview.setAdapter(myFaxianAdapter);
+                myDiscoverAdapter = new MyDiscoverAdapter(mlist, getActivity());
+                faxianListview.setAdapter(myDiscoverAdapter);
 
             }
 

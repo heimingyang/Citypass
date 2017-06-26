@@ -1,17 +1,13 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.adapter.faxian.Belle_zuixin_Adapter;
+import com.example.citypass.cotroller.adapter.discover.Belle_zuixin_Adapter;
 import com.example.citypass.model.bean.beele.Beele_Zuixin_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
@@ -24,10 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 /**
  * /**
@@ -124,6 +117,8 @@ public class ZuiXin_Fragment extends BaseFragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        mList.clear();
+                        initData();
                         ZuixinRecycleview.refreshComplete();
                     }
                 }, 2000);
@@ -134,6 +129,7 @@ public class ZuiXin_Fragment extends BaseFragment {
             public void onLoadMore() {
                 count++;
                 initData();
+                ZuixinRecycleview.loadMoreComplete();
 
             }
         });

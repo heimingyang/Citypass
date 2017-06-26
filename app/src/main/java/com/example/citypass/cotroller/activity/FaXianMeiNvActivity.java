@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.LoginActivity;
-import com.example.citypass.cotroller.adapter.faxian.FaXianMeiNv_Adapter;
+import com.example.citypass.cotroller.adapter.discover.Discover_Belle_Adapter;
 import com.example.citypass.cotroller.fragment.faxian_belle.FengMian_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.LengYan_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.MeiLi_Fragment;
@@ -101,7 +101,7 @@ public class FaXianMeiNvActivity extends BaseActivity {
     private List<Fragment> flist = new ArrayList<>();
     private List<String> mlist = new ArrayList<>();
     //viewpager适配器
-    private FaXianMeiNv_Adapter faXianMeiNv_adapter;
+    private Discover_Belle_Adapter discoverBelle_adapter;
 
 
     @Override
@@ -160,8 +160,8 @@ public class FaXianMeiNvActivity extends BaseActivity {
         mlist.add("女汉子");
 
 
-        faXianMeiNv_adapter = new FaXianMeiNv_Adapter(getSupportFragmentManager(), flist, mlist);
-        BelleViewpager.setAdapter(faXianMeiNv_adapter);
+        discoverBelle_adapter = new Discover_Belle_Adapter(getSupportFragmentManager(), flist, mlist);
+        BelleViewpager.setAdapter(discoverBelle_adapter);
         BelleTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         BelleTablayout.setupWithViewPager(BelleViewpager);
 

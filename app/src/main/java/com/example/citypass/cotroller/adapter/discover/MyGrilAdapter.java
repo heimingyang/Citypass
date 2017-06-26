@@ -1,4 +1,4 @@
-package com.example.citypass.cotroller.adapter.faxian;
+package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
 import android.content.Intent;

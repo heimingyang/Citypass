@@ -1,26 +1,24 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
-import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.adapter.faxian.Belle_Fm_Adapter;
+import com.example.citypass.cotroller.adapter.discover.Belle_Fm_Adapter;
 import com.example.citypass.model.bean.beele.Belle_FM_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.view.MRecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -63,6 +61,8 @@ public class FengMian_Fragment extends BaseFragment {
     Unbinder unbinder;
 
     private Belle_Fm_Adapter belle_fm_adapter;
+    private Handler handler = new Handler();
+    private List<Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> mList = new ArrayList<>();
 
     @Override
     protected void initData() {
@@ -75,12 +75,15 @@ public class FengMian_Fragment extends BaseFragment {
 
                 List<Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
                         = belle_fm_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
+                if (mList.size() == 0) {
+                    mList.addAll(figureTCoverInfoList);
+                    belle_fm_adapter.notifyDataSetChanged();
 
+                } else {
+                    mList.addAll(figureTCoverInfoList);
+                    belle_fm_adapter.notifyDataSetChanged();
 
-
-                    belle_fm_adapter = new Belle_Fm_Adapter(getContext(), figureTCoverInfoList);
-                    fengmianRecycle.setAdapter(belle_fm_adapter);
-
+                }
 
 
             }
@@ -96,12 +99,38 @@ public class FengMian_Fragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        fengmianRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+            @Override
+            public void onRvScrolled(int dx, int dy) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fengmianRecycle.refreshComplete();
+
+                    }
+                }, 2000);
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                fengmianRecycle.loadMoreComplete();
+
+            }
+        });
 
     }
 
     @Override
     protected void initView(View view) {
         fengmianRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+        belle_fm_adapter = new Belle_Fm_Adapter(getContext(), mList);
+        fengmianRecycle.setAdapter(belle_fm_adapter);
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.citypass.cotroller.adapter.faxian;
+package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
 import android.util.Log;
@@ -49,12 +49,12 @@ import java.util.List;
  * #                                                   #
  */
 
-public class MyFaxianAdapter extends BaseAdapter {
+public class MyDiscoverAdapter extends BaseAdapter {
     private List<MyFaXian.ServerInfoBean> mlist;
     private Context context;
     private MyFaXian.ServerInfoBean serverInfoBean;
 
-    public MyFaxianAdapter(List<MyFaXian.ServerInfoBean> mlist, Context context) {
+    public MyDiscoverAdapter(List<MyFaXian.ServerInfoBean> mlist, Context context) {
         this.mlist = mlist;
         this.context = context;
     }
