@@ -71,14 +71,7 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
     @Override
     protected void initData() {
         if(a==0) {
-            LinearLayoutManager man = new LinearLayoutManager(App.activity);
             initParsing();
-            TextView tv = new TextView(App.activity);
-            tv.setText("最新动态");
-            tv.setTextColor(Color.parseColor("#cdcdcd"));
-            tv.setPadding(5, 5, 5, 5);
-            recommondNaonaoRecycle.addHeaderView(tv);
-            recommondNaonaoRecycle.setLayoutManager(man);
             recommondNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
                 @Override
                 public void onRvScrolled(int dx, int dy) {
@@ -96,7 +89,7 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
                 public void onLoadMore() {
                     j++;
                     initParsing();
-                    recommondNaonaoRecycle.refreshComplete();
+                    recommondNaonaoRecycle.loadMoreComplete();
                 }
             });
             a=1;
@@ -114,8 +107,7 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Recommond_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Recommond_NaoNao_Bean.class);
-
-                    mList.addAll(square_naoNao_bean.getServerInfo());
+                  mList.addAll(square_naoNao_bean.getServerInfo());
                 if(adapter==null){
                     adapter = new Recommond_NaoNao_Recycle_Adapter(mList);
                     recommondNaonaoRecycle.setAdapter(adapter);
@@ -138,7 +130,14 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        LinearLayoutManager man = new LinearLayoutManager(App.activity);
 
+        TextView tv = new TextView(App.activity);
+        tv.setText("最新动态");
+        tv.setTextColor(Color.parseColor("#cdcdcd"));
+        tv.setPadding(5, 5, 5, 5);
+        recommondNaonaoRecycle.addHeaderView(tv);
+        recommondNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

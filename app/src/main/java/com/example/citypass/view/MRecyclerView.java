@@ -18,8 +18,7 @@ import java.util.List;
  * 描述:
  * 日期: 2017/2/23 0023.
  */
-public class MRecyclerView extends RecyclerView {
-
+public class MRecyclerView extends RecyclerView{
     private boolean isLoadingData = false;
     private boolean isNoMore = false;
     private ArrayList<View> mHeaderViews = new ArrayList<>();

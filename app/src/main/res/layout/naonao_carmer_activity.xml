@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:iconMargin="20dp"
-        app:iconSrc="@drawable/ccoo_icon_zan"
+        app:iconSrc="@drawable/carmer"
         app:iconWidth="30dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:id="@+id/naonao_carmer_shandian"
-        android:src="@drawable/new_con_share_2"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="100dp"
+        android:src="@drawable/shandian"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="70dp"
         />
 </RelativeLayout>

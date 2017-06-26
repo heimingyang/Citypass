@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.citypass">
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -12,13 +11,13 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!-- //0.0.9需要新增权限 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--//0.0.9需要新增权限  -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -63,6 +62,14 @@
         <activity android:name=".cotroller.PersonalActivity" />
         <activity android:name=".cotroller.toutiao.MessageNotificationActivity" />
         <activity android:name=".cotroller.toutiao.MaillistActivity"></activity>
+        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
+        <activity android:name=".cotroller.LevelActivity" />
+        <activity android:name=".cotroller.BlackActivity" />
+        <activity android:name=".cotroller.PhoneActivity" />
+        <activity android:name=".cotroller.MailActivity" />
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
+        <activity android:name=".cotroller.PersonalActivity" />
+        <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity"></activity>
     </application>
 
 </manifest>

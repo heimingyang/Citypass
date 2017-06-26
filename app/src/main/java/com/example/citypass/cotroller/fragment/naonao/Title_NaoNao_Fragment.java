@@ -67,9 +67,25 @@ public class Title_NaoNao_Fragment extends BaseFragment {
     @Override
     protected void initData() {
         if(a==0) {
-            LinearLayoutManager man = new LinearLayoutManager(App.activity);
             initParsing();
-            titleNaonaoRecycle.setLayoutManager(man);
+            titleNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+                @Override
+                public void onRvScrolled(int dx, int dy) {
+
+                }
+
+                @Override
+                public void onRefresh() {
+mList.clear();
+                    initParsing();
+                    titleNaonaoRecycle.refreshComplete();
+                }
+
+                @Override
+                public void onLoadMore() {
+                    titleNaonaoRecycle.loadMoreComplete();
+                }
+            });
             a=1;
         }
     }
@@ -83,8 +99,7 @@ public class Title_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Title_NaoNao_Fragment", result);
                 Title_NaoNao_Bean title_naoNao_bean = JSON.parseObject(result, Title_NaoNao_Bean.class);
-
-                    mList.addAll(title_naoNao_bean.getServerInfo());
+               mList.addAll(title_naoNao_bean.getServerInfo());
                 if(adapter==null){
                     adapter = new Title_NaoNao_Recycle_Adapter(mList);
                     titleNaonaoRecycle.setAdapter(adapter);
@@ -108,7 +123,9 @@ public class Title_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        LinearLayoutManager man = new LinearLayoutManager(App.activity);
 
+        titleNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.adapter.naonao;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +13,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.PersonalActivity;
 import com.example.citypass.model.bean.naonao.Di_NaoNao_Bean;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 
 import java.util.List;
 
@@ -71,7 +76,7 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Di_NaoNao_Bean.ServerInfoBean.InfoBean in = mList.get(position+3);
+        final Di_NaoNao_Bean.ServerInfoBean.InfoBean in = mList.get(position+3);
         holder.mCount.setText("回帖数："+in.getSum()+"");
         holder.mLevel.setText("LV."+in.getLevel()+"");
         Log.d("DiNaoNao_Recycle_Adapte", in.getLevel() + "");
@@ -80,7 +85,20 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         holder.mPaiMing.setText(position+4+"");
 
         Glide.with(App.activity).load(in.getUserFace()).into(holder.mImage);
-
+        holder.mRela.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转详情之前先判断是否登录
+                if(SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false)){
+                    Intent ins = new Intent(App.activity, PersonalActivity.class);
+                    ins.putExtra("id", in.getUserID());
+                    App.activity.startActivity(ins);
+                }else {
+                    Intent ina = new Intent(App.activity, LoginActivity.class);
+                    App.activity.startActivity(ina);
+                }
+            }
+        });
     }
 
 

@@ -71,14 +71,7 @@ public class Square_NaoNao_Fragment extends BaseFragment {
     @Override
    protected void initData() {
         if(a==0) {
-            LinearLayoutManager man = new LinearLayoutManager(App.activity);
             initParsing();
-            TextView tv = new TextView(App.activity);
-            tv.setText("最新动态");
-            tv.setTextColor(Color.parseColor("#cdcdcd"));
-            tv.setPadding(5, 5, 5, 5);
-            squareNaonaoRecycle.addHeaderView(tv);
-            squareNaonaoRecycle.setLayoutManager(man);
             squareNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
                 @Override
                 public void onRvScrolled(int dx, int dy) {
@@ -115,8 +108,7 @@ public class Square_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Square_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Square_NaoNao_Bean.class);
-
-                    mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
+                mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
                 if(adapter==null){
                     adapter = new Square_NaoNao_Recycle_Adapter(mList);
                     squareNaonaoRecycle.setAdapter(adapter);
@@ -139,7 +131,14 @@ public class Square_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        LinearLayoutManager man = new LinearLayoutManager(App.activity);
 
+        TextView tv = new TextView(App.activity);
+        tv.setText("最新动态");
+        tv.setTextColor(Color.parseColor("#cdcdcd"));
+        tv.setPadding(5, 5, 5, 5);
+        squareNaonaoRecycle.addHeaderView(tv);
+        squareNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

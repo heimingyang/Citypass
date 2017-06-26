@@ -3,8 +3,6 @@ package com.example.citypass.cotroller;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.model.bean.Personal;
@@ -21,15 +18,14 @@ import com.example.citypass.model.biz.infor.IPersonalModel;
 import com.example.citypass.model.biz.infor.PersonalModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.example.citypass.utils.LoginUtils.USERID;
-import static com.example.citypass.utils.LoginUtils.information;
 
 /**
  * 项目名称: 血压卫士
@@ -188,15 +184,15 @@ public class PersonalActivity extends BaseActivity {
         per.setAppName("CcooCity");
         per.setVersion("4.5");
         PersonalUp.ParamBean paramBean=new PersonalUp.ParamBean();
-        paramBean.setUSiteId(information.getServerInfo().getSiteID());
-        paramBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(USERID,"")));
+        paramBean.setUSiteId(LoginUtils.information.getServerInfo().getSiteID());
+        paramBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
         paramBean.setTouserid(id);
         per.setParam(paramBean);
         PersonalUp.StatisBean statisBean=new PersonalUp.StatisBean();
         statisBean.setPhoneId(Build.SERIAL);
-        statisBean.setPhoneNum("+86"+information.getServerInfo().getTel());
+        statisBean.setPhoneNum("+86"+LoginUtils.information.getServerInfo().getTel());
         statisBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(USERID,"")));
-        statisBean.setSiteId(information.getServerInfo().getSiteID());
+        statisBean.setSiteId(LoginUtils.information.getServerInfo().getSiteID());
         String  model= android.os.Build.MODEL;
         statisBean.setPhoneNo(model);
         statisBean.setSystemNo(2);

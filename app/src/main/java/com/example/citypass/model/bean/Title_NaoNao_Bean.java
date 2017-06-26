@@ -1,5 +1,6 @@
 package com.example.citypass.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -139,7 +140,7 @@ public class Title_NaoNao_Bean {
         }
     }
 
-    public static class ServerInfoBean {
+    public static class ServerInfoBean implements Serializable{
         /**
          * ID : 3685
          * Title : 我发自拍你点赞
@@ -254,4 +255,11 @@ public class Title_NaoNao_Bean {
             this.UserList = UserList;
         }
     }
+    /*
+      "IUserID": 21351958,
+                    "UserName": "WXIDCSAXhQvs4922",
+                    "UserFace": "http://r9.pccoo.cn/app_cover/20170114/2017011419460276222018_750_750_150x150(s).jpg",
+                    "Nick": "然后"
+     */
+
 }

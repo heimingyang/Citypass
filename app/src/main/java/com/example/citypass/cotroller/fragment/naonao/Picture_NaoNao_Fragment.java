@@ -61,11 +61,11 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
     MRecyclerView pictureNaonaoRecycle;
     private List<Picture_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
     private Picture_NaoNao_Recycle_Adapter adapter;
+
+    // TODO: 2017/6/26 0026 晒图的加载数据 
     @Override
     protected void initData() {
-        StaggeredGridLayoutManager man = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         initParsing();
-        pictureNaonaoRecycle.setLayoutManager(man);
         pictureNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
             @Override
             public void onRvScrolled(int dx, int dy) {
@@ -84,6 +84,7 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
         });
     }
 
+    // TODO: 2017/6/26 0026 晒图 的网络请求数据
     private void initParsing() {
         Map<String, String> map = new HashMap<>();
         String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":0,\"siteID\":2422,\"flag\":2,\"type\":1,\"gambitid\":0,\"curPage\":1},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"B77E5EE861C72727546387CAD3EFDFA9\",\"Method\":\"PHSocket_GetTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
@@ -120,9 +121,12 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
 
     }
 
+    // TODO: 2017/6/26 0026 晒图的初始化数据 
     @Override
     protected void initView(View view) {
-
+        StaggeredGridLayoutManager man = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        
+        pictureNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

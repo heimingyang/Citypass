@@ -56,22 +56,19 @@ public class Net_Friend_NaoNao_Fragment extends BaseFragment {
     Unbinder unbinder;
     private Net_Friend_NaoNao_Recycle_Adapter adapter;
     private List<String> mlist = new ArrayList<>();
+
+    // TODO: 2017/6/26 0026 加载数据 
     @Override
     protected void initData() {
-        LinearLayoutManager man = new LinearLayoutManager(getActivity());
-        TextView tv = new TextView(getActivity());
-        tv.setText("已没有更多数据");
-        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
-        tv.setPadding(180,5,180,5);
-        netFriendNaonaoRecycle.addHeaderView(tv);
-        netFriendNaonaoRecycle.setLayoutManager(man);
+
         mlist.add("");
         if(adapter==null){
             adapter = new Net_Friend_NaoNao_Recycle_Adapter(mlist);
             netFriendNaonaoRecycle.setAdapter(adapter);
         }else {
-            netFriendNaonaoRecycle.setAdapter(adapter);
+          adapter.setNewData(mlist);
         }
+
         netFriendNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
             @Override
             public void onRvScrolled(int dx, int dy) {
@@ -95,9 +92,16 @@ public class Net_Friend_NaoNao_Fragment extends BaseFragment {
 
     }
 
+    // TODO: 2017/6/26 0026 初始化数据
     @Override
     protected void initView(View view) {
-
+        LinearLayoutManager man = new LinearLayoutManager(getActivity());
+        TextView tv = new TextView(getActivity());
+        tv.setText("已没有更多数据");
+        tv.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        tv.setPadding(180,5,180,5);
+        netFriendNaonaoRecycle.addHeaderView(tv);
+        netFriendNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

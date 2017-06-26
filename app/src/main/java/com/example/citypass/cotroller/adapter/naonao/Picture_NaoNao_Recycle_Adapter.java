@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.adapter.naonao;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +79,11 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
         if (bean.getImageCount() > 1) {
             int i = bean.getImage().indexOf("|");
             String substring = bean.getImage().substring(0, i);
+            Log.d("Picturefgdgdfecycle_", substring);
             Glide.with(App.activity).load(substring).into(holder.mImg);
         } else {
             Glide.with(App.activity).load(bean.getImage()).into(holder.mImg);
+            Log.d("Picture_NaoNao_Recycle_", bean.getImage());
         }
         if (bean.getIsLike() == 0) {
             holder.mZan.setImageResource(R.drawable.ccoo_icon_zan);

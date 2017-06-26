@@ -80,7 +80,7 @@ public class NaoNaoFragment extends BaseFragment {
     private int a = 0;
     private PopupWindow pop;
     private View view;
-
+    // TODO: 2017/6/26 0026 加载数据
     @Override
     protected void initData() {
         if (a == 0) {
@@ -141,7 +141,7 @@ public class NaoNaoFragment extends BaseFragment {
 
     }
 
-
+    // TODO: 2017/6/26 0026 初始化数据
     @Override
     protected void initView(View view) {
 
@@ -156,7 +156,9 @@ public class NaoNaoFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        //判断当前的页面的头部TextView
         App.activity.getText().setText("闹闹");
+
         App.activity.getText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,12 +183,17 @@ public class NaoNaoFragment extends BaseFragment {
         });
     }
 
+    // TODO: 2017/6/26 0026 弹出popupWindow
     private void initPop() {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.carmer_naonao_popupwindow_activity, null);
         pop = new PopupWindow(view, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.WRAP_CONTENT);
+        //popupWindow的背景透明度
         view.getBackground().setAlpha(230);
+        //popupWindow的外部点击
         pop.setOutsideTouchable(true);
+        //颜色
         pop.setBackgroundDrawable(new ColorDrawable());
+        //返回
         LinearLayout mCancel = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_cancel);
         mCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +202,7 @@ public class NaoNaoFragment extends BaseFragment {
             }
         });
         LinearLayout mVideo  = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_video);
+        //小视频的点击事件
         mVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

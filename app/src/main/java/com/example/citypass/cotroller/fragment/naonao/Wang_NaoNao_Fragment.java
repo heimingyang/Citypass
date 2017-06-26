@@ -79,20 +79,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
     @Override
     protected void initData() {
         if(a==0) {
-            View v = LayoutInflater.from(App.activity).inflate(R.layout.wang_naonao_tou, null);
-            wangNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.wang_naonao_image_second);
-            wangNaonaoNameSecond = (TextView) v.findViewById(R.id.wang_naonao_name_second);
-            wangNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.wang_naonao_image_first);
-            wangNaonaoNameFirst = (TextView) v.findViewById(R.id.wang_naonao_name_first);
-            wangNaonaoImageThird = (CircleImageView) v.findViewById(R.id.wang_naonao_image_third);
-            wangNaonaoNameThird = (TextView) v.findViewById(R.id.wang_naonao_name_third);
-            wangNaonaoCountSecond = (TextView) v.findViewById(R.id.wang_naonao_count_second);
-            wangNaonaoCountFirst = (TextView) v.findViewById(R.id.wang_naonao_count_first);
-            wangNaonaoCountThird = (TextView) v.findViewById(R.id.wang_naonao_count_third);
-            LinearLayoutManager man = new LinearLayoutManager(App.activity);
-            wangNaonaoRecycle.addHeaderView(v);
             initParsing();
-            wangNaonaoRecycle.setLayoutManager(man);
             wangNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
                 @Override
                 public void onRvScrolled(int dx, int dy) {
@@ -108,8 +95,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
 
                 @Override
                 public void onLoadMore() {
-                    initParsing();
-                    wangNaonaoRecycle.refreshComplete();
+                    wangNaonaoRecycle.loadMoreComplete();
                 }
             });
             a=1;
@@ -158,7 +144,20 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        View v = LayoutInflater.from(App.activity).inflate(R.layout.wang_naonao_tou, null);
+        wangNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.wang_naonao_image_second);
+        wangNaonaoNameSecond = (TextView) v.findViewById(R.id.wang_naonao_name_second);
+        wangNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.wang_naonao_image_first);
+        wangNaonaoNameFirst = (TextView) v.findViewById(R.id.wang_naonao_name_first);
+        wangNaonaoImageThird = (CircleImageView) v.findViewById(R.id.wang_naonao_image_third);
+        wangNaonaoNameThird = (TextView) v.findViewById(R.id.wang_naonao_name_third);
+        wangNaonaoCountSecond = (TextView) v.findViewById(R.id.wang_naonao_count_second);
+        wangNaonaoCountFirst = (TextView) v.findViewById(R.id.wang_naonao_count_first);
+        wangNaonaoCountThird = (TextView) v.findViewById(R.id.wang_naonao_count_third);
+        LinearLayoutManager man = new LinearLayoutManager(App.activity);
+        wangNaonaoRecycle.addHeaderView(v);
 
+        wangNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override

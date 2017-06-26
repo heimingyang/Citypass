@@ -53,6 +53,10 @@ public class Net_Friend_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Net_
         this.mlist = mlist;
     }
 
+    public void setNewData(List<String> mList){
+        this.mlist = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
           View v = LayoutInflater.from(App.activity).inflate(R.layout.net_friend_naonao_recycle_item,null);
