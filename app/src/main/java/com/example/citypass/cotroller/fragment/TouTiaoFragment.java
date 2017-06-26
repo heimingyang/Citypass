@@ -246,7 +246,7 @@ public class TouTiaoFragment extends BaseFragment {
         Drawable drawable = App.activity.getResources().getDrawable(R.drawable.user_set_rigth_down);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
-        App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_mes);
+        App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_tuisong_noral);
         App.activity.getImgTwo().setImageResource(R.drawable.mall_changeadd);
 
     }

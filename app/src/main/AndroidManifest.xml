@@ -61,7 +61,8 @@
         <activity android:name=".cotroller.MailActivity" />
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.PersonalActivity" />
-        <activity android:name=".cotroller.toutiao.MessageNotificationActivity"></activity>
+        <activity android:name=".cotroller.toutiao.MessageNotificationActivity" />
+        <activity android:name=".cotroller.toutiao.MaillistActivity"></activity>
     </application>
 
 </manifest>
