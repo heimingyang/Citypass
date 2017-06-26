@@ -159,7 +159,8 @@ public class TuShuoBean {
         private int IsFollow;
         private String MapName;
         private String MapPoint;
-        private int imageCount;
+
+
 
         public int getTopicID() {
             return TopicID;
@@ -328,6 +329,9 @@ public class TuShuoBean {
         public void setMapPoint(String MapPoint) {
             this.MapPoint = MapPoint;
         }
+
+
+
 
     }
 }

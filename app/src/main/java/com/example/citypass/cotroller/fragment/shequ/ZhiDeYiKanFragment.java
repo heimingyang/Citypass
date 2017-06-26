@@ -67,7 +67,11 @@ public class ZhiDeYiKanFragment extends BaseFragment {
                 zhiDeYiKanBean = JSON.parseObject(result, ZhiDeYiKanBean.class);
                 list.addAll(zhiDeYiKanBean.getServerInfo());
                 adapter = new ZhiDeYiKanAdapter(App.activity, list);
-                shequRecyclerview.setAdapter(adapter);
+                try {
+                    shequRecyclerview.setAdapter(adapter);
+                }catch (Exception e){
+
+                }
             }
 
             @Override

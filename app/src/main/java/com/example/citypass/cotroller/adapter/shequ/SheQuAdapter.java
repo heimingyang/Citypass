@@ -3,6 +3,7 @@ package com.example.citypass.cotroller.adapter.shequ;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import com.example.citypass.base.BaseFragment;
 
@@ -50,5 +51,8 @@ public class SheQuAdapter extends FragmentPagerAdapter {
         return strings.get(position);
     }
 
-
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+//        super.destroyItem(container, position, object);
+    }
 }
