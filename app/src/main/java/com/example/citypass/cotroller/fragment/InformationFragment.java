@@ -13,11 +13,15 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.LevelActivity;
+import com.example.citypass.cotroller.MailActivity;
+import com.example.citypass.cotroller.PersonalActivity;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
+import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.CooperationActivity;
-import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.cotroller.LoginActivity;
-import com.example.citypass.cotroller.MailActivity;
 import com.example.citypass.cotroller.SettingActivity;
 import com.example.citypass.cotroller.adapter.InforAdapter;
 import com.example.citypass.model.bean.Information;
@@ -33,6 +37,8 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.example.citypass.utils.LoginUtils.USERID;
 
 /**
  * 项目名称: 血压卫士
@@ -89,40 +95,40 @@ public class InformationFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        login(null);
+                        login(null,0);
                         break;
                     case 1:
-                        login(null);
+                        login(null,0);
                         break;
                     case 2:
-                        login(null);
+                        login(null,0);
                         break;
                     case 3:
-                        login(LevelActivity.class);
+                        login(LevelActivity.class,0);
                         break;
                     case 4:
-                        login(null);
+                        login(null,0);
                         break;
                     case 5:
-                        login(null);
+                        login(null,0);
                         break;
                     case 6:
-                        login(null);
+                        login(null,0);
                         break;
                     case 7:
-                        login(null);
+                        login(null,0);
                         break;
                     case 8:
-                        login(null);
+                        login(null,0);
                         break;
                     case 9:
-                        login(null);
+                        login(null,0);
                         break;
                     case 10:
-                        login(null);
+                        login(null,0);
                         break;
                     case 11:
-                        login(null);
+                        login(null,0);
                         break;
                 }
             }
@@ -137,9 +143,10 @@ public class InformationFragment extends BaseFragment {
 
     }
 
-    private void login(Class c) {
+    private void login(Class c, int a) {
         if (login) {
             Intent intent = new Intent(getActivity(), c);
+            intent.putExtra("type",a);
             startActivityForResult(intent,200);
         } else {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -164,19 +171,22 @@ public class InformationFragment extends BaseFragment {
             case R.id.infor_order:
                 break;
             case R.id.infor_guanzhu:
-                login(MailActivity.class);
+                login(MailActivity.class,1);
                 break;
             case R.id.infor_fensi:
-                login(MailActivity.class);
+                login(MailActivity.class,2);
                 break;
             case R.id.infor_login:
-                login(null);
+                Intent intent=new Intent(getActivity(), PersonalActivity.class);
+                intent.putExtra("sex",0);
+                intent.putExtra("id",Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+                startActivity(intent);
                 break;
             case R.id.infor_setting:
-                login(SettingActivity.class);
+                login(SettingActivity.class,0);
                 break;
             case R.id.infor_hezuo:
-                login(CooperationActivity.class);
+                login(CooperationActivity.class,0);
                 break;
         }
     }
@@ -194,7 +204,7 @@ public class InformationFragment extends BaseFragment {
         informations.setParam(paramBean);
         Informations.StatisBean statisBean=new Informations.StatisBean();
         statisBean.setSiteId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USITEID,"")));
-        statisBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+        statisBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(USERID,"")));
         String  model= android.os.Build.MODEL;
         statisBean.setPhoneNo(model);
         statisBean.setSystemNo(2);

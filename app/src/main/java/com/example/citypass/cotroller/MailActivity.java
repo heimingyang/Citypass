@@ -99,6 +99,15 @@ public class MailActivity extends BaseActivity {
         mList.add(new MailFragment());
         FragmentAdapter adapter=new FragmentAdapter(getSupportFragmentManager(),MailActivity.this,mList);
         mailViewpager.setAdapter(adapter);
+        if(getIntent().getIntExtra("type",1)==2){
+            mailOne.setChecked(true);
+            mailTextOne.setVisibility(View.VISIBLE);
+            mailTextTwo.setVisibility(View.INVISIBLE);
+        }else if(getIntent().getIntExtra("type",1)==1){
+            mailTwo.setChecked(true);
+            mailTextOne.setVisibility(View.INVISIBLE);
+            mailTextTwo.setVisibility(View.VISIBLE);
+        }
     }
 
 
