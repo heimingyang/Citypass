@@ -37,7 +37,7 @@
         android:text="51155"
         android:textColor="@color/color_999"
         android:textSize="14dp"
-        android:drawableLeft="@drawable/ccoo_icon_chakan"
+        android:drawableLeft="@drawable/ccoo_icon_look2"
         />
     <ImageView
 

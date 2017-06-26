@@ -26,6 +26,7 @@ import com.example.citypass.App;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.LoginActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
@@ -34,6 +35,7 @@ import com.example.citypass.cotroller.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.toutiao.HttlunbooneFragment;
 import com.example.citypass.cotroller.toutiao.HttlunbothreeFragment;
 import com.example.citypass.cotroller.toutiao.HttlunbotwoFragment;
+import com.example.citypass.cotroller.toutiao.MessageNotificationActivity;
 import com.example.citypass.model.bean.Information;
 import com.example.citypass.model.bean.toutiao.Touqiaolistview;
 import com.example.citypass.model.bean.toutiao.Toutiao;
@@ -157,7 +159,8 @@ public class TouTiaoFragment extends BaseFragment {
         App.activity.getImgOne().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 Intent intent=new Intent(getActivity(), MessageNotificationActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
@@ -173,6 +176,8 @@ public class TouTiaoFragment extends BaseFragment {
                 getActivity().startActivity(intent);
             }
         });
+
+
 
     }
 
@@ -509,6 +514,13 @@ public class TouTiaoFragment extends BaseFragment {
                 } else {
                     httBeforeEntry.setVisibility(View.VISIBLE);
                     httAfterEntry.setVisibility(View.GONE);
+                    httNo1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        Intent intent=new Intent(getActivity(), LoginActivity.class);
+                            getActivity().startActivity(intent);
+                        }
+                    });
                 }
             }
 
