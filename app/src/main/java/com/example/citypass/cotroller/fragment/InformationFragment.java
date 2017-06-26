@@ -98,7 +98,9 @@ public class InformationFragment extends BaseFragment {
                         login(null,0);
                         break;
                     case 1:
-                        login(null,0);
+                        Intent intent=new Intent(getActivity(), PersonalActivity.class);
+                        intent.putExtra("id",Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+                        startActivity(intent);
                         break;
                     case 2:
                         login(null,0);
@@ -178,7 +180,6 @@ public class InformationFragment extends BaseFragment {
                 break;
             case R.id.infor_login:
                 Intent intent=new Intent(getActivity(), PersonalActivity.class);
-                intent.putExtra("sex",0);
                 intent.putExtra("id",Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
                 startActivity(intent);
                 break;
