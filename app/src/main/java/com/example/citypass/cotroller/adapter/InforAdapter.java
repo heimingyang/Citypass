@@ -53,15 +53,11 @@ public class InforAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder=null;
-        if(convertView==null){
             holder=new ViewHolder();
             convertView= LayoutInflater.from(context).inflate(R.layout.list_infor_item,null);
             holder.mText= (TextView) convertView.findViewById(R.id.list_item_text);
             holder.view= (TextView) convertView.findViewById(R.id.list_item_textOne);
             convertView.setTag(holder);
-        }else{
-            holder= (ViewHolder) convertView.getTag();
-        }
         if(position==3||position==8){
             holder.view.setVisibility(View.VISIBLE);
         }

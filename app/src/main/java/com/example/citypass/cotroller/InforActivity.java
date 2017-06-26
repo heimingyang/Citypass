@@ -262,8 +262,10 @@ public class InforActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.information_Weixin:
+                getDialog("微信号",informationWeixinTwo.getText().toString(),"你的微信号，方便好友联系~",11,informationWeixinTwo);
                 break;
             case R.id.information_QQ:
+                getDialog("联系QQ",informationQQTwo.getText().toString(),"常用QQ号，方便好友联系~",7,informationQQTwo);
                 break;
             case R.id.information_Grade:
                 Intent intentTwo=new Intent(InforActivity.this,LevelActivity.class);

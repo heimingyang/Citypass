@@ -15,7 +15,9 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.cotroller.MailActivity;
+import com.example.citypass.cotroller.NotifyActivity;
 import com.example.citypass.cotroller.PersonalActivity;
+import com.example.citypass.cotroller.PostActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -77,14 +79,13 @@ public class InformationFragment extends BaseFragment {
     private boolean login=false;
     private Information information;
     private ImageView image;
+    private int a=0;
 
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
-        if(login){
-            getInformation();
-        }else{
-
+        if(a==1) {
+            init();
         }
     }
 
@@ -95,7 +96,7 @@ public class InformationFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        login(null,0);
+                        login(NotifyActivity.class,0);
                         break;
                     case 1:
                         Intent intent=new Intent(getActivity(), PersonalActivity.class);
@@ -103,34 +104,34 @@ public class InformationFragment extends BaseFragment {
                         startActivity(intent);
                         break;
                     case 2:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 3:
                         login(LevelActivity.class,0);
                         break;
                     case 4:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 5:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 6:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 7:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 8:
-                        login(null,0);
+                        login(PostActivity.class,0);
                         break;
                     case 9:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 10:
-                        login(null,0);
+//                        login(null,0);
                         break;
                     case 11:
-                        login(null,0);
+//                        login(null,0);
                         break;
                 }
             }
@@ -142,7 +143,11 @@ public class InformationFragment extends BaseFragment {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
         InforAdapter adapter = new InforAdapter(getContext());
         inforList.setAdapter(adapter);
+        if(login&&a==0){
+            getInformation();
+        }else{
 
+        }
     }
 
     private void login(Class c, int a) {
@@ -239,6 +244,7 @@ public class InformationFragment extends BaseFragment {
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
                     image= App.activity.getImg();
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
+                    a=1;
                 }
             }
 
@@ -257,22 +263,7 @@ public class InformationFragment extends BaseFragment {
             case 100:
                 switch (resultCode){
                     case 111:
-                        information=LoginUtils.information;
-                        inforName.setText(information.getServerInfo().getNick());
-                        Drawable drawable=null;
-                        if(information.getServerInfo().getSex().equals("男")) {
-                            drawable = getResources().getDrawable(R.drawable.regist_man_check);
-                        }else{
-                            drawable = getResources().getDrawable(R.drawable.regist_woman_check);
-                        }
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                        inforName.setCompoundDrawables(null,null,drawable,null);
-                        inforOrder.setText(information.getServerInfo().getInfo());
-                        inforFensi.setText(information.getServerInfo().getFansNum()+"粉丝");
-                        inforGuanzhu.setText(information.getServerInfo().getFrendNum()+"关注");
-                        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
-                        image= App.activity.getImg();
-                        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
+                       getInformation();
                         break;
                 }
                 break;
@@ -289,5 +280,23 @@ public class InformationFragment extends BaseFragment {
                 }
                 break;
         }
+    }
+    private void init(){
+        information=LoginUtils.information;
+        inforName.setText(information.getServerInfo().getNick());
+        Drawable drawable=null;
+        if(information.getServerInfo().getSex().equals("男")) {
+            drawable = getResources().getDrawable(R.drawable.regist_man_check);
+        }else{
+            drawable = getResources().getDrawable(R.drawable.regist_woman_check);
+        }
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        inforName.setCompoundDrawables(null,null,drawable,null);
+        inforOrder.setText(information.getServerInfo().getInfo());
+        inforFensi.setText(information.getServerInfo().getFansNum()+"粉丝");
+        inforGuanzhu.setText(information.getServerInfo().getFrendNum()+"关注");
+        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
+        image= App.activity.getImg();
+        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
     }
 }

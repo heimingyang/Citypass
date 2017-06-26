@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/post_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+            android:id="@+id/post_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_browser_back_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="我的帖子"
+            android:textColor="#ffffff"
+            android:textSize="23dp" />
+        <ImageView
+            android:id="@+id/post_Release"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_release_normal"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <RadioGroup
+        android:id="@+id/post_radio"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_below="@id/post_Relative"
+        android:layout_height="40dp">
+        <RadioButton
+            android:id="@+id/post_one"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="我的帖子"
+            android:textColor="@color/mail_selector"/>
+        <RadioButton
+            android:id="@+id/post_two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="帖子回复"
+            android:textColor="@color/mail_selector"/>
+        <RadioButton
+            android:id="@+id/post_three"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="我的话题"
+            android:textColor="@color/mail_selector"/>
+        <RadioButton
+            android:id="@+id/post_four"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="话题回复"
+            android:textColor="@color/mail_selector"/>
+    </RadioGroup>
+    <LinearLayout
+        android:id="@+id/post_linear"
+        android:orientation="horizontal"
+        android:layout_below="@id/post_radio"
+        android:layout_width="match_parent"
+        android:layout_height="2dp">
+        <TextView
+            android:id="@+id/post_linear_one"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/viewfinder_laser"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/post_linear_two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:background="@color/viewfinder_laser"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/post_linear_three"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:background="@color/viewfinder_laser"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/post_linear_four"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:background="@color/viewfinder_laser"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/post_viewpager"
+        android:layout_width="match_parent"
+        android:layout_below="@id/post_linear"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</RelativeLayout>
