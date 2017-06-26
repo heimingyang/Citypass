@@ -1,15 +1,9 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -17,12 +11,11 @@ import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.base.CircleImageView;
-import com.example.citypass.cotroller.adapter.faxian.Belle_XinShang_Adapter;
+import com.example.citypass.cotroller.adapter.discover.Belle_XinShang_Adapter;
 import com.example.citypass.model.bean.beele.Belle_Enjoy_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.LogUtils;
-import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.view.MRecyclerView;
 
 import java.util.HashMap;
@@ -30,12 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
-
-import static android.R.attr.logo;
-import static android.R.attr.x;
 
 /**
  * /**

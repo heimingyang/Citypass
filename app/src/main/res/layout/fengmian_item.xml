@@ -74,7 +74,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fengmian_item_job"
+
+        android:layout_below="@id/fengmian_item_img"
         android:layout_margin="10dp"
         android:text="还没有人点赞过" />
 
@@ -83,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/fengmian_item_job"
+        android:layout_below="@id/fengmian_item_img"
         android:layout_margin="10dp"
         android:drawableLeft="@drawable/ccoo_icon_huifu_noral"
         android:gravity="center"

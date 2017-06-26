@@ -1,4 +1,4 @@
-package com.example.citypass.cotroller.adapter.faxian;
+package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.CircleImageView;
 import com.example.citypass.model.bean.beele.Belle_Enjoy_Bean;
