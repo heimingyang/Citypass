@@ -38,6 +38,11 @@ import com.example.citypass.model.bean.Information;
 import com.example.citypass.model.bean.toutiao.Touqiaolistview;
 import com.example.citypass.model.bean.toutiao.Toutiao;
 import com.example.citypass.model.bean.toutiao.TtfourDJ;
+import com.example.citypass.model.bean.toutiao.Ttgrxx;
+import com.example.citypass.model.bean.toutiao.Ttrecyclertz;
+import com.example.citypass.model.bean.toutiao.Ttrecyclertzxq;
+import com.example.citypass.model.biz.infor.IInforModel;
+import com.example.citypass.model.biz.infor.InforModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.DeviceUtils;
@@ -135,40 +140,15 @@ public class TouTiaoFragment extends BaseFragment {
     private String siteName;
     private TextView honorname;
     private TtfourDjGridAdapter gridAdapter;
+    private  Ttgrxx ttgrxx;
 
     @Override
     protected void initData() {
-        boolean aBoolean = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
 
-        if (aBoolean) {
-            httBeforeEntry.setVisibility(View.VISIBLE);
-            httAfterEntry.setVisibility(View.GONE);
-            Information  information= LoginUtils.information;
+        getgrxx();
 
-            if(information!=null){
-                Information.ServerInfoBean bean=information.getServerInfo();
 
-                siteName = bean.getSiteName();
-                String sex=bean.getSex();
 
-                httName.setText(bean.getNick());
-                if(sex.equals("男")){
-                    httGenderMan.setVisibility(View.VISIBLE);
-                    httGenderWoman.setVisibility(View.GONE);
-                }else if(sex.equals("女")){
-                    httGenderMan.setVisibility(View.GONE);
-                    httGenderWoman.setVisibility(View.VISIBLE);
-                }
-
-                httGrade.setText("Lv."+bean.getLevel());
-                honorname.setText(bean.getHonorName());
-                httRanking1.setText("排名："+bean.getIntegralRank());
-            }
-
-        } else {
-            httBeforeEntry.setVisibility(View.GONE);
-            httAfterEntry.setVisibility(View.VISIBLE);
-        }
     }
 
 
@@ -198,6 +178,9 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+
+
+
         httrecyclerview = (PullToRefreshRecyclerView) view.findViewById(R.id.htt_recyclerview);
 
         //得到头布局
@@ -260,7 +243,7 @@ public class TouTiaoFragment extends BaseFragment {
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
         App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_mes);
         App.activity.getImgTwo().setImageResource(R.drawable.mall_changeadd);
-        App.activity.getText().setText(siteName);
+
     }
 
 
@@ -457,6 +440,81 @@ public class TouTiaoFragment extends BaseFragment {
             @Override
             public void onError(String errormsg) {
                 Log.e("onError", errormsg);
+            }
+        });
+    }
+
+    public void getgrxx() {
+        Ttrecyclertz.ParamBean param = new Ttrecyclertz.ParamBean();
+        param.setSiteID(2422);
+        param.setUserName("sid094756353406476");
+
+        Ttrecyclertz.StatisBean statis = new Ttrecyclertz.StatisBean();
+
+        statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(getActivity()));
+        statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
+        statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(getActivity()));
+        statis.setSiteId(2422);
+        statis.setSystemNo(2);
+        DeviceUtils.getInstance();
+        statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
+        statis.setUserId(0);
+
+
+        Ttrecyclertz toutiao = new Ttrecyclertz();
+        toutiao.setMethod("PHSocket_GetBBSUsersInfoNew");
+        toutiao.setParam(param);
+        toutiao.setStatis(statis);
+        toutiao.setAppName("CcooCity");
+        toutiao.setCustomerID(8001);
+        toutiao.setCustomerKey("6A03DD7EF1340C00C2F34480A980C2E7");
+        toutiao.setRequestTime(TimeUtils.getdangqianshijian());
+        toutiao.setVersion("4.5");
+        Gson gson = new Gson();
+        String s = gson.toJson(toutiao);
+        // Log.e("onSuccess", s);
+
+        InforModel inforModel = new IInforModel();
+        inforModel.UpLoad(s, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                //Log.e("getgrxx", "TZ"+result);
+                ttgrxx=JSON.parseObject(result,Ttgrxx.class);
+                Log.e("getgrxx", "TZ"+ttgrxx.toString());
+                if (ttgrxx!=null) {
+                    httBeforeEntry.setVisibility(View.GONE);
+                    httAfterEntry.setVisibility(View.VISIBLE);
+
+                    Ttgrxx.ServerInfoBean bean= ttgrxx.getServerInfo();
+                    if(bean!=null){
+
+                        App.activity.getText().setText(bean.getSiteName());
+
+                        String sex=bean.getSex();
+
+                        httName.setText(bean.getNick());
+                        if(sex.equals("男")){
+                            httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
+                            httGenderWoman.setVisibility(View.GONE);
+                        }else if(sex.equals("女")){
+                            httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
+                            httGenderWoman.setVisibility(View.GONE);
+                        }
+
+                        httGrade.setText("Lv."+bean.getLevel());
+                        honorname.setText(bean.getHonorName());
+                        httRanking1.setText("排名："+bean.getIntegralRank());
+                    }
+
+                } else {
+                    httBeforeEntry.setVisibility(View.VISIBLE);
+                    httAfterEntry.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
             }
         });
     }

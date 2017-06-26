@@ -66,7 +66,7 @@
                     android:layout_marginLeft="3dp"
                     />
                 <ImageView
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:id="@+id/htt_gender_woman"
@@ -75,7 +75,7 @@
                     android:layout_marginLeft="3dp"
                     />
                 <TextView
-                    android:layout_toRightOf="@id/htt_gender_woman"
+                    android:layout_toRightOf="@id/htt_gender_man"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:text="Lv.1"
