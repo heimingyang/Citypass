@@ -1,16 +1,21 @@
 package com.example.citypass.cotroller.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.LoginActivity;
-import com.example.citypass.cotroller.activity.naonao.Carmer_NaoNao_PopupWindow_Activity;
+import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.adapter.naonao.NaoNao_Tab_Adapter;
 import com.example.citypass.cotroller.fragment.naonao.Di_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Net_Friend_NaoNao_Fragment;
@@ -72,11 +77,13 @@ public class NaoNaoFragment extends BaseFragment {
     Unbinder unbinder;
     private List<Fragment> mFraList = new ArrayList<>();
     private List<String> mStrList = new ArrayList<>();
-    private int a=0;
+    private int a = 0;
+    private PopupWindow pop;
+    private View view;
 
     @Override
     protected void initData() {
-        if(a==0) {
+        if (a == 0) {
             mFraList.add(new Di_NaoNao_Fragment());
             mFraList.add(new Wang_NaoNao_Fragment());
             mFraList.add(new Star_NaoNao_Fragment());
@@ -123,7 +130,7 @@ public class NaoNaoFragment extends BaseFragment {
                 }
             });
             naonaoTab.setupWithViewPager(naonaoViewpager);
-            a=1;
+            a = 1;
 
         }
     }
@@ -133,8 +140,6 @@ public class NaoNaoFragment extends BaseFragment {
     protected void initListener() {
 
     }
-
-
 
 
     @Override
@@ -165,15 +170,46 @@ public class NaoNaoFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //是否登录
-                if(SpUtils.getSp().getBoolean(LoginUtils.LOGIN,false)){
-                   Intent in = new Intent(getActivity(), Carmer_NaoNao_PopupWindow_Activity.class);
-                    startActivity(in);
-                }else {
+                if (SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false)) {
+                    initPop();
+                    pop.showAsDropDown(view, 0, 0, Gravity.BOTTOM);
+                } else {
                     Intent in = new Intent(getActivity(), LoginActivity.class);
                     startActivity(in);
                 }
             }
         });
+    }
+
+    private void initPop() {
+        view = LayoutInflater.from(getActivity()).inflate(R.layout.carmer_naonao_popupwindow_activity, null);
+        pop = new PopupWindow(view, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.WRAP_CONTENT);
+        view.getBackground().setAlpha(230);
+        pop.setOutsideTouchable(true);
+        pop.setBackgroundDrawable(new ColorDrawable());
+        LinearLayout mCancel = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_cancel);
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+            }
+        });
+        LinearLayout mVideo  = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_video);
+        mVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                     Intent in = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
+                startActivity(in);
+            }
+        });
+        LinearLayout mPhoto = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_photo);
+        mPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
 

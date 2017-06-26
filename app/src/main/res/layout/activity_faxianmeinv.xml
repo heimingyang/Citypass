@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/Belle_relative"
@@ -36,10 +37,15 @@
     </RelativeLayout>
 
     <android.support.design.widget.TabLayout
+        android:elevation="10dp"
         android:id="@+id/Belle_Tablayout"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/Belle_relative" />
+        android:layout_height="wrap_content"
+        android:background="#eae8e8"
+        app:tabIndicatorColor="#fd0303"
+        app:tabSelectedTextColor="#fd0303"
+        android:layout_below="@id/Belle_relative"
+        />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Belle_viewpager"

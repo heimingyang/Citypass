@@ -12,7 +12,15 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--//0.0.9需要新增权限  -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -55,15 +63,13 @@
       <activity android:name=".cotroller.fragment.webview.WebViewActivity"/>
         <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>
         <activity android:name=".cotroller.InforActivity" />
-        <activity
-            android:name=".cotroller.activity.naonao.Carmer_NaoNao_PopupWindow_Activity"
-            android:theme="@style/AlertDialog.AppCompat" />
-        <activity android:name=".cotroller.InforActivity"/>
+
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
         <activity android:name=".cotroller.LevelActivity"/>
         <activity android:name=".cotroller.BlackActivity"/>
         <activity android:name=".cotroller.PhoneActivity"/>
         <activity android:name=".cotroller.MailActivity"/>
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity"/>
     </application>
 
 </manifest>

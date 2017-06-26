@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.citypass"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -22,7 +22,14 @@ android {
         schemaVersion 1
         targetGenDir 'src/main/java'
     }
-
+    allprojects {
+        repositories {
+            jcenter()
+            maven {
+                url 'https://dl.bintray.com/cjt/maven'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -47,4 +54,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
+    compile 'cjt.library.wheel:camera:0.1.9'
 }

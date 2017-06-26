@@ -1,5 +1,6 @@
 package com.example.citypass.model.bean.naonao;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ import java.util.List;
  */
 
 
-public class Di_NaoNao_Bean {
+public class Di_NaoNao_Bean implements Serializable{
 
     /**
      * MessageList : {"code":1000,"message":"Success"}

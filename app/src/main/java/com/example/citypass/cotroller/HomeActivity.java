@@ -58,8 +58,6 @@ public class HomeActivity extends BaseActivity {
     ImageView mainRightImg;
     @BindView(R.id.main_right_imgTwo)
     ImageView mainRightImgTwo;
-
-
     private HomeAdapter homeAdapter;
     private List<Fragment> mflist = new ArrayList<>();
     //分别为头条、闹闹、社区、生活、发现的Fragment
@@ -166,6 +164,11 @@ public class HomeActivity extends BaseActivity {
     @Override
     public TextView getText() {
         return this.mainTitle;
+    }
+
+    @Override
+    public RadioGroup getGroup() {
+        return this.mainGroup;
     }
 
     @Override

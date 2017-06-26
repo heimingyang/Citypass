@@ -1,16 +1,13 @@
 package com.example.citypass.base;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.citypass.App;
@@ -97,7 +94,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     public ImageView getImg(){
         return null;
     }
-
+    public RadioGroup getGroup(){return null;}
     @Override
     protected void onResume() {
         super.onResume();
