@@ -83,6 +83,7 @@ public class HttpurecyclerviewAdapter extends BaseAdapter<Touqiaolistview.Server
                 public void onClick(View v) {
                     Intent intent=new Intent(context, TtrecyclerXQActivity.class);
                     intent.putExtra("id",headTInfoListBean.getTheirID());
+                    intent.putExtra("type",headTInfoListBean.getFirstType());
                     context.startActivity(intent);
                 }
             });
