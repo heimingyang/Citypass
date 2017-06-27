@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
@@ -74,6 +75,10 @@
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.PersonalActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity"></activity>
+        <activity
+            android:name=".base.ScanActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation"/>
     </application>
 
 </manifest>

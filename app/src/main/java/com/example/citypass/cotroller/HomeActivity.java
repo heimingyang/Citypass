@@ -2,6 +2,7 @@ package com.example.citypass.cotroller;
 
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
@@ -22,14 +24,17 @@ import com.example.citypass.cotroller.fragment.TouTiaoFragment;
 import com.example.citypass.cotroller.fragment.life.LifeFragment;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.nineoldandroids.view.ViewHelper;
-import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity {
 
@@ -108,7 +113,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        ZXingLibrary.initDisplayOpinion(this);
+
 
         touTiaoFragment = new TouTiaoFragment();
         naoNaoFragment = new NaoNaoFragment();
@@ -210,6 +215,8 @@ public class HomeActivity extends BaseActivity {
         ViewHelper.setScaleY(contentView, rightScale);
     }
 
+    public static final int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -227,6 +234,26 @@ public class HomeActivity extends BaseActivity {
                         break;
                 }
                 break;
+            case REQUEST_CODE:
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null) {
+                    //扫描成功
+                    if (result.getContents() == null) {
+                        //结束扫码
+                        Toast.makeText(this, "取消", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //扫码出结果
+                        Toast.makeText(this, "扫码结果：" + result.getContents(), Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(this, "扫码成功", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    super.onActivityResult(requestCode, resultCode, data);
+                }
+
+                break;
+
+
         }
     }
 }

@@ -13,14 +13,15 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.base.ScanActivity;
 import com.example.citypass.utils.LogUtils;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.discover.MyDiscoverAdapter;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +70,7 @@ public class FaXianFragment extends BaseFragment {
     Unbinder unbinder;
 
     private MyDiscoverAdapter myDiscoverAdapter;
+    public static final int REQUEST_CODE = 0x0000c0de;
 
     @Override
     protected void initData() {
@@ -100,13 +102,25 @@ public class FaXianFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), CaptureActivity.class);
-                startActivityForResult(intent, 1);
+                startScan();
 
 
             }
         });
     }
+
+    public void startScan() {
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+
+        integrator.setOrientationLocked(false)//设置扫码的方向
+                .setPrompt("将条码放置于框内")//设置下方提示文字
+                .setCameraId(0)//前置或后置摄像头
+                .setBeepEnabled(false)//扫码提示音，默认开启
+                .setOrientationLocked(false)//解锁屏幕方向锁定
+                .setCaptureActivity(ScanActivity.class)//设置扫码界面为自定义样式
+                .initiateScan();
+    }
+
 
     @Override
     protected void initView(View view) {
@@ -137,22 +151,6 @@ public class FaXianFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 1) {
-            //处理扫描结果（在界面上显示）if (null != data) {
-            Bundle bundle = data.getExtras();
-            if (bundle == null) {
-                return;
-            }
-            if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                String result = bundle.getString(CodeUtils.RESULT_STRING);
-                Toast.makeText(getContext(), "解析结果:" + result, Toast.LENGTH_LONG).show();
-            } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
-                Toast.makeText(getContext(), "解析二维码失败", Toast.LENGTH_LONG).show();
-            }
-        }
 
-    }
 }
