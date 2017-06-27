@@ -146,8 +146,46 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        boolean login=SpUtils.getSp().getBoolean(LoginUtils.LOGIN,true);
+        Information information=LoginUtils.information;
+        Log.e("login",login+"");
 
-        getgrxx();
+        if (login&&information!=null) {
+            httBeforeEntry.setVisibility(View.GONE);
+            httAfterEntry.setVisibility(View.VISIBLE);
+            Information.ServerInfoBean bean= information.getServerInfo();
+            if(bean!=null){
+                App.activity.getText().setText(bean.getSiteName());
+
+                String sex=bean.getSex();
+
+                httName.setText(bean.getNick());
+                if(sex.equals("男")){
+                    httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
+                    httGenderWoman.setVisibility(View.GONE);
+                }else if(sex.equals("女")){
+                    httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
+                    httGenderWoman.setVisibility(View.GONE);
+                }
+
+                httGrade.setText("Lv."+bean.getLevel());
+                honorname.setText(bean.getHonorName());
+                httRanking1.setText("排名："+bean.getIntegralRank());
+            }
+
+        } else {
+            httBeforeEntry.setVisibility(View.VISIBLE);
+            httAfterEntry.setVisibility(View.GONE);
+            httEntry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    getActivity().startActivity(intent);
+                }
+            });
+        }
+
+         //getgrxx();
 
 
 
@@ -166,6 +204,7 @@ public class TouTiaoFragment extends BaseFragment {
         App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });
@@ -246,6 +285,7 @@ public class TouTiaoFragment extends BaseFragment {
         Drawable drawable = App.activity.getResources().getDrawable(R.drawable.user_set_rigth_down);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
+        App.activity.getText().setText("延庆在线");
         App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_tuisong_noral);
         App.activity.getImgTwo().setImageResource(R.drawable.mall_changeadd);
 
@@ -452,7 +492,8 @@ public class TouTiaoFragment extends BaseFragment {
     public void getgrxx() {
         Ttrecyclertz.ParamBean param = new Ttrecyclertz.ParamBean();
         param.setSiteID(2422);
-        param.setUserName("sid094756353406476");
+        //"sid094756353406476"
+        param.setUserName(SpUtils.getSp().getString(LoginUtils.USERNAME,null));
 
         Ttrecyclertz.StatisBean statis = new Ttrecyclertz.StatisBean();
 
@@ -463,7 +504,7 @@ public class TouTiaoFragment extends BaseFragment {
         statis.setSystemNo(2);
         DeviceUtils.getInstance();
         statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
-        statis.setUserId(0);
+        statis.setUserId(SpUtils.getSp().getInt(LoginUtils.USERID,0));
 
 
         Ttrecyclertz toutiao = new Ttrecyclertz();
@@ -477,26 +518,23 @@ public class TouTiaoFragment extends BaseFragment {
         toutiao.setVersion("4.5");
         Gson gson = new Gson();
         String s = gson.toJson(toutiao);
-        // Log.e("onSuccess", s);
+        Log.e("onSuccess", s);
 
         InforModel inforModel = new IInforModel();
         inforModel.UpLoad(s, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                //Log.e("getgrxx", "TZ"+result);
+
                 ttgrxx=JSON.parseObject(result,Ttgrxx.class);
-                Log.e("getgrxx", "TZ"+ttgrxx.toString());
+                //Log.e("getgrxx", "TZ"+ttgrxx.toString());
                 if (ttgrxx!=null) {
                     httBeforeEntry.setVisibility(View.GONE);
                     httAfterEntry.setVisibility(View.VISIBLE);
 
                     Ttgrxx.ServerInfoBean bean= ttgrxx.getServerInfo();
                     if(bean!=null){
-
                         App.activity.getText().setText(bean.getSiteName());
-
                         String sex=bean.getSex();
-
                         httName.setText(bean.getNick());
                         if(sex.equals("男")){
                             httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);

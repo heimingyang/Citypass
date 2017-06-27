@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.citypass"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -55,4 +55,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
     compile 'cjt.library.wheel:camera:0.1.9'
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
 }

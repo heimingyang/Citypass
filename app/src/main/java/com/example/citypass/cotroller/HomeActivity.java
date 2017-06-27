@@ -80,6 +80,7 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+    // TODO: 2017/6/27 主页面的监听事件 
     @Override
     public void initListener() {
         mainDrawlayout.setDrawerListener(new DrawerLayout.DrawerListener() {

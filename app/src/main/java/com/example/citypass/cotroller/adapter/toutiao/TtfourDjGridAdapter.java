@@ -67,7 +67,7 @@ public class TtfourDjGridAdapter extends BaseAdapter {
             holder = (viewholder) convertView.getTag();
         }
         holder.textView.setText(mList.get(position).getTitle());
-        Log.e("TAG", mList.get(position).getTitle());
+        //Log.e("TAG", mList.get(position).getTitle());
         String url=mList.get(position).getIcon();
         if(url!=null){
             Glide.with(parent.getContext())
