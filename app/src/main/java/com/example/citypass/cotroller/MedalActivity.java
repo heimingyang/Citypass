@@ -1,10 +1,13 @@
 package com.example.citypass.cotroller;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -15,9 +18,9 @@ import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.adapter.MedalAdapter;
 import com.example.citypass.model.Medal;
 import com.example.citypass.model.bean.MedalUp;
-import com.example.citypass.model.bean.toutiao.Statis;
 import com.example.citypass.model.biz.infor.IMedalModel;
 import com.example.citypass.model.biz.infor.MedaModel;
+import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
@@ -28,7 +31,6 @@ import com.example.citypass.view.Mylistview;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.example.citypass.utils.LoginUtils.information;
@@ -73,6 +75,7 @@ public class MedalActivity extends BaseActivity {
     @BindView(R.id.medal_scroll)
     ScrollView medalScroll;
     private MedaModel model;
+    private List<Medal.ServerInfoBean.TMedalListBean.TMedalListBeans> tMedalList1;
 
     @Override
     protected int getLayoutId() {
@@ -81,7 +84,13 @@ public class MedalActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        medalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Medal.ServerInfoBean.TMedalListBean.TMedalListBeans tMedalListBeans = tMedalList1.get(position);
+                Dialog(tMedalListBeans);
+            }
+        });
     }
 
     @Override
@@ -102,7 +111,7 @@ public class MedalActivity extends BaseActivity {
                 int code = medal.getMessageList().getCode();
                 if(code==1000){
                     Medal.ServerInfoBean.TMedalListBean tMedalList = medal.getServerInfo().getTMedalList();
-                    List<Medal.ServerInfoBean.TMedalListBean.TMedalListBeans> tMedalList1 = tMedalList.getTMedalList();
+                    tMedalList1 = tMedalList.getTMedalList();
                     MedalAdapter adapter=new MedalAdapter(tMedalList1,MedalActivity.this);
                     medalList.setAdapter(adapter);
                 }
@@ -156,5 +165,34 @@ public class MedalActivity extends BaseActivity {
         medal.setStatis(statisBean);
         String s = JSON.toJSONString(medal);
         return s;
+    }
+
+    private void Dialog(Medal.ServerInfoBean.TMedalListBean.TMedalListBeans bean){
+        View view= LayoutInflater.from(MedalActivity.this).inflate(R.layout.medal_dialog_itemone,null);
+        ImageView imgOne= (ImageView) view.findViewById(R.id.medal_dialog_back);
+        ImageView imgTwo= (ImageView) view.findViewById(R.id.medal_dialog_Img);
+        TextView textOne= (TextView) view.findViewById(R.id.medal_dialog_textOne);
+        TextView textTwo= (TextView) view.findViewById(R.id.medal_dialog_texttwo);
+        TextView textThree= (TextView) view.findViewById(R.id.medal_dialog_textthree);
+        TextView textFour= (TextView) view.findViewById(R.id.medal_dialog_textfour);
+        TextView textFive= (TextView) view.findViewById(R.id.medal_dialog_textfive);
+        ProgressBar pro= (ProgressBar) view.findViewById(R.id.medal_dialog_progress);
+        pro.setProgress(Integer.parseInt(bean.getIProgress()));
+        HttpFacory.create().loadImage(bean.getImage(),imgTwo,false);
+        textOne.setText(bean.getSName());
+        textTwo.setText(bean.getDescription());
+        textThree.setText("当前完成数："+bean.getMState());
+        textFour.setText("点亮可获得"+bean.getDCoin()+"城市币，"+bean.getDIntegral()+"成长值");
+        textFive.setText(bean.getCanBeLitCondition()+bean.getEffectivetime());
+        final AlertDialog dialog=new AlertDialog.Builder(MedalActivity.this)
+                .setView(view)
+                .create();
+        imgOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
