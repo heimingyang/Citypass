@@ -18,6 +18,7 @@ import com.example.citypass.model.biz.infor.ILevelModel;
 import com.example.citypass.model.biz.infor.LevelModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 
@@ -102,7 +103,7 @@ public class LevelActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), levelImgOne, true);
+
         model.getList(gerParam(), new MyCallBack() {
             @Override
             public void onSuccess(String result) {
@@ -114,6 +115,28 @@ public class LevelActivity extends BaseActivity {
                     List<Levels.ServerInfoBean.TLevelListBeans.TLevelListBean> tLevelList = levels.getServerInfo().getTLevelList().getTLevelList();
                     LevelAdapter adapter=new LevelAdapter(tLevelList,LevelActivity.this,currLevel-1);
                     levelList.setAdapter(adapter);
+                    int currLevel1 = levels.getServerInfo().getMyTLevel().getMyTLevel().get(0).getCurrLevel();
+                    if(currLevel1==1){
+                        HttpFacory.create().loadImage(LoginUtils.information.getServerInfo().getUserFace(), levelImgOne, true);
+                    }else if(currLevel1==2){
+                        HttpFacory.create().loadImage(LoginUtils.information.getServerInfo().getUserFace(), levelImgTwo, true);
+                        levelImgOne.setBackgroundResource(R.drawable.task_mylevel_head5);
+                    }else if(currLevel1==3){
+                        HttpFacory.create().loadImage(LoginUtils.information.getServerInfo().getUserFace(), levelImgThree, true);
+                        levelImgOne.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgTwo.setBackgroundResource(R.drawable.task_mylevel_head5);
+                    }else if(currLevel1==4){
+                        HttpFacory.create().loadImage(LoginUtils.information.getServerInfo().getUserFace(), levelImgFour, true);
+                        levelImgOne.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgTwo.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgThree.setBackgroundResource(R.drawable.task_mylevel_head5);
+                    }else if(currLevel1==5){
+                        HttpFacory.create().loadImage(LoginUtils.information.getServerInfo().getUserFace(), levelImgFive, true);
+                        levelImgOne.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgTwo.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgThree.setBackgroundResource(R.drawable.task_mylevel_head5);
+                        levelImgFour.setBackgroundResource(R.drawable.task_mylevel_head5);
+                    }
                 }
             }
 

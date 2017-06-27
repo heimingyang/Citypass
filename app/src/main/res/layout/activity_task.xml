@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/task_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+            android:id="@+id/task_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_browser_back_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="任务中心"
+            android:textColor="#ffffff"
+            android:textSize="23dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/task_RelativeOne"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/task_center_top"
+        android:layout_below="@id/task_Relative"></RelativeLayout>
+    <RadioGroup
+        android:id="@+id/task_Radio"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/task_RelativeOne"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/task_radio_One"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:checked="true"
+            android:text="特殊任务"
+            android:textColor="@color/mail_selector"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/task_radio_Two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:textSize="15dp"
+            android:text="日常任务"
+            android:textColor="@color/mail_selector"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+    <TextView
+        android:id="@+id/task_Text_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/task_RelativeOne"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="120dp"
+        android:background="@drawable/task_shape"
+        android:visibility="gone"
+        android:textColor="#ffffff"
+        android:textSize="12dp"
+        android:padding="5dp"
+        android:text="9"/>
+    <LinearLayout
+        android:id="@+id/task_Linear"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@id/task_Radio"
+        android:layout_height="2dp">
+        <TextView
+            android:id="@+id/task_text_one"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/viewfinder_laser"/>
+        <TextView
+            android:id="@+id/task_text_two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:layout_height="match_parent"
+            android:background="@color/viewfinder_laser"/>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/task_Viewpager"
+        android:layout_width="match_parent"
+        android:layout_below="@id/task_Linear"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</RelativeLayout>

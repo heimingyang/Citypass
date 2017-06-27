@@ -78,13 +78,12 @@
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/task_mylevel_head4"
-                android:src="@drawable/task_mylevel_head"
                 />
             <TextView
                 android:id="@+id/level_textOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:text="Lv.1"
                 android:textSize="8dp"

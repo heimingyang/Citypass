@@ -272,8 +272,12 @@ public class InforActivity extends BaseActivity {
                 startActivity(intentTwo);
                 break;
             case R.id.information_Medal:
+                Intent intentThree=new Intent(InforActivity.this,MedalActivity.class);
+                startActivity(intentThree);
                 break;
             case R.id.information_City:
+                Intent intentFour=new Intent(InforActivity.this,CityActivity.class);
+                startActivity(intentFour);
                 break;
             case R.id.information_PhoneOne:
                 break;

@@ -2,7 +2,6 @@ package com.example.citypass.cotroller;
 
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -80,7 +79,7 @@ public class HomeActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    // TODO: 2017/6/27 主页面的监听事件 
+    // TODO: 2017/6/27 主页面的监听事件
     @Override
     public void initListener() {
         mainDrawlayout.setDrawerListener(new DrawerLayout.DrawerListener() {

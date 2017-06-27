@@ -150,10 +150,8 @@ public class LoginActivity extends BaseActivity {
                     SpUtils.upSp().putString(LoginUtils.USERID, String.valueOf(isLogin.getServerInfo().getUserID()));
                     SpUtils.upSp().putString(LoginUtils.PHONE, "+86"+username);
                     SpUtils.upSp().commit();
-                    handler.sendEmptyMessage(1);
                     getInformation();
                 }else{
-                    handler.sendEmptyMessage(0);
                 }
             }
 
@@ -194,7 +192,7 @@ public class LoginActivity extends BaseActivity {
         }
     };
     public void getInformation(){
-        final Informations informations=new Informations();
+        Informations informations=new Informations();
         informations.setCustomerID(8001);
         informations.setRequestTime(TimeUtils.getStringTime(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
         informations.setMethod("PHSocket_GetBBSUsersInfoNew");
@@ -225,8 +223,11 @@ public class LoginActivity extends BaseActivity {
                 LoginUtils.information = JSON.parseObject(result, Information.class);
                 int code = LoginUtils.information.getMessageList().getCode();
                 if(code==1000){
+                    handler.sendEmptyMessage(1);
                     setResult(111);
                     onBackPressed();
+                }else{
+                    handler.sendEmptyMessage(0);
                 }
             }
 

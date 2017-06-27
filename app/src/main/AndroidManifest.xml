@@ -79,6 +79,9 @@
             android:name=".base.ScanActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
+        <activity android:name=".cotroller.MedalActivity"/>
+        <activity android:name=".cotroller.CityActivity"/>
+        <activity android:name=".cotroller.TaskActivity"/>
     </application>
 
 </manifest>

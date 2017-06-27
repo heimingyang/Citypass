@@ -13,11 +13,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.CityActivity;
 import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.cotroller.MailActivity;
+import com.example.citypass.cotroller.MedalActivity;
 import com.example.citypass.cotroller.NotifyActivity;
 import com.example.citypass.cotroller.PersonalActivity;
 import com.example.citypass.cotroller.PostActivity;
+import com.example.citypass.cotroller.TaskActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -84,7 +87,7 @@ public class InformationFragment extends BaseFragment {
     @Override
     protected void initData() {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
-        if(a==1) {
+        if(login&&a==1) {
             init();
         }
     }
@@ -99,9 +102,14 @@ public class InformationFragment extends BaseFragment {
                         login(NotifyActivity.class,0);
                         break;
                     case 1:
-                        Intent intent=new Intent(getActivity(), PersonalActivity.class);
-                        intent.putExtra("id",Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
-                        startActivity(intent);
+                        if(login) {
+                            Intent intent = new Intent(getActivity(), PersonalActivity.class);
+                            intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                            startActivity(intent);
+                        }else{
+                            Intent intent=new Intent(getActivity(),LoginActivity.class);
+                            startActivityForResult(intent,100);
+                        }
                         break;
                     case 2:
 //                        login(null,0);
@@ -110,16 +118,16 @@ public class InformationFragment extends BaseFragment {
                         login(LevelActivity.class,0);
                         break;
                     case 4:
-//                        login(null,0);
+                        login(MedalActivity.class,0);
                         break;
                     case 5:
-//                        login(null,0);
+                        login(CityActivity.class,0);
                         break;
                     case 6:
 //                        login(null,0);
                         break;
                     case 7:
-//                        login(null,0);
+                        login(TaskActivity.class,0);
                         break;
                     case 8:
                         login(PostActivity.class,0);
@@ -184,9 +192,14 @@ public class InformationFragment extends BaseFragment {
                 login(MailActivity.class,2);
                 break;
             case R.id.infor_login:
-                Intent intent=new Intent(getActivity(), PersonalActivity.class);
-                intent.putExtra("id",Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
-                startActivity(intent);
+                if(login) {
+                    Intent intent = new Intent(getActivity(), PersonalActivity.class);
+                    intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivityForResult(intent,100);
+                }
                 break;
             case R.id.infor_setting:
                 login(SettingActivity.class,0);
@@ -263,6 +276,7 @@ public class InformationFragment extends BaseFragment {
             case 100:
                 switch (resultCode){
                     case 111:
+                        a=1;
                        getInformation();
                         break;
                 }
