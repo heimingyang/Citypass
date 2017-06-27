@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.webview.WebViewActivity;
 import com.example.citypass.model.City;
 import com.example.citypass.model.bean.CityUp;
 import com.example.citypass.model.biz.infor.CityModel;
@@ -143,6 +144,10 @@ public class CityActivity extends BaseActivity {
             case R.id.city_Relative_Three:
                 break;
             case R.id.city_Relative_Four:
+                Intent intentTwo = new Intent(CityActivity.this, WebViewActivity.class);
+                intentTwo.putExtra("url","http://m.yanqing.ccoo.cn/choujiang.aspx");
+                intentTwo.putExtra("webview_title","抽奖活动");
+                startActivity(intentTwo);
                 break;
             case R.id.city_TextTwo:
                 break;

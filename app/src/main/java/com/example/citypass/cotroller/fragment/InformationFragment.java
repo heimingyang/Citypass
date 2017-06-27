@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.CityActivity;
+import com.example.citypass.cotroller.CollectionActivity;
 import com.example.citypass.cotroller.LevelActivity;
 import com.example.citypass.cotroller.MailActivity;
 import com.example.citypass.cotroller.MedalActivity;
@@ -21,6 +22,7 @@ import com.example.citypass.cotroller.NotifyActivity;
 import com.example.citypass.cotroller.PersonalActivity;
 import com.example.citypass.cotroller.PostActivity;
 import com.example.citypass.cotroller.TaskActivity;
+import com.example.citypass.cotroller.fragment.webview.WebViewActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -133,13 +135,29 @@ public class InformationFragment extends BaseFragment {
                         login(PostActivity.class,0);
                         break;
                     case 9:
-//                        login(null,0);
+                        if(login) {
+                            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                            intent.putExtra("url","http://m.yanqing.ccoo.cn/post/users/index.aspx");
+                            intent.putExtra("webview_title","我的分类");
+                            startActivity(intent);
+                        }else{
+                            Intent intent=new Intent(getActivity(),LoginActivity.class);
+                            startActivityForResult(intent,100);
+                        }
                         break;
                     case 10:
-//                        login(null,0);
+                        if(login) {
+                            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                            intent.putExtra("url","http://m.yanqing.ccoo.cn/hd/my_hd.aspx");
+                            intent.putExtra("webview_title","活动管理");
+                            startActivity(intent);
+                        }else{
+                            Intent intent=new Intent(getActivity(),LoginActivity.class);
+                            startActivityForResult(intent,100);
+                        }
                         break;
                     case 11:
-//                        login(null,0);
+                        login(CollectionActivity.class,0);
                         break;
                 }
             }

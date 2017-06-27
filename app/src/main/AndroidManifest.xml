@@ -67,13 +67,6 @@
         <activity android:name=".cotroller.PostActivity"/>
         <activity android:name=".cotroller.toutiao.MessageNotificationActivity" />
         <activity android:name=".cotroller.toutiao.MaillistActivity"></activity>
-        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
-        <activity android:name=".cotroller.LevelActivity" />
-        <activity android:name=".cotroller.BlackActivity" />
-        <activity android:name=".cotroller.PhoneActivity" />
-        <activity android:name=".cotroller.MailActivity" />
-        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
-        <activity android:name=".cotroller.PersonalActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity"></activity>
         <activity
             android:name=".base.ScanActivity"
@@ -82,6 +75,7 @@
         <activity android:name=".cotroller.MedalActivity"/>
         <activity android:name=".cotroller.CityActivity"/>
         <activity android:name=".cotroller.TaskActivity"/>
+        <activity android:name=".cotroller.CollectionActivity"/>
     </application>
 
 </manifest>

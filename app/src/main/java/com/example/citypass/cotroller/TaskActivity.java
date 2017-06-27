@@ -121,7 +121,7 @@ public class TaskActivity extends BaseActivity {
                 taskTextTwo.setVisibility(View.INVISIBLE);
                 break;
             case R.id.task_radio_Two:
-                taskViewpager.setCurrentItem(0);
+                taskViewpager.setCurrentItem(1);
                 taskTextOne.setVisibility(View.INVISIBLE);
                 taskTextTwo.setVisibility(View.VISIBLE);
                 break;
