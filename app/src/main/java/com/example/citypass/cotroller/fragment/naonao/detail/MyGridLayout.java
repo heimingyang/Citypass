@@ -130,6 +130,7 @@ public class MyGridLayout extends GridLayout {
         image2.setLayoutParams(lp);
         lp.setGravity(Gravity.CENTER);
 //        image2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) );
+//        image2.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide.with(getContext()).load(str).into(image2);
         lp.setMargins(margin, margin, margin, margin);
         addView(image2);

@@ -18,6 +18,7 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.naonao.Recommond_NaoNao_Bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,10 +58,16 @@ import java.util.List;
 
 public class Recommond_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Recommond_NaoNao_Recycle_Adapter.MyViewHolder> {
     private List<Recommond_NaoNao_Bean.ServerInfoBean> mList;
+    private OnItemClikListener onItemClikListener;
+    private List<String> strList = new ArrayList<>();
+    private LinearLayout myGridLayout;
 
+    public void setOnItemClikListener(OnItemClikListener onItemClikListener) {
+        this.onItemClikListener = onItemClikListener;
+    }
     public Recommond_NaoNao_Recycle_Adapter(List<Recommond_NaoNao_Bean.ServerInfoBean> mList) {
         this.mList = mList;
-        Log.e("aaa",mList.size()+"");
+        Log.e("aaa", mList.size() + "");
     }
     public void setNewData(List<Recommond_NaoNao_Bean.ServerInfoBean> mList){
         this.mList = mList;
@@ -97,52 +104,52 @@ public class Recommond_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Recom
 
         if (bean.getReplyJson1() != null) {
             holder.mTextPinLunName.setText(bean.getReplyJson1().getNick() + " : ");
-            holder.mTextPinLun.setText(bean.getReplyJson1().getContent()+"");
+            holder.mTextPinLun.setText(bean.getReplyJson1().getContent() + "");
         } else {
             holder.mTextPinLun.setVisibility(View.GONE);
             holder.mTextPinLunName.setVisibility(View.GONE);
         }
-//        String images = bean.getImage();
+        //得到所有的网址，
+        String images = bean.getImage();
+        if (images != null) {
+//            if (bean.getImageCount() > 1) {
+//                holder.mOne.setVisibility(View.VISIBLE);
+//                holder.mImageView.setVisibility(View.VISIBLE);
+//                holder.mImageView_One.setVisibility(View.VISIBLE);
+//                int i = bean.getImage().indexOf("|");
+//                String substring = bean.getImage().substring(0, i);
+//                Glide.with(App.activity).load(substring).into(holder.mImageView);
+//                String substring1 = bean.getImage().substring(i + 1, bean.getImage().length());
+//                Glide.with(App.activity).load(substring1).into(holder.mImageView_One);
+//            } else {
+//                holder.mOne.setVisibility(View.VISIBLE);
+//                holder.mImageView.setVisibility(View.VISIBLE);
+//                holder.mImageView_One.setVisibility(View.GONE);
+//                holder.mImageView_Two.setVisibility(View.GONE);
 //
-//        String[] split = images.split("\\|");
+//                Glide.with(App.activity).load(bean.getImage()).into(holder.mImageView);
 //
-//        if (!images.equals("")){
-//            for (String s : split) {
-////                LinearLayout view = holder.getView(R.id.item_bbs_zx_tup);
-//                ImageView imageView = new ImageView(App.activity);
-//                imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-//                imageView.setPadding(10,10,20,10);
-//                Glide.with(App.activity).load(s).into(imageView);
-//                holder.mOne.addView(imageView,holder.mOne.getWidth()/3,400);
 //            }
+//        } else {
+//            holder.mOne.setVisibility(View.GONE);
+//            holder.mTwo.setVisibility(View.GONE);
 //        }
-        if(bean.getImage()!=null) {
-            if (bean.getImageCount() > 1) {
-                holder.mOne.setVisibility(View.VISIBLE);
-                holder.mImageView.setVisibility(View.VISIBLE);
-                holder.mImageView_One.setVisibility(View.VISIBLE);
-                int i = bean.getImage().indexOf("|");
-                String substring = bean.getImage().substring(0, i);
-                Glide.with(App.activity).load(substring).into(holder.mImageView);
-                String substring1 = bean.getImage().substring(i + 1, bean.getImage().length());
-                Glide.with(App.activity).load(substring1).into(holder.mImageView_One);
-            } else {
-                holder.mOne.setVisibility(View.VISIBLE);
-                holder.mImageView.setVisibility(View.VISIBLE);
-                holder.mImageView_One.setVisibility(View.GONE);
-                holder.mImageView_Two.setVisibility(View.GONE);
-
-                Glide.with(App.activity).load(bean.getImage()).into(holder.mImageView);
-
-            }
-        }else {
-            holder.mOne.setVisibility(View.GONE);
-            holder.mTwo.setVisibility(View.GONE);
+            String[] split = images.split("\\|");
+//            strList.clear();
+//            for (String s : split) {
+//
+//                Log.d("Square_NaoNao_Recycle_A", s);
+//                strList.add(s);
+//            }
+//            myGridLayout.setmList(strList);
         }
-
     }
+    @Override
+    public int getItemViewType(int position) {
 
+
+        return super.getItemViewType(position);
+    }
     //要在数据中截取到imageview url路径的方法
     private String getJson_Url(String jsons) {
 
@@ -199,9 +206,20 @@ public class Recommond_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Recom
             mImageView_Five = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_five);
             mOne = (LinearLayout) v.findViewById(R.id.square_naonao_recycle_item_img_one);
             mTwo = (LinearLayout) v.findViewById(R.id.square_naonao_recycle_item_img_two);
+            //自定义点击事件
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClikListener.ItemClick(getLayoutPosition());
+                }
+            });
         }
     }
 
+    public interface OnItemClikListener {
+
+        void ItemClick(int positon);
+    }
 
 
 }

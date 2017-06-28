@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -14,13 +13,25 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--//0.0.9需要新增权限  -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <!-- //0.0.9需要新增权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+<!--share-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -56,17 +67,10 @@
         <activity android:name=".cotroller.fragment.life.WebViewActivity" />
         <activity android:name=".cotroller.activity.find.FaXianPerfectActivity" />
         <activity android:name=".cotroller.fragment.information.InforActivity" />
-        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
-        <activity android:name=".cotroller.fragment.information.LevelActivity" />
-        <activity android:name=".cotroller.fragment.information.BlackActivity" />
-        <activity android:name=".cotroller.fragment.information.PhoneActivity" />
-        <activity android:name=".cotroller.fragment.information.MailActivity" />
-        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
-        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
-        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
-        <activity android:name=".cotroller.fragment.information.PostActivity" />
 
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
+
         <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.LevelActivity"/>
         <activity android:name=".cotroller.fragment.information.BlackActivity"/>
@@ -96,6 +100,44 @@
         <activity android:name=".cotroller.fragment.information.CityActivity"/>
         <activity android:name=".cotroller.fragment.information.TaskActivity"/>
         <activity android:name=".cotroller.fragment.information.CollectionActivity"/>
+<!--share-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".apshare.ShareEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59535766717c197ff00003be" >
+        </meta-data>
+
+
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity"/>
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity"/>
             tools:replace="screenOrientation" />

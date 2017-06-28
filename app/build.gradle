@@ -30,6 +30,15 @@ android {
             }
         }
     }
+    signingConfigs {
+
+        release {
+            keyAlias 'citypass'
+            keyPassword '990712'
+            storeFile file('C:/Users/Administrator/citypass.jks')
+            storePassword '990712'
+        }
+    }
 }
 
 dependencies {
@@ -55,6 +64,27 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
     compile 'cjt.library.wheel:camera:0.1.9'
+    compile files('libs/SocialSDK_douban.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/SocialSDK_ynote.jar')
+    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/umeng_social_shareview.jar')
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/libapshare.jar')
+    compile files('libs/libddshare.jar')
+    compile files('libs/SocialSDK_alipay.jar')
+    compile files('libs/SocialSDK_Ding.jar')
+    compile files('libs/SocialSDK_evernote.jar')
+    compile files('libs/SocialSDK_facebook.jar')
+    compile files('libs/SocialSDK_sms.jar')
+    compile files('libs/SocialSDK_tencentWB.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
+
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
