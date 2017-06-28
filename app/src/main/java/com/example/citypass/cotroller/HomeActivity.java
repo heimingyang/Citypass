@@ -20,7 +20,8 @@ import com.example.citypass.cotroller.fragment.FaXianFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
 import com.example.citypass.cotroller.fragment.SheQuFragment;
 import com.example.citypass.cotroller.fragment.TouTiaoFragment;
-import com.example.citypass.cotroller.fragment.life.LifeFragment;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
+import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -32,8 +33,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static java.security.AccessController.getContext;
 
 public class HomeActivity extends BaseActivity {
 

@@ -14,7 +14,7 @@ import android.widget.PopupWindow;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.adapter.naonao.NaoNao_Tab_Adapter;
 import com.example.citypass.cotroller.fragment.naonao.Di_NaoNao_Fragment;

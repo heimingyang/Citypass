@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.citypass.App;
-import com.example.citypass.cotroller.fragment.webview.WebViewActivity;
+import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 
 /**
  * 项目名称: 城市通

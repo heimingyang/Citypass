@@ -13,8 +13,8 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.base.CircleImageView;
-import com.example.citypass.cotroller.LoginActivity;
-import com.example.citypass.cotroller.PersonalActivity;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
+import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.cotroller.adapter.naonao.DiNaoNao_Recycle_Adapter;
 import com.example.citypass.model.bean.naonao.Di_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.ToDoubleBiFunction;
 
 import butterknife.BindView;
 import butterknife.Unbinder;

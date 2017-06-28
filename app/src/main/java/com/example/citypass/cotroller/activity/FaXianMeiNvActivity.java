@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
-import com.example.citypass.cotroller.LoginActivity;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.adapter.discover.Discover_Belle_Adapter;
 import com.example.citypass.cotroller.fragment.faxian_belle.FengMian_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.LengYan_Fragment;

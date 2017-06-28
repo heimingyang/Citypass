@@ -12,7 +12,7 @@ import com.androidkun.adapter.ViewHolder;
 import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.cotroller.toutiao.TtrecyclerXQActivity;
+import com.example.citypass.cotroller.fragment.toutiao.TtrecyclerXQActivity;
 import com.example.citypass.model.bean.toutiao.Touqiaolistview;
 
 import java.util.List;

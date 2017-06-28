@@ -34,48 +34,60 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".cotroller.LoginActivity" />
-        <activity android:name=".cotroller.PasswordActivity" />
-        <activity android:name=".cotroller.RegisterActivity" />
-        <activity android:name=".cotroller.CooperationActivity" />
+        <activity android:name=".cotroller.fragment.information.LoginActivity" />
+        <activity android:name=".cotroller.fragment.information.PasswordActivity" />
+        <activity android:name=".cotroller.fragment.information.RegisterActivity" />
+        <activity android:name=".cotroller.fragment.information.CooperationActivity" />
         <activity android:name=".cotroller.activity.MyWebActivity" />
         <activity android:name=".cotroller.activity.FaXianMeiNvActivity" />
         <activity android:name=".cotroller.activity.FaXianActionActivity" />
         <activity android:name=".cotroller.activity.FaXianLottoActivity" />
         <activity android:name=".cotroller.activity.FaXianCityActivity" />
-        <activity android:name=".cotroller.toutiao.CityFoloActivity" />
-        <activity android:name=".cotroller.SettingActivity" />
-        <activity android:name=".cotroller.fragment.FeedBackActivity" />
-        <activity android:name=".cotroller.ReminberActivity" />
-        <activity android:name=".cotroller.ModifyActivity" />
-        <activity android:name=".cotroller.AboutActivity" />
-        <activity android:name=".cotroller.AboutActivity2" />
-        <activity android:name=".cotroller.toutiao.TtrecyclerXQActivity"></activity>
-        <activity android:name=".cotroller.toutiao.SetCityActivity"></activity>
-      <activity android:name=".cotroller.fragment.webview.WebViewActivity"/>
+        <activity android:name=".cotroller.fragment.toutiao.CityFoloActivity" />
+        <activity android:name=".cotroller.fragment.information.SettingActivity" />
+        <activity android:name=".cotroller.fragment.information.FeedBackActivity" />
+        <activity android:name=".cotroller.fragment.information.ReminberActivity" />
+        <activity android:name=".cotroller.fragment.information.ModifyActivity" />
+        <activity android:name=".cotroller.fragment.information.AboutActivity" />
+        <activity android:name=".cotroller.fragment.information.AboutActivity2" />
+        <activity android:name=".cotroller.fragment.toutiao.TtrecyclerXQActivity"></activity>
+        <activity android:name=".cotroller.fragment.toutiao.SetCityActivity"></activity>
+      <activity android:name=".cotroller.fragment.life.WebViewActivity"/>
         <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>
-        <activity android:name=".cotroller.InforActivity" />
+        <activity android:name=".cotroller.fragment.information.InforActivity" />
 
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
-        <activity android:name=".cotroller.LevelActivity"/>
-        <activity android:name=".cotroller.BlackActivity"/>
-        <activity android:name=".cotroller.PhoneActivity"/>
-        <activity android:name=".cotroller.MailActivity"/>
+        <activity android:name=".cotroller.fragment.information.LevelActivity"/>
+        <activity android:name=".cotroller.fragment.information.BlackActivity"/>
+        <activity android:name=".cotroller.fragment.information.PhoneActivity"/>
+        <activity android:name=".cotroller.fragment.information.MailActivity"/>
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity"/>
         <activity android:name=".cotroller.PersonalActivity"/>
         <activity android:name=".cotroller.NotifyActivity"/>
         <activity android:name=".cotroller.PostActivity"/>
         <activity android:name=".cotroller.toutiao.MessageNotificationActivity" />
         <activity android:name=".cotroller.toutiao.MaillistActivity"></activity>
+        <activity android:name=".cotroller.fragment.information.PersonalActivity"/>
+        <activity android:name=".cotroller.fragment.information.NotifyActivity"/>
+        <activity android:name=".cotroller.fragment.information.PostActivity"/>
+        <activity android:name=".cotroller.fragment.toutiao.MessageNotificationActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity"></activity>
+        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
+        <activity android:name=".cotroller.fragment.information.LevelActivity" />
+        <activity android:name=".cotroller.fragment.information.BlackActivity" />
+        <activity android:name=".cotroller.fragment.information.PhoneActivity" />
+        <activity android:name=".cotroller.fragment.information.MailActivity" />
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity"></activity>
         <activity
             android:name=".base.ScanActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
-        <activity android:name=".cotroller.MedalActivity"/>
-        <activity android:name=".cotroller.CityActivity"/>
-        <activity android:name=".cotroller.TaskActivity"/>
-        <activity android:name=".cotroller.CollectionActivity"/>
+        <activity android:name=".cotroller.fragment.information.MedalActivity"/>
+        <activity android:name=".cotroller.fragment.information.CityActivity"/>
+        <activity android:name=".cotroller.fragment.information.TaskActivity"/>
+        <activity android:name=".cotroller.fragment.information.CollectionActivity"/>
     </application>
 
 </manifest>

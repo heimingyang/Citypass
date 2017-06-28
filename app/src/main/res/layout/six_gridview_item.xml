@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"    >
+
+    <ImageView
+        android:padding="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitCenter"
+        android:id="@+id/six_gridview_img"
+        />
+      <TextView
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_below="@id/six_gridview_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/six_gridview_tv"
+        android:text="651"
+        android:textSize="18dp"
+      />
+</RelativeLayout>

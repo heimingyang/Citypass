@@ -4,7 +4,7 @@
     android:id="@+id/activity_ttrecycler_xq"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.citypass.cotroller.toutiao.TtrecyclerXQActivity">
+    tools:context=".cotroller.fragment.toutiao.TtrecyclerXQActivity">
   <RelativeLayout
       android:background="@color/red"
     android:id="@+id/ttxq_title"

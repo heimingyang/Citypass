@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.citypass.cotroller.toutiao.SetCityActivity">
+    tools:context=".cotroller.fragment.toutiao.SetCityActivity">
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
