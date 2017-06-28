@@ -85,6 +85,9 @@ public class PersonalTwoActivity extends BaseActivity {
     RelativeLayout personalOneRelativeThree;
     private int sex=0;
     private BaseFragment lastFragment;
+    private ModelFragment model;
+    private LifesFragment lifes;
+    private InformationTwoFragment infor;
 
     @Override
     protected int getLayoutId() {
@@ -114,14 +117,22 @@ public class PersonalTwoActivity extends BaseActivity {
     private void setFragment(int type){
         if(type==1){
            personalFrameName.setText("勋章");
-            ModelFragment model=new ModelFragment();
+            if(model==null) {
+                model = new ModelFragment();
+            }
             startFragment(model,false);
         }else if(type==2){
             personalFrameName.setText("礼物");
-            LifesFragment lifes=new LifesFragment();
+            if(lifes==null) {
+                lifes = new LifesFragment();
+            }
             startFragment(lifes,false);
         }else if(type==3){
             personalFrameName.setText("资料");
+            if(infor==null) {
+                infor = new InformationTwoFragment();
+            }
+            startFragment(infor,false);
         }
     }
 
@@ -145,15 +156,24 @@ public class PersonalTwoActivity extends BaseActivity {
                 break;
             case R.id.personalOne_medal:
                 personalFrameName.setText("勋章");
-                ModelFragment model=new ModelFragment();
+                if(model==null) {
+                    model = new ModelFragment();
+                }
                 startFragment(model,false);
                 break;
             case R.id.personalOne_gift:
                 personalFrameName.setText("礼物");
-                LifesFragment lifes=new LifesFragment();
+                if(lifes==null) {
+                    lifes = new LifesFragment();
+                }
                 startFragment(lifes,false);
                 break;
             case R.id.personalOne_ziliao:
+                personalFrameName.setText("资料");
+                if(infor==null) {
+                    infor = new InformationTwoFragment();
+                }
+                startFragment(infor,false);
                 break;
             case R.id.personalOne_back:
                 onBackPressed();

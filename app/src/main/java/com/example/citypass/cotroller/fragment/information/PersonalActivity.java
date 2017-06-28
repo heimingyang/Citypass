@@ -105,6 +105,7 @@ public class PersonalActivity extends BaseActivity {
     private PersonalModel model;
     private int sex=0;
     private Personal personal;
+    private int id;
 
     @Override
     protected int getLayoutId() {
@@ -123,7 +124,7 @@ public class PersonalActivity extends BaseActivity {
     private void initControl() {
         model=new IPersonalModel();
         Intent intent=getIntent();
-        int id=intent.getIntExtra("id",0);
+        id=intent.getIntExtra("id",0);
         getData(id);
     }
 
@@ -166,6 +167,7 @@ public class PersonalActivity extends BaseActivity {
                 bundle.putSerializable("bean",personal);
                 intent1.putExtra("bundle",bundle);
                 intent1.putExtra("type",1);
+                intent1.putExtra("id",id);
                 startActivity(intent1);
                 break;
             case R.id.personal_gift:
@@ -174,6 +176,7 @@ public class PersonalActivity extends BaseActivity {
                 bundle1.putSerializable("bean",personal);
                 intent2.putExtra("bundle",bundle1);
                 intent2.putExtra("type",2);
+                intent2.putExtra("id",id);
                 startActivity(intent2);
                 break;
             case R.id.personal_ziliao:
@@ -182,6 +185,7 @@ public class PersonalActivity extends BaseActivity {
                 bundle2.putSerializable("bean",personal);
                 intent3.putExtra("bundle",bundle2);
                 intent3.putExtra("type",3);
+                intent3.putExtra("id",id);
                 startActivity(intent3);
                 break;
             case R.id.personal_TextThree:
