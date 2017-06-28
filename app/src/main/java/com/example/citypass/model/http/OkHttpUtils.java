@@ -206,6 +206,7 @@ public class OkHttpUtils implements FactoryIn {
 
     }
 
+    // TODO: 2017/6/28  加载数据
     @Override
     public void loadImage(String url, ImageView view, boolean boo) {
         if(boo){

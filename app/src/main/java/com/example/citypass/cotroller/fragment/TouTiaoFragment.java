@@ -28,18 +28,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.example.citypass.App;
-
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtpoupwindowDjGridAdapter;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
@@ -161,46 +159,55 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN,true);
-        Information information=LoginUtils.information;
-        //Log.e("login", login +"");
+        boolean aBoolean = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
 
-        if (login &&information!=null) {
-            httBeforeEntry.setVisibility(View.GONE);
-            httAfterEntry.setVisibility(View.VISIBLE);
-            Information.ServerInfoBean bean= information.getServerInfo();
-            if(bean!=null){
-                App.activity.getText().setText(bean.getSiteName());
-
-                String sex=bean.getSex();
-
-                httName.setText(bean.getNick());
-                if(sex.equals("男")){
-                    httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
-                    httGenderWoman.setVisibility(View.GONE);
-                }else if(sex.equals("女")){
-                    httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
-                    httGenderWoman.setVisibility(View.GONE);
-                }
-
-                httGrade.setText("Lv."+bean.getLevel());
-                honorname.setText(bean.getHonorName());
-                httRanking1.setText("排名："+bean.getIntegralRank());
-            }
-
-        } else {
+        if (aBoolean) {
             httBeforeEntry.setVisibility(View.VISIBLE);
             httAfterEntry.setVisibility(View.GONE);
-            httEntry.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(getActivity(), LoginActivity.class);
-                    getActivity().startActivity(intent);
+            Information information = LoginUtils.information;
+            if (information != null) {
+                Information.ServerInfoBean bean = information.getServerInfo();
+                login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
+                information = LoginUtils.information;
+                //Log.e("login", login +"");
+
+                if (login && information != null) {
+                    httBeforeEntry.setVisibility(View.GONE);
+                    httAfterEntry.setVisibility(View.VISIBLE);
+                    bean = information.getServerInfo();
+                    if (bean != null) {
+                        App.activity.getText().setText(bean.getSiteName());
+
+                        String sex = bean.getSex();
+
+                        httName.setText(bean.getNick());
+                        if (sex.equals("男")) {
+                            httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
+                            httGenderWoman.setVisibility(View.GONE);
+                        } else if (sex.equals("女")) {
+                            httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
+                            httGenderWoman.setVisibility(View.GONE);
+                        }
+
+                        httGrade.setText("Lv." + bean.getLevel());
+                        honorname.setText(bean.getHonorName());
+                        httRanking1.setText("排名：" + bean.getIntegralRank());
+                    }
+
+                } else {
+                    httBeforeEntry.setVisibility(View.VISIBLE);
+                    httAfterEntry.setVisibility(View.GONE);
+                    httEntry.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            getActivity().startActivity(intent);
+                        }
+                    });
                 }
-            });
+            }
         }
     }
-
     @Override
     protected void initListener() {
 
@@ -259,6 +266,8 @@ public class TouTiaoFragment extends BaseFragment {
         recyclerviewadapter = new HttpurecyclerviewAdapter(getActivity(), list);
         httgridview.setAdapter(gridAdapter);
         //加载recyclerview
+//        initrecyclerview();
+
         initrecyclerview();
 
         //加载轮播

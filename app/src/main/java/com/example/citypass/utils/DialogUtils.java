@@ -47,6 +47,8 @@ public class DialogUtils {
         dialog.setMax(100);
         dialog.show();
     }
+
+    // TODO: 2017/6/28  dialog 加载完毕之后会进行消失 
     public static void dismiss(){
         if(dialog!=null&&dialog.isShowing()){
             dialog.dismiss();

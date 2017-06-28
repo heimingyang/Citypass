@@ -191,9 +191,9 @@ public class Recommond_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Recom
             mPinLun = (TextView) v.findViewById(R.id.square_naonao_recycle_item_pinlun);
             mTextPinLunName = (TextView) v.findViewById(R.id.square_naonao_recycle_item_text_pinlun_name);
             mTextPinLun = (TextView) v.findViewById(R.id.square_naonao_recycle_item_text_pinlun);
-            mImageView = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView);
-            mImageView_One = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_one);
-            mImageView_Two = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_two);
+//            mImageView = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView);
+//            mImageView_One = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_one);
+//            mImageView_Two = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_two);
             mImageView_Three = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_three);
             mImageView_Four = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_four);
             mImageView_Five = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView_five);

@@ -131,13 +131,15 @@ public class WebViewActivity extends BaseActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-              LifeWebView.loadUrl(request.getUrl().toString());
+                LifeWebView.loadUrl(request.getUrl().toString());
 
                 return true;
             }
         });
 
-
+//        String htmlString = "<h1>Title</h1><p>This is HTML text<br /><i>Formatted in italics</i><br />Anothor Line</p>";
+//// 载入这个html页面
+//        LifeWebView.loadData(htmlString, "text/html", "utf-8");
         WebSettings settings = LifeWebView.getSettings();
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setJavaScriptEnabled(true);

@@ -88,15 +88,51 @@
     <LinearLayout
         android:id="@+id/square_naonao_recycle_item_img_one"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:visibility="gone">
+        android:layout_height="150dp">
 
         <ImageView
-            android:id="@+id/recycler_item_OneImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/recycler_item_fourImage1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/recycler_item_fourImage2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/recycler_item_fourImage3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/recycler_item_fourImage4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
 
     </LinearLayout>
 

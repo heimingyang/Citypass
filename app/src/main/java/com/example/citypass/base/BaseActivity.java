@@ -66,7 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity{
         initView();
         initListener();
     }
-
     //加载布局
     protected abstract int getLayoutId();
 

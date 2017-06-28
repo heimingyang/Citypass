@@ -115,11 +115,11 @@ public class MingRenTangFragment extends BaseFragment {
                 name1.setText(mingRenTangBean.getServerInfo().getInfo().get(0).getNick());
                 name2.setText(mingRenTangBean.getServerInfo().getInfo().get(1).getNick());
                 name3.setText(mingRenTangBean.getServerInfo().getInfo().get(2).getNick());
-                Glide.with(App.activity).load(mingRenTangBean.getServerInfo().getInfo().get(0).getUserFace()).into(touxiang1);
-                Glide.with(App.activity).load(mingRenTangBean.getServerInfo().getInfo().get(1).getUserFace()).into(touxiang2);
-                Glide.with(App.activity).load(mingRenTangBean.getServerInfo().getInfo().get(2).getUserFace()).into(touxiang3);
+                Glide.with(getContext()).load(mingRenTangBean.getServerInfo().getInfo().get(0).getUserFace()).into(touxiang1);
+                Glide.with(getContext()).load(mingRenTangBean.getServerInfo().getInfo().get(1).getUserFace()).into(touxiang2);
+                Glide.with(getContext()).load(mingRenTangBean.getServerInfo().getInfo().get(2).getUserFace()).into(touxiang3);
                 mList.addAll(mingRenTangBean.getServerInfo().getInfo());
-                adapter = new MingRenTangAdapter(App.activity, mList);
+                adapter = new MingRenTangAdapter(getContext(), mList);
                 shequRecyclerview.setAdapter(adapter);
     }
 

@@ -109,7 +109,7 @@ public class Star_NaoNao_Fragment extends BaseFragment {
 
     private void initParsing() {
         Map<String, String> map = new HashMap<>();
-        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422},\"requestTime\":\"2017-06-21 18:13:33\",\"customerKey\":\"1075C03DA2A62B806314DA31FC043639\",\"Method\":\"PHSocket_GetTieBaToReplyRank\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422},\"requestTime\":\"2017-06-26 17:21:33\",\"customerKey\":\"1075C03DA2A62B806314DA31FC043639\",\"Method\":\"PHSocket_GetTieBaToReplyRank\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 5.1\",\"UserId\":0,\"PhoneNum\":\"+8618833628372\",\"SystemNo\":2,\"PhoneNo\":\"OPPO R9\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
         map.put("param", str);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map,"", new MyCallBack() {
             @Override

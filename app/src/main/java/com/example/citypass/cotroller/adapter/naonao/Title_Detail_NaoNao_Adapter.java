@@ -103,7 +103,6 @@ public class Title_Detail_NaoNao_Adapter extends RecyclerView.Adapter<Title_Deta
             mTouXiang = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_touxiang);
             mName = (TextView) v.findViewById(R.id.square_naonao_recycle_item_name);
             mBody = (TextView) v.findViewById(R.id.square_naonao_recycle_item_body);
-            mImg = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_imageView);
             mAddress = (TextView) v.findViewById(R.id.square_naonao_recycle_item_address);
             mZanText = (TextView) v.findViewById(R.id.square_naonao_recycle_item_zan);
             mLevel = (TextView) v.findViewById(R.id.square_naonao_recycle_item_level);

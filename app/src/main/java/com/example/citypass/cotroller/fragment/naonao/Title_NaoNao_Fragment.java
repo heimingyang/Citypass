@@ -63,50 +63,62 @@ public class Title_NaoNao_Fragment extends BaseFragment {
     Unbinder unbinder;
     private Title_NaoNao_Recycle_Adapter adapter;
     private List<Title_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
-    private int a=0;
+    private int a = 0;
+
     @Override
     protected void initData() {
-        if(a==0) {
-            initParsing();
-            titleNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
-                @Override
-                public void onRvScrolled(int dx, int dy) {
+        if (a == 0) {
+            LinearLayoutManager man = new LinearLayoutManager(App.activity);
+            if (a == 0) {
+                initParsing();
+                titleNaonaoRecycle.setLayoutManager(man);
+                a = 1;
+                titleNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
+                    @Override
+                    public void onRvScrolled(int dx, int dy) {
 
-                }
+                    }
 
-                @Override
-                public void onRefresh() {
-mList.clear();
-                    initParsing();
-                    titleNaonaoRecycle.refreshComplete();
-                }
+                    @Override
+                    public void onRefresh() {
+                        mList.clear();
+                        initParsing();
+                        titleNaonaoRecycle.refreshComplete();
+                    }
 
-                @Override
-                public void onLoadMore() {
-                    titleNaonaoRecycle.loadMoreComplete();
-                }
-            });
-            a=1;
+                    @Override
+                    public void onLoadMore() {
+                        titleNaonaoRecycle.loadMoreComplete();
+                    }
+                });
+                a = 1;
+            }
         }
     }
 
     private void initParsing() {
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":0,\"siteID\":2422,\"type\":1,\"curPage\":1},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"4FCF192587CBBF0D7BCEB4E1A73BEB05\",\"Method\":\"PHSocket_GetTieBaGambit\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
-        map.put("param",str);
+        map.put("param", str);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.d("Title_NaoNao_Fragment", result);
                 Title_NaoNao_Bean title_naoNao_bean = JSON.parseObject(result, Title_NaoNao_Bean.class);
-               mList.addAll(title_naoNao_bean.getServerInfo());
-                if(adapter==null){
-                    adapter = new Title_NaoNao_Recycle_Adapter(mList);
-                    titleNaonaoRecycle.setAdapter(adapter);
-                }else {
-                   adapter.setNewData(mList);
+                if (mList.size() < 0) {
+                    return;
                 }
+                mList.addAll(title_naoNao_bean.getServerInfo());
+                if (adapter == null) {
+                    mList.addAll(title_naoNao_bean.getServerInfo());
+                    if (adapter == null) {
+                        adapter = new Title_NaoNao_Recycle_Adapter(mList);
+                        titleNaonaoRecycle.setAdapter(adapter);
+                    } else {
+                        adapter.setNewData(mList);
+                    }
 
+                }
             }
 
             @Override
@@ -114,7 +126,10 @@ mList.clear();
 
             }
         });
+
+
     }
+
 
     @Override
     protected void initListener() {
@@ -125,7 +140,6 @@ mList.clear();
     protected void initView(View view) {
         LinearLayoutManager man = new LinearLayoutManager(App.activity);
 
-        titleNaonaoRecycle.setLayoutManager(man);
     }
 
     @Override
