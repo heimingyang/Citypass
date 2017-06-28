@@ -149,10 +149,18 @@ public class PersonalTwoActivity extends BaseActivity {
             case R.id.personalOne_follow:
                 break;
             case R.id.personalOne_Img:
+                Intent intent = new Intent(PersonalTwoActivity.this,InforActivity.class);
+                startActivity(intent);
                 break;
             case R.id.personalOne_guanzhu:
+                Intent intentOne = new Intent(PersonalTwoActivity.this,MailActivity.class);
+                intentOne.putExtra("type",1);
+                startActivityForResult(intentOne,200);
                 break;
             case R.id.personalOne_fensi:
+                Intent intentTwo = new Intent(PersonalTwoActivity.this,MailActivity.class);
+                intentTwo.putExtra("type",2);
+                startActivityForResult(intentTwo,200);
                 break;
             case R.id.personalOne_medal:
                 personalFrameName.setText("勋章");
