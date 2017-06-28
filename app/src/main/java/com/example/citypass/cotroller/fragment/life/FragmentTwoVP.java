@@ -74,23 +74,28 @@ public class FragmentTwoVP extends BaseFragment implements View.OnClickListener 
                 Glide.with(getContext()).load(Mimg).into(image);
                 String name = getPostList.get(4).getChannelName();
                 text.setText(name);
+                if (getPostList.size() > 6) {
+                    String Mimg1 = getPostList.get(5).getChannelImg();
+                    Glide.with(getContext()).load(Mimg1).into(image1);
 
-                String Mimg1 = getPostList.get(5).getChannelImg();
-                Glide.with(getContext()).load(Mimg1).into(image1);
+                    String name1 = getPostList.get(5).getChannelName();
+                    text1.setText(name1);
 
-                String name1 = getPostList.get(5).getChannelName();
-                text1.setText(name1);
+                    String Mimg2 = getPostList.get(6).getChannelImg();
+                    Glide.with(getContext()).load(Mimg2).into(image2);
 
-                String Mimg2 = getPostList.get(6).getChannelImg();
-                Glide.with(getContext()).load(Mimg2).into(image2);
+                    String name2 = getPostList.get(6).getChannelName();
+                    text2.setText(name2);
 
-                String name2 = getPostList.get(6).getChannelName();
-                text2.setText(name2);
-
-                String Mimg3 = getPostList.get(7).getChannelImg();
-                Glide.with(getContext()).load(Mimg3).into(image3);
-                String name3 = getPostList.get(7).getChannelName();
-                text3.setText(name3);
+                    String Mimg3 = getPostList.get(7).getChannelImg();
+                    Glide.with(getContext()).load(Mimg3).into(image3);
+                    String name3 = getPostList.get(7).getChannelName();
+                    text3.setText(name3);
+                } else {
+                    lay1.setVisibility(View.INVISIBLE);
+                    lay2.setVisibility(View.INVISIBLE);
+                    lay3.setVisibility(View.INVISIBLE);
+                }
 
 
             }
