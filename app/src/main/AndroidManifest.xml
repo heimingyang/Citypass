@@ -56,15 +56,7 @@
         <activity android:name=".cotroller.activity.FaXianPerfectActivity"></activity>
         <activity android:name=".cotroller.fragment.information.InforActivity" />
 
-        <activity android:name=".cotroller.InforActivity" />
-        <activity
-            android:name=".cotroller.activity.naonao.Carmer_NaoNao_PopupWindow_Activity"
-            android:theme="@style/AlertDialog.AppCompat" />
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
-        <activity android:name=".cotroller.LevelActivity"/>
-        <activity android:name=".cotroller.BlackActivity"/>
-        <activity android:name=".cotroller.PhoneActivity"/>
-        <activity android:name=".cotroller.MailActivity"/>
         <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.LevelActivity"/>
         <activity android:name=".cotroller.fragment.information.BlackActivity"/>
