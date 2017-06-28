@@ -3,6 +3,7 @@ package com.example.citypass.cotroller.fragment.information;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import com.example.citypass.utils.TimeUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.example.citypass.R.drawable.login;
 import static com.example.citypass.utils.LoginUtils.USERID;
 
 /**
@@ -101,6 +103,8 @@ public class PersonalActivity extends BaseActivity {
     @BindView(R.id.personal_bottom)
     LinearLayout personalBottom;
     private PersonalModel model;
+    private int sex=0;
+    private Personal personal;
 
     @Override
     protected int getLayoutId() {
@@ -141,18 +145,44 @@ public class PersonalActivity extends BaseActivity {
             case R.id.personal_follow:
                 break;
             case R.id.personal_Img:
+                Intent intent = new Intent(PersonalActivity.this,InforActivity.class);
+                startActivity(intent);
                 break;
             case R.id.personal_evaluate:
                 break;
             case R.id.personal_guanzhu:
+                Intent intentOne = new Intent(PersonalActivity.this,MailActivity.class);
+                intentOne.putExtra("type",1);
+                startActivityForResult(intentOne,200);
                 break;
             case R.id.personal_fensi:
+                Intent intentTwo = new Intent(PersonalActivity.this,MailActivity.class);
+                intentTwo.putExtra("type",2);
+                startActivityForResult(intentTwo,200);
                 break;
             case R.id.personal_medal:
+                Intent intent1=new Intent(PersonalActivity.this,PersonalTwoActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("bean",personal);
+                intent1.putExtra("bundle",bundle);
+                intent1.putExtra("type",1);
+                startActivity(intent1);
                 break;
             case R.id.personal_gift:
+                Intent intent2=new Intent(PersonalActivity.this,PersonalTwoActivity.class);
+                Bundle bundle1=new Bundle();
+                bundle1.putSerializable("bean",personal);
+                intent2.putExtra("bundle",bundle1);
+                intent2.putExtra("type",2);
+                startActivity(intent2);
                 break;
             case R.id.personal_ziliao:
+                Intent intent3=new Intent(PersonalActivity.this,PersonalTwoActivity.class);
+                Bundle bundle2=new Bundle();
+                bundle2.putSerializable("bean",personal);
+                intent3.putExtra("bundle",bundle2);
+                intent3.putExtra("type",3);
+                startActivity(intent3);
                 break;
             case R.id.personal_TextThree:
                 break;
@@ -175,6 +205,8 @@ public class PersonalActivity extends BaseActivity {
                 break;
         }
     }
+
+
     private String getPersonal(int id){
         PersonalUp per=new PersonalUp();
         per.setCustomerID(8001);
@@ -207,7 +239,7 @@ public class PersonalActivity extends BaseActivity {
         model.getPersonal(getPersonal(id), new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                Personal personal = JSON.parseObject(result, Personal.class);
+                personal = JSON.parseObject(result, Personal.class);
                 int code = personal.getMessageList().getCode();
                 if(code==1000){
                     setData(personal);
@@ -236,6 +268,7 @@ public class PersonalActivity extends BaseActivity {
         String gender = per.getServerInfo().getGender();
         if(gender.equals("男")) {
             personalAge.setText(per.getServerInfo().getAge());
+            sex=0;
         }else{
             personalRelative.setBackgroundResource(R.drawable.girl_top_bg);
             personalRelativeTwo.setBackgroundResource(R.drawable.girl_bottom_bg);
@@ -247,6 +280,7 @@ public class PersonalActivity extends BaseActivity {
             personalAge.setCompoundDrawables(draw,null,null,null);
             personalAge.setText(per.getServerInfo().getAge());
             personalAge.setBackgroundResource(R.color.colorAccent);
+            sex=1;
         }
         personalAddress.setText(per.getServerInfo().getAddress());
         personalIdentity.setText(per.getServerInfo().getHonorName());

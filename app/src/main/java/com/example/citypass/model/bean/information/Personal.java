@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * 项目名称: 血压卫士
  * 类描述:
@@ -15,7 +17,7 @@ import org.json.JSONObject;
  * 修改时间:
  */
 
-public class Personal {
+public class Personal implements Serializable{
 
     /**
      * code : 1000
@@ -117,7 +119,7 @@ public class Personal {
         this.retime = retime;
     }
 
-    public static class MessageListBean {
+    public static class MessageListBean implements Serializable{
         private int code;
         private String message;
 
@@ -139,7 +141,7 @@ public class Personal {
         }
     }
 
-    public static class ServerInfoBean {
+    public static class ServerInfoBean implements Serializable{
         private String UserName;
         private String UserNick;
         private String UserFace;
@@ -301,7 +303,7 @@ public class Personal {
             this.ShareMessage = ShareMessage;
         }
 
-        public static class ShareMessageBean {
+        public static class ShareMessageBean implements Serializable{
             private String Title;
             private String Url;
             private String Image;

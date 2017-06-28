@@ -56,4 +56,5 @@ dependencies {
     compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
     compile 'cjt.library.wheel:camera:0.1.9'
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

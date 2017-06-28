@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.information;
 
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
@@ -187,6 +188,8 @@ public class LevelActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.level_privilege:
+                Intent intent=new Intent(LevelActivity.this,PrivilegeActivity.class);
+                startActivity(intent);
                 break;
         }
     }

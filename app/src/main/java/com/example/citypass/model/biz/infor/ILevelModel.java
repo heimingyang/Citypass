@@ -23,4 +23,5 @@ public class ILevelModel implements LevelModel {
         map.put("param",params);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx",map,null,callBack);
     }
+
 }

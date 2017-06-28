@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="80dp">
+    <ImageView
+        android:id="@+id/privilege_item_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/task_item_shape"
+        android:layout_margin="10dp"/>
+    <TextView
+        android:id="@+id/privilege_item_textone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/privilege_item_img"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:text="发帖免审"/>
+    <TextView
+        android:id="@+id/privilege_text_three"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:layout_toRightOf="@id/privilege_item_img"
+        android:layout_below="@id/privilege_item_textone"
+        android:text="社区发帖在不包含违规关键字的情况下"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:padding="5dp" />
+    <TextView
+        android:id="@+id/privilege_text_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:textSize="18dp"
+        android:text="居委委员"
+        android:drawableRight="@drawable/ccoo_icon_jiantou_right"
+        android:padding="5dp"/>
+</RelativeLayout>

@@ -102,7 +102,6 @@ public class MedalActivity extends BaseActivity {
     protected void initView() {
         model=new IMedalModel();
         medalScroll.smoothScrollTo(0, 0);
-        LogUtils.e("aaaaa",getParams());
         model.getMedal(getParams(), new MyCallBack() {
             @Override
             public void onSuccess(String result) {
