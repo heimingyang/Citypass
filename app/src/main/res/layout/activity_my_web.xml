@@ -4,7 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_my_web"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.example.citypass.cotroller.activity.MyWebActivity">
+tools:context="com.example.citypass.cotroller.activity.find.MyWebActivity">
 
 
 <WebView

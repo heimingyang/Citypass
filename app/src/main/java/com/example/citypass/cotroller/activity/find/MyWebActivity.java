@@ -1,4 +1,4 @@
-package com.example.citypass.cotroller.activity;
+package com.example.citypass.cotroller.activity.find;
 
 import android.content.Intent;
 import android.view.KeyEvent;

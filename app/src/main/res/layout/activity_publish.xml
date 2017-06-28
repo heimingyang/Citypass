@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.citypass.cotroller.activity.find.PublishActivity">
+
+    <RelativeLayout
+        android:id="@+id/Publish_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/red">
+
+        <ImageView
+            android:id="@+id/Publish_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_write" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="上传我的照片"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Publish_relativelayout1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/Publish_relativelayout">
+
+        <ImageView
+            android:id="@+id/Publish_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/cover_guide_upload2" />
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

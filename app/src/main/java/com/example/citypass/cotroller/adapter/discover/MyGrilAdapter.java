@@ -12,11 +12,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.utils.LogUtils;
-import com.example.citypass.cotroller.activity.FaXianActionActivity;
-import com.example.citypass.cotroller.activity.FaXianCityActivity;
-import com.example.citypass.cotroller.activity.FaXianLottoActivity;
-import com.example.citypass.cotroller.activity.FaXianMeiNvActivity;
-import com.example.citypass.cotroller.activity.MyWebActivity;
+import com.example.citypass.cotroller.activity.find.FaXianActionActivity;
+import com.example.citypass.cotroller.activity.find.FaXianCityActivity;
+import com.example.citypass.cotroller.activity.find.FaXianLottoActivity;
+import com.example.citypass.cotroller.activity.find.FaXianMeiNvActivity;
+import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
 
 /**

@@ -75,15 +75,11 @@ public class FengMian_Fragment extends BaseFragment {
 
                 List<Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
                         = belle_fm_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
-                if (mList.size() == 0) {
+
                     mList.addAll(figureTCoverInfoList);
                     belle_fm_adapter.notifyDataSetChanged();
 
-                } else {
-                    mList.addAll(figureTCoverInfoList);
-                    belle_fm_adapter.notifyDataSetChanged();
 
-                }
 
 
             }
@@ -107,13 +103,41 @@ public class FengMian_Fragment extends BaseFragment {
 
             @Override
             public void onRefresh() {
-                handler.postDelayed(new Runnable() {
+                fengmianRecycle.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
+                        Map<String, String> map = new HashMap<>();
+                        map.put("param", "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"curPage\":1,\"siteID\":2422},\"requestTime\":\"2017-06-24 17:28:18\",\"customerKey\":\"9AD8E7FB4AECFE372283D316F93982BE\",\"Method\":\"PHSocket_GetFigureTCoverInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\" 8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}");
+                        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+                            @Override
+                            public void onSuccess(String result) {
+
+                                mList.clear();
+                                Belle_FM_Bean belle_fm_bean = JSON.parseObject(result, Belle_FM_Bean.class);
+
+                                List<Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
+                                        = belle_fm_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
+
+                                    mList.addAll(figureTCoverInfoList);
+                                    belle_fm_adapter.notifyDataSetChanged();
+
+
+
+                            }
+
+                            @Override
+                            public void onError(String errormsg) {
+
+                            }
+                        });
+
+
                         fengmianRecycle.refreshComplete();
 
                     }
                 }, 2000);
+
 
             }
 

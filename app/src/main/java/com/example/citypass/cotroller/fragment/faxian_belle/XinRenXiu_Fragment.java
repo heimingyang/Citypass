@@ -79,15 +79,11 @@ public class XinRenXiu_Fragment extends BaseFragment {
                 List<Belle_Xrx_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
                         = belle_xrx_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
 
-                if (mList.size() == 0) {
+
                     mList.addAll(figureTCoverInfoList);
                     belle_xrx_adapter.notifyDataSetChanged();
 
-                } else {
-                    mList.addAll(figureTCoverInfoList);
-                    belle_xrx_adapter.notifyDataSetChanged();
 
-                }
 
             }
 

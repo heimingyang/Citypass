@@ -1,4 +1,4 @@
-package com.example.citypass.cotroller.activity;
+package com.example.citypass.cotroller.activity.find;
 
 import android.app.Activity;
 import android.os.Bundle;

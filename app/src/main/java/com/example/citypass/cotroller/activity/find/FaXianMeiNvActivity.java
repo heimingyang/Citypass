@@ -1,8 +1,7 @@
-package com.example.citypass.cotroller.activity;
+package com.example.citypass.cotroller.activity.find;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -37,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -198,11 +196,11 @@ public class FaXianMeiNvActivity extends BaseActivity {
                 //女生再判断 资料有没有完善
                 if (serverInfo.getName().isEmpty() || serverInfo.getJob().isEmpty() || serverInfo.getInfo().isEmpty()) {
                     //没有完善就跳转去完善
-
                     Intent intent = new Intent(this, FaXianPerfectActivity.class);
                     startActivity(intent);
                 } else {
                     //完善了就去发表
+
 
 
                 }
@@ -266,10 +264,5 @@ public class FaXianMeiNvActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

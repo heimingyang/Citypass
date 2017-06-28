@@ -1,9 +1,8 @@
-package com.example.citypass.cotroller.activity;
+package com.example.citypass.cotroller.activity.find;
 
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +19,6 @@ import com.example.citypass.base.BaseActivity;
 import java.util.Calendar;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
