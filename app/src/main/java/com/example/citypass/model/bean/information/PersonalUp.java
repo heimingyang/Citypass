@@ -1,28 +1,30 @@
-package com.example.citypass.model.bean;
+package com.example.citypass.model.bean.information;
+
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * 项目名称: 血压卫士
- * 类描述: 上传个人信息使用的实体类
- * 创建人: 马杰
- * 创建时间: 2017/6/23 15:10
+ * 类描述:
+ * 创建人: dell
+ * 创建时间: 2017/6/26 8:59
  * 修改人:
  * 修改内容:
  * 修改时间:
  */
 
-public class UpLoad {
+public class PersonalUp {
 
     /**
      * customerID : 8001
-     * requestTime : 2017-06-23 14:57:03
-     * Method : PHSocket_SetUserBaseInfo
-     * customerKey : B28F1BB67F479F5C426849E200AA4E1B
+     * requestTime : 2017-06-26 08:54:55
+     * Method : PHSocket_GetUser_Info
+     * customerKey : D1C154124C35D62840752B67E5EFC825
      * appName : CcooCity
      * version : 4.5
-     * Param : {"userID":"31042672","siteID":2422,"userName":"sid193108730110051","usiteID":2422,"keyID":12,"value":"北京吉利大学"}
+     * Param : {"uSiteId":2422,"userId":31042672,"touserid":31042672}
      * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":"+8618501151714"}
      */
 
@@ -33,12 +35,9 @@ public class UpLoad {
     private String appName;
     private String version;
     /**
-     * userID : 31042672
-     * siteID : 2422
-     * userName : sid193108730110051
-     * usiteID : 2422
-     * keyID : 12
-     * value : 北京吉利大学
+     * uSiteId : 2422
+     * userId : 31042672
+     * touserid : 31042672
      */
 
     private ParamBean Param;
@@ -120,60 +119,33 @@ public class UpLoad {
     }
 
     public static class ParamBean {
-        private String userID;
-        private int siteID;
-        private String userName;
-        private int usiteID;
-        private int keyID;
-        private String value;
+        private int uSiteId;
+        private int userId;
+        private int touserid;
 
 
-        public String getUserID() {
-            return userID;
+        public int getUSiteId() {
+            return uSiteId;
         }
 
-        public void setUserID(String userID) {
-            this.userID = userID;
+        public void setUSiteId(int uSiteId) {
+            this.uSiteId = uSiteId;
         }
 
-        public int getSiteID() {
-            return siteID;
+        public int getUserId() {
+            return userId;
         }
 
-        public void setSiteID(int siteID) {
-            this.siteID = siteID;
+        public void setUserId(int userId) {
+            this.userId = userId;
         }
 
-        public String getUserName() {
-            return userName;
+        public int getTouserid() {
+            return touserid;
         }
 
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public int getUsiteID() {
-            return usiteID;
-        }
-
-        public void setUsiteID(int usiteID) {
-            this.usiteID = usiteID;
-        }
-
-        public int getKeyID() {
-            return keyID;
-        }
-
-        public void setKeyID(int keyID) {
-            this.keyID = keyID;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
+        public void setTouserid(int touserid) {
+            this.touserid = touserid;
         }
     }
 
@@ -185,6 +157,7 @@ public class UpLoad {
         private String System_VersionNo;
         private String PhoneId;
         private String PhoneNum;
+
 
         public int getSiteId() {
             return SiteId;

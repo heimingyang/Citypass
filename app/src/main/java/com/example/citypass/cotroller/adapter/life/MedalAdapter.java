@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.bumptech.glide.Glide;
 import com.example.citypass.R;
-import com.example.citypass.model.Medal;
+import com.example.citypass.model.bean.information.Medal;
 import com.example.citypass.model.http.HttpFacory;
 
 import java.util.List;

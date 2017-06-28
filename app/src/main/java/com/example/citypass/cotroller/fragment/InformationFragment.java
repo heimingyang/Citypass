@@ -31,8 +31,8 @@ import com.example.citypass.cotroller.fragment.information.CooperationActivity;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.SettingActivity;
 import com.example.citypass.cotroller.adapter.life.InforAdapter;
-import com.example.citypass.model.bean.Information;
-import com.example.citypass.model.bean.Informations;
+import com.example.citypass.model.bean.information.Information;
+import com.example.citypass.model.bean.information.Informations;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 

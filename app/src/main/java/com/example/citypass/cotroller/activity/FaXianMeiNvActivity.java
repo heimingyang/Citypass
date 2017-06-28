@@ -29,7 +29,7 @@ import com.example.citypass.cotroller.fragment.faxian_belle.XinRenXiu_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XinShang_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XingGan_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.ZuiXin_Fragment;
-import com.example.citypass.model.bean.Information;
+import com.example.citypass.model.bean.information.Information;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 

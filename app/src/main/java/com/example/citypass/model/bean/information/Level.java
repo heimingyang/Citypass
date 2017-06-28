@@ -1,29 +1,29 @@
-package com.example.citypass.model.bean;
+package com.example.citypass.model.bean.information;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * 项目名称: 血压卫士
- * 类描述: 登录使用的实体类
- * 创建人: 马杰
- * 创建时间: 2017/6/21 15:14
+ * 类描述:
+ * 创建人: dell
+ * 创建时间: 2017/6/24 9:57
  * 修改人:
  * 修改内容:
  * 修改时间:
  */
 
-public class Login {
+public class Level {
 
     /**
      * customerID : 8001
-     * requestTime : 2017-06-21 15:03:00
-     * Method : PHSocket_CheckUserLogin
-     * customerKey : E45AB41A52D150F4CB9EE6832ECFCE75
+     * requestTime : 2017-06-24 09:49:09
+     * Method : PHSocket_APP_GetMyTLevel
+     * customerKey : 3F9DE59EF0A7D59464D779858FEC1967
      * appName : CcooCity
      * version : 4.5
-     * Param : {"loginName":"18501151714","userPWD":"zxc123456","ip":"117.136.0.202","post":"8000","version":"android 4.3"}
-     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":" 8618501151714"}
+     * Param : {"siteID":2422,"userID":"31042672","curPage":1,"pageSize":30}
+     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":"+8618501151714"}
      */
 
     private int customerID;
@@ -33,11 +33,10 @@ public class Login {
     private String appName;
     private String version;
     /**
-     * loginName : 18501151714
-     * userPWD : zxc123456
-     * ip : 117.136.0.202
-     * post : 8000
-     * version : android 4.3
+     * siteID : 2422
+     * userID : 31042672
+     * curPage : 1
+     * pageSize : 30
      */
 
     private ParamBean Param;
@@ -48,7 +47,7 @@ public class Login {
      * SystemNo : 2
      * System_VersionNo : Android 5.1.1
      * PhoneId : 863181036606964
-     * PhoneNum :  8618501151714
+     * PhoneNum : +8618501151714
      */
 
     private StatisBean Statis;
@@ -119,51 +118,41 @@ public class Login {
     }
 
     public static class ParamBean {
-        private String loginName;
-        private String userPWD;
-        private String ip;
-        private String post;
-        private String version;
+        private int siteID;
+        private String userID;
+        private int curPage;
+        private int pageSize;
 
-
-        public String getLoginName() {
-            return loginName;
+        public int getSiteID() {
+            return siteID;
         }
 
-        public void setLoginName(String loginName) {
-            this.loginName = loginName;
+        public void setSiteID(int siteID) {
+            this.siteID = siteID;
         }
 
-        public String getUserPWD() {
-            return userPWD;
+        public String getUserID() {
+            return userID;
         }
 
-        public void setUserPWD(String userPWD) {
-            this.userPWD = userPWD;
+        public void setUserID(String userID) {
+            this.userID = userID;
         }
 
-        public String getIp() {
-            return ip;
+        public int getCurPage() {
+            return curPage;
         }
 
-        public void setIp(String ip) {
-            this.ip = ip;
+        public void setCurPage(int curPage) {
+            this.curPage = curPage;
         }
 
-        public String getPost() {
-            return post;
+        public int getPageSize() {
+            return pageSize;
         }
 
-        public void setPost(String post) {
-            this.post = post;
-        }
-
-        public String getVersion() {
-            return version;
-        }
-
-        public void setVersion(String version) {
-            this.version = version;
+        public void setPageSize(int pageSize) {
+            this.pageSize = pageSize;
         }
     }
 

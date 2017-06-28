@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.activity.naonao.Title_Detail_NaoNao_Activity;
-import com.example.citypass.model.bean.Title_NaoNao_Bean;
+import com.example.citypass.model.bean.information.Title_NaoNao_Bean;
 
 import java.io.Serializable;
 import java.util.List;

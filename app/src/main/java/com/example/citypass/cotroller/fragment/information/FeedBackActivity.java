@@ -14,8 +14,8 @@ import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.base.BaseActivity;
-import com.example.citypass.model.bean.Feed;
-import com.example.citypass.model.bean.IsLogin;
+import com.example.citypass.model.bean.information.Feed;
+import com.example.citypass.model.bean.information.IsLogin;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 

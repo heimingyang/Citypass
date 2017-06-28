@@ -1,23 +1,19 @@
-package com.example.citypass.model;
-
-import com.google.gson.Gson;
+package com.example.citypass.model.bean.information;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 /**
  * 项目名称: 血压卫士
- * 类描述:
- * 创建人: dell
- * 创建时间: 2017/6/27 14:49
+ * 类描述: 登录成功以后解析的实体类
+ * 创建人: 马杰
+ * 创建时间: 2017/6/21 15:41
  * 修改人:
  * 修改内容:
  * 修改时间:
  */
 
-public class City {
+public class IsLogin {
 
     /**
      * code : 1000
@@ -26,19 +22,23 @@ public class City {
 
     private MessageListBean MessageList;
     /**
-     * CoinLogInfo : null
-     * UserExtend : [{"Integral":250,"Coin":0}]
+     * UserID : 31042672
+     * UserName : sid193108730110051
+     * RoleName : 蠢均
+     * RoleImg : http://p9.pccoo.cn/app_avatar/20170620/2017062019312400988846_390_390.jpg
+     * uSiteID : 2422
+     * ouSiteID : 2422
      */
 
     private ServerInfoBean ServerInfo;
     /**
      * MessageList : {"code":1000,"message":"Success"}
-     * ServerInfo : {"CoinLogInfo":null,"UserExtend":[{"Integral":250,"Coin":0}]}
+     * ServerInfo : {"UserID":31042672,"UserName":"sid193108730110051","RoleName":"蠢均","RoleImg":"http://p9.pccoo.cn/app_avatar/20170620/2017062019312400988846_390_390.jpg","uSiteID":2422,"ouSiteID":2422}
      * Extend : null
      * Count : 0
      * GxNum : 0
      * PageNum : 0
-     * retime : 0.0185547
+     * retime : 0.1484375
      */
 
     private Object Extend;
@@ -127,51 +127,60 @@ public class City {
     }
 
     public static class ServerInfoBean {
-        private Object CoinLogInfo;
-        /**
-         * Integral : 250
-         * Coin : 0
-         */
+        private int UserID;
+        private String UserName;
+        private String RoleName;
+        private String RoleImg;
+        private int uSiteID;
+        private int ouSiteID;
 
-        private List<UserExtendBean> UserExtend;
 
-
-        public Object getCoinLogInfo() {
-            return CoinLogInfo;
+        public int getUserID() {
+            return UserID;
         }
 
-        public void setCoinLogInfo(Object CoinLogInfo) {
-            this.CoinLogInfo = CoinLogInfo;
+        public void setUserID(int UserID) {
+            this.UserID = UserID;
         }
 
-        public List<UserExtendBean> getUserExtend() {
-            return UserExtend;
+        public String getUserName() {
+            return UserName;
         }
 
-        public void setUserExtend(List<UserExtendBean> UserExtend) {
-            this.UserExtend = UserExtend;
+        public void setUserName(String UserName) {
+            this.UserName = UserName;
         }
 
-        public static class UserExtendBean {
-            private int Integral;
-            private int Coin;
+        public String getRoleName() {
+            return RoleName;
+        }
 
+        public void setRoleName(String RoleName) {
+            this.RoleName = RoleName;
+        }
 
-            public int getIntegral() {
-                return Integral;
-            }
+        public String getRoleImg() {
+            return RoleImg;
+        }
 
-            public void setIntegral(int Integral) {
-                this.Integral = Integral;
-            }
+        public void setRoleImg(String RoleImg) {
+            this.RoleImg = RoleImg;
+        }
 
-            public int getCoin() {
-                return Coin;
-            }
+        public int getUSiteID() {
+            return uSiteID;
+        }
 
-            public void setCoin(int Coin) {
-                this.Coin = Coin;
-            }
+        public void setUSiteID(int uSiteID) {
+            this.uSiteID = uSiteID;
+        }
+
+        public int getOuSiteID() {
+            return ouSiteID;
+        }
+
+        public void setOuSiteID(int ouSiteID) {
+            this.ouSiteID = ouSiteID;
         }
     }
 }

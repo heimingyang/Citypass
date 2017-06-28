@@ -46,7 +46,7 @@ import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbothreeFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbotwoFragment;
 import com.example.citypass.cotroller.fragment.toutiao.MessageNotificationActivity;
-import com.example.citypass.model.bean.Information;
+import com.example.citypass.model.bean.information.Information;
 import com.example.citypass.model.bean.toutiao.Touqiaolistview;
 import com.example.citypass.model.bean.toutiao.Toutiao;
 import com.example.citypass.model.bean.toutiao.TtPoupwindowbean;

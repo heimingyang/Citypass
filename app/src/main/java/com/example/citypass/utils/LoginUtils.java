@@ -3,8 +3,8 @@ package com.example.citypass.utils;
 import android.os.Build;
 
 import com.alibaba.fastjson.JSON;
-import com.example.citypass.model.bean.Information;
-import com.example.citypass.model.bean.UpLoad;
+import com.example.citypass.model.bean.information.Information;
+import com.example.citypass.model.bean.information.UpLoad;
 
 /**
  * 项目名称: 血压卫士

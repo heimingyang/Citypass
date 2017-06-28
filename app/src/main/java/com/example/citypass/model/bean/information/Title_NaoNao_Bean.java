@@ -1,4 +1,4 @@
-package com.example.citypass.model.bean;
+package com.example.citypass.model.bean.information;
 
 import java.io.Serializable;
 import java.util.List;

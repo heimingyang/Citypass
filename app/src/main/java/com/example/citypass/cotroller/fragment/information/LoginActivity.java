@@ -18,14 +18,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
-import com.example.citypass.model.bean.Information;
-import com.example.citypass.model.bean.Informations;
+import com.example.citypass.model.bean.information.Information;
+import com.example.citypass.model.bean.information.Informations;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.base.BaseActivity;
-import com.example.citypass.model.bean.IsLogin;
-import com.example.citypass.model.bean.Login;
+import com.example.citypass.model.bean.information.IsLogin;
+import com.example.citypass.model.bean.information.Login;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 

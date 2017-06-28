@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
-import com.example.citypass.model.bean.Task;
+import com.example.citypass.model.bean.information.Task;
 
 import java.util.List;
 

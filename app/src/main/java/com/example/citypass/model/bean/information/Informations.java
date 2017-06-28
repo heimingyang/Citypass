@@ -1,31 +1,29 @@
-package com.example.citypass.model.bean;
-
-import com.google.gson.Gson;
+package com.example.citypass.model.bean.information;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * 项目名称: 血压卫士
- * 类描述:
- * 创建人: dell
- * 创建时间: 2017/6/27 15:52
+ * 类描述: 用来发送获取个人信息的实体类
+ * 创建人: 马杰
+ * 创建时间: 2017/6/21 16:12
  * 修改人:
  * 修改内容:
  * 修改时间:
  */
 
-public class TaskUp {
+public class Informations {
 
     /**
      * customerID : 8001
-     * requestTime : 2017-06-27 15:00:55
-     * Method : PHSocket_UserTaskConfigList
-     * customerKey : 099ACCE62DB372B0D8C72CC90491E9B2
+     * requestTime : 2017-06-21 16:07:20
+     * Method : PHSocket_GetBBSUsersInfoNew
+     * customerKey : D5607EBE573BE2B59A4D5A1CAE882615
      * appName : CcooCity
      * version : 4.5
-     * Param : {"siteID":2422,"userID":31042672,"property":1,"curPage":1,"pageSize":10}
-     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":" 8618501151714"}
+     * Param : {"siteID":2422,"userName":"sid193108730110051"}
+     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":"+8618501151714"}
      */
 
     private int customerID;
@@ -36,10 +34,7 @@ public class TaskUp {
     private String version;
     /**
      * siteID : 2422
-     * userID : 31042672
-     * property : 1
-     * curPage : 1
-     * pageSize : 10
+     * userName : sid193108730110051
      */
 
     private ParamBean Param;
@@ -50,7 +45,7 @@ public class TaskUp {
      * SystemNo : 2
      * System_VersionNo : Android 5.1.1
      * PhoneId : 863181036606964
-     * PhoneNum :  8618501151714
+     * PhoneNum : +8618501151714
      */
 
     private StatisBean Statis;
@@ -122,10 +117,7 @@ public class TaskUp {
 
     public static class ParamBean {
         private int siteID;
-        private int userID;
-        private int property;
-        private int curPage;
-        private int pageSize;
+        private String userName;
 
 
         public int getSiteID() {
@@ -136,36 +128,12 @@ public class TaskUp {
             this.siteID = siteID;
         }
 
-        public int getUserID() {
-            return userID;
+        public String getUserName() {
+            return userName;
         }
 
-        public void setUserID(int userID) {
-            this.userID = userID;
-        }
-
-        public int getProperty() {
-            return property;
-        }
-
-        public void setProperty(int property) {
-            this.property = property;
-        }
-
-        public int getCurPage() {
-            return curPage;
-        }
-
-        public void setCurPage(int curPage) {
-            this.curPage = curPage;
-        }
-
-        public int getPageSize() {
-            return pageSize;
-        }
-
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
     }
 

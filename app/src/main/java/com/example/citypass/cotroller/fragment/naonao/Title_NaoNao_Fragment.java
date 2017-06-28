@@ -9,7 +9,7 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.naonao.Title_NaoNao_Recycle_Adapter;
-import com.example.citypass.model.bean.Title_NaoNao_Bean;
+import com.example.citypass.model.bean.information.Title_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.view.MRecyclerView;

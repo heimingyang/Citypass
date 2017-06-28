@@ -1,31 +1,29 @@
-package com.example.citypass.model.bean;
-
-import com.google.gson.Gson;
+package com.example.citypass.model.bean.information;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * 项目名称: 血压卫士
- * 类描述:
- * 创建人: dell
- * 创建时间: 2017/6/27 14:44
+ * 类描述:  发送意见的实体类
+ * 创建人: 马杰
+ * 创建时间: 2017/6/21 19:37
  * 修改人:
  * 修改内容:
  * 修改时间:
  */
 
-public class CityUp {
+public class Feed {
 
     /**
      * customerID : 8001
-     * requestTime : 2017-06-27 14:29:25
-     * Method : PHSocket_GetUserCoinLog
-     * customerKey : B757752C64514CB5B3F8B17330024493
+     * requestTime : 2017-06-21 19:35:42
+     * Method : PHSocket_SetContactusInfo
+     * customerKey : CDCFAE3FE325EBAF0BC481C6DE5AF18A
      * appName : CcooCity
      * version : 4.5
-     * Param : {"siteID":2422,"userID":"31042672","curPage":1,"pageSize":10,"increase":0}
-     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":" 8618501151714"}
+     * Param : {"siteID":2422,"name":"未设置","tel":"15712820818","info":"测试一下，还请见谅，谢谢","email":"","fromType":2}
+     * Statis : {"SiteId":2422,"UserId":31042672,"PhoneNo":"OPPO A33","SystemNo":2,"System_VersionNo":"Android 5.1.1","PhoneId":"863181036606964","PhoneNum":"+8618501151714"}
      */
 
     private int customerID;
@@ -36,10 +34,11 @@ public class CityUp {
     private String version;
     /**
      * siteID : 2422
-     * userID : 31042672
-     * curPage : 1
-     * pageSize : 10
-     * increase : 0
+     * name : 未设置
+     * tel : 15712820818
+     * info : 测试一下，还请见谅，谢谢
+     * email :
+     * fromType : 2
      */
 
     private ParamBean Param;
@@ -50,7 +49,7 @@ public class CityUp {
      * SystemNo : 2
      * System_VersionNo : Android 5.1.1
      * PhoneId : 863181036606964
-     * PhoneNum :  8618501151714
+     * PhoneNum : +8618501151714
      */
 
     private StatisBean Statis;
@@ -122,10 +121,11 @@ public class CityUp {
 
     public static class ParamBean {
         private int siteID;
-        private String userID;
-        private int curPage;
-        private int pageSize;
-        private int increase;
+        private String name;
+        private String tel;
+        private String info;
+        private String email;
+        private int fromType;
 
 
         public int getSiteID() {
@@ -136,36 +136,44 @@ public class CityUp {
             this.siteID = siteID;
         }
 
-        public String getUserID() {
-            return userID;
+        public String getName() {
+            return name;
         }
 
-        public void setUserID(String userID) {
-            this.userID = userID;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public int getCurPage() {
-            return curPage;
+        public String getTel() {
+            return tel;
         }
 
-        public void setCurPage(int curPage) {
-            this.curPage = curPage;
+        public void setTel(String tel) {
+            this.tel = tel;
         }
 
-        public int getPageSize() {
-            return pageSize;
+        public String getInfo() {
+            return info;
         }
 
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
+        public void setInfo(String info) {
+            this.info = info;
         }
 
-        public int getIncrease() {
-            return increase;
+        public String getEmail() {
+            return email;
         }
 
-        public void setIncrease(int increase) {
-            this.increase = increase;
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public int getFromType() {
+            return fromType;
+        }
+
+        public void setFromType(int fromType) {
+            this.fromType = fromType;
         }
     }
 

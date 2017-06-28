@@ -1,4 +1,4 @@
-package com.example.citypass.model;
+package com.example.citypass.model.bean.information;
 
 import com.google.gson.Gson;
 

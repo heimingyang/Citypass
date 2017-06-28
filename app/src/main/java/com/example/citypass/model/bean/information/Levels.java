@@ -1,4 +1,4 @@
-package com.example.citypass.model.bean;
+package com.example.citypass.model.bean.information;
 
 import org.json.JSONException;
 import org.json.JSONObject;

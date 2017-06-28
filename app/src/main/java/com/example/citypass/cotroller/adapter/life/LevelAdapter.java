@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.citypass.R;
-import com.example.citypass.model.bean.Levels;
+import com.example.citypass.model.bean.information.Levels;
 
 import java.util.List;
 
