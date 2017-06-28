@@ -130,9 +130,8 @@ public class FragmentTwoVP extends BaseFragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.image:
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(4).getChannelUrl(), "车辆信息");
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(4).getChannelUrl(), "宠物世界");
                 break;
             case R.id.image1:
                 WebViewUtils.UtilIntent(getContext(), UrlUtils.OnePager_Jop + getPostList.get(5).getChannelUrl(), "生活服务");

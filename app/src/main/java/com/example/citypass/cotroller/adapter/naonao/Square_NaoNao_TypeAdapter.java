@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
@@ -443,7 +441,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images);
                     EventBus.getDefault().postSticky(detailBean);
                     context.startActivity(intent);
-                    Toast.makeText(context, "onePosition:" + onePosition, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -484,7 +481,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean twoBean = mList.get(twoPostion);
-                    Toast.makeText(context, "twoPostion:" + twoPostion, Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = twoBean.getTitle();
                     String name = twoBean.getNick();
@@ -537,7 +534,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(ThreePostion);
-                    Toast.makeText(context, "ThreePostion:" + ThreePostion, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = bean.getTitle();
                     String name = bean.getNick();
@@ -588,7 +584,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FourPosition);
-                    Toast.makeText(context, "FourPosition:" + FourPosition, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = mBean.getTitle();
@@ -646,7 +641,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FivePosition);
-                    Toast.makeText(context, "FivePosition:" + FivePosition, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = mBean.getTitle();

@@ -1,93 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/NaoNao_Relative"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <TextView
-            android:id="@+id/square_naonao_TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="60" />
+        android:layout_height="40dp"
+        android:background="@color/red">
 
         <ImageView
+            android:id="@+id/NaoNao_DetailBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/square_naonao_TitleText"
-            android:src="@drawable/ccoo_icon_look2" />
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ccoo_icon_back" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            android:text="话题详情"
+            android:textColor="#fff"
+            android:textSize="18dp" />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F0F0F0"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/square_naonao_recycle_item_touxiang"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:id="@+id/square_naonao_TitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="60" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/square_naonao_TitleText"
+                    android:src="@drawable/ccoo_icon_look2" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/square_naonao_recycle_item_touxiang"
+                android:background="#F0F0F0"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/square_naonao_recycle_item_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="2dp"
-                        android:text="姓名"
-                        android:textSize="20dp" />
+                    <ImageView
+                        android:id="@+id/square_naonao_recycle_item_touxiang"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher" />
 
-                    <TextView
-                        android:id="@+id/square_naonao_recycle_item_level"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="3dp"
-                        android:background="@drawable/di_naonao_recycle_item_level"
-                        android:padding="3dp"
-                        android:text="lv:8"
-                        android:textColor="#fff" />
+                        android:layout_toRightOf="@id/square_naonao_recycle_item_touxiang"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/square_naonao_recycle_item_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="2dp"
+                                android:text="姓名"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/square_naonao_recycle_item_level"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="3dp"
+                                android:background="@drawable/di_naonao_recycle_item_level"
+                                android:padding="3dp"
+                                android:text="lv:8"
+                                android:textColor="#fff" />
+
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="21dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:background="#53AEE1"
+                                android:padding="3dp"
+                                android:text="楼主"
+                                android:textColor="#fff"
+                                android:textSize="10dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="2dp"
+                                android:src="@drawable/ccoo_icon_time" />
+
+                            <TextView
+                                android:id="@+id/square_naonao_recycle_item_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="2dp"
+                                android:text="时间"
+                                android:textColor="#cdcdcd" />
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <Button
-                        android:layout_width="30dp"
-                        android:layout_height="21dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
-                        android:background="#53AEE1"
-                        android:padding="3dp"
-                        android:text="楼主"
-                        android:textColor="#fff"
-                        android:textSize="10dp" />
-                </LinearLayout>
+                        android:id="@+id/square_naonao_guanzhu_btn"
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/square_naonao_but"
+                        android:text="点击关注"
+                        android:textColor="#FFB038" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/square_naonao_detail_shuatie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="刷帖王" />
+
+                <com.example.citypass.cotroller.fragment.naonao.detail.MyGridLayout
+                    android:id="@+id/square_naonao_detail_ImageLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--<ImageView-->
+                    <!--android:id="@+id/square_naonao_recycle_item_imageView"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:scaleType="fitXY" />-->
+
+                    <!--<ImageView-->
+                    <!--android:id="@+id/square_naonao_recycle_item_imageView_one"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:visibility="gone" />-->
+
+                    <!--<ImageView-->
+                    <!--android:id="@+id/square_naonao_recycle_item_imageView_two"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:visibility="gone" />-->
+                </com.example.citypass.cotroller.fragment.naonao.detail.MyGridLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,180 +202,159 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/ccoo_icon_time" />
+                        android:src="@drawable/cover_main_position" />
 
                     <TextView
-                        android:id="@+id/square_naonao_recycle_item_time"
+                        android:id="@+id/square_naonao_recycle_item_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="2dp"
-                        android:text="时间"
+                        android:text="北京吉利大学"
                         android:textColor="#cdcdcd" />
                 </LinearLayout>
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/square_naonao_guanzhu_btn"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="5dp"
-                android:background="@drawable/square_naonao_but"
-                android:text="点击关注"
-                android:textColor="#FFB038" />
-        </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
 
-        <TextView
-            android:id="@+id/square_naonao_detail_shuatie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="刷帖王" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.example.citypass.cotroller.fragment.naonao.detail.MyGridLayout
-            android:id="@+id/square_naonao_detail_ImageLinear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <!--<ImageView-->
-            <!--android:id="@+id/square_naonao_recycle_item_imageView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:scaleType="fitXY" />-->
-
-            <!--<ImageView-->
-            <!--android:id="@+id/square_naonao_recycle_item_imageView_one"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:visibility="gone" />-->
-
-            <!--<ImageView-->
-            <!--android:id="@+id/square_naonao_recycle_item_imageView_two"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:visibility="gone" />-->
-        </com.example.citypass.cotroller.fragment.naonao.detail.MyGridLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/cover_main_position" />
+                <TextView
+                    android:id="@+id/square_naonao_Textzan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="超哥等一人点赞过"
+                    android:textSize="18dp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/square_naonao_recycle_item_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="北京吉利大学"
-                android:textColor="#cdcdcd" />
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#efeeee" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/square_naonao_zanImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ccoo_icon_zan_noral1" />
+
+                <ImageView
+                    android:id="@+id/square_naonao_shareImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/square_naonao_zanImage"
+                    android:src="@drawable/ccoo_icon_more_big" />
+
+                <ImageView
+                    android:id="@+id/square_naonao_dashangImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/square_naonao_zanImage"
+                    android:background="@drawable/ccoo_icon_shang_noral1" />
+
+                <TextView
+                    android:id="@+id/square_naonao_zanText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/square_naonao_zanImage"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:text="赞" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/square_naonao_shareImage"
+                    android:layout_marginLeft="53dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toRightOf="@id/square_naonao_zanText"
+                    android:text="分享" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/square_naonao_dashangImage"
+                    android:layout_marginRight="53dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toLeftOf="@id/square_naonao_zanText"
+                    android:text="打赏" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:background="#F0F0F0" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/square_naonao_mTab"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/square_naonao_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/square_naonao_Textzan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="超哥等一人点赞过"
-            android:textSize="18dp" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#efeeee" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#FAFAFA">
 
         <ImageView
-            android:id="@+id/square_naonao_zanImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:id="@+id/NaoNao_Detail_Zan"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/ccoo_icon_zan_noral1" />
 
         <ImageView
-            android:id="@+id/square_naonao_shareImage"
+            android:id="@+id/NaoNao_Detail_Add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/square_naonao_zanImage"
-            android:src="@drawable/ccoo_icon_more_big" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/cover_main_add_n" />
 
-        <ImageView
-            android:id="@+id/square_naonao_dashangImage"
+        <EditText
+            android:id="@+id/NaoNao_Detail_mEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/square_naonao_zanImage"
-            android:background="@drawable/ccoo_icon_shang_noral1" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:hint="发表回复"
+            android:textColorHint="#A6A6A6" />
 
-        <TextView
-            android:id="@+id/square_naonao_zanText"
+
+        <Button
+            android:id="@+id/NaoNao_Detail_butSendMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/square_naonao_zanImage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:text="赞" />
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/square_naonao_sendbut"
+            android:text="发送" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/square_naonao_shareImage"
-            android:layout_marginLeft="53dp"
-            android:layout_marginTop="25dp"
-            android:layout_toRightOf="@id/square_naonao_zanText"
-            android:text="分享" />
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/square_naonao_dashangImage"
-            android:layout_marginRight="53dp"
-            android:layout_marginTop="25dp"
-            android:layout_toLeftOf="@id/square_naonao_zanText"
-            android:text="打赏" />
 
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="#F0F0F0" />
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/square_naonao_mTab"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/square_naonao_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
+</RelativeLayout>
