@@ -19,8 +19,8 @@ public class BaseParam {
     private String customerKey;
     private String appName;
     private String version;
-    private BaseParamBean paramBean;
-    private StatisBean statisBean;
+    private BaseParamBean Param;
+    private StatisBean Statis;
 
     public int getCustomerID() {
         return customerID;
@@ -71,19 +71,19 @@ public class BaseParam {
     }
 
     public BaseParamBean getParamBean() {
-        return paramBean;
+        return Param;
     }
 
-    public void setParamBean(BaseParamBean paramBean) {
-        this.paramBean = paramBean;
+    public void setParamBean(BaseParamBean Param) {
+        this.Param = Param;
     }
 
     public StatisBean getStatisBean() {
-        return statisBean;
+        return Statis;
     }
 
-    public void setStatisBean(StatisBean statisBean) {
-        this.statisBean = statisBean;
+    public void setStatisBean(StatisBean Statis) {
+        this.Statis = Statis;
     }
 
     public static class StatisBean {
