@@ -3,6 +3,8 @@ package com.example.citypass.utils;
 import android.os.Build;
 
 import com.alibaba.fastjson.JSON;
+import com.example.citypass.model.bean.BaseParam;
+import com.example.citypass.model.bean.BaseParamBean;
 import com.example.citypass.model.bean.information.Information;
 import com.example.citypass.model.bean.information.UpLoad;
 
@@ -55,6 +57,30 @@ public class LoginUtils {
         statisBean.setSystem_VersionNo(currentapiVersion+"");
         load.setStatis(statisBean);
         String s = JSON.toJSONString(load);
+        return s;
+    }
+
+    public String getParam(BaseParamBean bean,String type){
+        BaseParam param=new BaseParam();
+        param.setCustomerID(8001);
+        param.setRequestTime(TimeUtils.getStringTime(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
+        param.setMethod(type);
+        param.setCustomerKey("D5607EBE573BE2B59A4D5A1CAE882615");
+        param.setAppName("CcooCity");
+        param.setVersion("4.5");
+        param.setParamBean(bean);
+        BaseParam.StatisBean statisBean=new BaseParam.StatisBean();
+        statisBean.setPhoneId(Build.SERIAL);
+        statisBean.setPhoneNum("+86"+information.getServerInfo().getTel());
+        statisBean.setUserId(Integer.parseInt(SpUtils.getSp().getString(USERID,"")));
+        statisBean.setSiteId(information.getServerInfo().getSiteID());
+        String  model= android.os.Build.MODEL;
+        statisBean.setPhoneNo(model);
+        statisBean.setSystemNo(2);
+        int currentapiVersion=android.os.Build.VERSION.SDK_INT;
+        statisBean.setSystem_VersionNo(currentapiVersion+"");
+        param.setStatisBean(statisBean);
+        String s = JSON.toJSONString(param);
         return s;
     }
 
