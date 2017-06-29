@@ -92,6 +92,7 @@
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity"></activity>
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity"></activity>
+        <activity android:name=".cotroller.activity.shequ.ReleaseActivity"></activity>
         <activity
             android:name=".base.ScanActivity"
             android:screenOrientation="fullSensor"
@@ -146,6 +147,7 @@
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
         <activity android:name=".cotroller.activity.find.PublishActivity"></activity>
+
     </application>
 
 </manifest>
