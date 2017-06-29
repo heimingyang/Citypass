@@ -680,7 +680,7 @@ public class TouTiaoFragment extends BaseFragment {
                     if (popupWindow.isShowing()) {
                     gridView.setLayoutAnimation(getAnimationend());
                     poupwindowadapter.notifyDataSetChanged();
-                    handler.postDelayed(runnable, 2400);
+                    handler.postDelayed(runnable, 2000);
                 }}
             });
 
@@ -692,7 +692,7 @@ public class TouTiaoFragment extends BaseFragment {
      * @return
      */
     protected LayoutAnimationController getAnimationstart() {
-        int duration = 400;
+        int duration = 500;
         AnimationSet set = new AnimationSet(true);
 
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
@@ -706,7 +706,7 @@ public class TouTiaoFragment extends BaseFragment {
                 Animation.RELATIVE_TO_SELF,
                 2.0f,
                 Animation.RELATIVE_TO_SELF,
-                -1.0f);
+                -0.1f);
         animation.setDuration(duration);
         set.addAnimation(animation);
 
@@ -726,9 +726,10 @@ public class TouTiaoFragment extends BaseFragment {
 
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
         animation.setDuration(duration);
+        animation.setFillAfter(true);
         set.addAnimation(animation);
 
-        animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
+         animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
                 0.0f,
                 Animation.RELATIVE_TO_SELF,
                 0.0f,
@@ -739,7 +740,6 @@ public class TouTiaoFragment extends BaseFragment {
         animation.setFillAfter(true);
         animation.setDuration(duration);
         set.addAnimation(animation);
-
 
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
         controller.setOrder(LayoutAnimationController.ORDER_REVERSE);
@@ -824,6 +824,15 @@ public class TouTiaoFragment extends BaseFragment {
                 httGrade.setText("Lv." + bean.getLevel());
                 honorname.setText(bean.getHonorName());
                 httRanking1.setText("排名：" + bean.getIntegralRank());
+
+                // TODO: 2017/6/29
+                //签到
+                httSign.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
 
                 httName.setOnClickListener(new View.OnClickListener() {
                     @Override
