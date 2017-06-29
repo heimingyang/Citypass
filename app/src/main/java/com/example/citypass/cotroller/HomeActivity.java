@@ -64,7 +64,7 @@ public class HomeActivity extends BaseActivity {
     private HomeAdapter homeAdapter;
     private List<Fragment> mflist = new ArrayList<>();
     //分别为头条、闹闹、社区、生活、发现的Fragment
-    private TouTiaoFragment touTiaoFragment;
+    public static TouTiaoFragment touTiaoFragment;
     private NaoNaoFragment naoNaoFragment;
     private SheQuFragment sheQuFragment;
     private LifeFragment lifeFragment;

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.HomeActivity;
 import com.example.citypass.cotroller.fragment.information.LevelActivity;
 import com.example.citypass.cotroller.fragment.information.MailActivity;
 import com.example.citypass.cotroller.fragment.information.NotifyActivity;
@@ -273,6 +274,7 @@ public class InformationFragment extends BaseFragment {
                     image= App.activity.getImg();
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
                     a=1;
+                    HomeActivity.touTiaoFragment.loginstate();
                 }
             }
 
@@ -292,7 +294,8 @@ public class InformationFragment extends BaseFragment {
                 switch (resultCode){
                     case 111:
                         a=1;
-                       getInformation();
+                       init();
+                        HomeActivity.touTiaoFragment.loginstate();
                         break;
                 }
                 break;
@@ -327,5 +330,6 @@ public class InformationFragment extends BaseFragment {
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
         image= App.activity.getImg();
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
+
     }
 }
