@@ -164,6 +164,7 @@
                         android:drawableLeft="@drawable/my_main_zhuanbi"
                         android:drawablePadding="8dp"
                         />
+
                     <TextView
                         android:id="@+id/hdrawer_spendmoney"
                         android:padding="5dp"
