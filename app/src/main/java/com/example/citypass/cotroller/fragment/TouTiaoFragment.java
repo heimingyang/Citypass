@@ -48,6 +48,7 @@ import com.example.citypass.cotroller.fragment.information.NotifyActivity;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
+import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
 import com.example.citypass.cotroller.fragment.toutiao.GoodMannersActivity;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
@@ -65,6 +66,8 @@ import com.example.citypass.utils.DeviceUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
+import com.example.citypass.utils.UrlUtils;
+import com.example.citypass.utils.WebViewUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -290,6 +293,7 @@ public class TouTiaoFragment extends BaseFragment {
         list = new ArrayList<>();
         recyclerviewadapter = new HttpurecyclerviewAdapter(getActivity(), list);
         httgridview.setAdapter(gridAdapter);
+
         //加载recyclerview
         initrecyclerview();
 
@@ -298,9 +302,10 @@ public class TouTiaoFragment extends BaseFragment {
 
         //gridview网络请求
         getgridviewdata();
+        //recyclerview中gridview点击事件
+        recyclerviewgridviewlistener();
 
     }
-
 
     @Override
     public int getLayoutId() {
@@ -333,6 +338,41 @@ public class TouTiaoFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
+
+    //recyclerview中gridview点击事件
+    private void recyclerviewgridviewlistener() {
+      /*  httgridview.getChildAt(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+           WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo, "找工作");
+            }
+        });
+        httgridview.getChildAt(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi, "房屋交易");
+            }
+        });
+
+        httgridview.getChildAt(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), FunctionActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        httgridview.getChildAt(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), FunctionActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+*/
+
+    }
+
     //poupwindow
     private void preparepoupwindow() {
         //poupwindow的布局
