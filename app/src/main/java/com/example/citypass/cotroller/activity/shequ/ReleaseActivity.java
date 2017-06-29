@@ -139,7 +139,7 @@ public class ReleaseActivity extends BaseActivity {
             }
 
         }
-        subEmojiList.add(new Emoji("[删除]", R.drawable.face_delete));
+        subEmojiList.add(new Emoji("[删除]", R.mipmap.face_delete));
 
         MyEmojiAdapter adapter = new MyEmojiAdapter(App.activity, subEmojiList, R.layout.fragment_comment_grid_item1, neirongeditext);
 
