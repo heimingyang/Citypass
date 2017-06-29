@@ -22,6 +22,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,6 +47,7 @@ import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
 import com.example.citypass.cotroller.fragment.information.NotifyActivity;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
+import com.example.citypass.cotroller.fragment.information.ShoppingActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
 import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
@@ -341,36 +343,30 @@ public class TouTiaoFragment extends BaseFragment {
 
     //recyclerview中gridview点击事件
     private void recyclerviewgridviewlistener() {
-      /*  httgridview.getChildAt(0).setOnClickListener(new View.OnClickListener() {
+        httgridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-           WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo, "找工作");
-            }
-        });
-        httgridview.getChildAt(1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi, "房屋交易");
-            }
-        });
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        httgridview.getChildAt(2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FunctionActivity.class);
-                getActivity().startActivity(intent);
+                switch (position){
+                    case 0:
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo, "找工作");
+                        break;
+                    case 1:
+                        WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoFangZi, "房屋交易");
+                        break;
+                    case 2:
+                        Intent intent=new Intent(getActivity(), FunctionActivity.class);
+                        SpUtils.getSp().edit().putString("htag","分类生活");
+                        getActivity().startActivity(intent);
+                        break;
+                    case 3:
+                        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
+                        SpUtils.getSp().edit().putString("htag","同城爆料");
+                        getActivity().startActivity(intent1);
+                        break;
+                }
             }
         });
-
-        httgridview.getChildAt(3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FunctionActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-*/
-
     }
 
     //poupwindow
@@ -869,8 +865,8 @@ public class TouTiaoFragment extends BaseFragment {
                 getActivity().startActivity(intent4);
                 break;
             case R.id.hdrawer_spendmoney:
-//                Intent intent5=new Intent(getActivity(),);
-//                getActivity().startActivity(intent5);
+                Intent intent5=new Intent(getActivity(), ShoppingActivity.class);
+                getActivity().startActivity(intent5);
                 break;
             case R.id.hdrawer_luckdraw:
 //                Intent intent6=new Intent(getActivity(),);

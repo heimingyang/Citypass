@@ -50,9 +50,6 @@ public class GoodMannersActivity extends BaseActivity {
         goodmannersTablayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this,R.color.red));
         goodmannersTablayout.setTabTextColors
                 (ContextCompat.getColor(this,R.color.black),ContextCompat.getColor(this,R.color.red));
-
-
-
     }
 
     @Override
