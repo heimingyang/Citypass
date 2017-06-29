@@ -1,19 +1,24 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -28,16 +33,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+
 import com.androidkun.PullToRefreshRecyclerView;
 import com.androidkun.callback.PullToRefreshListener;
 import com.example.citypass.App;
+
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtpoupwindowDjGridAdapter;
-import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
@@ -123,7 +130,6 @@ public class TouTiaoFragment extends BaseFragment {
     private RelativeLayout httLin1;
     private ViewPager ttViewpager;
     private GridView httgridview;
-
     private RadioButton httRadiobt1;
     private RadioButton httRadiobt2;
     private RadioButton httRadiobt3;
@@ -146,7 +152,6 @@ public class TouTiaoFragment extends BaseFragment {
     private ImageView imageView;
     private GridView gridView;
     private TtpoupwindowDjGridAdapter poupwindowadapter;
-
     private RelativeLayout relativeLayout;
     private PopupWindow popupWindow;
     private ArrayList<TtfourDJ.ServerInfoBean> gridviewlist;
@@ -156,73 +161,84 @@ public class TouTiaoFragment extends BaseFragment {
     private ArrayList<TtPoupwindowbean.ServerInfoBean.ConfigDataBean> poupwindowlist;
     private boolean login;
     private View inflate;
+    private RelativeLayout httdrawer;
+    private RelativeLayout httdrawer1;
 
     @Override
     protected void initData() {
-        boolean aBoolean = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
+        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN,true);
+        Information information=LoginUtils.information;
+        //Log.e("login", login +"");
 
-        if (aBoolean) {
+        if (login &&information!=null) {
+            httBeforeEntry.setVisibility(View.GONE);
+            httAfterEntry.setVisibility(View.VISIBLE);
+            Information.ServerInfoBean bean= information.getServerInfo();
+            if(bean!=null){
+                App.activity.getText().setText(bean.getSiteName());
+
+                String sex=bean.getSex();
+
+                httName.setText(bean.getNick());
+                if(sex.equals("男")){
+                    httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
+                    httGenderWoman.setVisibility(View.GONE);
+                }else if(sex.equals("女")){
+                    httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
+                    httGenderWoman.setVisibility(View.GONE);
+                }
+
+                httGrade.setText("Lv."+bean.getLevel());
+                honorname.setText(bean.getHonorName());
+                httRanking1.setText("排名："+bean.getIntegralRank());
+            }
+
+        } else {
             httBeforeEntry.setVisibility(View.VISIBLE);
             httAfterEntry.setVisibility(View.GONE);
-            Information information = LoginUtils.information;
-            if (information != null) {
-                Information.ServerInfoBean bean = information.getServerInfo();
-                login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
-                information = LoginUtils.information;
-                //Log.e("login", login +"");
-
-                if (login && information != null) {
-                    httBeforeEntry.setVisibility(View.GONE);
-                    httAfterEntry.setVisibility(View.VISIBLE);
-                    bean = information.getServerInfo();
-                    if (bean != null) {
-                        App.activity.getText().setText(bean.getSiteName());
-
-                        String sex = bean.getSex();
-
-                        httName.setText(bean.getNick());
-                        if (sex.equals("男")) {
-                            httGenderMan.setImageResource(R.drawable.ccoo_icon_boy);
-                            httGenderWoman.setVisibility(View.GONE);
-                        } else if (sex.equals("女")) {
-                            httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
-                            httGenderWoman.setVisibility(View.GONE);
-                        }
-
-                        httGrade.setText("Lv." + bean.getLevel());
-                        honorname.setText(bean.getHonorName());
-                        httRanking1.setText("排名：" + bean.getIntegralRank());
-                    }
-
-                } else {
-                    httBeforeEntry.setVisibility(View.VISIBLE);
-                    httAfterEntry.setVisibility(View.GONE);
-                    httEntry.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), LoginActivity.class);
-                            getActivity().startActivity(intent);
-                        }
-                    });
+            httEntry.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    getActivity().startActivity(intent);
                 }
-            }
+            });
         }
     }
+
     @Override
-    protected void initListener() {
+    protected void initListener()  {
 
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
              /*
               *  gridview Item动画依次消失
              *    popupWindow消失
              *    控件动画
              * */
-
                 makepopupWindowdismiss();
 
+            }
+        });
+
+
+        //PullToRefreshRecyclerView  上拉下拉隐藏显示  drawer
+        httrecyclerview.addOnScrollListener(new RecyclerViewScrollListener() {
+            @Override
+            public void hide() {
+                httdrawer1.setVisibility(View.GONE);
+                httrecyclerview.animate().translationY(100).setInterpolator(new AccelerateDecelerateInterpolator());
+                httdrawer.animate().translationY(-httdrawer.getHeight()).setInterpolator(new AccelerateDecelerateInterpolator());
+                httdrawer.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void show() {
+                httdrawer1.setVisibility(View.VISIBLE);
+                httdrawer.setVisibility(View.VISIBLE);
+                httrecyclerview.animate().translationY(100).setInterpolator(new AccelerateDecelerateInterpolator());
+                httdrawer.animate().translationY(0).setInterpolator(new AccelerateDecelerateInterpolator());
             }
         });
     }
@@ -230,6 +246,7 @@ public class TouTiaoFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
 
+        httdrawer = (RelativeLayout) view.findViewById(R.id.htt_drawer);
         //准备poupwindow
         preparepoupwindow();
         relativeLayout = (RelativeLayout) inflate.findViewById(R.id.poponclick);
@@ -238,12 +255,13 @@ public class TouTiaoFragment extends BaseFragment {
 
         //得到头布局
         headerview = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.htoutiao_headrview, null);
+        httdrawer1 = (RelativeLayout) headerview.findViewById(R.id.htt_drawer2);
         honorname = (TextView) headerview.findViewById(R.id.honorname);
         httNo1 = (TextView) headerview.findViewById(R.id.htt_no1);
         httEntry = (TextView) headerview.findViewById(R.id.htt_entry);
         httWelcome = (TextView) headerview.findViewById(R.id.htt_welcome);
         httBeforeEntry = (RelativeLayout) headerview.findViewById(R.id.htt_before_entry);
-        httName= (TextView) headerview.findViewById(R.id.htt_name);
+        httName = (TextView) headerview.findViewById(R.id.htt_name);
         httGenderMan = (ImageView) headerview.findViewById(R.id.htt_gender_man);
         httGenderWoman = (ImageView) headerview.findViewById(R.id.htt_gender_woman);
         httGrade = (TextView) headerview.findViewById(R.id.htt_grade);
@@ -260,14 +278,12 @@ public class TouTiaoFragment extends BaseFragment {
         httRadiobt4 = (RadioButton) headerview.findViewById(R.id.htt_radiobt4);
         httLin3 = (TextView) headerview.findViewById(R.id.htt_lin3);
         gridviewlist = new ArrayList<>();
-        gridAdapter = new TtfourDjGridAdapter(getActivity(),gridviewlist);
+        gridAdapter = new TtfourDjGridAdapter(getActivity(), gridviewlist);
 
         list = new ArrayList<>();
         recyclerviewadapter = new HttpurecyclerviewAdapter(getActivity(), list);
         httgridview.setAdapter(gridAdapter);
         //加载recyclerview
-//        initrecyclerview();
-
         initrecyclerview();
 
         //加载轮播
@@ -702,5 +718,48 @@ public class TouTiaoFragment extends BaseFragment {
                 Log.e("onError", errormsg);
             }
         });
+    }
+    public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollListener {
+        private static final int SCROLL_DISTANCE = 50;
+        private int totalScrollDistance;
+        private boolean isShow = true;
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            int firstVisableItem = ((LinearLayoutManager) recyclerView
+                    .getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+
+            Log.e("firstVisableItem",firstVisableItem+"");
+            if ((dy > 0 && isShow) || (dy < 0 && !isShow)) {
+                totalScrollDistance += dy;
+            }
+            //当第一个item存在界面上时就不触发隐藏、显示操作
+            if(firstVisableItem==1){
+                //show();
+                if (totalScrollDistance < -SCROLL_DISTANCE && !isShow) {
+                    show();
+                    isShow = true;
+                    totalScrollDistance = 0;
+                }
+            }else {
+                if (totalScrollDistance > SCROLL_DISTANCE && isShow) {
+                    hide();
+                    isShow = false;
+                    totalScrollDistance = 0;
+                }
+                //hide();
+            }
+
+        }
+
+        public abstract void hide();
+
+        public abstract void show();
     }
 }
