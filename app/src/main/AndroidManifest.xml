@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -79,6 +80,20 @@
         <activity android:name=".cotroller.fragment.information.PersonalActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyActivity" />
         <activity android:name=".cotroller.fragment.information.PostActivity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
+        <activity android:name=".cotroller.fragment.information.PostActivity" />
+
+        <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
+        <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity" />
+        <activity android:name=".cotroller.fragment.information.LevelActivity" />
+        <activity android:name=".cotroller.fragment.information.BlackActivity" />
+        <activity android:name=".cotroller.fragment.information.PhoneActivity" />
+        <activity android:name=".cotroller.fragment.information.MailActivity" />
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
+        <activity android:name=".cotroller.fragment.information.PostActivity" />
         <activity android:name=".cotroller.fragment.toutiao.MessageNotificationActivity" />
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
@@ -141,10 +156,21 @@
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
         tools:replace="screenOrientation" />
+            tools:replace="screenOrientation" />
         <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
+        <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
+        <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
+        tools:replace="screenOrientation" />
+        <activity android:name=".cotroller.fragment.information.MedalActivity" />
+        <activity android:name=".cotroller.fragment.information.CityActivity" />
+        <activity android:name=".cotroller.fragment.information.TaskActivity" />
+        <activity android:name=".cotroller.fragment.information.CollectionActivity" />
+        <activity
+            android:name=".cotroller.activity.find.PublishActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".cotroller.activity.find.PublishActivity" />
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
         <activity android:name=".cotroller.activity.find.PublishActivity"></activity>

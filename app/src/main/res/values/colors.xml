@@ -41,4 +41,6 @@
     <color name="fengmian_from">#9aea68a2</color>
     <color name="green">#32c465</color>
     <color name="black">#000000</color>
+    <color name="touming">#88000000</color>
+    <color name="tv_touming">#afb3b3b3</color>
 </resources>
