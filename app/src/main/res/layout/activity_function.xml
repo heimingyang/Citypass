@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.citypass.cotroller.fragment.toutiao.FunctionActivity">
-<FrameLayout
-    android:id="@+id/function_framelaout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</FrameLayout>
-</android.support.constraint.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/function_title"
+        android:background="@color/red"
+        >
+    <TextView
+        android:id="@+id/function_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:text=""
+        android:textColor="@color/white"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/back_write"
+        android:scaleType="fitCenter"
+        android:id="@+id/function_back"
+        />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/back_write"
+            android:scaleType="fitCenter"
+            android:id="@+id/function_two"
+            />
+        <ImageView
+            android:layout_marginRight="-20dp"
+            android:layout_toLeftOf="@id/function_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_write"
+            android:scaleType="fitCenter"
+            android:id="@+id/function_one"
+            />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_below="@id/function_title"
+        android:id="@+id/function_framelaout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</RelativeLayout>

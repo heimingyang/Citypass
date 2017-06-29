@@ -1,11 +1,14 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Process;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -30,6 +33,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.androidkun.PullToRefreshRecyclerView;
@@ -37,6 +41,7 @@ import com.androidkun.callback.PullToRefreshListener;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.HomeActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
@@ -210,7 +215,7 @@ public class TouTiaoFragment extends BaseFragment {
     private View inflate;
     private RelativeLayout httdrawer;
     private RelativeLayout httdrawer1;
-
+   private boolean isfirst;
     @Override
     protected void initData() {
         //登录状态
@@ -228,7 +233,23 @@ public class TouTiaoFragment extends BaseFragment {
              *    popupWindow消失
              *    控件动画
              * */
-                makepopupWindowdismiss();
+
+                if(isfirst){
+
+                }else {
+                    isfirst = true;
+//                    Toast.makeText(HomeActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    Timer timer = new Timer();
+                    timer.schedule(new TimerTask() {
+
+                        @Override
+                        public void run() {
+                            isfirst = false;
+                        }
+                    }, 2520);
+                    makepopupWindowdismiss();
+                }
+
 
             }
         });
@@ -239,7 +260,7 @@ public class TouTiaoFragment extends BaseFragment {
             @Override
             public void hide() {
                 httdrawer1.setVisibility(View.GONE);
-                httrecyclerview.animate().translationY(100).setInterpolator(new AccelerateDecelerateInterpolator());
+//                httrecyclerview.animate().translationY(80).setInterpolator(new AccelerateDecelerateInterpolator());
                 httdrawer.animate().translationY(-httdrawer.getHeight()).setInterpolator(new AccelerateDecelerateInterpolator());
                 httdrawer.setVisibility(View.GONE);
             }
@@ -248,7 +269,7 @@ public class TouTiaoFragment extends BaseFragment {
             public void show() {
                 httdrawer1.setVisibility(View.VISIBLE);
                 httdrawer.setVisibility(View.VISIBLE);
-                httrecyclerview.animate().translationY(100).setInterpolator(new AccelerateDecelerateInterpolator());
+//                httrecyclerview.animate().translationY(80).setInterpolator(new AccelerateDecelerateInterpolator());
                 httdrawer.animate().translationY(0).setInterpolator(new AccelerateDecelerateInterpolator());
             }
         });
@@ -346,7 +367,6 @@ public class TouTiaoFragment extends BaseFragment {
         httgridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 switch (position){
                     case 0:
                         WebViewUtils.UtilIntent(getContext(), UrlUtils.ZhaoGongZuo, "找工作");
@@ -356,12 +376,12 @@ public class TouTiaoFragment extends BaseFragment {
                         break;
                     case 2:
                         Intent intent=new Intent(getActivity(), FunctionActivity.class);
-                        SpUtils.getSp().edit().putString("htag","分类生活");
+                        SpUtils.upSp().putString("htag","分类生活").commit();
                         getActivity().startActivity(intent);
                         break;
                     case 3:
                         Intent intent1=new Intent(getActivity(), FunctionActivity.class);
-                        SpUtils.getSp().edit().putString("htag","同城爆料");
+                        SpUtils.upSp().putString("htag","同城爆料").commit();
                         getActivity().startActivity(intent1);
                         break;
                 }
@@ -641,25 +661,29 @@ public class TouTiaoFragment extends BaseFragment {
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                popupWindow.dismiss();
-                Animation disanimation = AnimationUtils.loadAnimation(getActivity(), R.anim.disallimg);
-                disanimation.setDuration(300);
-                App.activity.getImgTwo().startAnimation(disanimation);
-                disanimation.setFillAfter(true);
+                if(popupWindow.isShowing()){
+                    popupWindow.dismiss();
+                    Animation disanimation = AnimationUtils.loadAnimation(getActivity(), R.anim.disallimg);
+                    disanimation.setDuration(300);
+                    App.activity.getImgTwo().startAnimation(disanimation);
+                    disanimation.setFillAfter(true);
+                }
+
             }
         };
 
 
-        if (popupWindow.isShowing()) {
+
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    if (popupWindow.isShowing()) {
                     gridView.setLayoutAnimation(getAnimationend());
                     poupwindowadapter.notifyDataSetChanged();
-                    handler.postDelayed(runnable, 1500);
-                }
+                    handler.postDelayed(runnable, 2400);
+                }}
             });
-        }
+
     }
 
     /**
@@ -668,7 +692,7 @@ public class TouTiaoFragment extends BaseFragment {
      * @return
      */
     protected LayoutAnimationController getAnimationstart() {
-        int duration = 300;
+        int duration = 400;
         AnimationSet set = new AnimationSet(true);
 
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
@@ -682,8 +706,7 @@ public class TouTiaoFragment extends BaseFragment {
                 Animation.RELATIVE_TO_SELF,
                 2.0f,
                 Animation.RELATIVE_TO_SELF,
-                -2.0f);
-
+                -1.0f);
         animation.setDuration(duration);
         set.addAnimation(animation);
 
@@ -698,7 +721,7 @@ public class TouTiaoFragment extends BaseFragment {
      * @return
      */
     protected LayoutAnimationController getAnimationend() {
-        int duration = 300;
+        int duration = 400;
         AnimationSet set = new AnimationSet(true);
 
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
@@ -712,10 +735,11 @@ public class TouTiaoFragment extends BaseFragment {
                 Animation.RELATIVE_TO_SELF,
                 0.0f,
                 Animation.RELATIVE_TO_SELF,
-                2.0f);
+                1.0f);
         animation.setFillAfter(true);
         animation.setDuration(duration);
         set.addAnimation(animation);
+
 
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
         controller.setOrder(LayoutAnimationController.ORDER_REVERSE);
@@ -896,7 +920,7 @@ public class TouTiaoFragment extends BaseFragment {
             int firstVisableItem = ((LinearLayoutManager) recyclerView
                     .getLayoutManager()).findFirstCompletelyVisibleItemPosition();
 
-            Log.e("firstVisableItem", firstVisableItem + "");
+           // Log.e("firstVisableItem", firstVisableItem + "");
             if ((dy > 0 && isShow) || (dy < 0 && !isShow)) {
                 totalScrollDistance += dy;
             }
