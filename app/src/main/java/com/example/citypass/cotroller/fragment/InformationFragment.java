@@ -22,6 +22,7 @@ import com.example.citypass.cotroller.fragment.information.PostActivity;
 import com.example.citypass.cotroller.fragment.information.CityActivity;
 import com.example.citypass.cotroller.fragment.information.CollectionActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
+import com.example.citypass.cotroller.fragment.information.ShoppingActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
 import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 import com.example.citypass.utils.LoginUtils;
@@ -124,7 +125,7 @@ public class InformationFragment extends BaseFragment {
                         login(CityActivity.class,0);
                         break;
                     case 6:
-//                        login(null,0);
+                        login(ShoppingActivity.class,0);
                         break;
                     case 7:
                         login(TaskActivity.class,0);
