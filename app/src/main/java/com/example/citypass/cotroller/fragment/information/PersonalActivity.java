@@ -19,7 +19,6 @@ import com.example.citypass.model.biz.infor.IPersonalModel;
 import com.example.citypass.model.biz.infor.PersonalModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
-import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;

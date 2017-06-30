@@ -140,8 +140,6 @@ public class CityActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.city_Relative_Three:
-                Intent intentOne=new Intent(CityActivity.this,ShoppingActivity.class);
-                startActivity(intentOne);
                 break;
             case R.id.city_Relative_Four:
                 Intent intentTwo = new Intent(CityActivity.this, WebViewActivity.class);
