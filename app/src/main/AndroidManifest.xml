@@ -48,16 +48,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--登录页面-->
         <activity android:name=".cotroller.fragment.information.LoginActivity" />
+        <!---->
         <activity android:name=".cotroller.fragment.information.PasswordActivity" />
+        <!--注册页面-->
         <activity android:name=".cotroller.fragment.information.RegisterActivity" />
+
         <activity android:name=".cotroller.fragment.information.CooperationActivity" />
+
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
         <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
         <activity android:name=".cotroller.activity.find.FaXianActionActivity" />
         <activity android:name=".cotroller.activity.find.FaXianLottoActivity" />
         <activity android:name=".cotroller.activity.find.FaXianCityActivity" />
         <activity android:name=".cotroller.fragment.toutiao.CityFoloActivity" />
+        <!--设置页面-->
         <activity android:name=".cotroller.fragment.information.SettingActivity" />
         <activity android:name=".cotroller.fragment.information.FeedBackActivity" />
         <activity android:name=".cotroller.fragment.information.ReminberActivity" />
