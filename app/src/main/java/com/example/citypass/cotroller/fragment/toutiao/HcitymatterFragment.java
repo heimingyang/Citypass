@@ -1,19 +1,30 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.utils.SpUtils;
+import com.example.citypass.cotroller.adapter.toutiao.HgoodmannerslAdapter;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HSociologyFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HattitudeFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HdivingFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HentertainmentFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HjustFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HlifeFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HnewestFragment;
+import com.example.citypass.cotroller.fragment.toutiao.citymatter.HsoysauceFragment;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -21,7 +32,7 @@ import butterknife.Unbinder;
  * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/23 14:43
+ * 创建时间: 2017/6/30 9:24
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -50,12 +61,13 @@ import butterknife.Unbinder;
  * #                                                   #
  */
 
-
-public class HttlunbotwoFragment extends BaseFragment {
-    @BindView(R.id.twolunbotv)
-    TextView twolunbotv;
+public class HcitymatterFragment extends BaseFragment {
+    @BindView(R.id.citymatter_tablayout)
+    TabLayout citymatterTablayout;
+    @BindView(R.id.citymatter_viewpager)
+    ViewPager citymatterViewpager;
     Unbinder unbinder;
-
+    private String[] title={"有态度","打酱油","爱潜水","最新","社会","正事","生活","娱乐"};
     @Override
     protected void initData() {
 
@@ -69,12 +81,35 @@ public class HttlunbotwoFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
 
+        ArrayList<Fragment> fragments=new ArrayList<>();
+        fragments.add(new HattitudeFragment());
+        fragments.add(new HsoysauceFragment());
+        fragments.add(new HdivingFragment());
+        fragments.add(new HnewestFragment());
+        fragments.add(new HSociologyFragment());
+        fragments.add(new HjustFragment());
+        fragments.add(new HlifeFragment());
+        fragments.add(new HentertainmentFragment());
+
+        HgoodmannerslAdapter adapter=new HgoodmannerslAdapter(getChildFragmentManager(),fragments,title);
+        citymatterViewpager.setAdapter(adapter);
+
+
+        citymatterTablayout.setupWithViewPager(citymatterViewpager);
+
+        citymatterTablayout.setTabMode(TabLayout.GRAVITY_FILL);
+
+        citymatterTablayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getActivity(),R.color.red));
+        citymatterTablayout.setTabTextColors
+                (ContextCompat.getColor(getActivity(),R.color.black),ContextCompat.getColor(getActivity(),R.color.red));
+
+        //默认选项
+        citymatterTablayout.getTabAt(3).select();
     }
 
     @Override
     protected int getLayoutId() {
-
-        return R.layout.httlunbotwofragment;
+        return R.layout.hcitymatter;
     }
 
     @Override
@@ -89,13 +124,5 @@ public class HttlunbotwoFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick(R.id.twolunbotv)
-    public void onViewClicked() {
-        //跳转到秀场
-        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
-        SpUtils.upSp().putString("htag","秀场").commit();
-        getActivity().startActivity(intent1);
     }
 }

@@ -1,20 +1,9 @@
-package com.example.citypass.cotroller.fragment.toutiao;
+package com.example.citypass.cotroller.fragment.toutiao.citymatter;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.utils.SpUtils;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * /**
@@ -50,11 +39,8 @@ import butterknife.Unbinder;
  * #                                                   #
  */
 
-
-public class HttlunbotwoFragment extends BaseFragment {
-    @BindView(R.id.twolunbotv)
-    TextView twolunbotv;
-    Unbinder unbinder;
+//正事
+public class HjustFragment extends BaseFragment {
 
     @Override
     protected void initData() {
@@ -73,29 +59,6 @@ public class HttlunbotwoFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-
-        return R.layout.httlunbotwofragment;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @OnClick(R.id.twolunbotv)
-    public void onViewClicked() {
-        //跳转到秀场
-        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
-        SpUtils.upSp().putString("htag","秀场").commit();
-        getActivity().startActivity(intent1);
+        return R.layout.hjustfragment;
     }
 }

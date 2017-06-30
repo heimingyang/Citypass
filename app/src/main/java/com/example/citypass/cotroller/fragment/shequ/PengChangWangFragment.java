@@ -108,7 +108,8 @@ public class PengChangWangFragment extends BaseFragment {
         OkHttpUtils.getInstance().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                Log.d("aaa", result);
+                //Log.d("aaa", result);
+
                 PengChangWangBean pengChangWangBean = JSON.parseObject(result, PengChangWangBean.class);
                 count1.setText(pengChangWangBean.getServerInfo().getInfo().get(0).getSum());
                 count2.setText(pengChangWangBean.getServerInfo().getInfo().get(1).getSum());
@@ -121,7 +122,9 @@ public class PengChangWangFragment extends BaseFragment {
                 Glide.with(App.activity).load(pengChangWangBean.getServerInfo().getInfo().get(2).getUserFace()).into(touxiang3);
                 mList.addAll(pengChangWangBean.getServerInfo().getInfo());
                 adapter = new PengChangWangAdapter(App.activity, mList);
-                shequRecyclerview.setAdapter(adapter);
+                if(adapter!=null){
+                    shequRecyclerview.setAdapter(adapter);
+                }
 
             }
 

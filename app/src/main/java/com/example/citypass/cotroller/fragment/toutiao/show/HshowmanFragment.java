@@ -1,6 +1,5 @@
-package com.example.citypass.cotroller.fragment.toutiao;
+package com.example.citypass.cotroller.fragment.toutiao.show;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,9 +49,10 @@ import butterknife.Unbinder;
  */
 
 
-public class HttlunbotwoFragment extends BaseFragment {
-    @BindView(R.id.twolunbotv)
-    TextView twolunbotv;
+public class HshowmanFragment extends BaseFragment {
+
+    @BindView(R.id.showfragmentman_tv)
+    TextView showfragmentmanTv;
     Unbinder unbinder;
 
     @Override
@@ -73,8 +72,7 @@ public class HttlunbotwoFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-
-        return R.layout.httlunbotwofragment;
+        return R.layout.hshowmanfragment;
     }
 
     @Override
@@ -91,11 +89,7 @@ public class HttlunbotwoFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.twolunbotv)
+    @OnClick(R.id.showfragmentman_tv)
     public void onViewClicked() {
-        //跳转到秀场
-        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
-        SpUtils.upSp().putString("htag","秀场").commit();
-        getActivity().startActivity(intent1);
     }
 }

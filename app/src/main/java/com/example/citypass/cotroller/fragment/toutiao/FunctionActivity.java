@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,6 +135,18 @@ public class FunctionActivity extends BaseActivity {
                 }
             });
             transaction.replace(R.id.function_framelaout, new NaoNaoFragment(), "NaoNaoFragment");
+            transaction.commit();
+        }else if(htag.equals("城事")){
+            functionTitleTv.setText("城事");
+            functionOne.setVisibility(View.GONE);
+            functionTwo.setVisibility(View.GONE);
+            transaction.replace(R.id.function_framelaout, new HcitymatterFragment(), "HcitymatterFragment");
+            transaction.commit();
+        }else if(htag.equals("秀场")){
+            functionTitleTv.setText("秀场");
+            functionOne.setVisibility(View.GONE);
+            functionTwo.setVisibility(View.GONE);
+            transaction.replace(R.id.function_framelaout, new HshowFragment(), "HshowFragment");
             transaction.commit();
         }
 

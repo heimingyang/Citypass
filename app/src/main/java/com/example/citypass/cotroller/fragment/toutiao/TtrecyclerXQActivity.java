@@ -73,8 +73,6 @@ public class TtrecyclerXQActivity extends BaseActivity {
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
         int type=intent.getIntExtra("type",0);
-        // Log.e("onSuccess", type+"");
-
         if(type==1){
             gettz();
         }else if(type==13){

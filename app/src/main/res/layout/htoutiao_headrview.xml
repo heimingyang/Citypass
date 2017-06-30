@@ -83,9 +83,10 @@
                     android:layout_marginLeft="3dp"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_toRightOf="@id/htt_gender_man"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:text="Lv.1"
                     android:textSize="16dp"
                     android:layout_marginLeft="10dp"
