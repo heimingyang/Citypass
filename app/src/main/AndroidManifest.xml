@@ -106,8 +106,6 @@
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
-        <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity"/>
-        <activity android:name=".cotroller.activity.shequ.ReleaseActivity" />
         <activity
             android:name=".base.ScanActivity"
             android:screenOrientation="fullSensor"
@@ -155,15 +153,12 @@
 
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
-        tools:replace="screenOrientation" />
-            tools:replace="screenOrientation" />
         <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
-        tools:replace="screenOrientation" />
         <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
@@ -171,10 +166,6 @@
         <activity
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".cotroller.activity.find.PublishActivity" />
-        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
-        <activity android:name=".cotroller.activity.find.PublishActivity"></activity>
-        <activity android:name=".cotroller.fragment.information.ShoppingActivity"/>
     </application>
 
 </manifest>
