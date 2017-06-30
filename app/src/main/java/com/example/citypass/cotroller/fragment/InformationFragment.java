@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.cotroller.HomeActivity;
 import com.example.citypass.cotroller.fragment.information.LevelActivity;
 import com.example.citypass.cotroller.fragment.information.MailActivity;
 import com.example.citypass.cotroller.fragment.information.NotifyActivity;
@@ -22,7 +21,6 @@ import com.example.citypass.cotroller.fragment.information.PostActivity;
 import com.example.citypass.cotroller.fragment.information.CityActivity;
 import com.example.citypass.cotroller.fragment.information.CollectionActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
-import com.example.citypass.cotroller.fragment.information.ShoppingActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
 import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 import com.example.citypass.utils.LoginUtils;
@@ -125,7 +123,7 @@ public class InformationFragment extends BaseFragment {
                         login(CityActivity.class,0);
                         break;
                     case 6:
-                        login(ShoppingActivity.class,0);
+//                        login(null,0);
                         break;
                     case 7:
                         login(TaskActivity.class,0);
@@ -275,7 +273,6 @@ public class InformationFragment extends BaseFragment {
                     image= App.activity.getImg();
                     HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
                     a=1;
-                    HomeActivity.touTiaoFragment.loginstate();
                 }
             }
 
@@ -295,8 +292,7 @@ public class InformationFragment extends BaseFragment {
                 switch (resultCode){
                     case 111:
                         a=1;
-                       init();
-                        HomeActivity.touTiaoFragment.loginstate();
+                       getInformation();
                         break;
                 }
                 break;
@@ -331,6 +327,5 @@ public class InformationFragment extends BaseFragment {
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
         image= App.activity.getImg();
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
-
     }
 }

@@ -2,7 +2,6 @@ package com.example.citypass.cotroller;
 
 
 import android.content.Intent;
-import android.os.Process;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -31,8 +30,6 @@ import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -67,7 +64,7 @@ public class HomeActivity extends BaseActivity {
     private HomeAdapter homeAdapter;
     private List<Fragment> mflist = new ArrayList<>();
     //分别为头条、闹闹、社区、生活、发现的Fragment
-    public static TouTiaoFragment touTiaoFragment;
+    private TouTiaoFragment touTiaoFragment;
     private NaoNaoFragment naoNaoFragment;
     private SheQuFragment sheQuFragment;
     private LifeFragment lifeFragment;
@@ -250,28 +247,10 @@ public class HomeActivity extends BaseActivity {
                 } else {
                     super.onActivityResult(requestCode, resultCode, data);
                 }
+
                 break;
-        }
-    }
 
-     private boolean isfirst;
-    @Override
-    public void onBackPressed() {
-        //双击退出
-        if(!isfirst){
-            isfirst = true;
-            Toast.makeText(HomeActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
 
-                @Override
-                public void run() {
-                    isfirst = false;
-                }
-            }, 2000);
-        }else {
-            Process.killProcess(Process.myPid());
-            System.exit(0);
         }
     }
 }

@@ -8,7 +8,6 @@ import android.view.View;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
 import com.example.citypass.cotroller.adapter.shequ.MingRenTangFragment;
 import com.example.citypass.cotroller.adapter.shequ.SheQuAdapter;
@@ -133,8 +132,7 @@ public class SheQuFragment extends BaseFragment {
         App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ReleaseActivity.class);
-                startActivity(intent);
+
             }
         });
     }
