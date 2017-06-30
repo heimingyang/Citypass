@@ -52,8 +52,8 @@ import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
 import com.example.citypass.cotroller.fragment.information.NotifyActivity;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
+import com.example.citypass.cotroller.fragment.information.ShoppingActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
-import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
 import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
 import com.example.citypass.cotroller.fragment.toutiao.GoodMannersActivity;
@@ -61,11 +61,7 @@ import com.example.citypass.cotroller.fragment.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbothreeFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbotwoFragment;
-import com.example.citypass.cotroller.fragment.toutiao.MyProgressDialog;
-import com.example.citypass.cotroller.fragment.toutiao.SignDialog;
 import com.example.citypass.model.bean.information.Information;
-import com.example.citypass.model.bean.toutiao.Signbean;
-import com.example.citypass.model.bean.toutiao.Signresult;
 import com.example.citypass.model.bean.toutiao.Touqiaolistview;
 import com.example.citypass.model.bean.toutiao.Toutiao;
 import com.example.citypass.model.bean.toutiao.TtPoupwindowbean;
@@ -75,7 +71,6 @@ import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.DeviceUtils;
 import com.example.citypass.utils.LoginUtils;
-import com.example.citypass.utils.MyRunable;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.utils.UrlUtils;
@@ -193,7 +188,6 @@ public class TouTiaoFragment extends BaseFragment {
     private RadioButton httRadiobt4;
     private TextView httLin3;
     private RelativeLayout headerview;
-    private SignDialog signDialog;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -221,8 +215,7 @@ public class TouTiaoFragment extends BaseFragment {
     private View inflate;
     private RelativeLayout httdrawer;
     private RelativeLayout httdrawer1;
-    private boolean isfirst;
-    private MyProgressDialog dialog;
+   private boolean isfirst;
     @Override
     protected void initData() {
         //登录状态
@@ -245,6 +238,7 @@ public class TouTiaoFragment extends BaseFragment {
 
                 }else {
                     isfirst = true;
+//                    Toast.makeText(HomeActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
 
@@ -680,15 +674,15 @@ public class TouTiaoFragment extends BaseFragment {
 
 
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (popupWindow.isShowing()) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (popupWindow.isShowing()) {
                     gridView.setLayoutAnimation(getAnimationend());
                     poupwindowadapter.notifyDataSetChanged();
                     handler.postDelayed(runnable, 2000);
                 }}
-        });
+            });
 
     }
 
@@ -735,7 +729,7 @@ public class TouTiaoFragment extends BaseFragment {
         animation.setFillAfter(true);
         set.addAnimation(animation);
 
-        animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
+         animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
                 0.0f,
                 Animation.RELATIVE_TO_SELF,
                 0.0f,
@@ -767,7 +761,7 @@ public class TouTiaoFragment extends BaseFragment {
         DeviceUtils.getInstance();
         statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
         if (login) {
-            statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, null)));
+            statis.setUserId(SpUtils.getSp().getInt(LoginUtils.USERID, 0));
         } else {
             statis.setUserId(0);
         }
@@ -805,10 +799,6 @@ public class TouTiaoFragment extends BaseFragment {
 
     //登录状态
     public void loginstate() {
-        //创建dialog
-        dialog = new MyProgressDialog(getActivity());
-        signDialog = new SignDialog(getActivity());
-
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
         Information information = LoginUtils.information;
         //Log.e("login", login +"");
@@ -840,9 +830,7 @@ public class TouTiaoFragment extends BaseFragment {
                 httSign.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //签到网络请求 dialog显示
-                        signinter();
-                        dialog.show();
+
                     }
                 });
 
@@ -874,95 +862,13 @@ public class TouTiaoFragment extends BaseFragment {
         } else {
             httBeforeEntry.setVisibility(View.VISIBLE);
             httAfterEntry.setVisibility(View.GONE);
-            httBeforeEntry.setOnClickListener(new View.OnClickListener() {
+            httEntry.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     getActivity().startActivity(intent);
                 }
             });
-        }
-    }
-
-    //签到网络请求 dialog显示
-    private void signinter() {
-        if (login) {
-            Signbean.ParamBean param = new Signbean.ParamBean();
-            param.setSiteID(2422);
-            param.setUserID(SpUtils.getSp().getString(LoginUtils.USERID, null));
-
-            Signbean.StatisBean statis = new Signbean.StatisBean();
-            statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(getActivity()));
-            statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
-            statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(getActivity()));
-            statis.setSiteId(2422);
-            statis.setSystemNo(2);
-            DeviceUtils.getInstance();
-            statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
-            statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, null)));
-
-            Signbean toutiao = new Signbean();
-            toutiao.setMethod("PHSocket_GetUserSign");
-            toutiao.setParam(param);
-            toutiao.setStatis(statis);
-            toutiao.setAppName("CcooCity");
-            toutiao.setCustomerID(8001);
-            toutiao.setCustomerKey("BE9EEC155A5D7B65FCA3380831ECBD8B");
-            toutiao.setRequestTime(TimeUtils.getdangqianshijian());
-            toutiao.setVersion("4.5");
-            Gson gson = new Gson();
-            String s = gson.toJson(toutiao);
-            Map<String, String> map = new HashMap<>();
-            map.put("param", s);
-            //Log.e("TTTTTTTTT",s);
-            HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
-                @Override
-                public void onSuccess(String result) {
-                    //Log.e("Signresult", result);
-                    Signresult signresult=JSON.parseObject(result,Signresult.class);
-                    if(result==null){
-                        return;
-                    }
-                    int code=signresult.getMessageList().getCode();
-                    dialog.dismiss();
-                    MyRunable.mainthread(new TimerTask() {
-                        @Override
-                        public void run() {
-                            httSign.setText("已签到");
-                            httSign.setTextColor(getResources().getColor(R.color.tv_black));
-                            Drawable draw=getResources().getDrawable(R.drawable.already);
-                            draw.setBounds(0, 0, draw.getMinimumWidth(), draw.getMinimumHeight());
-                            httSign.setCompoundDrawables(draw,null,null,null);
-                        }
-                    });
-                    if (code == 1000) {
-                        int Coin=signresult.getExtend().getReTask().get(0).getCoin();
-                        int Integral=signresult.getExtend().getReTask().get(0).getIntegral();
-                        int UserSignday=signresult.getServerInfo().getSignInfo().getUserSignday();
-                        int Continuous=signresult.getServerInfo().getSignInfo().getContinuous();
-                        int LXCoin=signresult.getServerInfo().getSignInfo().getLXCoin();
-                        signDialog.show();
-                        signDialog.showDialog(Coin, Integral, UserSignday, "连续签到"
-                                + Continuous + "天将额外获得" + LXCoin + "城市币", "第"
-                                + (Continuous + 1) + "天开始重新计算签到天数");
-                        Toast.makeText(getActivity(),"签到成功",Toast.LENGTH_LONG).show();
-                    } else if (code == 1002) {
-                        Toast.makeText(getActivity(),"非本站用户 签到失败",Toast.LENGTH_LONG).show();
-                    } else if (code == 1003) {
-                        Toast.makeText(getActivity(),"正在升级中...",Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getActivity(),"你今天已签过到了~",Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onError(String errormsg) {
-                    Log.e("onError", errormsg);
-                }
-            });
-        }else {
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            getActivity().startActivity(intent);
         }
     }
 
@@ -992,14 +898,12 @@ public class TouTiaoFragment extends BaseFragment {
                 getActivity().startActivity(intent4);
                 break;
             case R.id.hdrawer_spendmoney:
-//                Intent intent5=new Intent(getActivity(), ShoppingActivity.class);
-//                getActivity().startActivity(intent5);
+                Intent intent5=new Intent(getActivity(), ShoppingActivity.class);
+                getActivity().startActivity(intent5);
                 break;
             case R.id.hdrawer_luckdraw:
-                Intent intentTwo = new Intent(getActivity(), WebViewActivity.class);
-                intentTwo.putExtra("url","http://m.yanqing.ccoo.cn/choujiang.aspx");
-                intentTwo.putExtra("webview_title","抽奖活动");
-                startActivity(intentTwo);
+//                Intent intent6=new Intent(getActivity(),);
+//                getActivity().startActivity (intent6);
                 break;
             case R.id.hdrawer_goodmanners:
                 Intent intent7=new Intent(getActivity(), GoodMannersActivity.class);
@@ -1025,7 +929,7 @@ public class TouTiaoFragment extends BaseFragment {
             int firstVisableItem = ((LinearLayoutManager) recyclerView
                     .getLayoutManager()).findFirstCompletelyVisibleItemPosition();
 
-            // Log.e("firstVisableItem", firstVisableItem + "");
+           // Log.e("firstVisableItem", firstVisableItem + "");
             if ((dy > 0 && isShow) || (dy < 0 && !isShow)) {
                 totalScrollDistance += dy;
             }
@@ -1051,13 +955,5 @@ public class TouTiaoFragment extends BaseFragment {
         public abstract void hide();
 
         public abstract void show();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (signDialog != null) {
-            signDialog.dismiss();
-        }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ziliao_menu"
+        android:title="资料管理"
+        android:visible="true"
+        android:icon="@drawable/cover_homepage_topimage3" />
+    <item
+        android:id="@+id/zaopian_menu"
+        android:title="照片管理"
+        android:visible="true"
+        android:icon="@drawable/cover_homepage_topimage4" />
+
+ </menu>

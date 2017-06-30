@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
@@ -19,13 +23,17 @@ import com.example.citypass.model.biz.infor.IPersonalModel;
 import com.example.citypass.model.biz.infor.PersonalModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 
+import java.lang.reflect.Method;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.example.citypass.R.drawable.cancel;
 import static com.example.citypass.R.drawable.login;
 import static com.example.citypass.utils.LoginUtils.USERID;
 
@@ -206,6 +214,7 @@ public class PersonalActivity extends BaseActivity {
             case R.id.personal_Share:
                 break;
             case R.id.personal_User:
+                showPopupMenu(personalUser);
                 break;
         }
     }
@@ -293,7 +302,54 @@ public class PersonalActivity extends BaseActivity {
         personalMedal.setText("勋章 "+per.getServerInfo().getMedalNum());
         personalGift.setText("礼物 "+per.getServerInfo().getGiftNum());
 
+    }
 
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.personal_menu, popupMenu.getMenu());
+        Menu menu = popupMenu.getMenu();
+        setIconEnable(menu,true);
+        // menu的item点击事件
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                switch (itemId){
+                    case R.id.ziliao_menu:
+                        Intent intent=new Intent(PersonalActivity.this,InforActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.zaopian_menu:
+                        break;
+                }
+                return false;
+            }
+        });
+        // PopupMenu关闭事件
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+            }
+        });
+        popupMenu.show();
+    }
 
+    private void setIconEnable(Menu menu, boolean enable)
+    {
+        try
+        {
+            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
+            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            m.setAccessible(true);
+
+            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
+            m.invoke(menu, enable);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

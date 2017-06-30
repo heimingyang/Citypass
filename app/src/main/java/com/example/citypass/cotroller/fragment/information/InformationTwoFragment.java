@@ -17,6 +17,7 @@ import com.example.citypass.model.bean.information.InformationTwo;
 import com.example.citypass.model.biz.infor.IMedalModel;
 import com.example.citypass.model.biz.infor.MedaModel;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -130,7 +131,12 @@ public class InformationTwoFragment extends BaseFragment {
         InformationTwo.ParamBean paramBean = new InformationTwo.ParamBean();
         paramBean.setUSiteId(LoginUtils.information.getServerInfo().getSiteID());
         paramBean.setUserId(SpUtils.getSp().getString(LoginUtils.USERID, ""));
-        paramBean.setFuserId(id);
+        if(SpUtils.getSp().getString(LoginUtils.USERID, "").equals(id+"")){
+            paramBean.setFuserId(0);
+
+        }else {
+            paramBean.setFuserId(id);
+        }
         cityUp.setParam(paramBean);
         InformationTwo.StatisBean statisBean = new InformationTwo.StatisBean();
         statisBean.setPhoneId(Build.SERIAL);

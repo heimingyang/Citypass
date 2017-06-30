@@ -14,7 +14,6 @@ import android.widget.PopupWindow;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.adapter.naonao.NaoNao_Tab_Adapter;
@@ -215,8 +214,7 @@ public class NaoNaoFragment extends BaseFragment {
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), Carmer_Photo_NaoNao_Activity.class);
-                startActivity(in);
+
             }
         });
 

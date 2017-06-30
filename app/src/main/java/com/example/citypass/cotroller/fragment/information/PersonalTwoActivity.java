@@ -5,10 +5,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +20,8 @@ import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.model.bean.information.Personal;
 import com.example.citypass.model.http.HttpFacory;
+
+import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -189,6 +194,7 @@ public class PersonalTwoActivity extends BaseActivity {
             case R.id.personalOne_Share:
                 break;
             case R.id.personalOne_User:
+                showPopupMenu(personalOneUser);
                 break;
         }
     }
@@ -257,5 +263,54 @@ public class PersonalTwoActivity extends BaseActivity {
 
         //记录上一个fragment
         lastFragment = targetFragment;
+    }
+
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.personal_menu, popupMenu.getMenu());
+        Menu menu = popupMenu.getMenu();
+        setIconEnable(menu,true);
+        // menu的item点击事件
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                switch (itemId){
+                    case R.id.ziliao_menu:
+                        Intent intent=new Intent(PersonalTwoActivity.this,InforActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.zaopian_menu:
+                        break;
+                }
+                return false;
+            }
+        });
+        // PopupMenu关闭事件
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+            }
+        });
+        popupMenu.show();
+    }
+
+    private void setIconEnable(Menu menu, boolean enable)
+    {
+        try
+        {
+            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
+            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            m.setAccessible(true);
+
+            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
+            m.invoke(menu, enable);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

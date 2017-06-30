@@ -1,17 +1,28 @@
 package com.example.citypass.cotroller.fragment.information;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.model.bean.information.GetNotify;
+import com.example.citypass.model.bean.information.Notify;
+import com.example.citypass.model.biz.infor.IMedalModel;
+import com.example.citypass.model.biz.infor.MedaModel;
+import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.R.string.no;
 
 /**
  * 项目名称: 血压卫士
@@ -62,6 +73,7 @@ public class NotifyActivity extends BaseActivity {
     TextView notificationTextFours;
     @BindView(R.id.notification_Btn_Four)
     RelativeLayout notificationBtnFour;
+    private MedaModel model;
 
     @Override
     protected int getLayoutId() {
@@ -80,7 +92,29 @@ public class NotifyActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        model=new IMedalModel();
+        Notify notify=new Notify();
+        notify.setUserid(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+        notify.setSiteid(LoginUtils.information.getServerInfo().getSiteID());
+        String param = LoginUtils.getParam(notify, "PHSocket_GetMsg_HomeList");
+        model.getMedal(param, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                GetNotify notify1= JSON.parseObject(result,GetNotify.class);
+                int code = notify1.getMessageList().getCode();
+                if(code==1000){
+                    notificationTextOnes.setText(notify1.getServerInfo().getTop7().get(0).getTitle1());
+                    notificationTextTwos.setText(notify1.getServerInfo().getTop7().get(0).getTitle2());
+                    notificationTextThrees.setText(notify1.getServerInfo().getTop7().get(0).getTitle3());
+                    notificationTextFours.setText(notify1.getServerInfo().getTop7().get(0).getTitle7());
+                }
+            }
 
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
     }
 
 
@@ -91,15 +125,27 @@ public class NotifyActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.notification_imgOne:
+                Intent intent=new Intent(NotifyActivity.this,MailActivity.class);
+                startActivity(intent);
                 break;
             case R.id.notification_Btn_One:
+                start("精彩推荐","");
                 break;
             case R.id.notification_Btn_Two:
+                start("系统通知","");
                 break;
             case R.id.notification_Btn_Three:
+                start("好友动态","");
                 break;
             case R.id.notification_Btn_Four:
+                start("谁看过我","");
                 break;
         }
+    }
+    private void start(String title,String str){
+        Intent intent=new Intent(NotifyActivity.this,NotifyDeatailActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("str",str);
+        startActivity(intent);
     }
 }

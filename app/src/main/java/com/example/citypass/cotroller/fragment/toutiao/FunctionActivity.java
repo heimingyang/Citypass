@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
+import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
 import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
@@ -109,8 +110,8 @@ public class FunctionActivity extends BaseActivity {
             functionTwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(FunctionActivity.this, ReleaseActivity.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(FunctionActivity.this, ReleaseActivity.class);
+                    startActivity(intent);
                 }
             });
             functionTitleTv.setText("社区");
@@ -135,18 +136,6 @@ public class FunctionActivity extends BaseActivity {
                 }
             });
             transaction.replace(R.id.function_framelaout, new NaoNaoFragment(), "NaoNaoFragment");
-            transaction.commit();
-        }else if(htag.equals("城事")){
-            functionTitleTv.setText("城事");
-            functionOne.setVisibility(View.GONE);
-            functionTwo.setVisibility(View.GONE);
-            transaction.replace(R.id.function_framelaout, new CitymatterFragment(), "CitymatterFragment");
-            transaction.commit();
-        }else if(htag.equals("秀场")){
-            functionTitleTv.setText("秀场");
-            functionOne.setVisibility(View.GONE);
-            functionTwo.setVisibility(View.GONE);
-            transaction.replace(R.id.function_framelaout, new HshowFragment(), "HshowFragment");
             transaction.commit();
         }
 

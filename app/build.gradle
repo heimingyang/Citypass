@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.citypass"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -31,10 +31,11 @@ android {
         }
     }
     signingConfigs {
+
         release {
             keyAlias 'citypass'
             keyPassword '990712'
-            storeFile file('C:/Users/黑明阳/citypass.jks')
+            storeFile file('C:/Users/Administrator/citypass.jks')
             storePassword '990712'
         }
     }
@@ -46,23 +47,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile files('libs/okhttp-3.4.1.jar')
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.okio:okio:1.11.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'org.greenrobot:greendao:3.1.0'
-    compile 'com.alibaba:fastjson:1.2.33'
-    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
-    compile 'com.jude:rollviewpager:1.2.9'
-    compile 'in.srain.cube:ptr-load-more:1.0.6'
-    compile 'com.belerweb:pinyin4j:2.5.0'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
-    compile 'cjt.library.wheel:camera:0.1.9'
     compile files('libs/SocialSDK_douban.jar')
     compile files('libs/umeng_shareboard_widget.jar')
     compile files('libs/umeng_social_net.jar')
@@ -82,8 +66,26 @@ dependencies {
     compile files('libs/SocialSDK_facebook.jar')
     compile files('libs/SocialSDK_sms.jar')
     compile files('libs/SocialSDK_tencentWB.jar')
-    compile 'org.greenrobot:eventbus:3.0.0'
+
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okio:okio:1.11.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:design:25.1.0'
+    compile 'org.greenrobot:greendao:3.1.0'
+    compile 'com.alibaba:fastjson:1.2.33'
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'com.jude:rollviewpager:1.2.9'
+    compile 'in.srain.cube:ptr-load-more:1.0.6'
+    compile 'com.belerweb:pinyin4j:2.5.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.androidkun:pulltorefreshrecyclerview:1.0.6'
+    compile 'cjt.library.wheel:camera:0.1.9'
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
