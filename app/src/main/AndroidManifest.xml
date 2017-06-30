@@ -166,6 +166,8 @@
         <activity
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"/>
     </application>
 
 </manifest>
