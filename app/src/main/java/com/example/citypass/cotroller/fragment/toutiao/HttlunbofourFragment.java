@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,6 +95,8 @@ public class HttlunbofourFragment extends BaseFragment {
     public void onViewClicked() {
 
         //跳转到闹闹
-
+        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
+        SpUtils.upSp().putString("htag","闹闹").commit();
+        getActivity().startActivity(intent1);
     }
 }

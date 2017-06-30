@@ -1,19 +1,17 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -21,7 +19,7 @@ import butterknife.Unbinder;
  * 项目名称: City Pass
  * 类描述:
  * 创建人: 黑明阳
- * 创建时间: 2017/6/23 14:43
+ * 创建时间: 2017/6/30 9:24
  * 修改人:
  * 修改内容:
  * 修改时间:
@@ -51,9 +49,11 @@ import butterknife.Unbinder;
  */
 
 
-public class HttlunbotwoFragment extends BaseFragment {
-    @BindView(R.id.twolunbotv)
-    TextView twolunbotv;
+public class CitymatterFragment extends BaseFragment {
+    @BindView(R.id.citymatter_tablayout)
+    TabLayout citymatterTablayout;
+    @BindView(R.id.citymatter_viewpager)
+    ViewPager citymatterViewpager;
     Unbinder unbinder;
 
     @Override
@@ -73,8 +73,7 @@ public class HttlunbotwoFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-
-        return R.layout.httlunbotwofragment;
+        return R.layout.hcitymatter;
     }
 
     @Override
@@ -89,13 +88,5 @@ public class HttlunbotwoFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick(R.id.twolunbotv)
-    public void onViewClicked() {
-        //跳转到秀场
-        Intent intent1=new Intent(getActivity(), FunctionActivity.class);
-        SpUtils.upSp().putString("htag","秀场").commit();
-        getActivity().startActivity(intent1);
     }
 }

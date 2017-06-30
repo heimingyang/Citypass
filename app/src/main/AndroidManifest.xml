@@ -83,7 +83,8 @@
         <activity android:name=".cotroller.fragment.information.PersonalActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyActivity" />
         <activity android:name=".cotroller.fragment.information.PostActivity" />
-
+        <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity"/>
+        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"/>
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity"></activity>
         <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity" />
         <activity android:name=".cotroller.fragment.information.LevelActivity" />

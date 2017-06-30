@@ -31,11 +31,10 @@ android {
         }
     }
     signingConfigs {
-
         release {
             keyAlias 'citypass'
             keyPassword '990712'
-            storeFile file('C:/Users/Administrator/citypass.jks')
+            storeFile file('C:/Users/黑明阳/citypass.jks')
             storePassword '990712'
         }
     }
@@ -84,7 +83,6 @@ dependencies {
     compile files('libs/SocialSDK_sms.jar')
     compile files('libs/SocialSDK_tencentWB.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
-
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'

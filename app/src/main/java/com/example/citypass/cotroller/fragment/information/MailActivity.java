@@ -117,13 +117,13 @@ public class MailActivity extends BaseActivity {
                 mailViewpager.setCurrentItem(0);
                 if(mailOne.isChecked()){
                     mailTextOne.setVisibility(View.VISIBLE);
-                    mailTextTwo.setVisibility(View.GONE);
+                    mailTextTwo.setVisibility(View.INVISIBLE);
                 }
                 break;
             case R.id.mail_two:
                 mailViewpager.setCurrentItem(2);
                 if(mailTwo.isChecked()){
-                    mailTextOne.setVisibility(View.GONE);
+                    mailTextOne.setVisibility(View.INVISIBLE);
                     mailTextTwo.setVisibility(View.VISIBLE);
                 }
                 break;
