@@ -207,7 +207,7 @@ public class NaoNaoFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                      Intent in = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
-                startActivity(in);
+                       startActivity(in);
             }
         });
         LinearLayout mPhoto = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_photo);

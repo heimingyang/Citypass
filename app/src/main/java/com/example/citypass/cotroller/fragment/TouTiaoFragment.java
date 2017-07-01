@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,10 @@ import com.androidkun.callback.PullToRefreshListener;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.base.ScanActivity;
 import com.example.citypass.cotroller.HomeActivity;
+import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
+import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
@@ -82,6 +86,7 @@ import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.utils.UrlUtils;
 import com.example.citypass.utils.WebViewUtils;
 import com.google.gson.Gson;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -232,7 +237,41 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        //poupwindow的gridview点击事件
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    // 跳转发帖子
+                    Intent intent = new Intent(getActivity(), ReleaseActivity.class);
+                    startActivity(intent);
+                    reply();
+                }else if(position==1){
 
+                    //跳转相册
+
+                    reply();
+                } else if(position==2){
+                    //跳转视频
+                    Intent intent = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
+                    startActivity(intent);
+                    reply();
+                }else if(position==3){
+                    //跳转微爆料
+
+                    reply();
+                }else if(position==4){
+                    //跳转分类信息（生活页面）
+
+                    reply();
+                }else if(position==5){
+                    //扫描二维码
+                    Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
+                    startScan();
+                    reply();
+                }
+            }
+        });
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,9 +280,7 @@ public class TouTiaoFragment extends BaseFragment {
              *    popupWindow消失
              *    控件动画
              * */
-
                 if(isfirst){
-
                 }else {
                     isfirst = true;
                     Timer timer = new Timer();
@@ -256,11 +293,8 @@ public class TouTiaoFragment extends BaseFragment {
                     }, 2520);
                     makepopupWindowdismiss();
                 }
-
-
             }
         });
-
 
         //PullToRefreshRecyclerView  上拉下拉隐藏显示  drawer
         httrecyclerview.addOnScrollListener(new RecyclerViewScrollListener() {
@@ -358,7 +392,6 @@ public class TouTiaoFragment extends BaseFragment {
         titlelistener();
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -667,19 +700,10 @@ public class TouTiaoFragment extends BaseFragment {
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                if(popupWindow.isShowing()){
-                    popupWindow.dismiss();
-                    Animation disanimation = AnimationUtils.loadAnimation(getActivity(), R.anim.disallimg);
-                    disanimation.setDuration(300);
-                    App.activity.getImgTwo().startAnimation(disanimation);
-                    disanimation.setFillAfter(true);
-                }
-
+                //popupWindow消失  并且  结束加号动画
+                reply();
             }
         };
-
-
-
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -689,7 +713,17 @@ public class TouTiaoFragment extends BaseFragment {
                     handler.postDelayed(runnable, 2000);
                 }}
         });
+    }
 
+    //popupWindow消失  并且  结束加号动画
+    private void reply() {
+        if(popupWindow.isShowing()){
+            popupWindow.dismiss();
+            Animation disanimation = AnimationUtils.loadAnimation(getActivity(), R.anim.disallimg);
+            disanimation.setDuration(300);
+            App.activity.getImgTwo().startAnimation(disanimation);
+            disanimation.setFillAfter(true);
+        }
     }
 
     /**
@@ -1060,5 +1094,18 @@ public class TouTiaoFragment extends BaseFragment {
         if (signDialog != null) {
             signDialog.dismiss();
         }
+    }
+
+    //二维码扫描
+    public void startScan() {
+        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+
+        integrator.setOrientationLocked(false)//设置扫码的方向
+                .setPrompt("将条码放置于框内")//设置下方提示文字
+                .setCameraId(0)//前置或后置摄像头
+                .setBeepEnabled(false)//扫码提示音，默认开启
+                .setOrientationLocked(false)//解锁屏幕方向锁定
+                .setCaptureActivity(ScanActivity.class)//设置扫码界面为自定义样式
+                .initiateScan();
     }
 }
