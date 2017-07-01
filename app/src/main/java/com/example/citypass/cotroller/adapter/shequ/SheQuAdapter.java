@@ -2,10 +2,9 @@ package com.example.citypass.cotroller.adapter.shequ;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.citypass.base.BaseFragment;
 
 import java.util.List;
 
@@ -18,16 +17,15 @@ import java.util.List;
  * 修改内容:
  * 修改时间:
  */
-public class SheQuAdapter extends FragmentPagerAdapter {
+public class SheQuAdapter extends FragmentStatePagerAdapter {
 
-    private List<BaseFragment> fragments;
+    private List<Fragment> fragments;
     private List<String> strings;
-    private int itemCount;
 
-    public SheQuAdapter(FragmentManager fm,List<BaseFragment> fragments,List<String> strings) {
+    public SheQuAdapter(FragmentManager fm, List<Fragment> mFraList, List<String> mStrList) {
         super(fm);
-        this.fragments = fragments;
-        this.strings = strings;
+        this.fragments = mFraList;
+        this.strings = mStrList;
     }
 
     @Override
@@ -37,22 +35,21 @@ public class SheQuAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        if (fragments.size() != 0) {
+        return fragments.isEmpty()?0:fragments.size();
+    }
 
-            return fragments.size();
+    @Override
+    public void destroyItem(View container, int position, Object object) {
 
-        }else {
-            return 0;
-        }
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         return strings.get(position);
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-//        super.destroyItem(container, position, object);
     }
 }

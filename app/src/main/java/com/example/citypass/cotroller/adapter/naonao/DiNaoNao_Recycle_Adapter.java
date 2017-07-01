@@ -63,6 +63,10 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         this.mList = mList;
         Log.e("aaaaa",mList.size()+"");
     }
+
+
+
+
     public void setNewData(List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList){
         this.mList = mList;
         notifyDataSetChanged();

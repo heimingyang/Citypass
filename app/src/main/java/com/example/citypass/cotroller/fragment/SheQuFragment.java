@@ -2,6 +2,7 @@ package com.example.citypass.cotroller.fragment;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
@@ -67,9 +68,10 @@ public class SheQuFragment extends BaseFragment {
     @BindView(R.id.Community_ViewPager)
     ViewPager CommunityViewPager;
     Unbinder unbinder;
-    private SheQuAdapter adapter;
-    private List<BaseFragment> fragments;
-    private List<String> strings;
+    private List<Fragment> fragments = new ArrayList<>();
+    private List<String> strings = new ArrayList<>();
+    private View view;
+    int a = 0;
     @Override
     public int getLayoutId() {
         return R.layout.fragment_shequ;
@@ -77,36 +79,46 @@ public class SheQuFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        CommunityTablayout = (TabLayout) view.findViewById(R.id.Community_Tablayout);
-        CommunityViewPager = (ViewPager) view.findViewById(R.id.Community_ViewPager);
-        fragments = new ArrayList<>();
-        strings = new ArrayList<>();
 
-        fragments.add(new PengChangWangFragment());
-        fragments.add(new MingRenTangFragment());
-        fragments.add(new BanQuFragment());
-        fragments.add(new ZuiXinFragment());
-        fragments.add(new ReTieFragment());
-        fragments.add(new TuShuoFragment());
-        fragments.add(new ZhuanTiHuoDongFragment());
-        fragments.add(new ZhiDeYiKanFragment());
-        strings.add("捧场王");
-        strings.add("名人堂");
-        strings.add("版区");
-        strings.add("最新");
-        strings.add("热帖");
-        strings.add("图说");
-        strings.add("专题活动");
-        strings.add("值得一看");
-
-        adapter = new SheQuAdapter(getFragmentManager(),fragments,strings);
     }
 
     @Override
     protected void initData() {
-        CommunityTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        CommunityTablayout.setupWithViewPager(CommunityViewPager);
-        CommunityViewPager.setAdapter(adapter);
+        if (a == 0) {
+            fragments = new ArrayList<>();
+            strings = new ArrayList<>();
+
+            fragments.add(new PengChangWangFragment());
+            fragments.add(new MingRenTangFragment());
+            fragments.add(new BanQuFragment());
+            fragments.add(new ZuiXinFragment());
+            fragments.add(new ReTieFragment());
+            fragments.add(new TuShuoFragment());
+            fragments.add(new ZhuanTiHuoDongFragment());
+            fragments.add(new ZhiDeYiKanFragment());
+            strings.add("捧场王");
+            strings.add("名人堂");
+            strings.add("版区");
+            strings.add("最新");
+            strings.add("热帖");
+            strings.add("图说");
+            strings.add("专题活动");
+            strings.add("值得一看");
+            CommunityTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+            SheQuAdapter adapter = new SheQuAdapter(getFragmentManager(), fragments, strings);
+            CommunityViewPager.setAdapter(adapter);
+            CommunityViewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(CommunityTablayout) {
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                }
+            });
+
+            CommunityTablayout.setupWithViewPager(CommunityViewPager);
+            a = 1;
+
+        }
+
     }
 
     @Override
