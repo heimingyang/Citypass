@@ -43,4 +43,6 @@ public interface FactoryIn {
     void POST(String url, Map<String, String> map, String cookie, final MyCallBack callBack);
     void downLoad(String url, MyCallBack callBack);
     void loadImage(String url, ImageView view, boolean boo);
+
+
 }

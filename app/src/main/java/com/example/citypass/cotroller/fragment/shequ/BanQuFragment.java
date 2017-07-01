@@ -69,24 +69,12 @@ public class BanQuFragment extends BaseFragment {
         groupAdapter = new BanQuGroupAdapter(groupList,getActivity());
         banquListview1.setAdapter(groupAdapter);
         bbSimp = new BbSimp();
+        loadData();
         serverInfo = new ArrayList<>();
         childAdapter = new BanQuAdapter(getActivity(),serverInfo);
         banquListview2.setAdapter(childAdapter);
 
-        groupAdapter.setItem(new BanQuGroupAdapter.onItem() {
-            @Override
-            public void onItem(int position) {
-                if (position == 0) {
 
-                    serverInfo.clear();
-                    loadChildData(par[position], position);
-                    loadChildData(par[position], position);
-
-                }
-                serverInfo.clear();
-                loadChildData(par[position], position);
-            }
-        });
     }
 
     public void loadData(){
@@ -102,12 +90,14 @@ public class BanQuFragment extends BaseFragment {
                 int po = serverInfo.size();
                 BanQuBean banQuBean = JSON.parseObject(result,BanQuBean.class);
                 try {
+                    serverInfo.addAll(banQuBean.getServerInfo());
+                    childAdapter = new BanQuAdapter(getActivity(),serverInfo);
                     if ( position == 1) {
                         BanQuBean.ServerInfoBean serverInfoBean = serverInfo.get(po);
                         serverInfo.remove(po + 1);
                         serverInfoBean.setShowTwo(true);
                         serverInfoBean.setParentName("推荐板块");
-                    serverInfo.add(po + 1, serverInfoBean);
+//                    serverInfo.add(po + 1, serverInfoBean);
                     } else if (position == 4) {
                         String parentName = "";
                         for (BanQuBean.ServerInfoBean serverInfoBean : serverInfo) {
@@ -131,6 +121,21 @@ public class BanQuFragment extends BaseFragment {
 
             }
         },method);
+
+        groupAdapter.setItem(new BanQuGroupAdapter.onItem() {
+            @Override
+            public void onItem(int position) {
+                if (position == 0) {
+
+                    serverInfo.clear();
+                    loadChildData(par[position], position);
+                    loadChildData(par[position + 1], position + 1 );
+
+                }
+                serverInfo.clear();
+                loadChildData(par[position ], position);
+            }
+        });
 
     }
 

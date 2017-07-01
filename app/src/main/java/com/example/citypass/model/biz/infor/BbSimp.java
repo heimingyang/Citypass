@@ -3,8 +3,9 @@ package com.example.citypass.model.biz.infor;
 import android.util.Log;
 
 import com.example.citypass.model.http.FactoryIn;
-import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.model.http.OkHttpUtils;
+import com.example.citypass.utils.UrlUtils;
 
 import java.util.HashMap;
 
@@ -21,10 +22,10 @@ public class BbSimp implements Ibbs{
     private FactoryIn factoryIn;
     @Override
     public void loadBq(MyCallBack callback, String method) {
-        factoryIn = HttpFacory.create();
+        factoryIn = OkHttpUtils.getInstance();
         HashMap<String, String> params = new HashMap<>();
         params.put("param",method);
         Log.d("Bbsimp", params.get("param"));
-        factoryIn.POST("http://appnew.ccoo.cn/appserverapi.ashx", params, null,callback);
+        factoryIn.POST(UrlUtils.BaseUrl, params, null,callback);
     }
 }

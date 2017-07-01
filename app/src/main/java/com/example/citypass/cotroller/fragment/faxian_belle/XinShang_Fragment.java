@@ -71,6 +71,7 @@ public class XinShang_Fragment extends BaseFragment {
     private Handler handler = new Handler();
     private List<Belle_Enjoy_Bean.ServerInfoBean.CoverXinShangInfoListBeanX.CoverXinShangInfoListBean> coverXinShangInfoList;
 
+
     @Override
     protected void initData() {
 
