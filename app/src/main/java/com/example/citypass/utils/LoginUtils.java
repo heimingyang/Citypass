@@ -68,7 +68,7 @@ public class LoginUtils {
         param.setCustomerKey("D5607EBE573BE2B59A4D5A1CAE882615");
         param.setAppName("CcooCity");
         param.setVersion("4.5");
-        param.setParamBean(bean);
+        param.setParam(bean);
         BaseParam.StatisBean statisBean=new BaseParam.StatisBean();
         statisBean.setPhoneId(Build.SERIAL);
         statisBean.setPhoneNum("+86"+information.getServerInfo().getTel());

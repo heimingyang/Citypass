@@ -70,11 +70,11 @@ public class BaseParam {
         this.version = version;
     }
 
-    public BaseParamBean getParamBean() {
+    public BaseParamBean getParam() {
         return Param;
     }
 
-    public void setParamBean(BaseParamBean Param) {
+    public void setParam(BaseParamBean Param) {
         this.Param = Param;
     }
 

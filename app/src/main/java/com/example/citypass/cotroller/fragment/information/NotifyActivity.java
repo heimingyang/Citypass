@@ -129,16 +129,16 @@ public class NotifyActivity extends BaseActivity {
                 startActivity(intent);
                 break;
             case R.id.notification_Btn_One:
-                start("精彩推荐","");
+                start("精彩推荐","PHSocket_GetRecommandDataList");
                 break;
             case R.id.notification_Btn_Two:
-                start("系统通知","");
+                start("系统通知","PHSocket_GetUserSysMsgDataList");
                 break;
             case R.id.notification_Btn_Three:
-                start("好友动态","");
+                start("好友动态","PHSocket_GetFriendDynamicList");
                 break;
             case R.id.notification_Btn_Four:
-                start("谁看过我","");
+                start("谁看过我","PHSocket_GetUserMsgVisitorList");
                 break;
         }
     }
