@@ -154,7 +154,7 @@ public class ShoppingActivity extends BaseActivity {
         shoppingRollpager.setAnimationDurtion(500);
         ShopViewAdapter adapter=new ShopViewAdapter(ShoppingActivity.this);
         shoppingRollpager.setAdapter(adapter);
-        shoppingRollpager.setHintView(new ColorPointHintView(getContext(), Color.YELLOW, Color.WHITE));
+        shoppingRollpager.setHintView(new ColorPointHintView(ShoppingActivity.this, Color.YELLOW, Color.WHITE));
         getGuangbo();
         ShoppingFragment fragOne=new ShoppingFragment();
         fragOne.setOrderby(0);

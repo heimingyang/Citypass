@@ -68,6 +68,7 @@ public class HcitymatterFragment extends BaseFragment {
     ViewPager citymatterViewpager;
     Unbinder unbinder;
     private String[] title={"有态度","打酱油","爱潜水","最新","社会","正事","生活","娱乐"};
+
     @Override
     protected void initData() {
 

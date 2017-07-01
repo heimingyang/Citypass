@@ -49,7 +49,7 @@ public class MyProgressDialog extends Dialog {
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		super.show();
+//		super.show();
 		handler.postDelayed(runnable, 5000);
 	}
 	

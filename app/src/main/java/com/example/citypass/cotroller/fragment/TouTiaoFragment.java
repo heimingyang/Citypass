@@ -52,6 +52,7 @@ import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
 import com.example.citypass.cotroller.fragment.information.NotifyActivity;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
+import com.example.citypass.cotroller.fragment.information.ShoppingActivity;
 import com.example.citypass.cotroller.fragment.information.TaskActivity;
 import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 import com.example.citypass.cotroller.fragment.toutiao.CityFoloActivity;
@@ -991,8 +992,8 @@ public class TouTiaoFragment extends BaseFragment {
                 getActivity().startActivity(intent4);
                 break;
             case R.id.hdrawer_spendmoney:
-//                Intent intent5=new Intent(getActivity(), ShoppingActivity.class);
-//                getActivity().startActivity(intent5);
+                Intent intent5=new Intent(getActivity(), ShoppingActivity.class);
+                getActivity().startActivity(intent5);
                 break;
             case R.id.hdrawer_luckdraw:
                 Intent intentTwo = new Intent(getActivity(), WebViewActivity.class);

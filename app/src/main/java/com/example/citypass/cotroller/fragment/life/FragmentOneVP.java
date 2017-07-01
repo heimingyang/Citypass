@@ -79,12 +79,12 @@ public class FragmentOneVP extends BaseFragment implements View.OnClickListener 
                 getPostList = bean.getServerInfo().getGetPostList().getGetPostList();
                 Log.d("FragmentOneVP", "getPostList.size():" + getPostList.size());
                 String Mimg = getPostList.get(0).getChannelImg();
-                Glide.with(getContext()).load(Mimg).into(image);
+                Glide.with(getActivity()).load(Mimg).into(image);
                 String name = getPostList.get(0).getChannelName();
                 text.setText(name);
 
                 String Mimg1 = getPostList.get(1).getChannelImg();
-                Glide.with(getContext()).load(Mimg1).into(image1);
+                Glide.with(getActivity()).load(Mimg1).into(image1);
 
                 String name1 = getPostList.get(1).getChannelName();
                 text1.setText(name1);
@@ -97,7 +97,7 @@ public class FragmentOneVP extends BaseFragment implements View.OnClickListener 
 
 
                 String Mimg3 = getPostList.get(3).getChannelImg();
-                Glide.with(getContext()).load(Mimg3).into(image3);
+                Glide.with(getActivity()).load(Mimg3).into(image3);
                 String name3 = getPostList.get(3).getChannelName();
                 text3.setText(name3);
 
