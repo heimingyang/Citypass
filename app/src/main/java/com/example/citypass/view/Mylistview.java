@@ -9,6 +9,8 @@ import android.widget.ListView;
  */
 
 public class Mylistview extends ListView {
+
+
     public Mylistview(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

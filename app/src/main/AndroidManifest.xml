@@ -51,11 +51,6 @@
         <activity android:name=".cotroller.fragment.information.PasswordActivity" />
         <activity android:name=".cotroller.fragment.information.RegisterActivity" />
         <activity android:name=".cotroller.fragment.information.CooperationActivity" />
-        <activity android:name=".cotroller.activity.find.MyWebActivity" />
-        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
-        <activity android:name=".cotroller.activity.find.FaXianActionActivity" />
-        <activity android:name=".cotroller.activity.find.FaXianLottoActivity" />
-        <activity android:name=".cotroller.activity.find.FaXianCityActivity" />
         <activity android:name=".cotroller.fragment.toutiao.CityFoloActivity" />
         <activity android:name=".cotroller.fragment.information.SettingActivity" />
         <activity android:name=".cotroller.fragment.information.FeedBackActivity" />
@@ -75,6 +70,9 @@
         <activity android:name=".cotroller.fragment.information.BlackActivity" />
         <activity android:name=".cotroller.fragment.information.PhoneActivity" />
         <activity android:name=".cotroller.fragment.information.MailActivity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
+        <activity android:name=".cotroller.fragment.information.PostActivity" />
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.fragment.information.PersonalActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyActivity" />
@@ -93,6 +91,8 @@
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity"/>
         <activity android:name=".cotroller.activity.shequ.ReleaseActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
+        <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity
             android:name=".base.ScanActivity"
             android:screenOrientation="fullSensor"
@@ -140,16 +140,20 @@
 
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
-        tools:replace="screenOrientation" />
+        <activity android:name=".cotroller.fragment.information.CityActivity" />
+        <activity android:name=".cotroller.fragment.information.TaskActivity" />
+        <activity android:name=".cotroller.fragment.information.CollectionActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
+        <activity android:name=".cotroller.fragment.information.ShoppingActivity"/>
+        <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity"/>
         <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
-        <activity android:name=".cotroller.activity.find.PublishActivity" />
-        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
-        <activity android:name=".cotroller.activity.find.PublishActivity"></activity>
-        <activity android:name=".cotroller.fragment.information.ShoppingActivity"/>
-        <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity"/>
+        <activity
+            android:name=".cotroller.activity.find.PublishActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
     </application>
 
 </manifest>
