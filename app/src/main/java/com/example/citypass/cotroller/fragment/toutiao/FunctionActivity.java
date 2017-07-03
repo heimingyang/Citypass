@@ -17,8 +17,10 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
@@ -87,7 +89,10 @@ public class FunctionActivity extends BaseActivity {
             functionTwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    final String url = "http://m.yanqing.ccoo.cn/post/fabu/";
+                    Intent in = new Intent(FunctionActivity.this, MyWebActivity.class);
+                    in.putExtra("url", url);
+                    startActivity(in);
                 }
             });
             transaction.replace(R.id.function_framelaout, new LifeFragment(), "LifeFragment");
@@ -195,7 +200,8 @@ public class FunctionActivity extends BaseActivity {
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//             Intent intent=new Intent(FunctionActivity.this,NaoNao_Carmer_Activity.class);
+//                startActivity(intent);
             }
         });
 

@@ -1,9 +1,12 @@
 package com.example.citypass.cotroller.fragment.toutiao.citymatter;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.fragment.information.TaskActivity;
 
 /**
  * /**
@@ -42,6 +45,8 @@ import com.example.citypass.base.BaseFragment;
 //打酱油
 public class HsoysauceFragment extends BaseFragment {
 
+    private RelativeLayout onclick;
+
     @Override
     protected void initData() {
 
@@ -49,12 +54,19 @@ public class HsoysauceFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        onclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4=new Intent(getActivity(), TaskActivity.class);
+                getActivity().startActivity(intent4);
+            }
+        });
 
     }
 
     @Override
     protected void initView(View view) {
-
+        onclick = (RelativeLayout) view.findViewById(R.id.hnewest_onclick);
     }
 
     @Override

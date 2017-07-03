@@ -303,11 +303,11 @@ public class HshowFragment extends BaseFragment {
         statis.setSystemNo(2);
         DeviceUtils.getInstance();
         statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
-        if (login) {
+       /* if (login) {
             statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, null)));
-        } else {
+        } else {*/
             statis.setUserId(0);
-        }
+//        }
 
         Showinter toutiao = new Showinter();
         toutiao.setMethod("PHSocket_GetTCoverInfo");
@@ -326,7 +326,7 @@ public class HshowFragment extends BaseFragment {
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                Log.e("Showbean", result.toString());
+                //Log.e("Showbean", result.toString());
                 Showbean showbean = JSON.parseObject(result, Showbean.class);
                 if (showbean == null) {
                     return;

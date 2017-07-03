@@ -11,4 +11,36 @@
     android:layout_marginTop="10dp"
     android:textColor="@color/color_999"
     />
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:background="@drawable/news_bigfire2"
+        android:id="@+id/hnewest_onclick"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        >
+        <TextView
+            android:id="@+id/hnewest_onclick_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="速速"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            />
+        <TextView
+            android:id="@+id/hnewest_onclick_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="打榜"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            />
+    </RelativeLayout>
+
 </RelativeLayout>

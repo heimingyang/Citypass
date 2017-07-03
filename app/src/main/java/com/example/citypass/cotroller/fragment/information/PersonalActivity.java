@@ -256,6 +256,8 @@ public class PersonalActivity extends BaseActivity {
                 int code = personal.getMessageList().getCode();
                 if(code==1000){
                     setData(personal);
+                }else {
+                    return;
                 }
             }
 
@@ -265,7 +267,6 @@ public class PersonalActivity extends BaseActivity {
             }
         });
     }
-
     private void setData(Personal per){
         personalName.setText(per.getServerInfo().getUserNick());
         HttpFacory.create().loadImage(per.getServerInfo().getUserFace(),personalImg,true);

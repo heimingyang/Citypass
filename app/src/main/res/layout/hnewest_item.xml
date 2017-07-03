@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/hnewest_item"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:id="@+id/hnewest_title"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/hnewest_title_top"
+        android:textColor="@color/red"
+        android:textSize="30dp"
+        android:text="01"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hnewest_title_calendar"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:text="六月初八"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hnewest_title_week"
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:text="周六"
+        android:textColor="@color/color_999"
+        />
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hnewest_title_data"
+        android:textColor="@color/color_999"
+        android:text="2017年7月1日"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        />
+</RelativeLayout>
+
+    <include layout="@layout/toutiao_listview_item"/>
+</LinearLayout>

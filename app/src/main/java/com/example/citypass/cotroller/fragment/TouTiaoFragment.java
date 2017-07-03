@@ -225,7 +225,7 @@ public class TouTiaoFragment extends BaseFragment {
     private RelativeLayout httdrawer;
     private RelativeLayout httdrawer1;
     private boolean isfirst;
-    private MyProgressDialog dialog;
+
     @Override
     protected void initData() {
         //登录状态
@@ -242,30 +242,31 @@ public class TouTiaoFragment extends BaseFragment {
                     // 跳转发帖子
                     Intent intent = new Intent(getActivity(), ReleaseActivity.class);
                     startActivity(intent);
-                    reply();
+                    //reply();
                 }else if(position==1){
-
                     //跳转相册
-
-                    reply();
+                    Intent intent=new Intent(getActivity(),NaoNao_Carmer_Activity.class);
+                    startActivity(intent);
+//                    reply();
                 } else if(position==2){
                     //跳转视频
                     Intent intent = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
                     startActivity(intent);
-                    reply();
+//                    reply();
                 }else if(position==3){
                     //跳转微爆料
 
-                    reply();
+//                    reply();
                 }else if(position==4){
                     //跳转分类信息（生活页面）
-
-                    reply();
+                    Intent intent = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
+                    startActivity(intent);
+//                    reply();
                 }else if(position==5){
                     //扫描二维码
                     Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
                     startScan();
-                    reply();
+//                    reply();
                 }
             }
         });
@@ -843,7 +844,6 @@ public class TouTiaoFragment extends BaseFragment {
     //登录状态
     public void loginstate() {
         //创建dialog
-        dialog = new MyProgressDialog(getActivity());
         signDialog = new SignDialog(getActivity());
 
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
@@ -879,7 +879,6 @@ public class TouTiaoFragment extends BaseFragment {
                     public void onClick(View v) {
                         //签到网络请求 dialog显示
                         signinter();
-                        dialog.show();
                     }
                 });
 
@@ -961,7 +960,6 @@ public class TouTiaoFragment extends BaseFragment {
                         return;
                     }
                     int code=signresult.getMessageList().getCode();
-                    dialog.dismiss();
                     MyRunable.mainthread(new TimerTask() {
                         @Override
                         public void run() {

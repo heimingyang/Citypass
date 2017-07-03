@@ -1,51 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_ttrecycler_xq"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".cotroller.fragment.toutiao.TtrecyclerXQActivity">
-  <RelativeLayout
-      android:background="@color/red"
-    android:id="@+id/ttxq_title"
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-
-      >
-    <ImageView
-        android:padding="5dp"
-        android:id="@+id/ttxq_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ccoo_icon_back_666"
-        android:scaleType="fitCenter"
-        />
-
-      <TextView
-          android:layout_marginTop="10dp"
-          android:gravity="center"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="城市详情"
-          android:textSize="18dp"
-          />
-
-      <ImageView
-          android:padding="5dp"
-          android:id="@+id/ttxq_more"
-          android:layout_alignParentRight="true"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/ccoo_icon_more"
-          android:scaleType="fitCenter"
-          android:layout_margin="20dp"
-          />
-   </RelativeLayout>
-    <WebView
-        android:layout_below="@id/ttxq_title"
-        android:id="@+id/ttxq_webview"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/activity_ttrecycler_xq"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:background="@color/red"
+            android:id="@+id/ttxq_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
 
-    </WebView>
+            >
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/ttxq_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ccoo_icon_back_666"
+                android:scaleType="fitCenter"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="城市详情"
+                android:textSize="18dp"
+                />
+
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/ttxq_more"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ccoo_icon_more"
+                android:scaleType="fitCenter"
+                android:layout_margin="20dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/xq_lin1"
+            android:layout_margin="16dp"
+            android:layout_below="@id/ttxq_title"
+            >
+            <TextView
+                android:id="@+id/xq_lin1_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/xq_lin1_address"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_below="@id/xq_lin1_title"
+                android:layout_marginTop="3dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/xq_lin1_data"
+                android:layout_toRightOf="@id/xq_lin1_address"
+                android:textColor="@color/color_999"
+                android:layout_below="@id/xq_lin1_title"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/xq_lin1_number"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_below="@id/xq_lin1_title"
+                android:layout_marginTop="3dp"
+                android:drawableLeft="@drawable/ccoo_icon_look2"
+                android:drawablePadding="5dp"
+                />
+        </RelativeLayout>
+
+
+        <WebView
+            android:layout_margin="16dp"
+            android:layout_below="@id/xq_lin1"
+            android:id="@+id/ttxq_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </WebView>
+        <RelativeLayout
+            android:layout_below="@id/ttxq_webview"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/xq_lin2"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:background="@color/color_999"
+                />
+            <TextView
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/xq_lin2_title"
+                android:textColor="@color/color_999"
+                android:textSize="16dp"
+
+                />
+            <TextView
+                android:id="@+id/xq_lin2_tvno1"
+                android:layout_below="@id/xq_lin2_title"
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:background="@color/color_999"
+                />
+            <RelativeLayout
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:layout_below="@id/xq_lin2_tvno1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/xq_lin2_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="赞"
+                    android:textColor="@color/color_999"
+                    android:drawableTop="@drawable/ccoo_icon_zan_noral1"
+                    android:drawablePadding="3dp"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/xq_lin2_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="赞"
+                    android:layout_toRightOf="@id/xq_lin2_tv1"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/color_999"
+                    android:drawableTop="@drawable/ccoo_icon_ping_noral1"
+                    android:drawablePadding="3dp"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/xq_lin2_tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分享"
+                    android:layout_toRightOf="@id/xq_lin2_tv2"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/color_999"
+                    android:drawableTop="@drawable/ccoo_icon_more_big"
+                    android:drawablePadding="3dp"
+                    android:gravity="center"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+   <!--     <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/xq_tablayout"
+            android:layout_below="@id/xq_lin2"
+            >
+
+        </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="xq_viewpager"
+            android:layout_below="@id/xq_tablayout"
+            >
+
+        </android.support.v4.view.ViewPager>-->
+    </RelativeLayout>
+
+</ScrollView>
+
 </RelativeLayout>

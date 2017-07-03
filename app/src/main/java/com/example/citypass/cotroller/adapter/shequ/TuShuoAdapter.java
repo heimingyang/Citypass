@@ -78,7 +78,7 @@ public class TuShuoAdapter extends RecyclerView.Adapter<TuShuoAdapter.ViewHolder
             name= (TextView) itemView.findViewById(R.id.shaitu_name);
             imageView= (ImageView) itemView.findViewById(R.id.shaitu_image);
             zanImage = (ImageView) itemView.findViewById(R.id.shaitu_zanImg);
-//            layout.setOnClickListener(new View.OnClickListener() {
+//            cityheaderview.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
 //                    // ToastUtils.showShortToast(getAdapterPosition()+"");

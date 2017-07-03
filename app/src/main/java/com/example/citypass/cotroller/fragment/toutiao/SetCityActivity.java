@@ -65,7 +65,6 @@ public class SetCityActivity extends BaseActivity implements HSetCityview.onWord
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-
             }
 
             @Override

@@ -95,7 +95,7 @@ public class HcitymatterFragment extends BaseFragment {
         HgoodmannerslAdapter adapter=new HgoodmannerslAdapter(getChildFragmentManager(),fragments,title);
         citymatterViewpager.setAdapter(adapter);
 
-
+        citymatterViewpager.setOffscreenPageLimit(8);
         citymatterTablayout.setupWithViewPager(citymatterViewpager);
 
         citymatterTablayout.setTabMode(TabLayout.GRAVITY_FILL);

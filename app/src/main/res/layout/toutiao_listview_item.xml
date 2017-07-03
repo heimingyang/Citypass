@@ -6,6 +6,7 @@
     android:id="@+id/toutiaolv_onclick"
     >
 <RelativeLayout
+    android:id="@+id/toutiao_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
@@ -38,6 +39,20 @@
         android:textColor="@color/color_999"
         android:textSize="14dp"
         android:drawableLeft="@drawable/ccoo_icon_look2"
+        />
+    <TextView
+        android:id="@+id/toutiaolv_tv4"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/toutiaolv_tv1"
+        android:layout_toRightOf="@id/toutiaolv_tv3"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="51155"
+        android:textColor="@color/color_999"
+        android:textSize="14dp"
+        android:drawableLeft="@drawable/ccoo_icon_look2"
+        android:visibility="gone"
         />
     <ImageView
 
