@@ -35,4 +35,10 @@
     <style name="dialog_out_animstyle">
         <item name="android:windowEnterAnimation">@anim/dialog_in</item>
     </style>
+    <!--选择照片的popwindow动画-->
+    <style name="pictire_pop_andimal"
+        >
+        <item name="android:windowEnterAnimation">@anim/top_pop_picture__select</item>
+        <item name="android:windowExitAnimation">@anim/bootom_pop_picture__select</item>
+    </style>
 </resources>

@@ -33,7 +33,6 @@ import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.view.Mylistview;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
-import com.umeng.qq.handler.a;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.R.attr.mode;
-import static com.umeng.qq.handler.a.s;
 import static com.umeng.socialize.utils.ContextUtil.getContext;
 
 /**

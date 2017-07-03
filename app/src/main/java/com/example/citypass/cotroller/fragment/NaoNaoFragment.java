@@ -1,22 +1,32 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.fragment.information.LoginActivity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.adapter.naonao.NaoNao_Tab_Adapter;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.naonao.Di_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Net_Friend_NaoNao_Fragment;
 import com.example.citypass.cotroller.fragment.naonao.Picture_NaoNao_Fragment;
@@ -33,6 +43,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.Unbinder;
+
+import static com.umeng.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * /**
@@ -186,13 +198,21 @@ public class NaoNaoFragment extends BaseFragment {
     // TODO: 2017/6/26 0026 弹出popupWindow
     private void initPop() {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.carmer_naonao_popupwindow_activity, null);
-        pop = new PopupWindow(view, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.WRAP_CONTENT);
+        RelativeLayout viewById = (RelativeLayout) view.findViewById(R.id.naonaonaonaonaonaonao);
+        viewById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            pop.dismiss();
+            }
+        });
+        pop = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,true);
         //popupWindow的背景透明度
-        view.getBackground().setAlpha(230);
+        view.getBackground().setAlpha(180);
+        //颜色
+        pop.setBackgroundDrawable(new BitmapDrawable());
         //popupWindow的外部点击
         pop.setOutsideTouchable(true);
-        //颜色
-        pop.setBackgroundDrawable(new ColorDrawable());
+//        pop.setFocusable(false);
         //返回
         LinearLayout mCancel = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_cancel);
         mCancel.setOnClickListener(new View.OnClickListener() {
@@ -206,19 +226,113 @@ public class NaoNaoFragment extends BaseFragment {
         mVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                     Intent in = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
-                       startActivity(in);
+                if (getAndroidSDKVersion() >= 23){
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        //申请CALL_PHONE权限
+                        ActivityCompat.requestPermissions(getActivity(),  new String[]{
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.RECORD_AUDIO
+                        },0);
+                    }
+                }else {
+                    Intent in = new Intent(getActivity(),NaoNao_Carmer_Activity.class);
+                    startActivity(in);
+                }
+
+
             }
+
+
         });
         LinearLayout mPhoto = (LinearLayout) view.findViewById(R.id.carmer_naonao_popupwindow_activity_photo);
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 Intent in = new Intent(getActivity(), Carmer_Photo_NaoNao_Activity.class);
+                startActivity(in);
             }
         });
 
     }
 
+//    private void initVideo() {
+//
+//
+//    }
+    private boolean hasAllPermissionsGranted(int[] grantResults) {
+        for (int grantResult : grantResults) {
 
+           // PackageManager.PERMISSION_GRANTED  //有权限   PackageManager.PERMISSION_DENIED无权限
+            if (grantResult == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+        }
+        return true;
+    }
+//    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+//    private static String[] PERMISSIONS_STORAGE = {
+//            Manifest.permission.READ_EXTERNAL_STORAGE,
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE
+//    };
+//    public void myPermission() {
+//        int permission = ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            // We don't have permission so prompt the user
+//            ActivityCompat.requestPermissions(
+//                    getActivity(),
+//                    PERMISSIONS_STORAGE,
+//                    REQUEST_EXTERNAL_STORAGE
+//            );
+//        }
+//    }
+
+    private void showPermissionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("帮助");
+        builder.setMessage("当前应用缺少相机权限或者录音权限。请点击\"设置\"-打开所需权限。");
+        // 拒绝, 退出应用
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+
+        builder.setPositiveButton("设置", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                startAppSettings();
+                dialog.dismiss();
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
+        // 判断是否有权限
+        if (requestCode == 0 && hasAllPermissionsGranted(grantResults)) {
+
+            //有权限 去启动Video
+Intent in = new Intent(getActivity(),NaoNao_Carmer_Activity.class);
+            startActivity(in);
+        } else {
+
+            //去打开权限
+
+            showPermissionDialog();
+        }
+    }
+
+    private int getAndroidSDKVersion() {
+        int version = 0;
+        try {
+            version = Integer.valueOf(android.os.Build.VERSION.SDK);
+            Log.d("NaoNaoFragment", "version:" + version);
+        } catch (NumberFormatException e) {
+            Log.d("NaoNaoFragment", e.toString());
+        }
+        return version;
+    }
 }

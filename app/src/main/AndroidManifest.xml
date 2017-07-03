@@ -4,6 +4,7 @@
     package="com.example.citypass">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +14,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!-- //0.0.9需要新增权限 -->
+    <!--//0.0.9需要新增权限  -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- //0.0.9需要新增权限 -->
@@ -26,8 +27,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -65,19 +66,19 @@
         <activity android:name=".cotroller.fragment.information.InforActivity" />
 
         <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity" />
-        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
-        <activity android:name=".cotroller.fragment.information.PostActivity" />
-        <activity android:name=".cotroller.fragment.toutiao.MessageNotificationActivity" />
-        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
         <activity android:name=".cotroller.fragment.information.LevelActivity" />
         <activity android:name=".cotroller.fragment.information.BlackActivity" />
         <activity android:name=".cotroller.fragment.information.PhoneActivity" />
         <activity android:name=".cotroller.fragment.information.MailActivity" />
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
+        <activity android:name=".cotroller.fragment.information.PostActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.MessageNotificationActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
+        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
         <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity" />
         <activity android:name=".cotroller.activity.shequ.ReleaseActivity" />
-        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity
             android:name=".base.ScanActivity"
@@ -88,6 +89,16 @@
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
         <!-- share -->
+        <activity
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -100,54 +111,52 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true">
+            android:noHistory="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
+
         <activity
-
-
             android:name="com.umeng.qq.tencent.AssistActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:theme="@style/Theme.UMDefault"
+            android:excludeFromRecents="true"
+            />
 
         <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="59535766717c197ff00003be" />
+        android:name="UMENG_APPKEY"
+        android:value="595a4e13a40fa30f48000132"></meta-data>
 
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
+        <activity
+            android:name=".cotroller.activity.find.PublishActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Title_Activity"/>
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
         <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
-        <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
-        <activity
-            android:name=".cotroller.activity.find.PublishActivity"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity" />
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity" />
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity" />
-        android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
-        <activity android:name=".cotroller.fragment.toutiao.CityjustActivity"></activity>
-        <!--<activity android:windowSoftInputMode="adjustPan|stateHidden"></activity>-->
         <activity android:name=".cotroller.fragment.naonao.detail.DetailImageActivity" />
 
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
-        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
-
     </application>
 
 </manifest>

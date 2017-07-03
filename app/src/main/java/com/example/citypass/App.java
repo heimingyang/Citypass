@@ -1,9 +1,11 @@
 package com.example.citypass;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.citypass.base.BaseActivity;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
+
 
 /**
  * /**
@@ -42,4 +44,16 @@ import com.example.citypass.base.BaseActivity;
 
 public class App extends Application {
     public static BaseActivity activity;
+
+    {
+
+        PlatformConfig.setWeixin("wx7dbd7b9313e804a0", "cdcb2fac1aab5ec6d4766d4066a29ae5");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+    }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        UMShareAPI.get(this);
+    }
 }

@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="tv_black_touming">#7F000000</color>
     <color name="line">#E2E2E2</color>
     <color name="gray_bg">#F0F0F0</color>
     <color name="color_999">#999999</color>
@@ -15,7 +16,6 @@
     <color name="tv_red">#FF0000</color>
     <color name="tv_black">#000000</color>
     <color name="orange">#FF6600</color>
-    <color name="tv_black_touming">#7F000000</color>
     <color name="hcfmorecity">#FFA500</color>
     <color name="color_ccc">#cccccc</color>
     <drawable name="login">#f5681d</drawable>
@@ -39,9 +39,6 @@
     <color name="xinshang_back_nv">#EA68A2</color>
     <color name="fengmian_tv">#c6fff310</color>
     <color name="fengmian_from">#9aea68a2</color>
-    <color name="touming">#88000000</color>
-    <color name="tv_touming">#afb3b3b3</color>
-
     <color name="green">#32c465</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>

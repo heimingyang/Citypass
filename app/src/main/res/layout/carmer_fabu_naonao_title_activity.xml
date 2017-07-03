@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/cooperation_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+            android:id="@+id/carmer_fabu_naonao_title_cancel"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_browser_back_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="全部话题"
+            android:textColor="#ffffff"
+            android:textSize="23dp" />
+    </RelativeLayout>
+    <EditText
+
+        android:hint="请输入话题关键词"
+        android:drawableLeft="@drawable/btn_search"
+        android:drawablePadding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/carmer_fabu_naonao_title_edit"
+        android:background="@drawable/carmer_fabu_naonao_title_edit"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/carmer_fabu_naonao_title_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

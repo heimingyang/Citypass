@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/mail_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+
+            android:id="@+id/carmer_fabu_naonao_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_browser_back_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="话题发布"
+            android:textColor="#ffffff"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/carmer_fabu_naonao_fabu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:text="发布"
+            android:textColor="#fff"
+
+            />
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/carmer_fabu_naonao_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mail_Relative">
+
+        <LinearLayout
+            android:id="@+id/carmer_fabu_naonao_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <EditText
+        android:id="@+id/carmer_fabu_naonao_edit"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_below="@id/carmer_fabu_naonao_scroll"
+        android:layout_margin="5dp"
+        android:background="@drawable/carmer_fabu_naonao_edit"
+        android:gravity="top"
+        android:hint="此刻的想法"
+        android:padding="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/carmer_fabu_naonao_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/carmer_fabu_naonao_edit"
+        android:layout_marginTop="10dp"
+        android:background="#e7e4e4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:text="#热门话题"
+            android:textSize="20dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:drawableRight="@drawable/ccoo_icon_jiantou_right"
+            android:text="更多话题"
+            android:textSize="17dp"
+
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="#cdcdcd" />
+
+        <RelativeLayout
+            android:id="@+id/hehe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/carmer_fabu_naonao_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/cover_main_position"
+                    android:text="北京吉利大学" />
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_worry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/x" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/carmer_fabu_naonao_address"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_emoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/smile" />
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_aite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@id/carmer_fabu_naonao_emoji"
+                    android:src="@drawable/aite" />
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_yuyin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@id/carmer_fabu_naonao_aite"
+                    android:src="@drawable/yuyin" />
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@id/carmer_fabu_naonao_yuyin"
+                    android:src="@drawable/daoju" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+
+            android:id="@+id/carmer_fabu_naonao_emoji_v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/view_pager_content"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/viewGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_pager_content"
+                android:layout_marginTop="-25px"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:id="@+id/shangdian"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@id/viewGroup" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/shangdian">
+
+                <ImageView
+                    android:id="@+id/carmer_fabu_naonao_shangdian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/add_biaoqing1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/carmer_fabu_naonao_shangdian"
+                    android:background="#c7c5c5"
+                    android:text="默认" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

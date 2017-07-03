@@ -32,11 +32,10 @@ android {
         }
     }
     signingConfigs {
-
         release {
             keyAlias 'citypass'
             keyPassword '990712'
-            storeFile file('C:/Users/Administrator/Desktop/Citypass/app/citypass.jks')
+            storeFile file('E:/ShiXunOne/citypasss/Citypass/citypass.jks')
             storePassword '990712'
         }
     }
@@ -67,7 +66,6 @@ dependencies {
     compile files('libs/SocialSDK_facebook.jar')
     compile files('libs/SocialSDK_sms.jar')
     compile files('libs/SocialSDK_tencentWB.jar')
-
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
@@ -75,6 +73,7 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okio:okio:1.11.0'
@@ -91,4 +90,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.yuyh.imgsel:library:1.2.0'
+    compile files('libs/SocialSDK_email.jar')
+    compile files('libs/SocialSDK_renren.jar')
 }
