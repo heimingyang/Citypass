@@ -144,7 +144,7 @@ public class CityActivity extends BaseActivity {
                 startActivity(intentOne);
                 break;
             case R.id.city_Relative_Four:
-                Intent intentTwo = new Intent(CityActivity.this, WebViewActivity.class);
+                   Intent intentTwo = new Intent(CityActivity.this, WebViewActivity.class);
                 intentTwo.putExtra("url","http://m.yanqing.ccoo.cn/choujiang.aspx");
                 intentTwo.putExtra("webview_title","抽奖活动");
                 startActivity(intentTwo);

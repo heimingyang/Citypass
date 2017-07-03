@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.beele.Belle_Nhz_Bean;
 import com.example.citypass.view.ImageViewPlus;
@@ -89,7 +88,7 @@ public class Belle_Nhz_Adapter extends RecyclerView.Adapter<Belle_Nhz_Adapter.My
         //时间
         String createTime = coverPhotoDetailsInfoBean.getCreateTime();
 
-        Glide.with(App.activity).load(photo).into(holder.imageView);
+        Glide.with(mcontext).load(photo).into(holder.imageView);
 
         holder.tv_name.setText(nick);
 

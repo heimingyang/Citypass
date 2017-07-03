@@ -18,13 +18,26 @@ public class SquareDetailBean {
     private String content;
     private String address;
     private String Images;
-    public SquareDetailBean(String title, String body, String time, String image,  String address,String Images) {
+    private int id;
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public SquareDetailBean(String title, String body, String time, String image, String address, String Images,int id) {
         this.Title = title;
         this.body = body;
         this.time = time;
         this.image = image;
         this.address = address;
         this.Images = Images;
+        this.id = id;
     }
 
     public String getImages() {

@@ -2,6 +2,7 @@ package com.example.citypass.cotroller.activity.find;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
-import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.adapter.discover.Discover_Belle_Adapter;
 import com.example.citypass.cotroller.fragment.faxian_belle.FengMian_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.LengYan_Fragment;
@@ -28,6 +28,7 @@ import com.example.citypass.cotroller.fragment.faxian_belle.XinRenXiu_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XinShang_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XingGan_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.ZuiXin_Fragment;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.model.bean.information.Information;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -196,11 +198,11 @@ public class FaXianMeiNvActivity extends BaseActivity {
                 //女生再判断 资料有没有完善
                 if (serverInfo.getName().isEmpty() || serverInfo.getJob().isEmpty() || serverInfo.getInfo().isEmpty()) {
                     //没有完善就跳转去完善
+
                     Intent intent = new Intent(this, FaXianPerfectActivity.class);
                     startActivity(intent);
                 } else {
                     //完善了就去发表
-
 
 
                 }
@@ -264,5 +266,10 @@ public class FaXianMeiNvActivity extends BaseActivity {
 
     }
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

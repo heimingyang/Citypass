@@ -86,7 +86,7 @@
         android:textSize="20dp" />
 
     <LinearLayout
-        android:id="@+id/square_naonao_recycle_item_img_one"
+        android:id="@+id/square_naonao_ThreeImageLinear"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="horizontal">

@@ -214,6 +214,8 @@ public class WebViewActivity extends BaseActivity {
             mPop.dismiss();
         } else {
             mPop.showAsDropDown(v);
+
+//            mPop.showAtLocation(v, Gravity.BOTTOM,0,0);
         }
 
 

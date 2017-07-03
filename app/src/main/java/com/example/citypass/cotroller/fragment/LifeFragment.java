@@ -1,5 +1,7 @@
 package com.example.citypass.cotroller.fragment;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -25,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.cotroller.adapter.life.FragmentAdapter;
 import com.example.citypass.cotroller.adapter.life.Fragment_LifeGVAdapter;
 import com.example.citypass.cotroller.adapter.life.MyGridAdapter;
@@ -213,18 +216,20 @@ public class LifeFragment extends BaseFragment {
 
                     //解析第一个listview列表
                     getOneList();
-                //第二个列表
+                    //第二个列表
                     getTwoList();
 
                     LifeScrollview.setVisibility(View.VISIBLE);
                     anInt = false;
                 }
+
                 @Override
                 public void onError(String errormsg) {
 
                 }
             });
         }
+
     }
 
     private void getJop() {
@@ -420,7 +425,22 @@ public class LifeFragment extends BaseFragment {
             }
         });
 
+
     }
+
+    private void clickFabu() {
+        final String url = "http://m.yanqing.ccoo.cn/post/fabu/";
+
+        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getContext(), MyWebActivity.class);
+                in.putExtra("url", url);
+                startActivity(in);
+            }
+        });
+    }
+
 
     //搜索
     public void EditSearch() {
@@ -463,6 +483,14 @@ public class LifeFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         App.activity.getText().setText("生活");
         App.activity.getText().setCompoundDrawables(null, null, null, null);
+        App.activity.getImgOne().setVisibility(View.GONE);
+        App.activity.getImgTwo().setMaxHeight(100);
+        App.activity.getImgTwo().setMaxWidth(100);
+        Drawable drawable = App.activity.getResources().getDrawable(R.drawable.ccoo_icon_edit_tran);
+
+        App.activity.getImgTwo().setImageDrawable(drawable);
+        clickFabu();
+
 
     }
 

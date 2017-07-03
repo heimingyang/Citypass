@@ -65,7 +65,7 @@ public class Title_Detail_NaoNao_Adapter extends RecyclerView.Adapter<Title_Deta
     }
     @Override
     public Title_Detail_ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(App.activity).inflate(R.layout.title_detail_naonao_item,null);
+        View v = LayoutInflater.from(App.activity).inflate(R.layout.square_naonao_recycle_item,null);
         Title_Detail_ViewHolder holder = new Title_Detail_ViewHolder(v);
         return holder;
     }
@@ -74,6 +74,7 @@ public class Title_Detail_NaoNao_Adapter extends RecyclerView.Adapter<Title_Deta
     public void onBindViewHolder(final Title_Detail_ViewHolder holder, int position) {
         Title_Detail_NaoNao_Bean.ServerInfoBean bean = mList.get(position);
         holder.mPinLun.setText(bean.getTchild()+"");
+        holder.mLevel.setVisibility(View.GONE);
         holder.mZanText.setText(bean.getDing()+"");
         holder.mAddress.setText(bean.getMapName()+"");
         holder.mName.setText(bean.getGambitName()+"");
@@ -96,17 +97,17 @@ public class Title_Detail_NaoNao_Adapter extends RecyclerView.Adapter<Title_Deta
     }
     class Title_Detail_ViewHolder extends RecyclerView.ViewHolder{
         private ImageView mTouXiang,mImg;
-        private TextView mName,mBody,mAddress,mZanText,mPinLun,mTime;
+        private TextView mName,mBody,mAddress,mZanText,mLevel,mPinLun,mTime;
         public Title_Detail_ViewHolder(View v) {
             super(v);
-            mTouXiang = (ImageView) v.findViewById(R.id.title_detail_naonao_item_touxiang);
-            mName = (TextView) v.findViewById(R.id.title_detail_naonao_item_name);
-            mBody = (TextView) v.findViewById(R.id.title_detail_naonao_item_body);
-            mAddress = (TextView) v.findViewById(R.id.title_detail_naonao_item_address);
-            mZanText = (TextView) v.findViewById(R.id.title_detail_naonao_item_zan);
-            mPinLun = (TextView) v.findViewById(R.id.title_detail_naonao_item_pinlun);
-            mTime = (TextView) v.findViewById(R.id.title_detail_naonao_item_time);
-            mImg = (ImageView) v.findViewById(R.id.title_detail_naonao_item_img);
+            mTouXiang = (ImageView) v.findViewById(R.id.square_naonao_recycle_item_touxiang);
+            mName = (TextView) v.findViewById(R.id.square_naonao_recycle_item_name);
+            mBody = (TextView) v.findViewById(R.id.square_naonao_recycle_item_body);
+            mAddress = (TextView) v.findViewById(R.id.square_naonao_recycle_item_address);
+            mZanText = (TextView) v.findViewById(R.id.square_naonao_recycle_item_zan);
+            mLevel = (TextView) v.findViewById(R.id.square_naonao_recycle_item_level);
+            mPinLun = (TextView) v.findViewById(R.id.square_naonao_recycle_item_pinlun);
+            mTime = (TextView) v.findViewById(R.id.square_naonao_recycle_item_time);
         }
     }
 }

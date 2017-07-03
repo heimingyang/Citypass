@@ -83,7 +83,7 @@ public class FunctionActivity extends BaseActivity {
             functionTitleTv.setText("分类");
             functionOne.setVisibility(View.GONE);
             functionTwo.setVisibility(View.VISIBLE);
-            functionTwo.setImageResource(R.drawable.btn_release_normal);
+            functionTwo.setImageResource(R.drawable.ccoo_icon_edit_tran);
             functionTwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -97,7 +97,7 @@ public class FunctionActivity extends BaseActivity {
             functionTwo.setVisibility(View.VISIBLE);
 
             functionOne.setImageResource(R.drawable.chazhao_back_normal);
-            functionTwo.setImageResource(R.drawable.btn_release_normal);
+            functionTwo.setImageResource(R.drawable.ccoo_icon_edit_tran);
 
             functionOne.setOnClickListener(new View.OnClickListener() {
                 @Override

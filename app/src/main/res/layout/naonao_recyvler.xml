@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/Naonao_Recycler"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.citypass.view.MyRecycler
+        android:id="@+id/Naonao_Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/NaoNao_Recycler_Text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="此页面没有数据了。。。"
+        android:visibility="gone" />
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="60dp" />
+
 </LinearLayout>

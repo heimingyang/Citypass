@@ -84,11 +84,15 @@ public class ZuiXin_Fragment extends BaseFragment {
                 List<Beele_Zuixin_Bean.ServerInfoBean.NewTCoverInfoListBeanX.NewTCoverInfoListBean> newTCoverInfoList
                         = beele_zuixin_bean.getServerInfo().getNewTCoverInfoList().getNewTCoverInfoList();
 
-
+                if (mList.size()==0) {
                     mList.addAll(newTCoverInfoList);
                     belle_zuixin_adapter.notifyDataSetChanged();
 
+                } else {
+                    mList.addAll(newTCoverInfoList);
+                    belle_zuixin_adapter.notifyDataSetChanged();
 
+                }
 
             }
 

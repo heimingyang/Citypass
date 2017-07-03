@@ -108,12 +108,11 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
             a = 1;
         }
     }
-
     private void initParsing() {
         final Map<String, String> map = new HashMap<>();
         String a = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422,\"order\":0,\"gambitid\":0,\"curPage\":";
         String str = j + "";
-        String b = ",\"pageSize\":10,\"oldTime\":\"\",\"type\":1},\"requestTime\":\"2017-06-21 20:56:33\",\"customerKey\":\"935A33F592C9C6509BAF3C887F29C205\",\"Method\":\"PHSocket_GetNewTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 5.1\",\"UserId\":0,\"PhoneNum\":\"+8618833628372\",\"SystemNo\":2,\"PhoneNo\":\"OPPO R9m\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        String b = ",\"pageSize\":10,\"oldTime\":\"\",\"type\":1},\"requestTime\":\"2017-06-29 21:35:33\",\"customerKey\":\"935A33F592C9C6509BAF3C887F29C205\",\"Method\":\"PHSocket_GetNewTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 5.1\",\"UserId\":0,\"PhoneNum\":\"+8618833628372\",\"SystemNo\":2,\"PhoneNo\":\"OPPO R9m\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
         String i = a + str + b;
         map.put("param", i);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
@@ -122,6 +121,9 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
                 Log.d("Square_NaoNao_Fragment", result);
                 Square_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Square_NaoNao_Bean.class);
                 if (mList.size() < 0) {
+                    return;
+                }
+                if(square_naoNao_bean.getMessageList().getCode()!=1000){
                     return;
                 }
                 mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());

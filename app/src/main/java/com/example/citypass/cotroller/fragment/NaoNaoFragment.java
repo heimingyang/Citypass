@@ -167,7 +167,7 @@ public class NaoNaoFragment extends BaseFragment {
         });
         App.activity.getText().setCompoundDrawables(null, null, null, null);
         App.activity.getImgOne().setVisibility(View.INVISIBLE);
-        App.activity.getImgTwo().setImageResource(R.drawable.mall_camera0);
+        App.activity.getImgTwo().setImageResource(R.drawable.mall_camera2);
         App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,14 +1,11 @@
 package com.example.citypass.cotroller.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Process;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -385,8 +382,8 @@ public class TouTiaoFragment extends BaseFragment {
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
         App.activity.getText().setText("延庆在线");
-        App.activity.getImgOne().setImageResource(R.drawable.ccoo_icon_tuisong_noral);
-        App.activity.getImgTwo().setImageResource(R.drawable.mall_changeadd);
+        App.activity.getImgOne().setImageResource(R.drawable.btn_remind_normal);
+        App.activity.getImgTwo().setImageResource(R.drawable.tjbutn1_auth_add);
 
         //题目中的点击事件
         titlelistener();
@@ -824,7 +821,13 @@ public class TouTiaoFragment extends BaseFragment {
             @Override
             public void onSuccess(String result) {
                 //Log.e("poupwindowlist", result.toString());
+
+
                 TtPoupwindowbean f = JSON.parseObject(result, TtPoupwindowbean.class);
+                if(result == null && f.getMessageList().getCode()!=1000){
+                    return;
+                }
+
                 poupwindowlist.addAll(f.getServerInfo().getConfigData());
                 poupwindowadapter.notifyDataSetChanged();
                 // Log.e("list", list.size() + "");

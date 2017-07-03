@@ -108,6 +108,9 @@ public class Title_NaoNao_Fragment extends BaseFragment {
                 if (mList.size() < 0) {
                     return;
                 }
+                if(title_naoNao_bean.getMessageList().getCode()!=1000){
+                    return;
+                }
                 mList.addAll(title_naoNao_bean.getServerInfo());
                 if (adapter == null) {
                     mList.addAll(title_naoNao_bean.getServerInfo());

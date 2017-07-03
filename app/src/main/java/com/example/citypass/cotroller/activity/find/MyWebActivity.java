@@ -34,19 +34,20 @@ public class MyWebActivity extends BaseActivity {
         String title = intent.getStringExtra("title");
 
 
-        myWebview.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;// 返回false
-            }
-        });
-        if (urll.contains("http")) {
-            myWebview.loadUrl(urll);
-
-        } else {
-            myWebview.loadUrl("http://m.yanqing.ccoo.cn" + urll);
-        }
-
+//        myWebview.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                return false;// 返回false
+//            }
+//        });
+//        if (urll.contains("http")) {
+//            myWebview.loadUrl(urll);
+//
+//        } else {
+//            myWebview.loadUrl("http://m.yanqing.ccoo.cn" + urll);
+//        }
+        myWebview.setWebViewClient(new WebViewClient());
+        myWebview.loadUrl(urll);
     }
 
     @Override

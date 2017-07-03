@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -25,11 +26,16 @@ import java.util.List;
 public class MyGridLayout extends GridLayout {
 
     private int size;
+    private onClicklisenter clicklisenter;
+    private List<String> mList;
+
+    public void setClicklisenter(onClicklisenter clicklisenter) {
+        this.clicklisenter = clicklisenter;
+    }
 
     public void setmList(List<String> mList) {
+        this.mList = mList;
         size = mList.size();
-        Log.d("MyGridLayout", "size:" + size);
-
         if (size == 1) {
             for (String s : mList) {
                 init();
@@ -37,17 +43,10 @@ public class MyGridLayout extends GridLayout {
                 Log.d("MyGridLayout ", "第一个是s" + s);
             }
             mList.clear();
-        }
-//        else  if(size>1){
-//            for (String s : mList) {
-//                init();
-//                size = 2;
-//                addItemOne(s);
-//            }
-//        }
-        else {
+        } else {
             for (String s : mList) {
                 size = 3;
+                Log.d("MyGridLayout", "第二个是" + s);
                 init();
                 addItemTwo(s);
             }
@@ -78,7 +77,7 @@ public class MyGridLayout extends GridLayout {
     private int margin = 5;
 
     public void addItem(String str) {
-        ImageView image = new ImageView(getContext());
+        final ImageView image = new ImageView(getContext());
         LayoutParams lp = new LayoutParams();
 
         lp.width = getResources().getDisplayMetrics().widthPixels / 2;
@@ -89,38 +88,22 @@ public class MyGridLayout extends GridLayout {
 
         image.setLayoutParams(lp);
 
-
-//        image.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT) );
-//        image.setScaleType(ImageView.ScaleType.FIT_XY);
-
-
         Glide.with(getContext()).load(str).into(image);
         lp.setMargins(margin, margin, margin, margin);
         addView(image);
+
+        image.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
 
-    public void addItemOne(String str) {
-        Log.d("MyGridLayout str", str);
-        ImageView image1 = new ImageView(getContext());
-        LayoutParams lp = new LayoutParams();
-
-        lp.width = getResources().getDisplayMetrics().widthPixels / 2 - margin * 2;
-
-        lp.height = LayoutParams.WRAP_CONTENT;
-
-        image1.setLayoutParams(lp);
-
-        lp.setGravity(Gravity.CENTER);
-
-        Glide.with(getContext()).load(str).into(image1);
-        lp.setMargins(margin, margin, margin, margin);
-        addView(image1);
-    }
-
-    public void addItemTwo(String str) {
-        Log.d("MyGridLayout str", str);
-        ImageView image2 = new ImageView(getContext());
+    public void addItemTwo(final String str) {
+        final ImageView image2 = new ImageView(getContext());
         LayoutParams lp = new LayoutParams();
 
         lp.width = getResources().getDisplayMetrics().widthPixels / 3 - margin * 2;
@@ -129,11 +112,40 @@ public class MyGridLayout extends GridLayout {
 
         image2.setLayoutParams(lp);
         lp.setGravity(Gravity.CENTER);
-//        image2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) );
-//        image2.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide.with(getContext()).load(str).into(image2);
         lp.setMargins(margin, margin, margin, margin);
         addView(image2);
+
+        image2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                for (int i = 0; i < mList.size(); i++) {
+//
+//                        Intent intent = new Intent(getContext(), DetailImageActivity.class);
+//                        intent.putExtra("image", (Serializable) mList);
+//                        intent.putExtra("position", mList.get(i));
+//                        App.activity.startActivity(intent);
+//                }
+
+                for (int i = 0; i < mList.size(); i++) {
+                    if (mList.get(i).equals(str)) {
+                        clicklisenter.onItemClick(v, i);
+                        Log.d("MyGridLayout", "i:" + i);
+                        clicklisenter.onItemClick(v, i);
+
+                    }
+
+
+                }
+
+            }
+        });
+
+    }
+
+
+    public interface onClicklisenter {
+        void onItemClick(View v, int position);
     }
 
 

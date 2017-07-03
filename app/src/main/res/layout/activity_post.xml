@@ -27,11 +27,11 @@
             android:textSize="23dp" />
         <ImageView
             android:id="@+id/post_Release"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/btn_release_normal"
+            android:src="@drawable/ccoo_icon_edit_tran"
             android:layout_marginRight="10dp"/>
     </RelativeLayout>
     <RadioGroup

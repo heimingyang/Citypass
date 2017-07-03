@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -89,7 +90,7 @@
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
-        <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity"/>
+        <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity" />
         <activity android:name=".cotroller.activity.shequ.ReleaseActivity" />
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
@@ -129,6 +130,8 @@
         </activity>
 
         <activity
+
+
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
@@ -144,8 +147,8 @@
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
         <activity android:name=".cotroller.fragment.information.CollectionActivity" />
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
-        <activity android:name=".cotroller.fragment.information.ShoppingActivity"/>
-        <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity"/>
+        <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
         <activity android:name=".cotroller.fragment.information.MedalActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
@@ -153,7 +156,10 @@
         <activity
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
+        <activity android:name=".cotroller.fragment.naonao.detail.DetailImageActivity" />
+
+        <activity android:name=".cotroller.activity.find.MyWebActivity" />
     </application>
 
 </manifest>
+

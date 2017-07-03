@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/naonao_item_MainRelative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/naonao_newItem_Image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            android:id="@+id/naonao_itemOneRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/naonao_newItem_Image">
+
+            <TextView
+                android:id="@+id/naonao_item_titlename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="bug" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/naonao_item_dengji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/naonao_item_titlename"
+                android:background="@drawable/level_bg"
+                android:text="lv:12"
+                />
+
+            <ImageView
+                android:id="@+id/naonao_item_imageMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:src="@drawable/ccoo_icon_message" />
+            />
+
+            <TextView
+                android:id="@+id/naonao_item_sofa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/naonao_item_imageMsg"
+                android:text="沙发" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/naonao_itemOneRelative"
+            android:layout_toRightOf="@+id/naonao_newItem_Image">
+
+            <TextView
+                android:id="@+id/naonao_itemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="15小时" />
+
+            <TextView
+                android:id="@+id/naonao_itemAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="北京吉利大学" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/naonao_item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/naonao_newItem_Image"
+            android:layout_margin="5dp"
+            android:text="666" />
+
+        <RelativeLayout
+            android:id="@+id/nanao_item_TwoRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/naonao_item_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:background="#F0F0F0">
+
+            <TextView
+                android:id="@+id/naonao_item_pinName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:text="二运" />
+
+            <TextView
+                android:id="@+id/naonao_item_pinContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/naonao_item_pinName"
+                android:text="刷存在感" />
+
+            <TextView
+                android:id="@+id/naonao_item_pinTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/naonao_item_pinContent"
+                android:text="时间" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/naonao_item_TextGone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/naonao_item_MainRelative"
+        android:gravity="center_horizontal"
+        android:text="没有更多数据了"
+        android:textSize="18dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

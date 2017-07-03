@@ -1,8 +1,5 @@
 package com.example.citypass.cotroller.activity.find;
 
-import android.app.Activity;
-import android.os.Bundle;
-
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 

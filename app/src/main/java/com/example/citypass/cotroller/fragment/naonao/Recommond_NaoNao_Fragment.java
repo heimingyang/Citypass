@@ -5,15 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.naonao.Recommond_NaoNao_Recycle_Adapter;
-import com.example.citypass.cotroller.adapter.naonao.Recommond_NaoNao_TypeAdapter;
-import com.example.citypass.cotroller.adapter.naonao.Square_NaoNao_TypeAdapter;
 import com.example.citypass.model.bean.naonao.Recommond_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
@@ -62,7 +59,7 @@ import butterknife.Unbinder;
  */
 
 
-public class Recommond_NaoNao_Fragment extends BaseFragment implements Square_NaoNao_TypeAdapter.mOnItemClickListener{
+public class Recommond_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.recommond_naonao_recycle)
     MRecyclerView recommondNaonaoRecycle;
     Unbinder unbinder;
@@ -70,7 +67,7 @@ public class Recommond_NaoNao_Fragment extends BaseFragment implements Square_Na
     private int a=0;
     private Recommond_NaoNao_Recycle_Adapter adapter;
     private List<Recommond_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
-    private Recommond_NaoNao_TypeAdapter Typeadapter;
+
     @Override
     protected void initData() {
         if(a==0) {
@@ -110,21 +107,16 @@ public class Recommond_NaoNao_Fragment extends BaseFragment implements Square_Na
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Recommond_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Recommond_NaoNao_Bean.class);
-                if (mList.size() < 0) {
+                if (square_naoNao_bean.getMessageList().getCode()!=1000) {
                     return;
                 }
-                  mList.addAll(square_naoNao_bean.getServerInfo());
-                if (Typeadapter == null) {
-                    Typeadapter = new Recommond_NaoNao_TypeAdapter(mList, getContext());
-                    recommondNaonaoRecycle.setAdapter(Typeadapter);
-
+                mList.addAll(square_naoNao_bean.getServerInfo());
+                if(adapter==null){
+                    adapter = new Recommond_NaoNao_Recycle_Adapter(mList);
+                    recommondNaonaoRecycle.setAdapter(adapter);
+                }else {
+                    adapter.setNewData(mList);
                 }
-//                if(adapter==null){
-//                    adapter = new Recommond_NaoNao_Recycle_Adapter(mList);
-//                    recommondNaonaoRecycle.setAdapter(adapter);
-//                }else {
-//                    adapter.setNewData(mList);
-//                }
             }
 
             @Override
@@ -149,13 +141,6 @@ public class Recommond_NaoNao_Fragment extends BaseFragment implements Square_Na
         tv.setPadding(5, 5, 5, 5);
         recommondNaonaoRecycle.addHeaderView(tv);
         recommondNaonaoRecycle.setLayoutManager(man);
-    }
-    //自定义点击事件
-    @Override
-    public void ItemClick(int position) {
-        Recommond_NaoNao_Bean.ServerInfoBean bean = mList.get(position);
-
-        Toast.makeText(getContext(), "position:" + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override

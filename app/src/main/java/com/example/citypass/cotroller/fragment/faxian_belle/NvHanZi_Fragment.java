@@ -2,7 +2,6 @@ package com.example.citypass.cotroller.fragment.faxian_belle;
 
 import android.os.Handler;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -80,13 +79,15 @@ public class NvHanZi_Fragment extends BaseFragment {
                         = belle_nhz_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
 
 
-
+                if (mList.size() == 0) {
                     mList.addAll(coverPhotoDetailsInfo);
                     belle_nhz_adapter.notifyDataSetChanged();
 
+                } else {
+                    mList.addAll(coverPhotoDetailsInfo);
+                    belle_nhz_adapter.notifyDataSetChanged();
 
-
-
+                }
 
 
             }
@@ -109,37 +110,11 @@ public class NvHanZi_Fragment extends BaseFragment {
 
             @Override
             public void onRefresh() {
-//
-                NvhanziRecycle.postDelayed(new Runnable() {
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Map<String, String> map = new HashMap<>();
-                        map.put("param", "{\"appName\":\"CcooCity\",\"Param\":{\"ImName\":\"女汉子\",\"pageSize\":10,\"curPage\":1,\"siteID\":2422},\"requestTime\":\"2017-06-26 14:36:15\",\"customerKey\":\"EAC7355B245815A7EFFE31B399BCCD52\",\"Method\":\"PHSocket_GetImpressionTCoverInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\"+8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}");
-
-                        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
-                            @Override
-                            public void onSuccess(String result) {
-                                mList.clear();
-                                Belle_Nhz_Bean belle_nhz_bean = JSON.parseObject(result, Belle_Nhz_Bean.class);
-                                List<Belle_Nhz_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
-                                        = belle_nhz_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
-
-
-
-                                    mList.addAll(coverPhotoDetailsInfo);
-                                    belle_nhz_adapter.notifyDataSetChanged();
-
-
-
-
-                            }
-
-                            @Override
-                            public void onError(String errormsg) {
-
-                            }
-                        });
-
+                        mList.clear();
+                        initData();
                         NvhanziRecycle.refreshComplete();
 
                     }
@@ -166,11 +141,7 @@ public class NvHanZi_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        try {
-            NvhanziRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        } catch (Exception e) {
-            Log.e("TAGBUG", e.getMessage());
-        }
+        NvhanziRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         belle_nhz_adapter = new Belle_Nhz_Adapter(mList, getContext());
         NvhanziRecycle.setAdapter(belle_nhz_adapter);
     }

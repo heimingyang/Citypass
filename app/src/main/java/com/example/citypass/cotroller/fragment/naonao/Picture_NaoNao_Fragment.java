@@ -94,7 +94,11 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Picture_NaoNao_Fragment", result);
                 Picture_NaoNao_Bean picture_naoNao_bean = JSON.parseObject(result, Picture_NaoNao_Bean.class);
+                if (picture_naoNao_bean.getMessageList().getCode()!=1000) {
+                    return;
+                }
                 List<Picture_NaoNao_Bean.ServerInfoBean> serverInfo = new ArrayList<Picture_NaoNao_Bean.ServerInfoBean>();
+
 
                     serverInfo.addAll(picture_naoNao_bean.getServerInfo());
                 Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + serverInfo.size());

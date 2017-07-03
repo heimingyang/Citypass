@@ -82,11 +82,15 @@ public class XingGan_Fragment extends BaseFragment {
                 Belle_XG_Bean belle_xg_bean = JSON.parseObject(result, Belle_XG_Bean.class);
                 List<Belle_XG_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
                         = belle_xg_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
-
+                if (mlist.size() == 0) {
                     mlist.addAll(coverPhotoDetailsInfo);
                     belle_xg_adapter.notifyDataSetChanged();
 
+                } else {
+                    mlist.addAll(coverPhotoDetailsInfo);
+                    belle_xg_adapter.notifyDataSetChanged();
 
+                }
 
             }
 

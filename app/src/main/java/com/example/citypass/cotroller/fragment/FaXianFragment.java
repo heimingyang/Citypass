@@ -1,9 +1,7 @@
 package com.example.citypass.cotroller.fragment;
 
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,15 +11,14 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.base.ScanActivity;
-import com.example.citypass.utils.LogUtils;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.base.ScanActivity;
 import com.example.citypass.cotroller.adapter.discover.MyDiscoverAdapter;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
+import com.example.citypass.utils.LogUtils;
 import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import java.util.HashMap;
 import java.util.List;
@@ -98,15 +95,7 @@ public class FaXianFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
-                startScan();
 
-
-            }
-        });
     }
 
     public void startScan() {
@@ -145,9 +134,15 @@ public class FaXianFragment extends BaseFragment {
         App.activity.getText().setText("发现");
         App.activity.getText().setCompoundDrawables(null, null, null, null);
         App.activity.getImgOne().setVisibility(View.GONE);
-        Drawable drawable = App.activity.getResources().getDrawable(R.drawable.saoyisao);
+        Drawable drawable = App.activity.getResources().getDrawable(R.drawable.ccoo_icon_erweima);
         App.activity.getImgTwo().setImageDrawable(drawable);
-
+        App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "扫描二维码", Toast.LENGTH_SHORT).show();
+                startScan();
+            }
+        });
     }
 
 

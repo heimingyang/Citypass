@@ -142,10 +142,12 @@ public class XinShang_Fragment extends BaseFragment {
                 String age = coverXinShangInfoList.get(1).getAge();
                 LogUtils.e("age----->", age);
 
-
+                if (belle_xinShang_adapter == null) {
                     belle_xinShang_adapter = new Belle_XinShang_Adapter(coverXinShangInfoList, getActivity());
                     xinsahngRecycle.setAdapter(belle_xinShang_adapter);
+                } else {
 
+                }
 
             }
 

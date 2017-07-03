@@ -141,7 +141,7 @@ public class SheQuFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-        App.activity.getImgTwo().setImageResource(R.drawable.btn_release_normal);
+        App.activity.getImgTwo().setImageResource(R.drawable.ccoo_icon_edit_tran);
         App.activity.getImgTwo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
