@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context="com.example.citypass.cotroller.activity.find.PublishActivity">
 
@@ -24,7 +25,7 @@
             android:gravity="center"
             android:text="上传我的照片"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -36,12 +37,99 @@
         <ImageView
             android:id="@+id/Publish_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/cover_guide_upload2" />
+            android:layout_height="match_parent" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/touming">
+
+
+            <ImageView
+                android:id="@+id/publish_checket"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:src="@drawable/shangchuan" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/publish_recycle"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/publish_checket" />
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
 
+    <EditText
+        android:id="@+id/publishi_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/Publish_relativelayout1"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="给照片做个简单的描述,不超过50字~" />
+
+    <TextView
+        android:id="@+id/publish_fengexian"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_below="@id/publishi_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_666" />
+
+    <TextView
+        android:id="@+id/publish_kongbai"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/publish_fengexian"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:drawableRight="@drawable/ccoo_icon_jiantou_right"
+        android:gravity="center_vertical"
+        android:text="选择展示区域"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/publish_content_checket"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/publish_fengexian"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:text="照片上墙"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_below="@id/publish_content_checket"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:background="@color/color_666" />
+
+    <Button
+        android:id="@+id/publish_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/publish_content_checket"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_yuanjiao_yello"
+        android:text="完成"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

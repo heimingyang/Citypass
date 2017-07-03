@@ -2,7 +2,6 @@ package com.example.citypass.cotroller.activity.find;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.adapter.discover.Discover_Belle_Adapter;
 import com.example.citypass.cotroller.fragment.faxian_belle.FengMian_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.LengYan_Fragment;
@@ -28,8 +28,8 @@ import com.example.citypass.cotroller.fragment.faxian_belle.XinRenXiu_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XinShang_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.XingGan_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.ZuiXin_Fragment;
-import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.model.bean.information.Information;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -102,6 +101,8 @@ public class FaXianMeiNvActivity extends BaseActivity {
     private List<String> mlist = new ArrayList<>();
     //viewpager适配器
     private Discover_Belle_Adapter discoverBelle_adapter;
+    private AlertDialog alertDialog;
+    private View inflate;
 
 
     @Override
@@ -166,6 +167,10 @@ public class FaXianMeiNvActivity extends BaseActivity {
         BelleTablayout.setupWithViewPager(BelleViewpager);
 
 
+        //默认选项
+        BelleTablayout.getTabAt(3).select();
+
+
     }
 
 
@@ -189,6 +194,8 @@ public class FaXianMeiNvActivity extends BaseActivity {
         //判断是否登录
         if (SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false)) {
             Information.ServerInfoBean serverInfo = LoginUtils.information.getServerInfo();
+
+            LogUtils.e("真实姓名", serverInfo.getName());
             //男生弹出dialog
             if (LoginUtils.information.getServerInfo().getSex().equals("男")) {
                 Toast.makeText(this, "男", Toast.LENGTH_SHORT).show();
@@ -196,14 +203,18 @@ public class FaXianMeiNvActivity extends BaseActivity {
             } else {
                 Toast.makeText(this, "女", Toast.LENGTH_SHORT).show();
                 //女生再判断 资料有没有完善
-                if (serverInfo.getName().isEmpty() || serverInfo.getJob().isEmpty() || serverInfo.getInfo().isEmpty()) {
-                    //没有完善就跳转去完善
+                if (serverInfo.getName() == "") {
 
+                    //没有完善就跳转去完善
                     Intent intent = new Intent(this, FaXianPerfectActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     //完善了就去发表
-
+                    String sex = LoginUtils.information.getServerInfo().getSex();
+                    Intent intent = new Intent(FaXianMeiNvActivity.this, PublishActivity.class);
+                    intent.putExtra("sex", sex);
+                    startActivity(intent);
 
                 }
             }
@@ -237,18 +248,26 @@ public class FaXianMeiNvActivity extends BaseActivity {
     //本页面男生的dialog
     private void showMyDialog() {
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog = new AlertDialog.Builder(this).create();
 
-        View inflate = LayoutInflater.from(this).inflate(R.layout.boy_dialog_item, null);
+        inflate = LayoutInflater.from(this).inflate(R.layout.boy_dialog_item, null);
         gotoBoy = (TextView) inflate.findViewById(R.id.dialog_gotoboy);
         okBoy = (Button) inflate.findViewById(R.id.dialog_Button);
         //点击去帅男秀场
         gotoBoy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FaXianMeiNvActivity.this, "进入帅男秀场", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FaXianMeiNvActivity.this, FaXianPerfectActivity.class);
-                startActivity(intent);
+                if (LoginUtils.information.getServerInfo().getUserName().isEmpty()) {
+                    Intent intent = new Intent(FaXianMeiNvActivity.this, FaXianPerfectActivity.class);
+                    intent.putExtra("sex", LoginUtils.information.getServerInfo().getSex());
+                    startActivity(intent);
+                    alertDialog.dismiss();
+                } else {
+                    Intent intent = new Intent(FaXianMeiNvActivity.this, PublishActivity.class);
+                    intent.putExtra("sex", LoginUtils.information.getServerInfo().getSex());
+                    startActivity(intent);
+                    alertDialog.dismiss();
+                }
 
 
             }
@@ -266,10 +285,5 @@ public class FaXianMeiNvActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

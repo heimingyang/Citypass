@@ -45,4 +45,9 @@
     <color name="green">#32c465</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="boy_0">#FC7AEC</color>
+    <color name="boy_1">#F67C79</color>
+    <color name="boy_2">#84DDA7</color>
+    <color name="boy_3">#FFA63D</color>
+    <color name="boy_4">#C5BDF6</color>
 </resources>

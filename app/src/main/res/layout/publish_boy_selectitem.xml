@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/boy_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/boy_0_bg"
+        android:gravity="center"
+        android:padding="3dp"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/boy_item_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@color/tv_touming"
+        android:padding="3dp"
+        android:src="@drawable/baby_ok" />
+
+</RelativeLayout>

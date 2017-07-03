@@ -27,6 +27,7 @@ android {
             jcenter()
             maven {
                 url 'https://dl.bintray.com/cjt/maven'
+
             }
         }
     }
@@ -35,7 +36,7 @@ android {
         release {
             keyAlias 'citypass'
             keyPassword '990712'
-            storeFile file('C:/Users/Administrator/citypass.jks')
+            storeFile file('C:/Users/Administrator/Desktop/Citypass/app/citypass.jks')
             storePassword '990712'
         }
     }
@@ -89,4 +90,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.yuyh.imgsel:library:1.2.0'
 }

@@ -1,7 +1,10 @@
 package com.example.citypass.cotroller.activity.find;
 
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -11,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
@@ -18,6 +22,7 @@ import com.example.citypass.base.BaseActivity;
 import java.util.Calendar;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -60,6 +65,8 @@ public class FaXianPerfectActivity extends BaseActivity {
     Button PerfectNext;
 
     private String lianai = null;
+    private Intent intent;
+    private String sex;
 
 
     @Override
@@ -78,6 +85,9 @@ public class FaXianPerfectActivity extends BaseActivity {
         mYear = ca.get(Calendar.YEAR);
         mMonth = ca.get(Calendar.MONTH);
         mDay = ca.get(Calendar.DAY_OF_MONTH);
+
+        intent = getIntent();
+        sex = intent.getStringExtra("sex");
 
     }
 
@@ -124,7 +134,8 @@ public class FaXianPerfectActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.Perfect_guan:
-                PerfectText.setVisibility(View.GONE);
+                PerfectGuan.setVisibility(View.INVISIBLE);
+                PerfectText.setVisibility(View.INVISIBLE);
                 break;
             case R.id.Perfect_ed_birthday:
                 showDialog(DATE_DIALOG);
@@ -141,16 +152,18 @@ public class FaXianPerfectActivity extends BaseActivity {
 //                } else if (PerfectEdInfo.getText().toString().trim().isEmpty()) {
 //                    Toast.makeText(this, "请填写交友宣言", Toast.LENGTH_SHORT).show();
 //                } else {
-//                    Intent intent = new Intent(FaXianPerfectActivity.this, PublishActivity.class);
-//                    intent.putExtra("name", PerfectEdName.getText().toString());
-//                    intent.putExtra("birthday", PerfectEdBirthday.getText().toString());
-//                    intent.putExtra("job", PerfectEdJob.getText().toString());
-//                    intent.putExtra("qinggan", lianai);
-//                    intent.putExtra("from", PerfectEdDomicile.getText().toString());
-//                    intent.putExtra("wx", PerfectEdVx.getText().toString());
-//                    intent.putExtra("qq", PerfectEdQq.getText().toString());
-//                    intent.putExtra("info", PerfectEdInfo.getText().toString());
-//                    startActivity(intent);
+                Intent intent = new Intent(FaXianPerfectActivity.this, PublishActivity.class);
+                intent.putExtra("name", PerfectEdName.getText().toString());
+                intent.putExtra("birthday", PerfectEdBirthday.getText().toString());
+                intent.putExtra("job", PerfectEdJob.getText().toString());
+                intent.putExtra("qinggan", lianai);
+                intent.putExtra("from", PerfectEdDomicile.getText().toString());
+                intent.putExtra("wx", PerfectEdVx.getText().toString());
+                intent.putExtra("qq", PerfectEdQq.getText().toString());
+                intent.putExtra("info", PerfectEdInfo.getText().toString());
+                intent.putExtra("sex", sex);
+                startActivity(intent);
+                finish();
 
 //                }
 

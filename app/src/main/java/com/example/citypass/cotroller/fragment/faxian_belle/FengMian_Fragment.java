@@ -75,12 +75,14 @@ public class FengMian_Fragment extends BaseFragment {
 
                 List<Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
                         = belle_fm_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
+
+
                 if (mList.size() == 0) {
                     mList.addAll(figureTCoverInfoList);
                     belle_fm_adapter.notifyDataSetChanged();
 
                 } else {
-                    mList.addAll(figureTCoverInfoList);
+//                    mList.addAll(figureTCoverInfoList);
                     belle_fm_adapter.notifyDataSetChanged();
 
                 }
