@@ -1,12 +1,15 @@
 package com.example.citypass.cotroller.adapter.life;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.androidkun.adapter.BaseAdapter;
 import com.androidkun.adapter.ViewHolder;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.information.ShopDetailActivity;
 import com.example.citypass.model.bean.information.Shop;
 
 import java.util.List;
@@ -27,12 +30,20 @@ public class ShopAdapter extends BaseAdapter<Shop.ServerInfoBean.CommodityListBe
     }
 
     @Override
-    public void convert(ViewHolder holder, Shop.ServerInfoBean.CommodityListBean.ContentBean contentBean) {
+    public void convert(ViewHolder holder, final Shop.ServerInfoBean.CommodityListBean.ContentBean contentBean) {
         holder.setText(R.id.shop_list_name,contentBean.getTitle());
         holder.setText(R.id.shop_list_city,contentBean.getSCoin()+"币");
         holder.setText(R.id.shop_list_textOne,contentBean.getCTypeName());
         holder.setText(R.id.shop_list_num,"已售出 "+contentBean.getBuySum());
         ImageView imageView=holder.getView(R.id.shop_list_img);
         Glide.with(context).load(contentBean.getShowImages()).into(imageView);
+        holder.setOnclickListener(R.id.shop_list_Relative, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, ShopDetailActivity.class);
+                intent.putExtra("id",contentBean.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 }

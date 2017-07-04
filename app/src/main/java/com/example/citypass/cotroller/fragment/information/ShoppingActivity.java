@@ -1,5 +1,10 @@
 package com.example.citypass.cotroller.fragment.information;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +13,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -42,6 +48,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.R.attr.mode;
+import static com.example.citypass.R.id.view;
 import static com.umeng.socialize.utils.ContextUtil.getContext;
 
 /**
@@ -99,6 +106,7 @@ public class ShoppingActivity extends BaseActivity {
     private List<Guangbo.ServerInfoBean.OrderListBean.ContentBean> mStrList;
     private MedaModel model;
     private int a=0;
+    private ObjectAnimator invisToVis;
 
     @Override
     protected int getLayoutId() {
@@ -147,6 +155,7 @@ public class ShoppingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        initAnim();
         model=new IMedalModel();
         shoppingRollpager.setPlayDelay(3000);
         shoppingRollpager.setAnimationDurtion(500);
@@ -187,11 +196,25 @@ public class ShoppingActivity extends BaseActivity {
             }
         });
     }
-
+    private void initAnim(){
+        invisToVis = ObjectAnimator.ofFloat(shoppingGuangbo, "rotationX",
+                -90f, 0f);
+        invisToVis.setStartDelay(300);
+        invisToVis.setDuration(600);
+        invisToVis.clone();
+        invisToVis.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                shoppingGuangbo.setText(mStrList.get(a).getOrderMessage());
+            }
+        });
+    }
 
     private Runnable runnable=new Runnable() {
         @Override
         public void run() {
+            invisToVis.start();
             if(a<mStrList.size()-1) {
                 handler.sendEmptyMessage(1);
                 a++;
@@ -209,7 +232,6 @@ public class ShoppingActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    shoppingGuangbo.setText(mStrList.get(a).getOrderMessage());
                     break;
             }
         }
@@ -223,12 +245,18 @@ public class ShoppingActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.shopping_Linear_TextOne:
+                Intent intent=new Intent(ShoppingActivity.this,ExchangeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.shopping_Linear_TextTwo:
+                Intent intentOne=new Intent(ShoppingActivity.this,ExchangeActivity.class);
+                startActivity(intentOne);
                 break;
             case R.id.shopping_guangbo:
                 break;
             case R.id.shopping_paihang:
+                Intent intentTwo=new Intent(ShoppingActivity.this,GongActivity.class);
+                startActivity(intentTwo);
                 break;
             case R.id.shopping_ButtonOne:
                 shoppingViewpager.setCurrentItem(0);

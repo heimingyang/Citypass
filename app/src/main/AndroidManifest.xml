@@ -64,12 +64,16 @@
         <activity android:name=".cotroller.fragment.life.WebViewActivity" />
         <activity android:name=".cotroller.activity.find.FaXianPerfectActivity" />
         <activity android:name=".cotroller.fragment.information.InforActivity" />
-
+        <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity" />
         <activity android:name=".cotroller.fragment.information.LevelActivity" />
         <activity android:name=".cotroller.fragment.information.BlackActivity" />
         <activity android:name=".cotroller.fragment.information.PhoneActivity" />
         <activity android:name=".cotroller.fragment.information.MailActivity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyActivity" />
+        <activity android:name=".cotroller.fragment.information.PostActivity" />
         <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
         <activity android:name=".cotroller.fragment.information.PersonalActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyActivity" />
@@ -78,7 +82,18 @@
         <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.shequ.SouSuoActivity" />
         <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity" />
+        <activity android:name=".cotroller.fragment.information.LevelActivity" />
+        <activity android:name=".cotroller.fragment.information.BlackActivity" />
+        <activity android:name=".cotroller.fragment.information.PhoneActivity" />
+        <activity android:name=".cotroller.fragment.information.MailActivity" />
+        <activity android:name=".cotroller.activity.naonao.NaoNao_Carmer_Activity" />
+        <activity android:name=".cotroller.fragment.information.PersonalActivity" />
+        <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
+        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
+        <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
+        <activity android:name=".cotroller.fragment.toutiao.GoodMannersActivity"/>
         <activity android:name=".cotroller.activity.shequ.ReleaseActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.MaillistActivity" />
         <activity android:name=".cotroller.activity.naonao.Title_Detail_NaoNao_Activity" />
         <activity
             android:name=".base.ScanActivity"
@@ -119,13 +134,17 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
 
         <activity
+
+
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -142,6 +161,7 @@
         android:name="UMENG_APPKEY"
         android:value="595a4e13a40fa30f48000132"></meta-data>
 
+        <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity
@@ -153,10 +173,22 @@
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
         <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
+        <activity android:name=".cotroller.fragment.information.MedalActivity" />
+        <activity android:name=".cotroller.fragment.information.CityActivity" />
         <activity android:name=".cotroller.fragment.information.TaskActivity" />
+        <activity android:name=".cotroller.fragment.information.CollectionActivity" />
+        <activity
+            android:name=".cotroller.activity.find.PublishActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
+        <activity android:name=".cotroller.fragment.information.GongActivity"/>
+        <activity android:name=".cotroller.fragment.information.ExchangeActivity"/>
+        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity"/>
         <activity android:name=".cotroller.fragment.naonao.detail.DetailImageActivity" />
 
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
+        <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
+        <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
     </application>
 
 </manifest>

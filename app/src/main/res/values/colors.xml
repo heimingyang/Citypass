@@ -21,6 +21,8 @@
     <drawable name="login">#f5681d</drawable>
     <drawable name="list_one">#180202</drawable>
     <drawable name="list_two">#aaaa</drawable>
+    <drawable name="post">#aaedecec</drawable>
+    <drawable name="post_write">#ffffff</drawable>
     <color name="viewfinder_frame">#ff000000</color>
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask">#60000000</color>

@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.information;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -139,6 +140,8 @@ public class PostActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.post_Release:
+                Intent intent=new Intent(PostActivity.this,IssuePostActivity.class);
+                startActivity(intent);
                 break;
             case R.id.post_one:
                 postViewpager.setCurrentItem(0);

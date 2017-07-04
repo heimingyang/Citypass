@@ -30,6 +30,7 @@ import com.example.citypass.cotroller.fragment.faxian_belle.XingGan_Fragment;
 import com.example.citypass.cotroller.fragment.faxian_belle.ZuiXin_Fragment;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.model.bean.information.Information;
+import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
@@ -243,9 +244,9 @@ public class FaXianMeiNvActivity extends BaseActivity {
     //本页面男生的dialog
     private void showMyDialog() {
 
-        alertDialog = new AlertDialog.Builder(this).create();
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        inflate = LayoutInflater.from(this).inflate(R.layout.boy_dialog_item, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.boy_dialog_item, null);
         gotoBoy = (TextView) inflate.findViewById(R.id.dialog_gotoboy);
         okBoy = (Button) inflate.findViewById(R.id.dialog_Button);
         //点击去帅男秀场
