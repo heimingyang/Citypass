@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="310dp" android:background="@color/white"
+    >
+  <HorizontalScrollView
+      android:scrollbars="none"
+      android:id="@+id/hs"
+      android:layout_width="320dp"
+      android:layout_height="wrap_content">
+      <LinearLayout
+          android:id="@+id/pic_list"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+      </LinearLayout>
+  </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/hs"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/add_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ccoo_icon_photo_add"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/weixin_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000">
+
+        <TextView
+            android:id="@+id/weixin_finsh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="返回"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/weixin_xuanze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选择图片"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+        <TextView
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="拍照"
+            android:layout_alignParentRight="true"
+            android:id="@+id/weixin_paizhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/weixin_dibu"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/weixin_wancheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="完成" />
+
+        <HorizontalScrollView
+            android:id="@+id/weixin_scroovie"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/weixin_wancheng">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:id="@+id/weixin_addLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/weixin_GridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/weixin_dibu"
+        android:layout_below="@id/weixin_head"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:padding="10dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dp"></GridView>
+
+
+</RelativeLayout>

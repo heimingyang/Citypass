@@ -5,6 +5,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
+    <color name="wheat">#f5deb3</color><!--浅黄色 -->
+    <color name="touming">#88000000</color>
+    <color name="tv_touming">#afb3b3b3</color>
     <color name="tv_black_touming">#7F000000</color>
     <color name="line">#E2E2E2</color>
     <color name="gray_bg">#F0F0F0</color>

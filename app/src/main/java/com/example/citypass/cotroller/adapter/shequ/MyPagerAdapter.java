@@ -23,6 +23,8 @@ public class MyPagerAdapter extends PagerAdapter {
     }
 
 
+
+
     public Object instantiateItem(ViewGroup container, int position) {
         View view = viewList.get(position);
         if (view.getParent()!=null){

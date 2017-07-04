@@ -28,6 +28,10 @@ public class LoginUtils {
     public static String OUSITEID="ouSiteID";
     public static String MYIMG="myImg";
     public static String PHONE="phone";
+    //可选照片的最大数量
+    public static final String PICTURE_NUM = "picture_num";
+    //是否可以跳转到照片调整页面
+    public static final String PICtURE_FLAG = "picture_flag";
 
     public static String upload(int keyID,String value){
         UpLoad load=new UpLoad();

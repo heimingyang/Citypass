@@ -2,7 +2,6 @@ package com.example.citypass.cotroller.activity.find;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -38,7 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -101,6 +99,8 @@ public class FaXianMeiNvActivity extends BaseActivity {
     private NvHanZi_Fragment nvHanZi_fragment;
     private List<Fragment> flist = new ArrayList<>();
     private List<String> mlist = new ArrayList<>();
+    private AlertDialog alertDialog;
+
     //viewpager适配器
     private Discover_Belle_Adapter discoverBelle_adapter;
 
