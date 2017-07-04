@@ -141,6 +141,7 @@ public class ShopDetailActivity extends BaseActivity {
                     shoppingDetailStock.setText("商品库存：" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getRealSum());
                     shoppingDetailConverted.setText("已兑换" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum() + "个");
                     eTime = detail1.getServerInfo().getCommodityInfo().getContent().get(0).getETime();
+                    eTime-=1000*60*60*24;
                     handler.postDelayed(run, 1000);
                     shoppingDetailExchange.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getLevel());
                     shoppingDetailGuize.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getLimit());
@@ -190,10 +191,15 @@ public class ShopDetailActivity extends BaseActivity {
                         .setCallback(umShareListener).open();
                 break;
             case R.id.shopping_detail_exchange_Btn:
+                Toast.makeText(ShopDetailActivity.this,"目前购买系统已关闭，请见谅",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.shopping_detail_Linear_TextOne:
+                Intent intent=new Intent(ShopDetailActivity.this,ExchangeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.shopping_detail_Linear_TextTwo:
+                Intent intentOne=new Intent(ShopDetailActivity.this,ExchangeActivity.class);
+                startActivity(intentOne);
                 break;
         }
     }
