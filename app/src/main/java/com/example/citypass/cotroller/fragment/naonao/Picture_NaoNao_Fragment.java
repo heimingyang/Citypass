@@ -74,12 +74,25 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
 
             @Override
             public void onRefresh() {
-                pictureNaonaoRecycle.refreshComplete();
+                pictureNaonaoRecycle.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        initParsing();
+                        pictureNaonaoRecycle.refreshComplete();
+                    }
+                },2000);
+
+
             }
 
             @Override
             public void onLoadMore() {
-
+                pictureNaonaoRecycle.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pictureNaonaoRecycle.loadMoreComplete();
+                    }
+                },2000);
             }
         });
     }
@@ -99,14 +112,13 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
                 }
                 List<Picture_NaoNao_Bean.ServerInfoBean> serverInfo = new ArrayList<Picture_NaoNao_Bean.ServerInfoBean>();
 
-
                     serverInfo.addAll(picture_naoNao_bean.getServerInfo());
                 Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + serverInfo.size());
                 if(adapter==null){
                     adapter = new Picture_NaoNao_Recycle_Adapter(serverInfo);
                     pictureNaonaoRecycle.setAdapter(adapter);
                 }else {
-                    adapter.setNewData(mList);
+                    adapter.setNewData(serverInfo);
                 }
                 TextView tv = new TextView(getActivity());
                 tv.setText("没有更多内容啦~");

@@ -99,10 +99,11 @@ public class FaXianMeiNvActivity extends BaseActivity {
     private NvHanZi_Fragment nvHanZi_fragment;
     private List<Fragment> flist = new ArrayList<>();
     private List<String> mlist = new ArrayList<>();
-    private AlertDialog alertDialog;
 
     //viewpager适配器
     private Discover_Belle_Adapter discoverBelle_adapter;
+    private AlertDialog alertDialog;
+    private View inflate;
 
 
     @Override

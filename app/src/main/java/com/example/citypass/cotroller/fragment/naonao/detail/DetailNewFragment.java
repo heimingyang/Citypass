@@ -12,7 +12,6 @@ import com.example.citypass.cotroller.adapter.naonao.detail.DetailNewAdapter;
 import com.example.citypass.model.bean.naonao.detail.DetailNewBean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
-import com.example.citypass.model.http.bean.faxian.MyFaXian;
 import com.example.citypass.utils.UrlUtils;
 import com.example.citypass.view.MyRecycler;
 
@@ -77,8 +76,13 @@ public class DetailNewFragment extends BaseFragment {
 //                    NaoNaoRecyclerText.setVisibility(View.GONE);
                     mList.addAll(serverInfo);
                     Log.d("DetailNewFragment", "mList:" + mList);
-                    adapter = new DetailNewAdapter(mList, getContext());
-                    NaonaoRecycler.setAdapter(adapter);
+                    if(adapter == null){
+                        adapter = new DetailNewAdapter(mList, getContext());
+                        NaonaoRecycler.setAdapter(adapter);
+                    }else {
+                        adapter.setNewData(mList);
+                    }
+
                 }
             }
 

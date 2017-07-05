@@ -121,15 +121,25 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
                 //刷新
                 @Override
                 public void onRefresh() {
-                    mList.clear();
-                    initParsing();
-                    diNaonaoRecycle.refreshComplete();
+                    diNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            diNaonaoRecycle.refreshComplete();
+                        }
+                    },2000);
                 }
 
                 //加载
                 @Override
                 public void onLoadMore() {
-                    diNaonaoRecycle.loadMoreComplete();
+                    diNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            diNaonaoRecycle.loadMoreComplete();
+                        }
+                    },2000);
                 }
             });
             a = 1;
@@ -156,7 +166,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
 
-
+                 mList.clear();
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
                 //判断是否已经加载过
                 if (adapter == null) {

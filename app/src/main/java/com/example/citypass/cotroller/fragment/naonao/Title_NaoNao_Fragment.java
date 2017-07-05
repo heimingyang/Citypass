@@ -81,14 +81,23 @@ public class Title_NaoNao_Fragment extends BaseFragment {
 
                     @Override
                     public void onRefresh() {
-                        mList.clear();
-                        initParsing();
-                        titleNaonaoRecycle.refreshComplete();
+                        titleNaonaoRecycle.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                initParsing();
+                                titleNaonaoRecycle.refreshComplete();
+                            }
+                        },2000);
                     }
 
                     @Override
                     public void onLoadMore() {
-                        titleNaonaoRecycle.loadMoreComplete();
+                        titleNaonaoRecycle.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                titleNaonaoRecycle.loadMoreComplete();
+                            }
+                        },2000);
                     }
                 });
                 a = 1;
@@ -111,6 +120,7 @@ public class Title_NaoNao_Fragment extends BaseFragment {
                 if(title_naoNao_bean.getMessageList().getCode()!=1000){
                     return;
                 }
+                mList.clear();
                 mList.addAll(title_naoNao_bean.getServerInfo());
                 if (adapter == null) {
                     mList.addAll(title_naoNao_bean.getServerInfo());

@@ -40,7 +40,10 @@ public class DetailNewAdapter extends RecyclerView.Adapter<DetailNewAdapter.mVie
         this.mList = mList;
         this.context = context;
     }
-
+    public void setNewData(List<DetailNewBean.ServerInfoBean> mList) {
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public mViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_naonao_detail_newitem, null);

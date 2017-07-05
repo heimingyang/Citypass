@@ -172,7 +172,9 @@
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity"/>
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"
+            android:windowSoftInputMode="adjustNothing"
+            />
         <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Title_Activity"/>
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
         <activity android:name=".cotroller.fragment.information.ShoppingActivity" />

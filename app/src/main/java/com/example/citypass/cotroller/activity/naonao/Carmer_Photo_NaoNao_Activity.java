@@ -288,11 +288,15 @@ public class Carmer_Photo_NaoNao_Activity extends BaseActivity implements View.O
                 popupWindow.showAsDropDown(carmerPhotoNaonaoHead);
                 break;
             case R.id.carmer_photo_naonao_ok:
-                Intent in = new Intent(Carmer_Photo_NaoNao_Activity.this, Carmer_FaBu_NaoNao_Activity.class);
-                in.putStringArrayListExtra("path", bList);
-                Log.d("Carmer_Photo_NaoNao_Act", "bList:" + bList);
-                startActivity(in);
-                finish();
+                if(xuanzeCount <=0){
+                    Toast.makeText(this, "您还没有选择图片", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent in = new Intent(Carmer_Photo_NaoNao_Activity.this, Carmer_FaBu_NaoNao_Activity.class);
+                    in.putStringArrayListExtra("path", bList);
+                    Log.d("Carmer_Photo_NaoNao_Act", "bList:" + bList);
+                    startActivity(in);
+                    finish();
+                }
                 break;
         }
     }

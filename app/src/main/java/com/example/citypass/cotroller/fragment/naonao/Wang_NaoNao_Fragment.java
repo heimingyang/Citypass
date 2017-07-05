@@ -88,14 +88,24 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
 
                 @Override
                 public void onRefresh() {
-                    mList.clear();
-                    initParsing();
-                    wangNaonaoRecycle.refreshComplete();
+                    wangNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            wangNaonaoRecycle.refreshComplete();
+                        }
+                    },2000);
                 }
 
                 @Override
                 public void onLoadMore() {
-                    wangNaonaoRecycle.loadMoreComplete();
+                    wangNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            wangNaonaoRecycle.refreshComplete();
+                        }
+                    },2000);
                 }
             });
             a=1;
@@ -120,7 +130,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(wangNaonaoImageFirst);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(wangNaonaoImageSecond);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(wangNaonaoImageThird);
-
+                mList.clear();
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
                 if(adapter==null){
                     adapter = new DiNaoNao_Recycle_Adapter(mList);

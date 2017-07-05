@@ -93,16 +93,25 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
 
                 @Override
                 public void onRefresh() {
-                    mList.clear();
-                    initParsing();
-                    squareNaonaoRecycle.refreshComplete();
+                    squareNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            squareNaonaoRecycle.refreshComplete();
+                        }
+                    },2000);
                 }
 
                 @Override
                 public void onLoadMore() {
-                    j++;
-                    initParsing();
-                    squareNaonaoRecycle.refreshComplete();
+                    squareNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            j++;
+                            initParsing();
+                            squareNaonaoRecycle.loadMoreComplete();
+                        }
+                    },2000);
                 }
             });
             a = 1;
@@ -126,12 +135,16 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
                 if(square_naoNao_bean.getMessageList().getCode()!=1000){
                     return;
                 }
+                mList.clear();
                 mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
                 if (Typeadapter == null) {
                     Typeadapter = new Square_NaoNao_TypeAdapter(mList, getContext());
                     squareNaonaoRecycle.setAdapter(Typeadapter);
 
+                }else {
+                    Typeadapter.setNewData(mList);
                 }
+
             }
 
             @Override

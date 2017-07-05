@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -45,6 +47,7 @@ import butterknife.BindView;
 import butterknife.Unbinder;
 
 import static com.umeng.facebook.FacebookSdk.getApplicationContext;
+import static com.umeng.socialize.utils.ContextUtil.getPackageName;
 
 /**
  * /**
@@ -227,9 +230,9 @@ public class NaoNaoFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (getAndroidSDKVersion() >= 23){
-                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        //申请CALL_PHONE权限
+
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO)
+                            != PackageManager.PERMISSION_DENIED) {
                         ActivityCompat.requestPermissions(getActivity(),  new String[]{
                                 Manifest.permission.CAMERA,
                                 Manifest.permission.RECORD_AUDIO
@@ -303,7 +306,7 @@ public class NaoNaoFragment extends BaseFragment {
         builder.setPositiveButton("设置", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                startAppSettings();
+                startAppSettings();
                 dialog.dismiss();
             }
         });
@@ -334,5 +337,12 @@ Intent in = new Intent(getActivity(),NaoNao_Carmer_Activity.class);
             Log.d("NaoNaoFragment", e.toString());
         }
         return version;
+    }
+    private static final String PACKAGE_URL_SCHEME = "package:"; // 方案
+    // 启动应用的设置
+    private void startAppSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.parse(PACKAGE_URL_SCHEME + getPackageName()));
+        startActivity(intent);
     }
 }

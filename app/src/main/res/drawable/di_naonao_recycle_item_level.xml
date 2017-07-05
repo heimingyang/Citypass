@@ -9,7 +9,7 @@
         android:top="0dp"
         ></padding>
     <!--设置圆角-->
-    <corners android:radius="200dp"
+    <corners android:radius="100dp"
         android:bottomLeftRadius="0dp"
         ></corners>
 

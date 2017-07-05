@@ -21,6 +21,7 @@ import com.example.citypass.R;
 import com.example.citypass.cotroller.fragment.naonao.detail.DetailImageActivity;
 import com.example.citypass.cotroller.fragment.naonao.detail.SquareDetailBean;
 import com.example.citypass.cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity;
+import com.example.citypass.model.bean.naonao.Recommond_NaoNao_Bean;
 import com.example.citypass.model.bean.naonao.Square_NaoNao_Bean;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,30 +31,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * /**
  * 项目名称: 城市通
  * 类描述:
- * 创建人: Administrator
- * 创建时间: 2017/6/27 11:49
- * 修改人:  张超
+ * 创建人: XI
+ * 创建时间: 2017/7/4 0004 15:59
+ * 修改人:
  * 修改内容:
  * 修改时间:
+ * #                                                   #
+ * #                       _oo0oo_                     #
+ * #                      o8888888o                    #
+ * #                      88" . "88                    #
+ * #                      (| -_- |)                    #
+ * #                      0\  =  /0                    #
+ * #                    ___/`---'\___                  #
+ * #                  .' \\|     |# '.                 #
+ * #                 / \\|||  :  |||# \                #
+ * #                / _||||| -:- |||||- \              #
+ * #               |   | \\\  -  #/ |   |              #
+ * #               | \_|  ''\---/''  |_/ |             #
+ * #               \  .-\__  '-'  ___/-. /             #
+ * #             ___'. .'  /--.--\  `. .'___           #
+ * #          ."" '<  `.___\_<|>_/___.' >' "".         #
+ * #         | | :  `- \`.;`\ _ /`;.`/ - ` : | |       #
+ * #         \  \ `_.   \_ __\ /__ _/   .-` /  /       #
+ * #     =====`-.____`.___ \_____/___.-`___.-'=====    #
+ * #                       `=---='                     #
+ * #     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   #
+ * #                                                   #
+ * #               佛祖保佑         永无BUG              #
+ * #                                                   #
  */
 
-public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
-       private List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList;
+
+public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
+    private List<Recommond_NaoNao_Bean.ServerInfoBean> mList;
     private View view;
     private Context context;
-    private Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean bean;
+    private Recommond_NaoNao_Bean.ServerInfoBean bean;
     private int onePosition, twoPostion, ThreePostion, FourPosition, FivePosition;
-    private Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean oneBean;
+    private Recommond_NaoNao_Bean.ServerInfoBean oneBean;
     private mOnItemClickListener clickListener;
 
 
-    public Square_NaoNao_TypeAdapter(List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList, Context context) {
+    public Recommond_NaoNao_TypeAdapter(List<Recommond_NaoNao_Bean.ServerInfoBean> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
-
+    public void setNewData(List<Recommond_NaoNao_Bean.ServerInfoBean> mList) {
+        this.mList = mList;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemViewType(int position) {
         String image = mList.get(position).getImage();
@@ -505,7 +534,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean twoBean = mList.get(twoPostion);
+                    Recommond_NaoNao_Bean.ServerInfoBean twoBean = mList.get(twoPostion);
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = twoBean.getTitle();
                     String name = twoBean.getNick();
@@ -572,7 +601,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(ThreePostion);
+                    Recommond_NaoNao_Bean.ServerInfoBean mBean = mList.get(ThreePostion);
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = mBean.getTitle();
                     String name = mBean.getNick();
@@ -638,7 +667,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
 
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FourPosition);
+                    Recommond_NaoNao_Bean.ServerInfoBean mBean = mList.get(FourPosition);
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = mBean.getTitle();
                     String name = mBean.getNick();
@@ -708,7 +737,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FivePosition);
+                    Recommond_NaoNao_Bean.ServerInfoBean mBean = mList.get(FivePosition);
                     Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
                     String title = mBean.getTitle();
                     String name = mBean.getNick();
@@ -770,10 +799,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
     public interface mOnItemClickListener {
         void ItemClick(int position);
     }
-    public void setNewData(List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList) {
-        this.mList = mList;
-        notifyDataSetChanged();
-    }
+
     public void ImageIntent(int position) {
         bean = mList.get(position);
         String image = bean.getImage();
@@ -791,8 +817,5 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         App.activity.overridePendingTransition(R.anim.alpha_enter, R.anim.alpha_exit);
 
     }
-
-
-
 
 }

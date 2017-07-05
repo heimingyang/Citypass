@@ -74,7 +74,7 @@ public class Star_NaoNao_Fragment extends BaseFragment {
     @BindView(R.id.star_naonao_recycle)
     MRecyclerView starNaonaoRecycle;
     private DiNaoNao_Recycle_Adapter adapter;
-    private int a=0;
+    private int a = 0;
 
     Unbinder unbinder;
 
@@ -83,7 +83,7 @@ public class Star_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        if(a==0) {
+        if (a == 0) {
             initParsing();
             starNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
                 @Override
@@ -93,17 +93,27 @@ public class Star_NaoNao_Fragment extends BaseFragment {
 
                 @Override
                 public void onRefresh() {
-                    mList.clear();
-                    initParsing();
-                    starNaonaoRecycle.refreshComplete();
+                    starNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            starNaonaoRecycle.refreshComplete();
+                        }
+                    }, 2000);
                 }
 
                 @Override
                 public void onLoadMore() {
-                    starNaonaoRecycle.loadMoreComplete();
+                    starNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            starNaonaoRecycle.loadMoreComplete();
+                        }
+                    }, 2000);
                 }
             });
-            a=1;
+            a = 1;
         }
     }
 
@@ -111,15 +121,15 @@ public class Star_NaoNao_Fragment extends BaseFragment {
         Map<String, String> map = new HashMap<>();
         String str = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422},\"requestTime\":\"2017-06-29 17:21:33\",\"customerKey\":\"1075C03DA2A62B806314DA31FC043639\",\"Method\":\"PHSocket_GetTieBaToReplyRank\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 5.1\",\"UserId\":0,\"PhoneNum\":\"+8618833628372\",\"SystemNo\":2,\"PhoneNo\":\"OPPO R9\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
         map.put("param", str);
-        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map,"", new MyCallBack() {
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.d("Star_NaoNao_Fragment", result);
                 Di_NaoNao_Bean di_naoNao_fragment = JSON.parseObject(result, Di_NaoNao_Bean.class);
-                if(di_naoNao_fragment == null && result == null &&di_naoNao_fragment.getMessageList().getCode()!=1000 ){
+                if (di_naoNao_fragment == null && result == null && di_naoNao_fragment.getMessageList().getCode() != 1000) {
                     return;
                 }
-                if(di_naoNao_fragment.getServerInfo()==null){
+                if (di_naoNao_fragment.getServerInfo() == null) {
                     return;
                 }
                 diNaonaoCountFirst.setText(di_naoNao_fragment.getServerInfo().getInfo().get(0).getSum());
@@ -131,13 +141,13 @@ public class Star_NaoNao_Fragment extends BaseFragment {
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
                 Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
-
-                    mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
-                if(adapter==null){
+                mList.clear();
+                mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
+                if (adapter == null) {
                     adapter = new DiNaoNao_Recycle_Adapter(mList);
                     starNaonaoRecycle.setAdapter(adapter);
-                }else {
-                 adapter.setNewData(mList);
+                } else {
+                    adapter.setNewData(mList);
                 }
 
             }

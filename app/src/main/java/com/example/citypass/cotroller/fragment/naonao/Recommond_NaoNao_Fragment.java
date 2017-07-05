@@ -5,12 +5,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.cotroller.adapter.naonao.Recommond_NaoNao_Recycle_Adapter;
+import com.example.citypass.cotroller.adapter.naonao.Recommond_NaoNao_TypeAdapter;
 import com.example.citypass.model.bean.naonao.Recommond_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
@@ -59,15 +60,15 @@ import butterknife.Unbinder;
  */
 
 
-public class Recommond_NaoNao_Fragment extends BaseFragment {
+public class Recommond_NaoNao_Fragment extends BaseFragment implements Recommond_NaoNao_TypeAdapter.mOnItemClickListener{
     @BindView(R.id.recommond_naonao_recycle)
     MRecyclerView recommondNaonaoRecycle;
     Unbinder unbinder;
     private int j = 1;
     private int a=0;
-    private Recommond_NaoNao_Recycle_Adapter adapter;
+//    private Recommond_NaoNao_Recycle_Adapter adapter;
     private List<Recommond_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
-
+    private Recommond_NaoNao_TypeAdapter Typeadapter;
     @Override
     protected void initData() {
         if(a==0) {
@@ -80,16 +81,25 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
 
                 @Override
                 public void onRefresh() {
-                    mList.clear();
-                    initParsing();
-                    recommondNaonaoRecycle.refreshComplete();
+                    recommondNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            initParsing();
+                            recommondNaonaoRecycle.refreshComplete();
+                        }
+                    },2000);
                 }
 
                 @Override
                 public void onLoadMore() {
-                    j++;
-                    initParsing();
-                    recommondNaonaoRecycle.loadMoreComplete();
+                    recommondNaonaoRecycle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            j++;
+                            initParsing();
+                            recommondNaonaoRecycle.loadMoreComplete();
+                        }
+                    },2000);
                 }
             });
             a=1;
@@ -107,15 +117,19 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
             public void onSuccess(String result) {
                 Log.d("Square_NaoNao_Fragment", result);
                 Recommond_NaoNao_Bean square_naoNao_bean = JSON.parseObject(result, Recommond_NaoNao_Bean.class);
+                if (mList.size() < 0) {
+                    return;
+                }
                 if (square_naoNao_bean.getMessageList().getCode()!=1000) {
                     return;
                 }
+                mList.clear();
                 mList.addAll(square_naoNao_bean.getServerInfo());
-                if(adapter==null){
-                    adapter = new Recommond_NaoNao_Recycle_Adapter(mList);
-                    recommondNaonaoRecycle.setAdapter(adapter);
+                if(Typeadapter==null){
+                    Typeadapter = new Recommond_NaoNao_TypeAdapter(mList,getContext());
+                    recommondNaonaoRecycle.setAdapter(Typeadapter);
                 }else {
-                    adapter.setNewData(mList);
+                    Typeadapter.setNewData(mList);
                 }
             }
 
@@ -148,5 +162,11 @@ public class Recommond_NaoNao_Fragment extends BaseFragment {
         return R.layout.recommond_naonao_fragment;
     }
 
+    //自定义点击事件
+    @Override
+    public void ItemClick(int position) {
+        Recommond_NaoNao_Bean.ServerInfoBean bean = mList.get(position);
 
+        Toast.makeText(getContext(), "position:" + position, Toast.LENGTH_SHORT).show();
+    }
 }

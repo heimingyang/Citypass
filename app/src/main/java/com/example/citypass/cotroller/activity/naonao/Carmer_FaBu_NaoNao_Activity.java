@@ -1,5 +1,8 @@
 package com.example.citypass.cotroller.activity.naonao;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +13,7 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,6 +136,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     private List<View> gridViewlist = new ArrayList<View>();
     private ArrayList<String> path;
     private View imgView;
+    private String img;
 
     @Override
     protected int getLayoutId() {
@@ -154,22 +159,23 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
         String str = "{\"appName\":\"CcooCity\",\"Param\":{\"audioTime\":0,\"vcID\":\"\",\"atname\":\"\",\"audio\":\"\",\"uID\":\"31363437\",\"image\":\"http:\\/\\/p9.pccoo.cn\\/app_bbs\\/20170703\\/2017070311380591652347_3_3.png,http:\\/\\/p9.pccoo.cn\\/app_bbs\\/20170703\\/2017070311380608203833_60_60.png,http:\\/\\/p9.pccoo.cn\\/app_bbs\\/20170703\\/2017070311380620830984_62_61.png\",\"mapPoint\":\"4.9E-324,4.9E-324\",\"type\":2,\"usiteID\":2422,\"gambitID\":4605,\"mapName\":\"不显示地理位置\",\"content\":\"[sys\\/2.gif][sys\\/3.gif]vv发v[sys\\/4.gif][sys\\/5.gif]v多个\",\"siteID\":2422,\"source\":2,\"userName\":\"sid094756353406476\"},\"requestTime\":\"2017-07-03 11:39:08\",\"customerKey\":\"02DCE2ED53D3CB63EC4FD8194B2F932C\",\"Method\":\"PHSocket_SetTieBaAdd\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":31363437,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
         String a = "{\"appName\":\"CcooCity\",\"Param\":{\"audioTime\":0,\"vcID\":\"\",\"atname\":\"\",\"audio\":\"\",\"uID\":";
         String uID = LoginUtils.information.getServerInfo().getId() + "";
-        Log.d("Carmer_FaBu_NaoNao_Acti","uID"+ uID);
+        Log.d("Carmer_FaBu_NaoNao_Acti", "uID" + uID);
         String b = ",\"image\":\"";
-
-        String image = path.get(0) + "";
-        Log.d("Carmer_FaBu_NaoNao_Acti","image"+ image);
+        for (int i = 0; i < path.size(); i++) {
+            img = path.get(i) + ",";
+        }
+        Log.d("Carmer_FaBu_NaoNao_Acti", "image" + img);
         String sa = "\",\"mapPoint\":\"4.9E-324,4.9E-324\",\"type\":2,\"usiteID\":";
         int id = 2422;
         String sd = ",\"gambitID\":4605,\"mapName\":\"不显示地理位置\",\"content\":\"";
         String context = carmerFabuNaonaoEdit.getText().toString().trim() + "";
-        Log.d("Carmer_FaBu_NaoNao_Acti", "context"+context);
+        Log.d("Carmer_FaBu_NaoNao_Acti", "context" + context);
         String e = "\",\"siteID\":2422,\"source\":2,\"userName\":\"";
         String userName = LoginUtils.information.getServerInfo().getUserName() + "";
-        Log.d("Carmer_FaBu_NaoNao_Acti","userName"+ userName);
+        Log.d("Carmer_FaBu_NaoNao_Acti", "userName" + userName);
         String f = "\"},\"requestTime\":\"2017-07-03 11:39:08\",\"customerKey\":\"02DCE2ED53D3CB63EC4FD8194B2F932C\",\"Method\":\"PHSocket_SetTieBaAdd\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":31363437,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
-        map.put("param", a + uID + b + image + sa + id + sd + context + e + userName + f);
-        Log.d("Carmer_FaBu_NaoNao_Acti", a + uID + b + image + sa + id + sd + context + e + userName + f);
+        map.put("param", a + uID + b + img + sa + id + sd + context + e + userName + f);
+        Log.d("Carmer_FaBu_NaoNao_Acti", a + uID + b + img + sa + id + sd + context + e + userName + f);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
@@ -202,7 +208,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 //        carmerFabuNaonaoAdd.addView(LayoutInflater.from(this).inflate(R.layout.carmer_fabu_naonao_img, null));
 
         path = intent.getStringArrayListExtra("path");
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < path.size(); i++) {
             imgView = LayoutInflater.from(Carmer_FaBu_NaoNao_Activity.this).inflate(R.layout.carmer_fabu_naonao_img, null);
             ImageView imageView1 = (ImageView) imgView.findViewById(R.id.rounde_imageview);
             Log.d("我的path", path.get(i));
@@ -243,6 +249,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 
         for (int i = 0; i < gridViewlist.size(); i++) {
             GridView view = (GridView) gridViewlist.get(i);
+            final int finalI = i;
             view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
@@ -254,11 +261,11 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
                     Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
                             in);
                     // 得到SpannableString对象,主要用于拆分字符串
-                    SpannableString spannableString = new SpannableString("image");
+                    SpannableString spannableString = new SpannableString("[sys\\/" + String.valueOf(finalI) + ".gif]");
                     // 得到ImageSpan对象
                     ImageSpan imageSpan = new ImageSpan(Carmer_FaBu_NaoNao_Activity.this, bitmap);
                     // 调用spannableString的setSpan()方法
-                    spannableString.setSpan(imageSpan, 0, 5,
+                    spannableString.setSpan(imageSpan, 0, 12,
                             Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                     // 给EditText追加spannableString
                     carmerFabuNaonaoEdit.append(spannableString);
@@ -305,7 +312,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             imageView = new ImageView(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(40, 20, 40, 20);
+            layoutParams.setMargins(40, 50, 40, 50);
             imageView.setLayoutParams(layoutParams);
             imageViews[i] = imageView;
 
@@ -484,6 +491,54 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             getViewLinear.setBackgroundResource(Integer.parseInt(listgrid.get(position).toString()));
             return convertView;
         }
+    }
+
+    public static AlertDialog openConfirmDialog(Context context, String title,
+                                                String msg, String okbutton, DialogInterface.OnClickListener ok, String nobutton,
+                                                DialogInterface.OnClickListener no) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage("\n" + msg + "\n");
+        builder.setNegativeButton(okbutton, ok);
+        builder.setNeutralButton(nobutton, no);
+        AlertDialog loadWaitDialog = builder.create();
+        loadWaitDialog.setCanceledOnTouchOutside(false);
+        loadWaitDialog.show();
+        return loadWaitDialog;
+
+    }
+
+    /**
+     * 监听返回按钮
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            openConfirmDialog(this, "操作提示", "你还未完成发布，确定退出吗？", "确定",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+//TODO
+                            finish();
+                        }
+                    }, "取消", new DialogInterface.OnClickListener() {
+
+
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+
+                            //TODO
+                            dialog.dismiss();
+                        }
+                    });
+        }
+
+
+            return false;
+
+
+
     }
 
 }
