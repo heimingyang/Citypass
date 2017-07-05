@@ -222,10 +222,6 @@ public class HomeActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 100:
-                switch (resultCode) {
-                    case 111:
-                        break;
-                }
                 break;
             case 200:
                 switch (resultCode) {

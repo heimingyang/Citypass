@@ -160,7 +160,7 @@ public class LoginActivity extends BaseActivity {
         });
     }
     private String getIP(){
-        WifiManager wifiManager = (WifiManager) getApplication().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) getApplication().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         //判断wifi是否开启,wifi未开启时，返回的ip为0.0.0.0
         if (!wifiManager.isWifiEnabled())
         {

@@ -295,7 +295,7 @@ public class InformationFragment extends BaseFragment {
                 switch (resultCode){
                     case 111:
                         a=1;
-                        init();
+                        getInformation();
                         HomeActivity.touTiaoFragment.loginstate();
                         break;
                 }
