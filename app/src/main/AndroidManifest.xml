@@ -168,6 +168,7 @@
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
         <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
         <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
+        <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
 
     </application>
 

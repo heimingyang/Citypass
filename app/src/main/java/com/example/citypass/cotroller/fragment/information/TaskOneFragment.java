@@ -1,7 +1,9 @@
 package com.example.citypass.cotroller.fragment.information;
 
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -41,6 +43,7 @@ public class TaskOneFragment extends BaseFragment {
     Unbinder unbinder;
     private int property;
     private TaskModel model;
+    private List<Task.ServerInfoBean> serverInfo;
 
     public void setProperty(int property) {
         this.property = property;
@@ -53,7 +56,15 @@ public class TaskOneFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(),TaskDetailActivity.class);
+                intent.putExtra("id",serverInfo.get(position).getId());
+                intent.putExtra("type",property);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,7 +76,7 @@ public class TaskOneFragment extends BaseFragment {
                 Task task = JSON.parseObject(result, Task.class);
                 int code = task.getMessageList().getCode();
                 if (code == 1000) {
-                    List<Task.ServerInfoBean> serverInfo = task.getServerInfo();
+                    serverInfo = task.getServerInfo();
                     TaskAdapter adapter = new TaskAdapter(serverInfo, getActivity(), property);
                     taskList.setAdapter(adapter);
                 }
