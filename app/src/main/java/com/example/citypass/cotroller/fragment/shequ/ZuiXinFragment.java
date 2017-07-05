@@ -51,7 +51,7 @@ public class ZuiXinFragment extends BaseFragment {
 
 
 
-    private void init() {
+    private void init(final boolean boo) {
         Map<String, String> map = new HashMap<>();
         String str = "{\"customerID\":8001,\"requestTime\":\"2017-06-22 14:34:03\",\"Method\":\"PHSocket_GetBBSTopicList\",\"customerKey\":\"F6E48AF7C237AF94F8EC2F5766407385\",\"appName\":\"CcooCity\",\"version\":\"4.5\",\"Param\":{\"siteID\":2422,\"flag\":2,\"boardID\":0,\"curPage\":1,\"pageSize\":10,\"oldTime\":\"\",\"userID\":30939591},\"Statis\":{\"SiteId\":2422,\"UserId\":30939591,\"PhoneNo\":\"vivo X7\",\"SystemNo\":2,\"System_VersionNo\":\"Android 5.1.1\",\"PhoneId\":\"862460032827563\",\"PhoneNum\":\"+8615735971710\"}}";
         map.put("param", str);
@@ -65,8 +65,11 @@ public class ZuiXinFragment extends BaseFragment {
                     throw new RuntimeException("出错");
                 }
                 data.addAll(zuiXinBean.getServerInfo());
-                adapter = new ZuiXinAdapter(App.activity, data);
-                shequRecyclerview.setAdapter(adapter);
+                if(boo){
+                    shequRecyclerview.refreshComplete();
+                }else{
+                    shequRecyclerview.loadMoreComplete();
+                }
             }
 
             @Override
@@ -81,7 +84,9 @@ public class ZuiXinFragment extends BaseFragment {
         man.setOrientation(LinearLayoutManager.VERTICAL);
         if (shequRecyclerview != null && shequRecyclerview.getId() != 0) {
             RecyclerView.LayoutManager manager = new LinearLayoutManager(App.activity);
-            init();
+            adapter = new ZuiXinAdapter(data);
+            shequRecyclerview.setAdapter(adapter);
+            init(false);
             shequRecyclerview.setLayoutManager(manager);
 
             shequRecyclerview.setLoadingListener(new MRecyclerView.LoadingListener() {
@@ -92,15 +97,14 @@ public class ZuiXinFragment extends BaseFragment {
 
                 @Override
                 public void onRefresh() {
-                    data.clear();
-                    init();
-                    shequRecyclerview.refreshComplete();
+                    init(true);
+
                 }
 
                 @Override
                 public void onLoadMore() {
-                    init();
-                    shequRecyclerview.refreshComplete();
+                    init(false);
+
                 }
             });
 

@@ -1,7 +1,8 @@
 package com.example.citypass.cotroller.adapter.shequ;
 
-import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +15,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.example.citypass.App;
 import com.example.citypass.R;
-import com.example.citypass.base.BaseActivity;
-import com.example.citypass.cotroller.activity.shequ.TieZiDetialActivity;
 import com.example.citypass.model.bean.shequ.ZuiXinBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,47 +33,63 @@ import java.util.List;
  * 修改内容:
  * 修改时间:
  */
-public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder> implements View.OnClickListener {
+public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder> {
 
     private List<ZuiXinBean.ServerInfoBean> data;
-    private Context context;
+    private OnItemClickListener onItemClickListener;
+    private List<String> strList = new ArrayList<>();
+    private LinearLayout myLayout;
 
-
-    private OnItemClickListener mOnItemClickListener = null;
-
-    public ZuiXinAdapter(BaseActivity activity, List<ZuiXinBean.ServerInfoBean> data) {
-        this.context = activity;
-        this.data = data;
+    public void setmOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
     }
 
 
-    @Override
-    public void onClick(View v) {
-        if (mOnItemClickListener != null) {
-            //注意这里使用getTag方法获取position
-            mOnItemClickListener.onItemClick(v,(int)v.getTag());
-        }
-    }
+
+
     //define interface
     public interface OnItemClickListener {
-        void onItemClick(View view , int position);
+        void onItemClick(int position);
+    }
+
+    public ZuiXinAdapter(List<ZuiXinBean.ServerInfoBean> data){
+        this.data = data;
+        Log.e("aaa",data.size()+"");
+    }
+    public void setNewData(List<ZuiXinBean.ServerInfoBean> data){
+        this.data = data;
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-
-
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.shequ_zuixin, viewGroup, false);
-        view.setOnClickListener(this);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.shequ_zuixin, null);
+        view.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.titleTv.setText(data.get(position).getTitle());
-        holder.contentTv.setText(data.get(position).getTbody());
-        if (data.get(position).getImagesNum() == 0) {
+
+        ZuiXinBean.ServerInfoBean bean = data.get(position);
+        holder.titleTv.setText(bean.getTitle()+"");
+        holder.nameTv.setText(bean.getRole()+"");
+        holder.contentTv.setText(bean.getTbody()+"");
+        holder.laiziTv.setText(bean.getBName()+"");
+        holder.zanTv.setText(bean.getSUP()+"");
+        holder.timeTv.setText(bean.getReplyTime()+"");
+        holder.replyTv.setText(bean.getReply()+"");
+        final ImageView img = holder.headIv;
+        Glide.with(App.activity).load(bean.getUserface()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(App.activity.getResources(), resource);
+                ciDrawable.setCircular(true);
+                img.setImageDrawable(ciDrawable);
+            }
+        });
+        if (bean.getImagesNum() == 0) {
             holder.imageRL.setVisibility(View.GONE);
         } else {
             holder.imageRL.setVisibility(View.VISIBLE);
@@ -82,7 +100,7 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
                 ImageView imageView = (ImageView) holder.imageLL.getChildAt(i);
                 if (i <= images.length-1) {
                     imageView.setVisibility(View.VISIBLE);
-                    Glide.with(context)
+                    Glide.with(App.activity)
                             .load(images[i])
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(R.drawable.ic_launcher)
@@ -91,36 +109,55 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
                     imageView.setVisibility(View.INVISIBLE);
                 }
             }
-            if (data.get(position).getImagesNum() <= 3) {
+            if (bean.getImagesNum() <= 3) {
                 holder.imageNumTv.setVisibility(View.GONE);
             } else {
                 holder.imageNumTv.setVisibility(View.VISIBLE);
                 holder.imageNumTv.setText("共" + data.get(position).getImagesNum() + "张");
             }
         }
-        holder.laiziTv.setText(data.get(position).getBName(
+        //得到所有的网址，
+        String imagess = bean.getUserface();
+        if(imagess != null){
+            String[] split = imagess.split("\\|");
+        }
 
-        ));
-
-
-        holder.nameTv.setText(data.get(position).getRole());
-        holder.zanTv.setText(String.valueOf(data.get(position).getSUP()));
-        holder.zanTv.setText(String.valueOf(data.get(position).getReply()));
-        Glide.with(context)
-                .load(data.get(position).getUserface())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.ic_launcher)
-                .into(holder.headIv);
     }
+    @Override
+    public int getItemViewType(int position) {
+
+
+        return super.getItemViewType(position);
+    }
+
+    //要在数据中截取到imageview url路径的方法
+    private String getJson_Url(String jsons) {
+
+        /**
+         * 判断json串里有没有“|”
+         * 有的话就让它把从开始到“|”前面的截取走
+         * 如果没有了就让它直接从0截取到json串结束
+         * */
+
+        if (jsons.contains("|")) {
+            //第一个"|"出现的索引
+            int i = jsons.indexOf("|");
+            String sub = jsons.substring(0, i) + "|";
+            Log.i("截取出来的img--------->", sub);
+            getJson_Url(sub);
+            return jsons.substring(i, jsons.length());
+
+        } else {
+            return jsons;
+        }
+    }
+
+
 
     @Override
     public int getItemCount() {
-        if(data==null){
 
-            return 0;
-        }
-
-        return data.size();
+        return data.isEmpty()?0:data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -148,15 +185,10 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
             imageRL = (RelativeLayout) itemView.findViewById(R.id.newest_image_relative);
             imageLL = (LinearLayout) itemView.findViewById(R.id.newest_image_layout);
             headIv = (ImageView) itemView.findViewById(R.id.head_iv);
-            ZuiXinLayout.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, TieZiDetialActivity.class);
-                    intent.putExtra("id",data.get(getAdapterPosition()-1).getTopicID()+"");
-                    intent.putExtra("name1",data.get(getAdapterPosition()-1).getUserName());
-                    context.startActivity(intent);
-                    Log.i("bbb",data.get(getAdapterPosition()-1).getTopicID()+"");
-                    Log.i("bbb",data.get(getAdapterPosition()-1).getUserface());
+                    onItemClickListener.onItemClick(getLayoutPosition());
                 }
             });
         }
