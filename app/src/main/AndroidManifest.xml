@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -174,6 +173,8 @@
         <activity android:name=".cotroller.fragment.toutiao.PermissionsActivity"></activity>
         <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
         <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
+        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_AiTe_NaoNao_Activity"/>
         <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.ModifyPassActivity"/>
         <activity android:name=".cotroller.HomeActivity"/>

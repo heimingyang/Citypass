@@ -9,7 +9,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.cotroller.fragment.toutiao.MyProgressDialog;
-import com.example.citypass.utils.DialogUtils;
 import com.example.citypass.utils.GlideCircleTransform;
 
 import java.io.File;
@@ -20,8 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.Headers;
@@ -31,7 +30,6 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Callback;
 
 /**
  * Created by dell on 2017/6/9.
@@ -78,7 +76,7 @@ public class OkHttpUtils implements FactoryIn {
     @Override
     public void GET(String url, Map<String, String> map, String cookie, final MyCallBack callBack) {
       //  DialogUtils.dialog();
-        Hdialog.show();
+//        Hdialog.show();
         StringBuffer sb=new StringBuffer("?");
         if(map.size()>0){
             Set<String> values = map.keySet();
@@ -109,7 +107,7 @@ public class OkHttpUtils implements FactoryIn {
                     public void run() {
                         callBack.onError(e.getMessage());
                        // DialogUtils.dismiss();
-                        Hdialog.dismiss();
+//                        Hdialog.dismiss();
                     }
                 });
             }
@@ -123,13 +121,13 @@ public class OkHttpUtils implements FactoryIn {
                         public void run() {
                             callBack.onSuccess(jsondata);
                             //DialogUtils.dismiss();
-                            Hdialog.dismiss();
+//                            Hdialog.dismiss();
                         }
                     });
                 }else{
                     Toast.makeText(App.activity,"请求数据为空",Toast.LENGTH_SHORT).show();
                     //DialogUtils.dismiss();
-                    Hdialog.dismiss();
+//                    Hdialog.dismiss();
                 }
             }
         });
@@ -138,7 +136,7 @@ public class OkHttpUtils implements FactoryIn {
     @Override
     public void POST(String url, Map<String, String> map, String cookie, final MyCallBack callBack) {
         //DialogUtils.dialog();
-        Hdialog.show();
+//        Hdialog.show();
         MultipartBody.Builder builder=new MultipartBody.Builder().setType(MultipartBody.FORM);
         if(map!=null&&map.size()>0) {
             for (String key : map.keySet()) {
@@ -171,7 +169,7 @@ public class OkHttpUtils implements FactoryIn {
                 if(e!=null)
                 callBack.onError(e.getMessage());
                 //DialogUtils.dismiss();
-                Hdialog.dismiss();
+//                Hdialog.dismiss();
             }
 
             @Override
@@ -199,14 +197,14 @@ public class OkHttpUtils implements FactoryIn {
                         public void run() {
                             callBack.onSuccess(jsondata);
 //                            DialogUtils.dismiss();
-                            Hdialog.dismiss();
+//                            Hdialog.dismiss();
 
                         }
                     });
                 }else{
                     Toast.makeText(App.activity,"请求数据为空",Toast.LENGTH_SHORT).show();
 //                    DialogUtils.dismiss();
-                    Hdialog.dismiss();
+//                    Hdialog.dismiss();
 
                 }
             }

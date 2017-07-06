@@ -17,11 +17,11 @@
             android:layout_marginTop="35dp"
             android:background="@drawable/tieba_top_tou2">
 
-            <com.example.citypass.base.CircleImageView
+            <ImageView
                 android:id="@+id/di_naonao_image_second"
                 android:layout_width="57dp"
                 android:layout_height="57dp"
-                android:layout_margin="4dp"
+                android:layout_margin="6dp"
                 android:src="@drawable/girl" />
         </RelativeLayout>
 
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/second_tou_img"
-            android:layout_marginLeft="53dp"
+            android:layout_marginLeft="58dp"
 
             android:padding="2dp"
             android:text="呵呵哒" />
@@ -44,11 +44,11 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/tieba_top_tou1">
 
-            <com.example.citypass.base.CircleImageView
+            <ImageView
                 android:id="@+id/di_naonao_image_first"
                 android:layout_width="57dp"
                 android:layout_height="57dp"
-                android:layout_margin="4dp"
+                android:layout_margin="6dp"
                 android:src="@drawable/girl" />
         </RelativeLayout>
 
@@ -69,11 +69,11 @@
             android:layout_marginTop="55dp"
             android:background="@drawable/tieba_top_tou3">
 
-            <com.example.citypass.base.CircleImageView
+            <ImageView
                 android:id="@+id/di_naonao_image_third"
                 android:layout_width="57dp"
                 android:layout_height="57dp"
-                android:layout_margin="4dp"
+                android:layout_margin="6dp"
                 android:src="@drawable/girl" />
         </RelativeLayout>
 
@@ -122,6 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/di_naonao_count_second"
                     android:layout_centerHorizontal="true"
+                    android:textSize="10dp"
                     android:text="回帖数" />
             </RelativeLayout>
         </RelativeLayout>
@@ -131,7 +132,7 @@
             android:layout_width="95dp"
             android:layout_height="84dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="88dp"
             android:src="@drawable/cover_homepage_podium2" />
 
         <RelativeLayout
@@ -154,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/di_naonao_count_first"
                 android:layout_centerHorizontal="true"
+                android:textSize="13dp"
                 android:text="回帖数" />
         </RelativeLayout>
 
@@ -165,10 +167,10 @@
             android:layout_marginTop="117dp"
             android:src="@drawable/cover_homepage_podium3" />
         <RelativeLayout
-            android:layout_marginLeft="265dp"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="148dp">
+            android:layout_marginLeft="260dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="143dp">
 
             <TextView
                 android:id="@+id/di_naonao_count_third"
@@ -184,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/di_naonao_count_third"
                 android:layout_centerHorizontal="true"
+                android:textSize="10dp"
                 android:text="回帖数" />
         </RelativeLayout>
     </RelativeLayout>

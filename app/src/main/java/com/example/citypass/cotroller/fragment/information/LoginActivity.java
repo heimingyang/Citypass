@@ -150,6 +150,7 @@ public class LoginActivity extends BaseActivity {
                     SpUtils.upSp().commit();
                     getInformation();
                 }else{
+                    Toast.makeText(LoginActivity.this,isLogin.getMessageList().getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
 

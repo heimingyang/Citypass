@@ -1,21 +1,30 @@
 package com.example.citypass.cotroller.fragment.naonao;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.base.CircleImageView;
 import com.example.citypass.cotroller.adapter.naonao.DiNaoNao_Recycle_Adapter;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
+import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.naonao.Di_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
+import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 import com.example.citypass.view.MRecyclerView;
 
 import java.util.ArrayList;
@@ -60,12 +69,12 @@ import butterknife.BindView;
  */
 
 
-public class Wang_NaoNao_Fragment extends BaseFragment {
-    CircleImageView wangNaonaoImageSecond;
+public class Wang_NaoNao_Fragment extends BaseFragment implements View.OnClickListener {
+    ImageView wangNaonaoImageSecond;
     TextView wangNaonaoNameSecond;
-    CircleImageView wangNaonaoImageFirst;
+    ImageView wangNaonaoImageFirst;
     TextView wangNaonaoNameFirst;
-    CircleImageView wangNaonaoImageThird;
+    ImageView wangNaonaoImageThird;
     TextView wangNaonaoNameThird;
     TextView wangNaonaoCountSecond;
     TextView wangNaonaoCountFirst;
@@ -74,11 +83,12 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
     MRecyclerView wangNaonaoRecycle;
     private DiNaoNao_Recycle_Adapter adapter;
     private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList = new ArrayList<>();
-    private int a=0;
+    private int a = 0;
+    private Di_NaoNao_Bean di_naoNao_fragment;
 
     @Override
     protected void initData() {
-        if(a==0) {
+        if (a == 0) {
             initParsing();
             wangNaonaoRecycle.setLoadingListener(new MRecyclerView.LoadingListener() {
                 @Override
@@ -94,7 +104,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
                             initParsing();
                             wangNaonaoRecycle.refreshComplete();
                         }
-                    },2000);
+                    }, 2000);
                 }
 
                 @Override
@@ -105,10 +115,10 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
                             initParsing();
                             wangNaonaoRecycle.refreshComplete();
                         }
-                    },2000);
+                    }, 2000);
                 }
             });
-            a=1;
+            a = 1;
         }
     }
 
@@ -120,23 +130,50 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
             @Override
             public void onSuccess(String result) {
                 Log.d("Wang_NaoNao_Fragment", result);
-                Di_NaoNao_Bean di_naoNao_fragment = JSON.parseObject(result, Di_NaoNao_Bean.class);
+                 di_naoNao_fragment = JSON.parseObject(result, Di_NaoNao_Bean.class);
                 wangNaonaoCountFirst.setText(di_naoNao_fragment.getServerInfo().getInfo().get(0).getSum());
                 wangNaonaoCountSecond.setText(di_naoNao_fragment.getServerInfo().getInfo().get(1).getSum());
                 wangNaonaoCountThird.setText(di_naoNao_fragment.getServerInfo().getInfo().get(2).getSum());
                 wangNaonaoNameFirst.setText(di_naoNao_fragment.getServerInfo().getInfo().get(0).getNick());
                 wangNaonaoNameSecond.setText(di_naoNao_fragment.getServerInfo().getInfo().get(1).getNick());
                 wangNaonaoNameThird.setText(di_naoNao_fragment.getServerInfo().getInfo().get(2).getNick());
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(wangNaonaoImageFirst);
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(wangNaonaoImageSecond);
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(wangNaonaoImageThird);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(wangNaonaoImageFirst);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(wangNaonaoImageSecond);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(wangNaonaoImageThird);
+
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(wangNaonaoImageFirst) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        wangNaonaoImageFirst.setImageDrawable(ciDrawable);
+                    }
+                });
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(wangNaonaoImageSecond) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        wangNaonaoImageSecond.setImageDrawable(ciDrawable);
+                    }
+                });
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(wangNaonaoImageThird) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        wangNaonaoImageThird.setImageDrawable(ciDrawable);
+                    }
+                });
+
+
                 mList.clear();
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
-                if(adapter==null){
+                if (adapter == null) {
                     adapter = new DiNaoNao_Recycle_Adapter(mList);
                     wangNaonaoRecycle.setAdapter(adapter);
-                }else {
-                   adapter.setNewData(mList);
+                } else {
+                    adapter.setNewData(mList);
                 }
             }
 
@@ -149,17 +186,19 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
 
     @Override
     protected void initListener() {
-
+        wangNaonaoImageFirst.setOnClickListener(this);
+        wangNaonaoImageSecond.setOnClickListener(this);
+        wangNaonaoImageFirst.setOnClickListener(this);
     }
 
     @Override
     protected void initView(View view) {
         View v = LayoutInflater.from(App.activity).inflate(R.layout.wang_naonao_tou, null);
-        wangNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.wang_naonao_image_second);
+        wangNaonaoImageSecond = (ImageView) v.findViewById(R.id.wang_naonao_image_second);
         wangNaonaoNameSecond = (TextView) v.findViewById(R.id.wang_naonao_name_second);
-        wangNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.wang_naonao_image_first);
+        wangNaonaoImageFirst = (ImageView) v.findViewById(R.id.wang_naonao_image_first);
         wangNaonaoNameFirst = (TextView) v.findViewById(R.id.wang_naonao_name_first);
-        wangNaonaoImageThird = (CircleImageView) v.findViewById(R.id.wang_naonao_image_third);
+        wangNaonaoImageThird = (ImageView) v.findViewById(R.id.wang_naonao_image_third);
         wangNaonaoNameThird = (TextView) v.findViewById(R.id.wang_naonao_name_third);
         wangNaonaoCountSecond = (TextView) v.findViewById(R.id.wang_naonao_count_second);
         wangNaonaoCountFirst = (TextView) v.findViewById(R.id.wang_naonao_count_first);
@@ -176,11 +215,36 @@ public class Wang_NaoNao_Fragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    // TODO: 2017/6/26 0026 跳转详情
+    private void getIntents(int id) {
+        //跳转详情之前先判断是否登录
+        if (SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false)) {
+            //如果登录就带着UserId跳转详情页面
+            Intent ins = new Intent(getContext(), PersonalActivity.class);
+            ins.putExtra("id", id);
+            getContext().startActivity(ins);
+        } else {
+            //未登录就跳转到登录页面
+            Intent ina = new Intent(getContext(), LoginActivity.class);
+            getContext().startActivity(ina);
+        }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.wang_naonao_image_first:
+                int userID = di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserID();
+                Log.d("Wang_NaoNao_Fragment", "userID:" + userID);
+                getIntents(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserID());
+                break;
+            case R.id.wang_naonao_image_second:
 
-
+                getIntents(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserID());
+                break;
+            case R.id.wang_naonao_image_third:
+                getIntents(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserID());
+                break;
+        }
+    }
 }

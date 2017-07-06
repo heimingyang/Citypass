@@ -1,18 +1,24 @@
 package com.example.citypass.cotroller.adapter.naonao;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.naonao.detail.SquareDetailBean;
+import com.example.citypass.cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity;
 import com.example.citypass.model.bean.naonao.Picture_NaoNao_Bean;
 import com.example.citypass.utils.LogUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -69,8 +75,8 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        Picture_NaoNao_Bean.ServerInfoBean bean = mList.get(position);
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final Picture_NaoNao_Bean.ServerInfoBean bean = mList.get(position);
         holder.mZanText.setText(bean.getDing() + "");
         holder.mBody.setText(bean.getTitle() + "");
         holder.mTime.setText(bean.getLastTime() + "");
@@ -90,6 +96,23 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
         } else {
             holder.mZan.setImageResource(R.drawable.ccoo_icon_zan_2);
         }
+       holder.mLin.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(App.activity, SquareNaonaoDetailActivity.class);
+               String title = bean.getTitle();
+               String name = bean.getNick();
+               String time = bean.getLastTime();
+               String image = bean.getUserFace();
+               String address = bean.getMapName();
+               String Images = bean.getImage();
+               int id = bean.getId();
+               SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+               EventBus.getDefault().postSticky(detailBean);
+               intent.putExtra("position", position);
+               App.activity.startActivity(intent);
+           }
+       });
     }
 
     @Override
@@ -101,7 +124,7 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
     class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImg, mZan;
         private TextView mZanText, mBody, mName, mTime;
-
+        private LinearLayout mLin;
         public MyViewHolder(View v) {
             super(v);
             mImg = (ImageView) v.findViewById(R.id.picture_naonao_recycle_image);
@@ -110,6 +133,8 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
             mBody = (TextView) v.findViewById(R.id.pricture_naonao_recycle_item_body);
             mName = (TextView) v.findViewById(R.id.pricture_naonao_recycle_item_name);
             mTime = (TextView) v.findViewById(R.id.pricture_naonao_recycle_item_time);
+            mLin = (LinearLayout) v.findViewById(R.id.picture_naonao_recycle_z);
+
         }
     }
 

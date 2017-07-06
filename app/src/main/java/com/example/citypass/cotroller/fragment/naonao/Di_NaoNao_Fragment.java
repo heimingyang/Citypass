@@ -1,21 +1,25 @@
 package com.example.citypass.cotroller.fragment.naonao;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.base.CircleImageView;
+import com.example.citypass.cotroller.adapter.naonao.DiNaoNao_Recycle_Adapter;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
-import com.example.citypass.cotroller.adapter.naonao.DiNaoNao_Recycle_Adapter;
 import com.example.citypass.model.bean.naonao.Di_NaoNao_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
@@ -69,11 +73,11 @@ import butterknife.Unbinder;
 public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.di_naonao_recycle)
     MRecyclerView diNaonaoRecycle;
-    CircleImageView diNaonaoImageSecond;
+    ImageView diNaonaoImageSecond;
     TextView diNaonaoNameSecond;
-    CircleImageView diNaonaoImageFirst;
+    ImageView diNaonaoImageFirst;
     TextView diNaonaoNameFirst;
-    CircleImageView diNaonaoImageThird;
+    ImageView diNaonaoImageThird;
     TextView diNaonaoNameThird;
     TextView diNaonaoCountSecond;
     TextView diNaonaoCountFirst;
@@ -93,14 +97,14 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
 
     // TODO: 2017/6/26 0026 找id 
     private void initViews() {
-        diNaonaoImageSecond = (CircleImageView) v.findViewById(R.id.di_naonao_image_second);
+        diNaonaoImageSecond = (ImageView) v.findViewById(R.id.di_naonao_image_second);
         diNaonaoCountThird = (TextView) v.findViewById(R.id.di_naonao_count_third);
         diNaonaoCountFirst = (TextView) v.findViewById(R.id.di_naonao_count_first);
         diNaonaoCountSecond = (TextView) v.findViewById(R.id.di_naonao_count_second);
         diNaonaoNameThird = (TextView) v.findViewById(R.id.di_naonao_name_third);
-        diNaonaoImageThird = (CircleImageView) v.findViewById(R.id.di_naonao_image_third);
+        diNaonaoImageThird = (ImageView) v.findViewById(R.id.di_naonao_image_third);
         diNaonaoNameSecond = (TextView) v.findViewById(R.id.di_naonao_name_second);
-        diNaonaoImageFirst = (CircleImageView) v.findViewById(R.id.di_naonao_image_first);
+        diNaonaoImageFirst = (ImageView) v.findViewById(R.id.di_naonao_image_first);
         diNaonaoNameFirst = (TextView) v.findViewById(R.id.di_naonao_name_first);
     }
 
@@ -127,7 +131,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
                             initParsing();
                             diNaonaoRecycle.refreshComplete();
                         }
-                    },2000);
+                    }, 2000);
                 }
 
                 //加载
@@ -139,7 +143,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
                             initParsing();
                             diNaonaoRecycle.loadMoreComplete();
                         }
-                    },2000);
+                    }, 2000);
                 }
             });
             a = 1;
@@ -162,11 +166,40 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
                 diNaonaoNameFirst.setText(di_naoNao_fragment.getServerInfo().getInfo().get(0).getNick());
                 diNaonaoNameSecond.setText(di_naoNao_fragment.getServerInfo().getInfo().get(1).getNick());
                 diNaonaoNameThird.setText(di_naoNao_fragment.getServerInfo().getInfo().get(2).getNick());
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
-                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
+//                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
 
-                 mList.clear();
+                //1
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(diNaonaoImageFirst) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        diNaonaoImageFirst.setImageDrawable(ciDrawable);
+                    }
+                });
+                //2
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(diNaonaoImageSecond) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        diNaonaoImageSecond.setImageDrawable(ciDrawable);
+                    }
+                });
+                //3
+                Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(diNaonaoImageThird) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                        ciDrawable.setCircular(true);
+                        diNaonaoImageThird.setImageDrawable(ciDrawable);
+                    }
+                });
+
+
+                mList.clear();
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
                 //判断是否已经加载过
                 if (adapter == null) {

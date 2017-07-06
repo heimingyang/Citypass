@@ -1,5 +1,7 @@
 package com.example.citypass.cotroller.activity.naonao;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * /**
@@ -71,6 +74,8 @@ public class Carmer_FaBu_NaoNao_Title_Activity extends BaseActivity {
     RecyclerView carmerFabuNaonaoTitleRecycle;
     private List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList = new ArrayList<>();
     private Carmer_FaBu_Naonao_Title_Adapter mAdapter;
+    private Intent in;
+
     @Override
     protected int getLayoutId() {
         return R.layout.carmer_fabu_naonao_title_activity;
@@ -87,14 +92,14 @@ public class Carmer_FaBu_NaoNao_Title_Activity extends BaseActivity {
     }
 
     private void initParsing() {
-        Map<String,String> map = new HashMap<>();
-        String str ="{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":30108866,\"siteID\":2422,\"type\":4,\"curPage\":1,\"keyword\":\"\"},\"requestTime\":\"2017-07-02 20:12:45\",\"customerKey\":\"0D0DF7C57B64EB2D41174B2AB0C00A5A\",\"Method\":\"PHSocket_GetTieBaGambitList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":30108866,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
-        map.put("param",str);
+        Map<String, String> map = new HashMap<>();
+        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":30108866,\"siteID\":2422,\"type\":4,\"curPage\":1,\"keyword\":\"\"},\"requestTime\":\"2017-07-02 20:12:45\",\"customerKey\":\"0D0DF7C57B64EB2D41174B2AB0C00A5A\",\"Method\":\"PHSocket_GetTieBaGambitList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":30108866,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        map.put("param", str);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.d("Title_NaoNao_Fragment", result);
-                Carmer_FaBu_Naonao_Title_Bean title_naoNao_bean = JSON.parseObject(result, Carmer_FaBu_Naonao_Title_Bean.class);
+                final Carmer_FaBu_Naonao_Title_Bean title_naoNao_bean = JSON.parseObject(result, Carmer_FaBu_Naonao_Title_Bean.class);
                 if (mList.size() < 0) {
                     return;
                 }
@@ -102,7 +107,7 @@ public class Carmer_FaBu_NaoNao_Title_Activity extends BaseActivity {
                 if (mAdapter == null) {
                     mList.addAll(title_naoNao_bean.getServerInfo());
                     if (mAdapter == null) {
-                        mAdapter = new Carmer_FaBu_Naonao_Title_Adapter(mList,Carmer_FaBu_NaoNao_Title_Activity.this);
+                        mAdapter = new Carmer_FaBu_Naonao_Title_Adapter(mList, Carmer_FaBu_NaoNao_Title_Activity.this);
                         carmerFabuNaonaoTitleRecycle.setAdapter(mAdapter);
                     } else {
                         mAdapter.setNewData(mList);
@@ -111,9 +116,15 @@ public class Carmer_FaBu_NaoNao_Title_Activity extends BaseActivity {
                 }
                 mAdapter.setOnItemClickListener(new Carmer_FaBu_Naonao_Title_Adapter.OnRecyclerViewItemClickListener() {
                     @Override
-                    public void onItemClick(View view, String data) {
-
+                    public void onItemClick(View view, String data, int postion) {
+                        Intent intent = new Intent();
+                        Bundle bun = new Bundle();
+                        bun.putString("title", title_naoNao_bean.getServerInfo().get(postion).getTitle());
+                        intent.putExtra("title",bun);
+                        setResult(201, intent);
                         finish();
+
+
                     }
                 });
             }
@@ -127,10 +138,16 @@ public class Carmer_FaBu_NaoNao_Title_Activity extends BaseActivity {
 
     @Override
     protected void initView() {
+        in = getIntent();
         LinearLayoutManager man = new LinearLayoutManager(this);
         initParsing();
         carmerFabuNaonaoTitleRecycle.setLayoutManager(man);
     }
 
 
+    @OnClick(R.id.carmer_fabu_naonao_title_cancel)
+    public void onViewClicked() {
+
+        onBackPressed();
+    }
 }

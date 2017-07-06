@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Spannable;
@@ -32,6 +33,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.model.bean.naonao.Carmer_FaBu_NaoNao_Grid_Adapter;
 import com.example.citypass.model.bean.naonao.Carmer_FaBu_NaoNao_publish_Bean;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
@@ -125,6 +127,8 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     HorizontalScrollView carmerFabuNaonaoScroll;
     @BindView(R.id.carmer_fabu_naonao_title)
     RelativeLayout carmerFabuNaonaoTitle;
+    @BindView(R.id.carmer_fabu_naonao_grid)
+    GridView carmerFabuNaonaoGrid;
     private List<Integer> listView;
     private int next = 0;
     private ViewPager adViewPager;
@@ -137,6 +141,11 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     private ArrayList<String> path;
     private View imgView;
     private String img;
+    private List<String> list;
+
+    private List<String> mlist = new ArrayList<>();
+    private Carmer_FaBu_NaoNao_Grid_Adapter camer_grid_adapter;
+    private String str_count;
 
     @Override
     protected int getLayoutId() {
@@ -150,7 +159,6 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 
     @Override
     protected void initData() {
-//        initParsing();
 
     }
 
@@ -168,7 +176,11 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
         String sa = "\",\"mapPoint\":\"4.9E-324,4.9E-324\",\"type\":2,\"usiteID\":";
         int id = 2422;
         String sd = ",\"gambitID\":4605,\"mapName\":\"不显示地理位置\",\"content\":\"";
+        int unicodeJoy = 0x1F602;
+        String emojiString = getEmojiStringByUnicode(unicodeJoy);
+        carmerFabuNaonaoEdit.append(emojiString);
         String context = carmerFabuNaonaoEdit.getText().toString().trim() + "";
+
         Log.d("Carmer_FaBu_NaoNao_Acti", "context" + context);
         String e = "\",\"siteID\":2422,\"source\":2,\"userName\":\"";
         String userName = LoginUtils.information.getServerInfo().getUserName() + "";
@@ -195,6 +207,8 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             }
         });
     }
+
+
 
     //回调
 
@@ -267,6 +281,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
                     // 调用spannableString的setSpan()方法
                     spannableString.setSpan(imageSpan, 0, 12,
                             Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+
                     // 给EditText追加spannableString
                     carmerFabuNaonaoEdit.append(spannableString);
                     String newContent = carmerFabuNaonaoEdit.getText().toString().trim();
@@ -278,10 +293,6 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
         }
     }
 
-
-    @OnClick(R.id.carmer_fabu_naonao_title)
-    public void onViewClicked() {
-    }
 
     private final class AdPageChangeListener implements ViewPager.OnPageChangeListener {
 
@@ -315,7 +326,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             layoutParams.setMargins(40, 50, 40, 50);
             imageView.setLayoutParams(layoutParams);
             imageViews[i] = imageView;
-
+            // 对内容进行Base64
             if (i == 0) {
                 imageViews[i].setBackgroundResource(R.drawable.main_tuan_dian1);
             } else {
@@ -400,7 +411,28 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.carmer_fabu_naonao_cancel:
-                onBackPressed();
+
+                openConfirmDialog(this, "操作提示", "你还未完成发布，确定退出吗？", "确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+//TODO
+                                finish();
+                            }
+                        }, "取消", new DialogInterface.OnClickListener() {
+
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                //TODO
+                                dialog.dismiss();
+                            }
+                        });
+
+
                 break;
             case R.id.carmer_fabu_naonao_fabu:
                 initParsing();
@@ -420,16 +452,59 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 
                 break;
             case R.id.carmer_fabu_naonao_aite:
+                Intent in = new Intent(Carmer_FaBu_NaoNao_Activity.this, Carmer_FaBu_AiTe_NaoNao_Activity.class);
+                startActivity(in);
                 break;
             case R.id.carmer_fabu_naonao_yuyin:
                 break;
             case R.id.carmer_fabu_naonao_collect:
                 break;
             case R.id.carmer_fabu_naonao_title:
-                Intent in = new Intent(Carmer_FaBu_NaoNao_Activity.this, Carmer_FaBu_NaoNao_Title_Activity.class);
-                startActivity(in);
+                Intent ian = new Intent(Carmer_FaBu_NaoNao_Activity.this, Carmer_FaBu_NaoNao_Title_Activity.class);
+                startActivityForResult(ian, 200);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            //当请求码为200
+            case 200:
+                switch (resultCode) {
+                    case 201:
+                        Bundle title = data.getBundleExtra("title");
+                        String title1 = title.getString("title");
+                        Log.e("回传数据", title1);
+//
+                        mlist.add(title1);
+                        camer_grid_adapter = new Carmer_FaBu_NaoNao_Grid_Adapter(mlist);
+                        carmerFabuNaonaoGrid.setAdapter(camer_grid_adapter);
+                        carmerFabuNaonaoGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                String str = mlist.get(position);
+                                carmerFabuNaonaoEdit.append("#" + str + "#");
+                            }
+                        });
+                }
+                break;
+
+        }
+
+//
+//        if (requestCode == 0 && resultCode == 100) {
+//            Bundle bun = data.getExtras();
+//            String text = null;
+//            if (bun != null)
+//                text = bun.getString("title");
+//            Log.d("text", text);
+//
+
+    }
+    private String getEmojiStringByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
     }
 
     private final class AdPageAdapter extends PagerAdapter {
@@ -535,8 +610,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
         }
 
 
-            return false;
-
+        return false;
 
 
     }

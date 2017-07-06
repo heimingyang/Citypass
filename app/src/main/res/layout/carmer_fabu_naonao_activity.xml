@@ -97,7 +97,13 @@
 
             />
     </RelativeLayout>
+    <GridView
+        android:layout_below="@id/carmer_fabu_naonao_title"
+        android:id="@+id/carmer_fabu_naonao_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    </GridView>
 
     <LinearLayout
         android:layout_width="match_parent"

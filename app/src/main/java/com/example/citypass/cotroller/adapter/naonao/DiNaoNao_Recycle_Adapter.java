@@ -1,6 +1,9 @@
 package com.example.citypass.cotroller.adapter.naonao;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
@@ -76,7 +80,7 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final Di_NaoNao_Bean.ServerInfoBean.InfoBean in = mList.get(position+3);
         holder.mCount.setText("回帖数："+in.getSum()+"");
         holder.mLevel.setText("LV."+in.getLevel()+"");
@@ -85,7 +89,19 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
         holder.mName.setText(in.getNick()+"");
         holder.mPaiMing.setText(position+4+"");
 
-        Glide.with(App.activity).load(in.getUserFace()).into(holder.mImage);
+//        Glide.with(App.activity).load(in.getUserFace()).into(holder.mImage);
+
+        Glide.with(App.activity).load(in.getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.mImage) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(App.activity.getResources(), resource);
+                ciDrawable.setCircular(true);
+                holder.mImage.setImageDrawable(ciDrawable);
+            }
+        });
+
+
+
         holder.mRela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

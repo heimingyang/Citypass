@@ -13,10 +13,10 @@ import com.example.citypass.R;
 import com.example.citypass.cotroller.fragment.life.WebViewActivity;
 
 public class SignDialog extends Dialog {
-
+//
 	private ImageView delete, daysImage,submit;
     private TextView coinTextView, integerTextView, content1, content2;
-	
+
 	private Context context;
 
 	public SignDialog(Context context) {
@@ -90,7 +90,7 @@ public class SignDialog extends Dialog {
 			}
 		});
 		submit.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub

@@ -11,8 +11,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.naonao.Carmer_FaBu_Naonao_Title_Bean;
+import com.example.citypass.view.GlideRoundTransform;
 
 import java.util.List;
+
+import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * /**
@@ -50,9 +53,10 @@ import java.util.List;
 
 
 public class Carmer_FaBu_Naonao_Title_Adapter extends RecyclerView.Adapter<Carmer_FaBu_Naonao_Title_Adapter.Carmer_FaBu_NaoNao_TiTle_ViewHolder> {
-    private List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList ;
+    private List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList;
     private Context mContext;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+    private View v;
 
     public Carmer_FaBu_Naonao_Title_Adapter(List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList, Context mContext) {
         this.mList = mList;
@@ -60,46 +64,49 @@ public class Carmer_FaBu_Naonao_Title_Adapter extends RecyclerView.Adapter<Carme
 
     }
 
-    public void setNewData(List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList){
+    public void setNewData(List<Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean> mList) {
         this.mList = mList;
         notifyDataSetChanged();
     }
 
 
     @Override
-    public Carmer_FaBu_NaoNao_TiTle_ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.carmer_fabu_naonao_title_item,null);
+    public Carmer_FaBu_NaoNao_TiTle_ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+        v = LayoutInflater.from(mContext).inflate(R.layout.carmer_fabu_naonao_title_item, null);
         final Carmer_FaBu_NaoNao_TiTle_ViewHolder holder = new Carmer_FaBu_NaoNao_TiTle_ViewHolder(v);
+
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(Carmer_FaBu_NaoNao_TiTle_ViewHolder holder, final int position) {
+        Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean bean = mList.get(position);
+        Glide.with(mContext).load(bean.getImage()).transform(new GlideRoundTransform(context, 10)).into(holder.mImg);
+        holder.mTitle.setText("#" + bean.getTitle() + "#");
+        holder.mBody.setText(bean.getDescription() + "");
+        //将数据保存在itemView的Tag中，以便点击时进行获取
+        holder.itemView.setTag(mList.get(position));
         //将创建的View注册点击事件
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnItemClickListener != null) {
                     //注意这里使用getTag方法获取数据
-                    mOnItemClickListener.onItemClick(v,v.getTag().toString());
+                    mOnItemClickListener.onItemClick(v, v.getTag().toString(), position);
                 }
             }
         });
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(Carmer_FaBu_NaoNao_TiTle_ViewHolder holder, int position) {
-       Carmer_FaBu_Naonao_Title_Bean.ServerInfoBean bean = mList.get(position);
-        Glide.with(mContext).load(bean.getImage()).into(holder.mImg);
-        holder.mTitle.setText("#"+bean.getTitle()+"#");
-        holder.mBody.setText(bean.getDescription()+"");
-        //将数据保存在itemView的Tag中，以便点击时进行获取
-        holder.itemView.setTag(mList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mList.isEmpty()?0:mList.size();
+        return mList.isEmpty() ? 0 : mList.size();
     }
-    class Carmer_FaBu_NaoNao_TiTle_ViewHolder extends RecyclerView.ViewHolder{
+
+    class Carmer_FaBu_NaoNao_TiTle_ViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImg;
-        private TextView mTitle,mBody;
+        private TextView mTitle, mBody;
+
         public Carmer_FaBu_NaoNao_TiTle_ViewHolder(View itemView) {
             super(itemView);
             mImg = (ImageView) itemView.findViewById(R.id.carmer_fabu_naonao_title_item_imng);
@@ -107,10 +114,12 @@ public class Carmer_FaBu_Naonao_Title_Adapter extends RecyclerView.Adapter<Carme
             mBody = (TextView) itemView.findViewById(R.id.carmer_fabu_naonao_title_item_body);
         }
     }
+
     //定义一个接口
-    public  interface OnRecyclerViewItemClickListener {
-        void onItemClick(View view , String data);
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view, String data, int postion);
     }
+
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
         this.mOnItemClickListener = listener;
     }
