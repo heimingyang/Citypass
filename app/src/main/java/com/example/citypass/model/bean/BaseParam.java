@@ -1,5 +1,6 @@
 package com.example.citypass.model.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.example.citypass.model.bean.information.ShopParam;
 
 /**
@@ -19,7 +20,9 @@ public class BaseParam {
     private String customerKey;
     private String appName;
     private String version;
+    @JSONField(name = "Param")
     private BaseParamBean Param;
+    @JSONField(name = "Statis")
     private StatisBean Statis;
 
     public int getCustomerID() {
