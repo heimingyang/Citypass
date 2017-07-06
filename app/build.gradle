@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 android {
-    signingConfigs {
-    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -14,6 +12,12 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
     greendao {
         schemaVersion 1
         targetGenDir 'src/main/java'
@@ -23,10 +27,19 @@ android {
             jcenter()
             maven {
                 url 'https://dl.bintray.com/cjt/maven'
+
             }
         }
     }
+    signingConfigs {
 
+        release {
+            keyAlias 'citypass'
+            keyPassword '990712'
+            storeFile file('C:/Users/Administrator/Desktop/Citypass/app/citypass.jks')
+            storePassword '990712'
+        }
+    }
 }
 
 dependencies {
@@ -82,5 +95,6 @@ dependencies {
     compile 'com.yuyh.imgsel:library:1.2.0'
     compile files('libs/SocialSDK_email.jar')
     compile files('libs/SocialSDK_renren.jar')
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:26.0.0-alpha1'
 }

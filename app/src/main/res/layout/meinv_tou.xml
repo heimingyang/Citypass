@@ -21,7 +21,7 @@
 
         </RelativeLayout>
 
-        <com.example.citypass.base.CircleImageView
+        <ImageView
             android:id="@+id/xinshang_img2"
             android:layout_width="55dp"
             android:layout_height="55dp"
@@ -58,7 +58,7 @@
             android:layout_marginLeft="150dp"
             android:text="呵呵哒" />
 
-        <com.example.citypass.base.CircleImageView
+        <ImageView
             android:id="@+id/xinshang_img1"
             android:layout_width="55dp"
             android:layout_height="55dp"
@@ -78,7 +78,7 @@
 
         </RelativeLayout>
 
-        <com.example.citypass.base.CircleImageView
+        <ImageView
             android:id="@+id/xinshang_img3"
             android:layout_width="55dp"
             android:layout_height="56dp"

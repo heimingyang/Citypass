@@ -1,14 +1,17 @@
 package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.activity.find.Find_DetailsActivity;
 import com.example.citypass.model.bean.beele.Belle_Ly_Bean;
 import com.example.citypass.view.ImageViewPlus;
 
@@ -72,7 +75,7 @@ public class Belle_Ly_Adapter extends RecyclerView.Adapter<Belle_Ly_Adapter.MyLy
 
     @Override
     public void onBindViewHolder(MyLyHolder holder, int position) {
-        Belle_Ly_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean
+        final Belle_Ly_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean
                 = mlist.get(position);
         //头像
         String photo = coverPhotoDetailsInfoBean.getPhoto();
@@ -98,6 +101,15 @@ public class Belle_Ly_Adapter extends RecyclerView.Adapter<Belle_Ly_Adapter.MyLy
 
         holder.tv_time.setText(createTime);
 
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mcontext, Find_DetailsActivity.class);
+                intent.putExtra("id", coverPhotoDetailsInfoBean.getId()+"");
+                mcontext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -108,6 +120,7 @@ public class Belle_Ly_Adapter extends RecyclerView.Adapter<Belle_Ly_Adapter.MyLy
     class MyLyHolder extends RecyclerView.ViewHolder {
         private ImageViewPlus imageView;
         private TextView tv_name, tv_age, tv_from, tv_time;
+        private RelativeLayout relativeLayout;
 
 
         public MyLyHolder(View itemView) {
@@ -117,6 +130,7 @@ public class Belle_Ly_Adapter extends RecyclerView.Adapter<Belle_Ly_Adapter.MyLy
             tv_age = (TextView) itemView.findViewById(R.id.zuixin_item_age);
             tv_from = (TextView) itemView.findViewById(R.id.zuixin_item_from);
             tv_time = (TextView) itemView.findViewById(R.id.zuixin_item_time);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.zuixin_relative);
 
         }
     }

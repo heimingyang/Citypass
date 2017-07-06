@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,30 +71,35 @@ public class LengYan_Fragment extends BaseFragment {
         Map<String, String> map = new HashMap<>();
         map.put("param", "{\"appName\":\"CcooCity\",\"Param\":{\"ImName\":\"冷艳\",\"pageSize\":10,\"curPage\":1,\"siteID\":2422},\"requestTime\":\"2017-06-26 11:34:17\",\"customerKey\":\"C752E1F05FA58560DF85C6542C10B697\",\"Method\":\"PHSocket_GetImpressionTCoverInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\"+8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}");
 
-        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
-            @Override
-            public void onSuccess(String result) {
-                Belle_Ly_Bean belle_ly_bean = JSON.parseObject(result, Belle_Ly_Bean.class);
-                List<Belle_Ly_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
-                        = belle_ly_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
+        try {
+            HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+                @Override
+                public void onSuccess(String result) {
+                    mList.clear();
 
-                if (mList.size() == 0) {
-                    mList.addAll(coverPhotoDetailsInfo);
-                    belle_ly_adapter.notifyDataSetChanged();
+                    Belle_Ly_Bean belle_ly_bean = JSON.parseObject(result, Belle_Ly_Bean.class);
+                    List<Belle_Ly_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
+                            = belle_ly_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
 
-                } else {
-                    mList.addAll(coverPhotoDetailsInfo);
-                    belle_ly_adapter.notifyDataSetChanged();
+                    if (!mList.containsAll(coverPhotoDetailsInfo)) {
+                        mList.addAll(coverPhotoDetailsInfo);
+                        belle_ly_adapter.notifyDataSetChanged();
+                    } else {
+
+                        belle_ly_adapter.notifyDataSetChanged();
+
+                    }
 
                 }
 
-            }
+                @Override
+                public void onError(String errormsg) {
 
-            @Override
-            public void onError(String errormsg) {
-
-            }
-        });
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -120,7 +126,6 @@ public class LengYan_Fragment extends BaseFragment {
             @Override
             public void onLoadMore() {
 
-
             }
         });
 
@@ -130,7 +135,7 @@ public class LengYan_Fragment extends BaseFragment {
     protected void initView(View view) {
         View view1 = LayoutInflater.from(getContext()).inflate(R.layout.no_content, null);
 
-        LengyanRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        LengyanRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
         belle_ly_adapter = new Belle_Ly_Adapter(mList, getContext());
         LengyanRecycle.setAdapter(belle_ly_adapter);
 

@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.fragment.faxian_belle;
 
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
@@ -63,7 +64,7 @@ public class ZuiXin_Fragment extends BaseFragment {
 
     private Belle_zuixin_Adapter belle_zuixin_adapter;
     private int count = 1;
-    private List<Beele_Zuixin_Bean.ServerInfoBean.NewTCoverInfoListBeanX.NewTCoverInfoListBean> mList=new ArrayList<>();
+    private List<Beele_Zuixin_Bean.ServerInfoBean.NewTCoverInfoListBeanX.NewTCoverInfoListBean> mList = new ArrayList<>();
 
     private Handler handler = new Handler();
 
@@ -76,31 +77,41 @@ public class ZuiXin_Fragment extends BaseFragment {
 
 
         mmap.put("param", str + count + str2);
-        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", mmap, "", new MyCallBack() {
-            @Override
-            public void onSuccess(String result) {
-                LogUtils.e("resule",result);
-                Beele_Zuixin_Bean beele_zuixin_bean = JSON.parseObject(result, Beele_Zuixin_Bean.class);
-                List<Beele_Zuixin_Bean.ServerInfoBean.NewTCoverInfoListBeanX.NewTCoverInfoListBean> newTCoverInfoList
-                        = beele_zuixin_bean.getServerInfo().getNewTCoverInfoList().getNewTCoverInfoList();
+        try {
+            HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", mmap, "", new MyCallBack() {
+                @Override
+                public void onSuccess(String result) {
+//                    mList.clear();
+                    LogUtils.e("resule", result);
+                    Beele_Zuixin_Bean beele_zuixin_bean = null;
+                    try {
+                        beele_zuixin_bean = JSON.parseObject(result, Beele_Zuixin_Bean.class);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    List<Beele_Zuixin_Bean.ServerInfoBean.NewTCoverInfoListBeanX.NewTCoverInfoListBean> newTCoverInfoList
+                            = beele_zuixin_bean.getServerInfo().getNewTCoverInfoList().getNewTCoverInfoList();
 
-                if (mList.size()==0) {
-                    mList.addAll(newTCoverInfoList);
-                    belle_zuixin_adapter.notifyDataSetChanged();
+                    if (!mList.containsAll(newTCoverInfoList)) {
+                        mList.addAll(newTCoverInfoList);
+                        belle_zuixin_adapter.notifyDataSetChanged();
 
-                } else {
-                    mList.addAll(newTCoverInfoList);
-                    belle_zuixin_adapter.notifyDataSetChanged();
+                    } else {
+
+                        belle_zuixin_adapter.notifyDataSetChanged();
+
+                    }
 
                 }
 
-            }
+                @Override
+                public void onError(String errormsg) {
 
-            @Override
-            public void onError(String errormsg) {
-
-            }
-        });
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -138,7 +149,7 @@ public class ZuiXin_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        ZuixinRecycleview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        ZuixinRecycleview.setLayoutManager(new GridLayoutManager(getContext(), 2));
         belle_zuixin_adapter = new Belle_zuixin_Adapter(mList, getContext());
         ZuixinRecycleview.setAdapter(belle_zuixin_adapter);
     }

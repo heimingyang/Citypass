@@ -623,6 +623,7 @@ public class PublishActivity extends BaseActivity {
 
             @Override
             public void onError(String errormsg) {
+
                 LogUtils.e("发表状态", "失败");
 
             }

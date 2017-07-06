@@ -155,15 +155,9 @@ public class FunctionActivity extends BaseActivity {
             transaction.commit();
         }
 
-
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick(R.id.function_back)
     public void onViewClicked() {

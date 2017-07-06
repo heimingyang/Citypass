@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.Glide;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
@@ -115,8 +116,9 @@ public class FaXianFragment extends BaseFragment {
     protected void initView(View view) {
         View views = LayoutInflater.from(getActivity()).inflate(R.layout.image_item, null);
         ImageView imageView = (ImageView) views.findViewById(R.id.img_item);
-        Drawable drawable = getContext().getResources().getDrawable(R.drawable.find_test);
-        imageView.setImageDrawable(drawable);
+//        Drawable drawable = getContext().getResources().getDrawable(R.drawable.find_test);
+//        imageView.setImageDrawable(drawable);
+        Glide.with(getContext()).load(R.drawable.find_test).into(imageView);
         faxianListview.addHeaderView(views);
 
 
@@ -144,8 +146,6 @@ public class FaXianFragment extends BaseFragment {
             }
         });
     }
-
-
 
 
 }

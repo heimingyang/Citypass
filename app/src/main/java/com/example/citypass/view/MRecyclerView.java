@@ -18,7 +18,7 @@ import java.util.List;
  * 描述:
  * 日期: 2017/2/23 0023.
  */
-public class MRecyclerView extends RecyclerView{
+public class MRecyclerView extends RecyclerView {
     private boolean isLoadingData = false;
     private boolean isNoMore = false;
     private ArrayList<View> mHeaderViews = new ArrayList<>();
@@ -39,6 +39,7 @@ public class MRecyclerView extends RecyclerView{
     private View mEmptyView;
     private View mFootView;
     private final AdapterDataObserver mDataObserver = new DataObserver();
+
     public MRecyclerView(Context context) {
         this(context, null);
     }
@@ -62,7 +63,7 @@ public class MRecyclerView extends RecyclerView{
     }
 
     public void setFootViewText(String loading, String noMore) {
-        if(mFootView instanceof LoadingMoreFooter){
+        if (mFootView instanceof LoadingMoreFooter) {
             ((LoadingMoreFooter) mFootView).setLoadingHint(loading);
             ((LoadingMoreFooter) mFootView).setNoMoreHint(noMore);
         }
@@ -78,7 +79,7 @@ public class MRecyclerView extends RecyclerView{
 
     //根据header的ViewType判断是哪个header
     private View getHeaderViewByType(int itemType) {
-        if(!isHeaderType(itemType)) {
+        if (!isHeaderType(itemType)) {
             return null;
         }
         return mHeaderViews.get(itemType - HEADER_INIT_INDEX);
@@ -86,12 +87,12 @@ public class MRecyclerView extends RecyclerView{
 
     //判断一个type是否为HeaderType
     private boolean isHeaderType(int itemViewType) {
-        return  mHeaderViews.size() > 0 &&  sHeaderTypes.contains(itemViewType);
+        return mHeaderViews.size() > 0 && sHeaderTypes.contains(itemViewType);
     }
 
     //判断是否是XRecyclerView保留的itemViewType
     private boolean isReservedItemViewType(int itemViewType) {
-        if(itemViewType == TYPE_REFRESH_HEADER || itemViewType == TYPE_FOOTER || sHeaderTypes.contains(itemViewType)) {
+        if (itemViewType == TYPE_REFRESH_HEADER || itemViewType == TYPE_FOOTER || sHeaderTypes.contains(itemViewType)) {
             return true;
         } else {
             return false;
@@ -101,6 +102,7 @@ public class MRecyclerView extends RecyclerView{
     public void setFootView(final View view) {
         mFootView = view;
     }
+
     //加载更多的方法
     public void loadMoreComplete() {
         isLoadingData = false;
@@ -111,22 +113,24 @@ public class MRecyclerView extends RecyclerView{
         }
     }
 
-    public void setNoMore(boolean noMore){
+    public void setNoMore(boolean noMore) {
         isLoadingData = false;
         isNoMore = noMore;
         if (mFootView instanceof LoadingMoreFooter) {
-            ((LoadingMoreFooter) mFootView).setState(isNoMore ? LoadingMoreFooter.STATE_NOMORE: LoadingMoreFooter.STATE_COMPLETE);
+            ((LoadingMoreFooter) mFootView).setState(isNoMore ? LoadingMoreFooter.STATE_NOMORE : LoadingMoreFooter.STATE_COMPLETE);
         } else {
             mFootView.setVisibility(GONE);
         }
     }
+
     public void refresh() {
         if (pullRefreshEnabled && mLoadingListener != null) {
             mRefreshHeader.setState(GifRfreshHeader.STATE_REFRESHING);
             mLoadingListener.onRefresh();
         }
     }
-    public void reset(){
+
+    public void reset() {
         setNoMore(false);
         loadMoreComplete();
         refreshComplete();
@@ -149,7 +153,7 @@ public class MRecyclerView extends RecyclerView{
         loadingMoreEnabled = enabled;
         if (!enabled) {
             if (mFootView instanceof LoadingMoreFooter) {
-                ((LoadingMoreFooter)mFootView).setState(LoadingMoreFooter.STATE_COMPLETE);
+                ((LoadingMoreFooter) mFootView).setState(LoadingMoreFooter.STATE_COMPLETE);
             }
         }
     }
@@ -180,7 +184,7 @@ public class MRecyclerView extends RecyclerView{
     //避免用户自己调用getAdapter() 引起的ClassCastException
     @Override
     public Adapter getAdapter() {
-        if(mWrapAdapter != null)
+        if (mWrapAdapter != null)
             return mWrapAdapter.getOriginalAdapter();
         else
             return null;
@@ -189,7 +193,7 @@ public class MRecyclerView extends RecyclerView{
     @Override
     public void setLayoutManager(LayoutManager layout) {
         super.setLayoutManager(layout);
-        if(mWrapAdapter != null){
+        if (mWrapAdapter != null) {
             if (layout instanceof GridLayoutManager) {
                 final GridLayoutManager gridManager = ((GridLayoutManager) layout);
                 gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -347,7 +351,7 @@ public class MRecyclerView extends RecyclerView{
             this.adapter = adapter;
         }
 
-        public Adapter getOriginalAdapter(){
+        public Adapter getOriginalAdapter() {
             return this.adapter;
         }
 
@@ -357,9 +361,9 @@ public class MRecyclerView extends RecyclerView{
 
         //判断是否是底部的
         public boolean isFooter(int position) {
-            if(loadingMoreEnabled) {
+            if (loadingMoreEnabled) {
                 return position == getItemCount() - 1;
-            }else {
+            } else {
                 return false;
             }
         }
@@ -398,6 +402,7 @@ public class MRecyclerView extends RecyclerView{
                 }
             }
         }
+
         // some times we need to override this
         @Override
         public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
@@ -409,11 +414,10 @@ public class MRecyclerView extends RecyclerView{
             if (adapter != null) {
                 adapterCount = adapter.getItemCount();
                 if (adjPosition < adapterCount) {
-                    if(payloads.isEmpty()){
+                    if (payloads.isEmpty()) {
                         adapter.onBindViewHolder(holder, adjPosition);
-                    }
-                    else{
-                        adapter.onBindViewHolder(holder, adjPosition,payloads);
+                    } else {
+                        adapter.onBindViewHolder(holder, adjPosition, payloads);
                     }
                 }
             }
@@ -421,13 +425,13 @@ public class MRecyclerView extends RecyclerView{
 
         @Override
         public int getItemCount() {
-            if(loadingMoreEnabled) {
+            if (loadingMoreEnabled) {
                 if (adapter != null) {
                     return getHeadersCount() + adapter.getItemCount() + 2;
                 } else {
                     return getHeadersCount() + 2;
                 }
-            }else {
+            } else {
                 if (adapter != null) {
                     return getHeadersCount() + adapter.getItemCount() + 1;
                 } else {
@@ -453,9 +457,9 @@ public class MRecyclerView extends RecyclerView{
             if (adapter != null) {
                 adapterCount = adapter.getItemCount();
                 if (adjPosition < adapterCount) {
-                    int type =  adapter.getItemViewType(adjPosition);
-                    if(isReservedItemViewType(type)) {
-                        throw new IllegalStateException("XRecyclerView require itemViewType in adapter should be less than 10000 " );
+                    int type = adapter.getItemViewType(adjPosition);
+                    if (isReservedItemViewType(type)) {
+                        throw new IllegalStateException("XRecyclerView require itemViewType in adapter should be less than 10000 ");
                     }
                     return type;
                 }
@@ -502,7 +506,7 @@ public class MRecyclerView extends RecyclerView{
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
             if (lp != null
                     && lp instanceof StaggeredGridLayoutManager.LayoutParams
-                    && (isHeader(holder.getLayoutPosition()) ||isRefreshHeader(holder.getLayoutPosition()) || isFooter(holder.getLayoutPosition()))) {
+                    && (isHeader(holder.getLayoutPosition()) || isRefreshHeader(holder.getLayoutPosition()) || isFooter(holder.getLayoutPosition()))) {
                 StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
                 p.setFullSpan(true);
             }

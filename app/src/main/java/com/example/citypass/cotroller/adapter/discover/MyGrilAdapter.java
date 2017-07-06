@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
 import com.example.citypass.utils.LogUtils;
 import com.example.citypass.cotroller.activity.find.FaXianActionActivity;
 import com.example.citypass.cotroller.activity.find.FaXianCityActivity;
@@ -18,6 +19,7 @@ import com.example.citypass.cotroller.activity.find.FaXianLottoActivity;
 import com.example.citypass.cotroller.activity.find.FaXianMeiNvActivity;
 import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.model.http.bean.faxian.MyFaXian;
+import com.example.citypass.utils.SpUtils;
 
 /**
  * /**
@@ -114,8 +116,9 @@ class MyGrilAdapter extends BaseAdapter {
 
                     //热门活动
                 } else if (url.equals("/bbs/zthdlist.aspx")) {
-                    Intent intent2 = new Intent(context, FaXianActionActivity.class);
-                    context.startActivity(intent2);
+                    Intent intent1 = new Intent(context, FunctionActivity.class);
+                    SpUtils.upSp().putString("htag", "同城爆料").commit();
+                    context.startActivity(intent1);
 
                     //抽奖
 
@@ -127,8 +130,9 @@ class MyGrilAdapter extends BaseAdapter {
                     //同城交友
                 } else if (url.equals("/tieba/?flag=4&type=2")) {
 
-                    Intent intent4 = new Intent(context, FaXianCityActivity.class);
-                    context.startActivity(intent4);
+                    Intent intent1 = new Intent(context, FunctionActivity.class);
+                    SpUtils.upSp().putString("htag", "闹闹").commit();
+                    context.startActivity(intent1);
 
                 } else {
                     Intent intent = new Intent(context, MyWebActivity.class);

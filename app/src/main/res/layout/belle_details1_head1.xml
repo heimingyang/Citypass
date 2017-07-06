@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/belle_details_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/xq1_zan"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cover_info_love1" />
+
+    <TextView
+        android:id="@+id/xq1_zan_count"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/xq1_zan"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="5" />
+
+    <ImageView
+        android:id="@+id/xq1_gift"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/xq1_zan_count"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/gift" />
+
+    <ImageView
+        android:id="@+id/xq1_yin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/xq1_gift"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/yin" />
+
+    <ImageView
+        android:id="@+id/xq1_info"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/xq1_yin"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/coverinfo_info" />
+
+    <ImageView
+        android:id="@+id/xq1_dan"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/xq1_info"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/danmu" />
+
+    <RelativeLayout
+        android:id="@+id/q2q2q2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xq1_dan"
+        android:layout_marginTop="20dp"
+        android:background="@color/tv_black_touming">
+
+        <TextView
+            android:id="@+id/xq1_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@drawable/dingwei"
+            android:drawablePadding="5dp"
+            android:text="共享位置信息"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="0000-00-22 00:00"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_fgx"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_below="@id/xq1_location"
+            android:background="@color/white" />
+
+        <ImageView
+            android:id="@+id/xq1_img_tx"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/xq1_fgx"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/xq1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq1_fgx"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/xq1_img_tx"
+            android:text="姓名"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq1_name"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/xq1_img_tx"
+            android:text="姓名"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq1_fgx"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/xq1_name"
+            android:background="@drawable/xinshang_back_nv"
+            android:drawableLeft="@drawable/nv"
+            android:text="18"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_yinxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq1_img_tx"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="印象：还没有人评价过"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/xq1_name"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/xq1_yuan_tv"
+            android:drawableLeft="@drawable/coverinfo_sixin"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="打招呼"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/xq1_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/xq1_name"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/xq1_hello"
+            android:background="@drawable/xq1_yuan_tv"
+            android:drawableLeft="@drawable/cover_zhuye"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="主页"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/q2q2q2"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/xq1_give_gift"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+
+            android:layout_alignParentRight="true"
+            android:background="@color/xq1_gift"
+            android:src="@drawable/cover_info_gift" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_toLeftOf="@id/xq1_give_gift"
+            android:gravity="center_vertical"
+            android:text="送个小礼物赢得对方好感~"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_below="@id/xq1_give_gift"
+            android:layout_marginBottom="5dp"
+            android:background="@color/back_03" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

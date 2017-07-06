@@ -2,6 +2,7 @@ package com.example.citypass.cotroller.fragment.faxian_belle;
 
 
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,29 +73,34 @@ public class QiZhi_Fragment extends BaseFragment {
         String str1 = "{\"appName\":\"CcooCity\",\"Param\":{\"ImName\":\"气质\",\"pageSize\":10,\"curPage\":";
         String str2 = ",\"siteID\":2422},\"requestTime\":\"2017-06-26 14:14:03\",\"customerKey\":\"D9660A36FB717596921F4D48AA80C85D\",\"Method\":\"PHSocket_GetImpressionTCoverInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\"+8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
         map.put("param", str1 + count + str2);
-        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
-            @Override
-            public void onSuccess(String result) {
-                Belle_QiZhi_Bean belle_qiZhi_bean = JSON.parseObject(result, Belle_QiZhi_Bean.class);
-                List<Belle_QiZhi_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
-                        = belle_qiZhi_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
+        try {
+            HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+                @Override
+                public void onSuccess(String result) {
+//                    mList.clear();
 
-                if (mList.size() == 0) {
-                    mList.addAll(coverPhotoDetailsInfo);
-                    belle_qz_adapter.notifyDataSetChanged();
+                    Belle_QiZhi_Bean belle_qiZhi_bean = JSON.parseObject(result, Belle_QiZhi_Bean.class);
+                    List<Belle_QiZhi_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean> coverPhotoDetailsInfo
+                            = belle_qiZhi_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
 
-                } else {
-                    mList.addAll(coverPhotoDetailsInfo);
-                    belle_qz_adapter.notifyDataSetChanged();
+                    if (!mList.containsAll(coverPhotoDetailsInfo)) {
+                        mList.addAll(coverPhotoDetailsInfo);
+                        belle_qz_adapter.notifyDataSetChanged();
+
+                    } else {
+                        belle_qz_adapter.notifyDataSetChanged();
+
+                    }
+                }
+
+                @Override
+                public void onError(String errormsg) {
 
                 }
-            }
-
-            @Override
-            public void onError(String errormsg) {
-
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -110,6 +116,7 @@ public class QiZhi_Fragment extends BaseFragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        mList.clear();
                         QizhiRecycle.refreshComplete();
 
                     }
@@ -124,7 +131,7 @@ public class QiZhi_Fragment extends BaseFragment {
                     public void run() {
                         count++;
                         initData();
-
+                        QizhiRecycle.loadMoreComplete();
                     }
                 }, 2000);
 
@@ -138,7 +145,7 @@ public class QiZhi_Fragment extends BaseFragment {
     protected void initView(View view) {
         View view1 = LayoutInflater.from(getContext()).inflate(R.layout.no_content, null);
 
-        QizhiRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        QizhiRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
         belle_qz_adapter = new Belle_QZ_Adapter(mList, getContext());
         QizhiRecycle.setAdapter(belle_qz_adapter);
 

@@ -1,7 +1,11 @@
 package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.R;
 import com.example.citypass.base.CircleImageView;
+import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.beele.Belle_Enjoy_Bean;
 
 import java.util.List;
@@ -69,8 +75,8 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
     }
 
     @Override
-    public void onBindViewHolder(MyViewHoder holder, int position) {
-        Belle_Enjoy_Bean.ServerInfoBean.CoverXinShangInfoListBeanX.CoverXinShangInfoListBean coverXinShangInfoListBean
+    public void onBindViewHolder(final MyViewHoder holder, int position) {
+        final Belle_Enjoy_Bean.ServerInfoBean.CoverXinShangInfoListBeanX.CoverXinShangInfoListBean coverXinShangInfoListBean
                 = coverXinShangInfoListBeanX.get(position);
         //姓名
         String name = coverXinShangInfoListBean.getNick();
@@ -89,7 +95,7 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
         holder.tv_num.setText(number + "");
         holder.tv_job.setText(positionName);
         holder.tv_zannum.setText("点赞数:" + likeTotal);
-        holder.tv_age.setText(age+"  ");
+        holder.tv_age.setText(age + "  ");
         if (sex.equals("男")) {
             Drawable drawable = context.getResources().getDrawable(R.drawable.xinshang_back_nan);
             holder.linearLayout.setBackground(drawable);
@@ -102,6 +108,25 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
             holder.img_sex.setImageDrawable(drawable1);
         }
         Glide.with(context).load(coverXinShangInfoListBean.getUserface()).into(holder.img_touxiang);
+
+        Glide.with(context).load(coverXinShangInfoListBean.getUserface()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.img_touxiang) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                ciDrawable.setCircular(true);
+                holder.img_touxiang.setImageDrawable(ciDrawable);
+            }
+        });
+
+        holder.linearLayout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PersonalActivity.class);
+                intent.putExtra("id", Integer.parseInt(coverXinShangInfoListBean.getUserID()));
+                context.startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -112,9 +137,10 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
 
     class MyViewHoder extends RecyclerView.ViewHolder {
         private TextView tv_num, tv_name, tv_age, tv_job, tv_zannum;
-        private CircleImageView img_touxiang;
+        private ImageView img_touxiang;
         private ImageView img_sex;
         private LinearLayout linearLayout;
+        private LinearLayout linearLayout1;
 
 
         public MyViewHoder(View itemView) {
@@ -126,7 +152,8 @@ public class Belle_XinShang_Adapter extends RecyclerView.Adapter<Belle_XinShang_
             tv_age = (TextView) itemView.findViewById(R.id.xinshang_item_age);
             tv_job = (TextView) itemView.findViewById(R.id.xinshang_item_job);
             tv_zannum = (TextView) itemView.findViewById(R.id.xinshang_item_zan);
-            img_touxiang = (CircleImageView) itemView.findViewById(R.id.xinshang_item_img);
+            img_touxiang = (ImageView) itemView.findViewById(R.id.xinshang_item_img);
+            linearLayout1 = (LinearLayout) itemView.findViewById(R.id.xinshang_item_linear1);
         }
     }
 }

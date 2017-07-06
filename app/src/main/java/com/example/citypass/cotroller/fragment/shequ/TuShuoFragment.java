@@ -59,23 +59,23 @@ public class TuShuoFragment extends BaseFragment {
 
             }
         });
-        }
+    }
 
     private void init() {
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         String str = "{\"customerID\":8001,\"requestTime\":\"2017-06-24 10:30:22\",\"Method\":\"PHSocket_GetHotListNew\",\"customerKey\":\"75E7E0553A1C75C984BB6F03FA6E5AF3\",\"appName\":\"CcooCity\",\"version\":\"4.5\",\"Param\":{\"siteID\":2422,\"curPage\":1,\"pageSize\":10,\"userName\":\"sid110249370682305\",\"userID\":30939591},\"Statis\":{\"SiteId\":2422,\"UserId\":30939591,\"PhoneNo\":\"vivo X7\",\"SystemNo\":2,\"System_VersionNo\":\"Android 5.1.1\",\"PhoneId\":\"862460032827563\",\"PhoneNum\":\"+8615735971710\"}}";
-        map.put("param",str);
+        map.put("param", str);
         OkHttpUtils.getInstance().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                Log.e("abc",result);
-                TuShuoBean tuShuoBean = JSON.parseObject(result,TuShuoBean.class);
+                Log.e("abc", result);
+                TuShuoBean tuShuoBean = JSON.parseObject(result, TuShuoBean.class);
                 List<TuShuoBean.ServerInfoBean> info = new ArrayList<TuShuoBean.ServerInfoBean>();
                 info.addAll(tuShuoBean.getServerInfo());
-                if(adapter==null){
-                    adapter = new TuShuoAdapter(getContext(),info);
+                if (adapter == null) {
+                    adapter = new TuShuoAdapter(getContext(), info);
                     shequRecyclerview.setAdapter(adapter);
-                }else {
+                } else {
                     adapter.setNewData(mList);
                 }
                 TextView tv = new TextView(getActivity());

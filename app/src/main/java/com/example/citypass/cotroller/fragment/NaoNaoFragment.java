@@ -314,8 +314,8 @@ public class NaoNaoFragment extends BaseFragment {
         builder.show();
     }
     public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
-        // 判断是否有权限
-        if (requestCode == 0 && hasAllPermissionsGranted(grantResults)) {
+                 // 判断是否有权限
+            if (requestCode == 0 && hasAllPermissionsGranted(grantResults)) {
 
             //有权限 去启动Video
 Intent in = new Intent(getActivity(),NaoNao_Carmer_Activity.class);

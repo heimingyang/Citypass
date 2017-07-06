@@ -72,30 +72,36 @@ public class XinRenXiu_Fragment extends BaseFragment {
         String str2 = ",\"siteID\":2422},\"requestTime\":\"2017-06-26 09:03:17\",\"customerKey\":\"B52F13E041F4125CBD3333617E15F089\",\"Method\":\"PHSocket_GetNewGirlTCoverInfo\",\"Statis\":{\"PhoneId\":\"133524541070404\",\"System_VersionNo\":\"Android 4.2.2\",\"UserId\":0,\"PhoneNum\":\" 8617646525761\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
 
         map.put("param", str1 + count + str2);
-        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
-            @Override
-            public void onSuccess(String result) {
-                Belle_Xrx_Bean belle_xrx_bean = JSON.parseObject(result, Belle_Xrx_Bean.class);
-                List<Belle_Xrx_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
-                        = belle_xrx_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
+        try {
+            HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+                @Override
+                public void onSuccess(String result) {
+//                    mList.clear();
 
-                if (mList.size() == 0) {
-                    mList.addAll(figureTCoverInfoList);
-                    belle_xrx_adapter.notifyDataSetChanged();
+                    Belle_Xrx_Bean belle_xrx_bean = JSON.parseObject(result, Belle_Xrx_Bean.class);
+                    List<Belle_Xrx_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean> figureTCoverInfoList
+                            = belle_xrx_bean.getServerInfo().getFigureTCoverInfoList().getFigureTCoverInfoList();
 
-                } else {
-                    mList.addAll(figureTCoverInfoList);
-                    belle_xrx_adapter.notifyDataSetChanged();
+                    if (mList.size() == 0) {
+                        mList.addAll(figureTCoverInfoList);
+                        belle_xrx_adapter.notifyDataSetChanged();
+
+                    } else {
+                        mList.addAll(figureTCoverInfoList);
+                        belle_xrx_adapter.notifyDataSetChanged();
+
+                    }
 
                 }
 
-            }
+                @Override
+                public void onError(String errormsg) {
 
-            @Override
-            public void onError(String errormsg) {
-
-            }
-        });
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
