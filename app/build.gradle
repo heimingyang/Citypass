@@ -82,4 +82,5 @@ dependencies {
     compile 'com.yuyh.imgsel:library:1.2.0'
     compile files('libs/SocialSDK_email.jar')
     compile files('libs/SocialSDK_renren.jar')
+    compile 'com.android.support:design:26.0.0-alpha1'
 }

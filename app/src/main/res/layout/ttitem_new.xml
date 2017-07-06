@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/hnewfragment_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="@color/color_999"
+        android:visibility="gone"
+        android:text="目前还没有评论，评论抢沙发吧--"
+        />
+<com.example.citypass.view.MRecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/newrecycler">
+
+</com.example.citypass.view.MRecyclerView>
+</RelativeLayout>

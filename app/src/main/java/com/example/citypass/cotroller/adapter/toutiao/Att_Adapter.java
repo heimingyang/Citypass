@@ -61,14 +61,14 @@ import java.util.List;
 
 
 public class Att_Adapter extends RecyclerView.Adapter<Att_Adapter.MyViewHolder> {
-    private List<Attbean> mList;
+    private List<Attbean.ServerInfoBean> mList;
     private Context context;
 
-    public Att_Adapter(List<Attbean> mList, Context context) {
+    public Att_Adapter(List<Attbean.ServerInfoBean> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
-    public void setNewData(List<Attbean> mList){
+    public void setNewData(List<Attbean.ServerInfoBean> mList){
         this.mList = mList;
         notifyDataSetChanged();
     }
@@ -82,13 +82,37 @@ public class Att_Adapter extends RecyclerView.Adapter<Att_Adapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Attbean.ServerInfoBean bean=mList.get(0).getServerInfo().get(position);
+        final Attbean.ServerInfoBean bean=mList.get(position);
 
         if(bean==null){
             return;
         }
-
-        holder.attitemtv1.setText(position+1+"");
+        if(position<3){
+            holder.attitemimg1.setVisibility(View.VISIBLE);
+            if(position==0){
+                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking1);
+                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings1);
+                holder.attitemtv1.setTextColor(R.color.hcfmorecity);
+                holder.attitemtv1.setText(position+1+"");
+            }
+            if(position==1){
+                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking2);
+                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings2);
+                holder.attitemtv1.setTextColor(R.color.blue);
+                holder.attitemtv1.setText(position+1+"");
+            }
+            if(position==2){
+                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking3);
+                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings3);
+                holder.attitemtv1.setTextColor(R.color.green);
+                holder.attitemtv1.setText(position+1+"");
+            }
+        }else {
+            holder.attitemimg1.setVisibility(View.GONE);
+            holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking4);
+            holder.attitemtv1.setTextColor(R.color.black);
+            holder.attitemtv1.setText(position+1+"");
+        }
         holder.attitemtv2.setText(bean.getNickName());
         holder.attitemtv3.setText(bean.getAddress());
         holder.attitemtv4.setText("Lv."+bean.getLevel());
@@ -116,7 +140,9 @@ public class Att_Adapter extends RecyclerView.Adapter<Att_Adapter.MyViewHolder> 
         holder.attitewm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent=new Intent(context, PersonalActivity.class);
+                intent.putExtra("id",Integer.parseInt(bean.getUserId()));
+                context.startActivity(intent);
             }
         });
     }

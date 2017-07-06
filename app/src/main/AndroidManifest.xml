@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -9,16 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <!--//0.0.9需要新增权限  -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- //0.0.9需要新增权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -28,12 +24,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".App"
@@ -129,8 +127,6 @@
         </activity>
 
         <activity
-
-
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -149,6 +145,13 @@
 
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
+        <activity android:name=".cotroller.fragment.information.CityActivity" />
+        <activity android:name=".cotroller.fragment.information.TaskActivity" />
+        <activity android:name=".cotroller.fragment.information.CollectionActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity" />
+        <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
+        <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.FunctionActivity" />
         <activity
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
@@ -161,11 +164,14 @@
         <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
         <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.CityjustActivity" />
+        <!-- <activity android:windowSoftInputMode="adjustPan|stateHidden"></activity> -->
         <activity android:name=".cotroller.fragment.information.GongActivity"/>
         <activity android:name=".cotroller.fragment.information.ExchangeActivity"/>
         <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity"/>
         <activity android:name=".cotroller.fragment.naonao.detail.DetailImageActivity" />
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
+        <activity android:name=".cotroller.fragment.toutiao.PermissionsActivity"></activity>
         <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
         <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
@@ -173,4 +179,3 @@
     </application>
 
 </manifest>
-

@@ -4,7 +4,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".cotroller.fragment.toutiao.TtrecyclerXQActivity">
-<ScrollView
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:id="@+id/xq_lin3"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/xq_lin3_img"
+            android:src="@drawable/bbsinformation_zan"
+            android:scaleType="fitCenter"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@id/xq_lin3_img"
+            android:id="@+id/xq_lin3_img2"
+            android:src="@drawable/bbsinformation_add2"
+            android:scaleType="fitCenter"
+            />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:id="@+id/xq_lin3_tv1"
+            android:text="发送"
+            android:gravity="center"
+            android:background="@drawable/tt_xq_item_send"
+            android:layout_marginRight="10dp"
+            android:textSize="18dp"
+            />
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/xq_lin3_img2"
+            android:layout_toLeftOf="@id/xq_lin3_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/xq_lin3_edt"
+            android:background="@null"
+            android:hint="写评论"
+            />
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/xq_lin3_img"
+            android:id="@+id/xq_lin3_img3"
+            android:src="@drawable/cover_main_laugh_n"
+            android:scaleType="fitCenter"
+            />
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/xq_lin3_img3"
+            android:layout_below="@id/xq_lin3_img"
+            android:id="@+id/xq_lin3_img4"
+            android:src="@drawable/cover_main_camera_n"
+            android:scaleType="fitCenter"
+            />
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/xq_lin3_img4"
+            android:layout_below="@id/xq_lin3_img"
+            android:id="@+id/xq_lin3_img5"
+            android:src="@drawable/reply_bottom_aite_noral"
+            android:scaleType="fitCenter"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_above="@id/xq_lin3"
+    android:id="@+id/xq_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
@@ -166,13 +249,13 @@
                     android:layout_toRightOf="@id/xq_lin2_tv2"
                     android:layout_marginLeft="15dp"
                     android:textColor="@color/color_999"
-                    android:drawableTop="@drawable/ccoo_icon_more_big"
+                    android:drawableTop="@drawable/fenxiang"
                     android:drawablePadding="3dp"
                     android:gravity="center"
                     />
             </RelativeLayout>
         </RelativeLayout>
-   <!--     <android.support.design.widget.TabLayout
+       <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/xq_tablayout"
@@ -180,14 +263,14 @@
             >
 
         </android.support.design.widget.TabLayout>
-        <android.support.v4.view.ViewPager
+        <com.example.citypass.view.MyViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="xq_viewpager"
+            android:id="@+id/xq_viewpager"
             android:layout_below="@id/xq_tablayout"
             >
 
-        </android.support.v4.view.ViewPager>-->
+        </com.example.citypass.view.MyViewPager>
     </RelativeLayout>
 
 </ScrollView>

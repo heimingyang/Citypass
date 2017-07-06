@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.toutiao.Attbean;
-import com.example.citypass.model.bean.toutiao.Divingbean;
 import com.example.citypass.utils.GlideCircleTransform;
 
 import java.util.List;
@@ -54,15 +53,15 @@ import java.util.List;
  */
 
 
-public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHolder> {
-    private List<Divingbean.ServerInfoBean> mList;
+public class Hsoc_Adapter extends RecyclerView.Adapter<Hsoc_Adapter.MyViewHolder> {
+    private List<Attbean.ServerInfoBean> mList;
     private Context context;
 
-    public Diving_Adapter(List<Divingbean.ServerInfoBean> mList, Context context) {
+    public Hsoc_Adapter(List<Attbean.ServerInfoBean> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
-    public void setNewData(List<Divingbean.ServerInfoBean> mList){
+    public void setNewData(List<Attbean.ServerInfoBean> mList){
         this.mList = mList;
         notifyDataSetChanged();
     }
@@ -76,8 +75,8 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        final Attbean.ServerInfoBean bean=mList.get(position);
 
-        final Divingbean.ServerInfoBean bean=mList.get(position);
         if(bean==null){
             return;
         }
@@ -85,7 +84,6 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
         holder.attitemimg3.setVisibility(View.GONE);
         holder.attitemimg4.setVisibility(View.GONE);
         holder.attitemimg5.setVisibility(View.GONE);
-        holder.attitemtv6.setVisibility(View.GONE);
 
         if(position<3){
             holder.attitemimg1.setVisibility(View.VISIBLE);
@@ -116,14 +114,18 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
         holder.attitemtv2.setText(bean.getNickName());
         holder.attitemtv3.setText(bean.getAddress());
         holder.attitemtv4.setText("Lv."+bean.getLevel());
-        holder.attitemtv5.setText(bean.getSum()+"");
+        holder.attitemtv5.setText(bean.getDingNum()+"");
+        holder.attitemtv6.setText(bean.getReplyNum()+"");
+        holder.attitemtv6.setTextColor(R.color.green);
 
         Glide.with(context)
                 .load(bean.getUserFace())
                 .transform(new GlideCircleTransform(context))
                 .into(holder.attitemimg2);
 
-        holder.onclick.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.attitewm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, PersonalActivity.class);
@@ -139,12 +141,11 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
     }
     class  MyViewHolder extends RecyclerView.ViewHolder{
 
-        RelativeLayout onclick;
+        RelativeLayout attitewm;
         TextView attitemtv1,attitemtv2,attitemtv3,attitemtv4,attitemtv5,attitemtv6;
         ImageView attitemimg1,attitemimg2,attitemimg3,attitemimg4,attitemimg5;
         public MyViewHolder(View itemView) {
             super(itemView);
-            onclick= (RelativeLayout) itemView.findViewById(R.id.att_item);
             attitemtv1= (TextView) itemView.findViewById(R.id.att_item_tv1);
             attitemtv2= (TextView) itemView.findViewById(R.id.att_item_tv2);
             attitemtv3= (TextView) itemView.findViewById(R.id.att_item_tv3);
@@ -156,7 +157,9 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
             attitemimg3= (ImageView) itemView.findViewById(R.id.att_item_img3);
             attitemimg4= (ImageView) itemView.findViewById(R.id.att_item_img4);
             attitemimg5= (ImageView) itemView.findViewById(R.id.att_item_img5);
-
+            attitewm= (RelativeLayout) itemView.findViewById(R.id.att_item);
         }
     }
+
+
 }

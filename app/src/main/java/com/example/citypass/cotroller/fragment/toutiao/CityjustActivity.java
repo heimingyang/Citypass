@@ -1,17 +1,23 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.information.LoginActivity;
+import com.example.citypass.model.bean.toutiao.Dianzanbean;
+import com.example.citypass.model.bean.toutiao.Dzanhtmlbean;
 import com.example.citypass.model.bean.toutiao.Justbean;
 import com.example.citypass.model.bean.toutiao.Justinter;
 import com.example.citypass.model.biz.infor.IInforModel;
@@ -63,6 +69,7 @@ public class CityjustActivity extends BaseActivity {
     @BindView(R.id.activity_ttrecycler_xq)
     RelativeLayout activityTtrecyclerXq;
 private int id;
+    private  boolean login;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_ttrecycler_xq;
@@ -87,6 +94,9 @@ private int id;
 
     @Override
     protected void initView() {
+
+        login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
+
         Intent intent = getIntent();
          id = intent.getIntExtra("id", 0);
         int type = intent.getIntExtra("type", 0);
@@ -133,7 +143,7 @@ private int id;
         toutiao.setVersion("4.5");
         Gson gson = new Gson();
         String s = gson.toJson(toutiao);
-        Log.e("onSuccess", s);
+//        Log.e("onSuccess", s);
 
         InforModel inforModel = new IInforModel();
         inforModel.UpLoad(s, new MyCallBack() {
@@ -169,6 +179,78 @@ private int id;
                 if (bean.getCount1()!=0) {
                     xqLin2Tv2.setText(bean.getCount1()+"评论");
                 }
+                xqLin2Tv1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(login){
+                            htmldianzan();
+                        }else {
+                            Intent intent=new Intent(CityjustActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
+    }
+    private void htmldianzan() {
+        Dzanhtmlbean.ParamBean param = new Dzanhtmlbean.ParamBean();
+        param.setNewsID(id);
+        param.setNick(SpUtils.getSp().getString(LoginUtils.NAME,""));
+        param.setReplyID(0);
+        param.setSiteID(2422);
+        param.setType(0);
+        param.setUserID(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+        param.setUsiteID(2422);
+
+        Dzanhtmlbean.StatisBean statis = new Dzanhtmlbean.StatisBean();
+
+        statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(this));
+        statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
+        statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(this));
+        statis.setSiteId(2422);
+        statis.setSystemNo(2);
+        DeviceUtils.getInstance();
+        statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
+        statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+
+        Dzanhtmlbean toutiao = new Dzanhtmlbean();
+        toutiao.setMethod("PHSocket_SetCityNewsReplyDing");
+        toutiao.setParam(param);
+        toutiao.setStatis(statis);
+        toutiao.setAppName("CcooCity");
+        toutiao.setCustomerID(8001);
+        toutiao.setCustomerKey("7B45C90A427C6B67140A4D3ED8715DA8");
+        toutiao.setRequestTime(TimeUtils.getdangqianshijian());
+        toutiao.setVersion("4.5");
+        Gson gson = new Gson();
+
+        String s = gson.toJson(toutiao);
+//        Log.e("onSuccess", s);
+
+        InforModel inforModel = new IInforModel();
+        inforModel.UpLoad(s, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+//                Log.e("onSuccess",result);
+
+                Dianzanbean dianzanbean = JSON.parseObject(result, Dianzanbean.class);
+                int code = dianzanbean.getMessageList().getCode();
+                if(code==1000){
+                    Toast.makeText(CityjustActivity.this,dianzanbean.getMessageList().getMessage(),Toast.LENGTH_LONG).show();
+                }else if(code==1002){
+                    Toast.makeText(CityjustActivity.this,dianzanbean.getMessageList().getMessage(),Toast.LENGTH_LONG).show();
+                }
+
+                Drawable draw=CityjustActivity.this.getResources().getDrawable(R.drawable.ccoo_icon_zan_press1);
+                draw.setBounds(0, 0, draw.getMinimumWidth(), draw.getMinimumHeight());
+                xqLin2Tv1.setCompoundDrawables(null,draw,null,null);
             }
 
             @Override

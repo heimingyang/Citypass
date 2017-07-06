@@ -2,6 +2,7 @@ package com.example.citypass.cotroller.adapter.toutiao;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,9 @@ import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.toutiao.Attbean;
-import com.example.citypass.model.bean.toutiao.Divingbean;
+import com.example.citypass.model.bean.toutiao.Newbean;
 import com.example.citypass.utils.GlideCircleTransform;
+import com.example.citypass.utils.TimeUtils;
 
 import java.util.List;
 
@@ -54,15 +56,15 @@ import java.util.List;
  */
 
 
-public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHolder> {
-    private List<Divingbean.ServerInfoBean> mList;
+public class Hnew_Adapter extends RecyclerView.Adapter<Hnew_Adapter.MyViewHolder> {
+    private List<Newbean.ServerInfoBean> mList;
     private Context context;
 
-    public Diving_Adapter(List<Divingbean.ServerInfoBean> mList, Context context) {
+    public Hnew_Adapter(List<Newbean.ServerInfoBean> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }
-    public void setNewData(List<Divingbean.ServerInfoBean> mList){
+    public void setNewData(List<Newbean.ServerInfoBean> mList){
         this.mList = mList;
         notifyDataSetChanged();
     }
@@ -76,59 +78,63 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        final Newbean.ServerInfoBean bean=mList.get(position);
 
-        final Divingbean.ServerInfoBean bean=mList.get(position);
         if(bean==null){
             return;
         }
-
-        holder.attitemimg3.setVisibility(View.GONE);
-        holder.attitemimg4.setVisibility(View.GONE);
-        holder.attitemimg5.setVisibility(View.GONE);
-        holder.attitemtv6.setVisibility(View.GONE);
-
-        if(position<3){
-            holder.attitemimg1.setVisibility(View.VISIBLE);
-            if(position==0){
-                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking1);
-                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings1);
-                holder.attitemtv1.setTextColor(R.color.hcfmorecity);
-                holder.attitemtv1.setText(position+1+"");
-            }
-            if(position==1){
-                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking2);
-                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings2);
-                holder.attitemtv1.setTextColor(R.color.blue);
-                holder.attitemtv1.setText(position+1+"");
-            }
-            if(position==2){
-                holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking3);
-                holder.attitemimg1.setBackgroundResource(R.drawable.news_rankings3);
-                holder.attitemtv1.setTextColor(R.color.green);
-                holder.attitemtv1.setText(position+1+"");
-            }
-        }else {
-            holder.attitemimg1.setVisibility(View.GONE);
-            holder.attitemtv1.setBackgroundResource(R.drawable.news_ranking4);
-            holder.attitemtv1.setTextColor(R.color.black);
-            holder.attitemtv1.setText(position+1+"");
-        }
+        holder.attitemtv1.setVisibility(View.GONE);
         holder.attitemtv2.setText(bean.getNickName());
-        holder.attitemtv3.setText(bean.getAddress());
+        String s= TimeUtils.getTime(bean.getReplyTime());
+        holder.attitemtv3.setText(s+"   "+bean.getAddress());
         holder.attitemtv4.setText("Lv."+bean.getLevel());
-        holder.attitemtv5.setText(bean.getSum()+"");
+        Drawable draw1=context.getResources().getDrawable(R.drawable.ccoo_icon_huifu_press);
+        draw1.setBounds(0, 0, draw1.getMinimumWidth(), draw1.getMinimumHeight());
+        holder.attitemtv5.setCompoundDrawables(draw1,null,null,null);
+        holder.attitemtv5.setText(bean.getReplyNum()+"");
+
+        holder.attitemtv6.setText(bean.getDing()+"");
+        Drawable draw=context.getResources().getDrawable(R.drawable.mall_zan3);
+        draw.setBounds(0, 0, draw.getMinimumWidth(), draw.getMinimumHeight());
+        holder.attitemtv6.setCompoundDrawables(draw,null,null,null);
 
         Glide.with(context)
                 .load(bean.getUserFace())
                 .transform(new GlideCircleTransform(context))
                 .into(holder.attitemimg2);
 
-        holder.onclick.setOnClickListener(new View.OnClickListener() {
+        String t=bean.getLou();
+        if(t.equals("沙发")){
+            holder.attitemimg1.setImageResource(R.drawable.news_discuss_image1);
+        }else if(t.equals("板凳")){
+            holder.attitemimg1.setImageResource(R.drawable.news_discuss_image2);
+        }else if(t.equals("马扎")){
+            holder.attitemimg1.setImageResource(R.drawable.news_discuss_image3);
+        }else {
+            holder.attitemimg1.setVisibility(View.GONE);
+        }
+        holder.attitemtv7.setVisibility(View.VISIBLE);
+        holder.attitemtv7.setText(bean.getReplyContent());
+
+
+
+        Glide.with(context)
+                .load("http://p3.pccoo.cn/vote/20151223/2015122315481994799019.png")
+                .into(holder.attitemimg3);
+
+        Glide.with(context)
+                .load("http://p3.pccoo.cn/vote/20151223/2015122315472655231527.png")
+                .into(holder.attitemimg4);
+
+        Glide.with(context)
+                .load("http://p3.pccoo.cn/vote/20151223/2015122315461788239469.png")
+                .into(holder.attitemimg5);
+
+
+        holder.attitewm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, PersonalActivity.class);
-                intent.putExtra("id",Integer.parseInt(bean.getUserId()));
-                context.startActivity(intent);
+
             }
         });
     }
@@ -139,24 +145,27 @@ public class Diving_Adapter extends RecyclerView.Adapter<Diving_Adapter.MyViewHo
     }
     class  MyViewHolder extends RecyclerView.ViewHolder{
 
-        RelativeLayout onclick;
-        TextView attitemtv1,attitemtv2,attitemtv3,attitemtv4,attitemtv5,attitemtv6;
+        RelativeLayout attitewm;
+        TextView attitemtv1,attitemtv2,attitemtv3,attitemtv4,attitemtv5,attitemtv6,attitemtv7;
         ImageView attitemimg1,attitemimg2,attitemimg3,attitemimg4,attitemimg5;
         public MyViewHolder(View itemView) {
             super(itemView);
-            onclick= (RelativeLayout) itemView.findViewById(R.id.att_item);
             attitemtv1= (TextView) itemView.findViewById(R.id.att_item_tv1);
             attitemtv2= (TextView) itemView.findViewById(R.id.att_item_tv2);
             attitemtv3= (TextView) itemView.findViewById(R.id.att_item_tv3);
             attitemtv4= (TextView) itemView.findViewById(R.id.att_item_tv4);
             attitemtv5= (TextView) itemView.findViewById(R.id.att_item_tv5);
             attitemtv6= (TextView) itemView.findViewById(R.id.att_item_tv6);
+            attitemtv7= (TextView) itemView.findViewById(R.id.att_item_tv7);
+
             attitemimg1= (ImageView) itemView.findViewById(R.id.att_item_img1);
             attitemimg2= (ImageView) itemView.findViewById(R.id.att_item_img2);
             attitemimg3= (ImageView) itemView.findViewById(R.id.att_item_img3);
             attitemimg4= (ImageView) itemView.findViewById(R.id.att_item_img4);
             attitemimg5= (ImageView) itemView.findViewById(R.id.att_item_img5);
-
+            attitewm= (RelativeLayout) itemView.findViewById(R.id.att_item);
         }
     }
+
+
 }

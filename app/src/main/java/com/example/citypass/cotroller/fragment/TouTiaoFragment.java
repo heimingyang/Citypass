@@ -6,17 +6,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -40,7 +40,7 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.base.ScanActivity;
-import com.example.citypass.cotroller.HomeActivity;
+import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
@@ -63,7 +63,6 @@ import com.example.citypass.cotroller.fragment.toutiao.HttlunbofourFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbooneFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbothreeFragment;
 import com.example.citypass.cotroller.fragment.toutiao.HttlunbotwoFragment;
-import com.example.citypass.cotroller.fragment.toutiao.MyProgressDialog;
 import com.example.citypass.cotroller.fragment.toutiao.SignDialog;
 import com.example.citypass.model.bean.information.Information;
 import com.example.citypass.model.bean.toutiao.Signbean;
@@ -82,6 +81,8 @@ import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.utils.UrlUtils;
 import com.example.citypass.utils.WebViewUtils;
+import com.example.citypass.view.FullyLinearLayoutManager;
+import com.example.citypass.view.MyNestedScrollView;
 import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -225,7 +226,11 @@ public class TouTiaoFragment extends BaseFragment {
     private RelativeLayout httdrawer;
     private RelativeLayout httdrawer1;
     private boolean isfirst;
+    private boolean isfirstdrawer=true;
+    private AppBarLayout ttAppBarLayout;
+    private MyNestedScrollView ttNestedScrollView;
 
+    //ttAppBarLayout.setVisibility(View.VISIBLE);
     @Override
     protected void initData() {
         //登录状态
@@ -234,6 +239,9 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        //recyclerview中gridview点击事件
+        recyclerviewgridviewlistener();
+
         //poupwindow的gridview点击事件
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -245,8 +253,8 @@ public class TouTiaoFragment extends BaseFragment {
                     //reply();
                 }else if(position==1){
                     //跳转相册
-                    Intent intent=new Intent(getActivity(),NaoNao_Carmer_Activity.class);
-                    startActivity(intent);
+//                    Intent intent=new Intent(getActivity(),NaoNao_Carmer_Activity.class);
+//                    startActivity(intent);
 //                    reply();
                 } else if(position==2){
                     //跳转视频
@@ -259,8 +267,10 @@ public class TouTiaoFragment extends BaseFragment {
 //                    reply();
                 }else if(position==4){
                     //跳转分类信息（生活页面）
-                    Intent intent = new Intent(getActivity(), NaoNao_Carmer_Activity.class);
-                    startActivity(intent);
+                    final String url = "http://m.yanqing.ccoo.cn/post/fabu/";
+                    Intent in = new Intent(getActivity(), MyWebActivity.class);
+                    in.putExtra("url", url);
+                    startActivity(in);
 //                    reply();
                 }else if(position==5){
                     //扫描二维码
@@ -295,29 +305,62 @@ public class TouTiaoFragment extends BaseFragment {
         });
 
         //PullToRefreshRecyclerView  上拉下拉隐藏显示  drawer
-        httrecyclerview.addOnScrollListener(new RecyclerViewScrollListener() {
+//        httrecyclerview.addOnScrollListener(new RecyclerViewScrollListener() {
+//            @Override
+//            public void hide() {
+////                httdrawer1.setVisibility(View.GONE);
+////               httrecyclerview.animate().translationY(80).setInterpolator(new AccelerateDecelerateInterpolator());
+////                httdrawer.animate().translationY(-httdrawer.getHeight()).setInterpolator(new AccelerateDecelerateInterpolator());
+////                httdrawer.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            public void show() {
+////                httdrawer1.setVisibility(View.VISIBLE);
+//                ttAppBarLayout.setVisibility(View.VISIBLE);
+////                httdrawer.animate().translationY(0).setInterpolator(new AccelerateDecelerateInterpolator());
+//            }
+//        });
+        ttNestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
-            public void hide() {
-                httdrawer1.setVisibility(View.GONE);
-//                httrecyclerview.animate().translationY(80).setInterpolator(new AccelerateDecelerateInterpolator());
-                httdrawer.animate().translationY(-httdrawer.getHeight()).setInterpolator(new AccelerateDecelerateInterpolator());
-                httdrawer.setVisibility(View.GONE);
-            }
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY > oldScrollY) {
+                    // 向下滑动
+                }
 
-            @Override
-            public void show() {
-                httdrawer1.setVisibility(View.VISIBLE);
-                httdrawer.setVisibility(View.VISIBLE);
-                httdrawer.animate().translationY(0).setInterpolator(new AccelerateDecelerateInterpolator());
+                if (scrollY < oldScrollY) {
+                    // 向上滑动
+                }
+
+                if (scrollY == 0) {
+                    // 顶部
+                    ttAppBarLayout.setVisibility(View.VISIBLE);
+                }
+
+                if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+                    // 底部
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            page++;
+                            gethttpdata(page);
+                            recyclerviewadapter.notifyDataSetChanged();
+                        }
+                    },1000);
+
+                }
             }
         });
-    }
+       }
 
     @Override
     protected void initView(View view) {
-
+        ttNestedScrollView = (MyNestedScrollView) view.findViewById(R.id.tt_NestedScrollView);
+        ttAppBarLayout = (AppBarLayout) view.findViewById(R.id.tt_AppBarLayout);
 
         httdrawer = (RelativeLayout) view.findViewById(R.id.htt_drawer);
+
+
         //准备poupwindow
         preparepoupwindow();
         relativeLayout = (RelativeLayout) inflate.findViewById(R.id.poponclick);
@@ -355,16 +398,15 @@ public class TouTiaoFragment extends BaseFragment {
         recyclerviewadapter = new HttpurecyclerviewAdapter(getActivity(), list);
         httgridview.setAdapter(gridAdapter);
 
-        //加载recyclerview
-        initrecyclerview();
+            //加载recyclerview
+            initrecyclerview();
 
-        //加载轮播
-        initlunbo();
+            //加载轮播
+            initlunbo();
 
-        //gridview网络请求
-        getgridviewdata();
-        //recyclerview中gridview点击事件
-        recyclerviewgridviewlistener();
+            //gridview网络请求
+            getgridviewdata();
+
 
     }
 
@@ -384,6 +426,7 @@ public class TouTiaoFragment extends BaseFragment {
         App.activity.getText().setCompoundDrawables(null, null, drawable, null);
         App.activity.getText().setText("延庆在线");
         App.activity.getImgOne().setImageResource(R.drawable.btn_remind_normal);
+        //App.activity.getImgOne().setRight(10);
         App.activity.getImgTwo().setImageResource(R.drawable.tjbutn1_auth_add);
 
         //题目中的点击事件
@@ -444,6 +487,31 @@ public class TouTiaoFragment extends BaseFragment {
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
 
+//        inflate.setFocusableInTouchMode(true);
+//        inflate.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                reply();
+//                if(!isfirst){
+//                    isfirst = true;
+//
+//                    Toast.makeText(getActivity(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+//                    Timer timer = new Timer();
+//                    timer.schedule(new TimerTask() {
+//
+//                        @Override
+//                        public void run() {
+//                            isfirst = false;
+//                        }
+//                    }, 2000);
+//                }else {
+//                    Process.killProcess(Process.myPid());
+//                    System.exit(0);
+//                }
+//                return true;
+//            }
+//        });
+
     }
 
     //头部 图片点击事件
@@ -479,6 +547,7 @@ public class TouTiaoFragment extends BaseFragment {
 
     //recyclerview 加载数据
     private void gethttpdata(int page) {
+
         this.page = page;
         Toutiao.ParamBean param = new Toutiao.ParamBean();
         param.setSiteID(2422);
@@ -514,6 +583,7 @@ public class TouTiaoFragment extends BaseFragment {
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, null, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
+
                 // Log.e("onSuccess", result.toString());
                 Touqiaolistview ttt = JSON.parseObject(result, Touqiaolistview.class);
                 list.addAll(ttt.getServerInfo().getHeadTInfoList());
@@ -590,33 +660,24 @@ public class TouTiaoFragment extends BaseFragment {
         recyclerviewadapter.notifyDataSetChanged();
         httrecyclerview.addHeaderView(headerview);
         //设置布局格式
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        httrecyclerview.setLayoutManager(manager);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+//        manager.setOrientation(LinearLayoutManager.VERTICAL);
+//        httrecyclerview.setLayoutManager(manager);
+//        httrecyclerview.setLayoutManager(new MyLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true));
 
         //设置下拉刷新下拉加载
-        httrecyclerview.setLoadingMoreEnabled(true);
-        httrecyclerview.setPullRefreshEnabled(false);
-        httrecyclerview.displayLastRefreshTime(true);
+//        httrecyclerview.setLoadingMoreEnabled(true);
+//        httrecyclerview.setPullRefreshEnabled(false);
+//        httrecyclerview.displayLastRefreshTime(true);
+        FullyLinearLayoutManager layoutManager = new FullyLinearLayoutManager(getActivity());
+        layoutManager.setSmoothScrollbarEnabled(true);
+        layoutManager.setAutoMeasureEnabled(true);
 
-        httrecyclerview.setPullToRefreshListener(new PullToRefreshListener() {
-            @Override
-            public void onRefresh() {
+        httrecyclerview.setLayoutManager(layoutManager);
+        httrecyclerview.setHasFixedSize(true);
+        httrecyclerview.setNestedScrollingEnabled(false);
 
-            }
 
-            @Override
-            public void onLoadMore() {
-                httrecyclerview.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        page++;
-                        gethttpdata(page);
-                        httrecyclerview.setLoadMoreComplete();
-                    }
-                }, 2000);
-            }
-        });
     }
 
     //gridview 加载数据
@@ -716,6 +777,7 @@ public class TouTiaoFragment extends BaseFragment {
     //popupWindow消失  并且  结束加号动画
     private void reply() {
         if(popupWindow.isShowing()){
+            Log.e("ttt","88888888888");
             popupWindow.dismiss();
             Animation disanimation = AnimationUtils.loadAnimation(getActivity(), R.anim.disallimg);
             disanimation.setDuration(300);
@@ -867,6 +929,8 @@ public class TouTiaoFragment extends BaseFragment {
                     httGenderMan.setImageResource(R.drawable.ccoo_icon_girl);
                     httGenderWoman.setVisibility(View.GONE);
                 }
+                hdrawerTvGrade.setText("Lv." + bean.getLevel());
+                hdrawerResident.setText(bean.getHonorName());
 
                 httGrade.setText("Lv." + bean.getLevel());
                 honorname.setText(bean.getHonorName());
@@ -1109,4 +1173,5 @@ public class TouTiaoFragment extends BaseFragment {
                 .setCaptureActivity(ScanActivity.class)//设置扫码界面为自定义样式
                 .initiateScan();
     }
+
 }

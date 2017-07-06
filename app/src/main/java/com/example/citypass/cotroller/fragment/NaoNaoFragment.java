@@ -98,6 +98,18 @@ public class NaoNaoFragment extends BaseFragment {
     // TODO: 2017/6/26 0026 加载数据
     @Override
     protected void initData() {
+
+    }
+
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    // TODO: 2017/6/26 0026 初始化数据
+    @Override
+    protected void initView(View view) {
         if (a == 0) {
             mFraList.add(new Di_NaoNao_Fragment());
             mFraList.add(new Wang_NaoNao_Fragment());
@@ -148,18 +160,6 @@ public class NaoNaoFragment extends BaseFragment {
             a = 1;
 
         }
-    }
-
-
-    @Override
-    protected void initListener() {
-
-    }
-
-    // TODO: 2017/6/26 0026 初始化数据
-    @Override
-    protected void initView(View view) {
-
     }
 
     @Override

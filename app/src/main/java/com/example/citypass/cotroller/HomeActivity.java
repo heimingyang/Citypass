@@ -1,12 +1,18 @@
 package com.example.citypass.cotroller;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Process;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -72,9 +78,9 @@ public class HomeActivity extends BaseActivity {
     private SheQuFragment sheQuFragment;
     private LifeFragment lifeFragment;
     private FaXianFragment faXianFragment;
+    private Fragment fragment;
     //这是用来判断是否登录的值，在SharedPreferences中以login参数保存
     private boolean login;
-
 
     @Override
     public int getLayoutId() {
@@ -110,7 +116,9 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
+
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
+
     }
 
     @Override

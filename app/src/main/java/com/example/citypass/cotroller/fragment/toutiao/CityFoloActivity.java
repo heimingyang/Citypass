@@ -91,7 +91,12 @@ public class CityFoloActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        hcityfoloBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

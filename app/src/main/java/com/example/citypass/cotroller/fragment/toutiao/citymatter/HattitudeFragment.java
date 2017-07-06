@@ -81,7 +81,7 @@ public class HattitudeFragment extends BaseFragment {
 
     @BindView(R.id.att_recycler)
     MRecyclerView newestRecycle;
-    private List<Attbean> mList;
+    private List<Attbean.ServerInfoBean> mList;
     private boolean login;
     private int page=1;
     private Att_Adapter adapter;
@@ -176,7 +176,7 @@ public class HattitudeFragment extends BaseFragment {
 
                 //Log.e("result",result);
                 Attbean bean = JSON.parseObject(result, Attbean.class);
-                mList.add(bean);
+                mList.addAll(bean.getServerInfo());
                 adapter.notifyDataSetChanged();
 
 
