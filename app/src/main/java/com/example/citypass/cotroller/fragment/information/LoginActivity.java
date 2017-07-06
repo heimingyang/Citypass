@@ -222,6 +222,8 @@ public class LoginActivity extends BaseActivity {
                 int code = LoginUtils.information.getMessageList().getCode();
                 if(code==1000){
                     handler.sendEmptyMessage(1);
+                    SpUtils.upSp().putString("img",LoginUtils.information.getServerInfo().getUserFace());
+                    SpUtils.upSp().commit();
                     setResult(111);
                     onBackPressed();
                 }else{

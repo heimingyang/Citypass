@@ -40,7 +40,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".cotroller.HomeActivity">
+        <activity android:name=".cotroller.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -176,7 +176,7 @@
         <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.ModifyPassActivity"/>
-
+        <activity android:name=".cotroller.HomeActivity"/>
     </application>
 
 </manifest>
