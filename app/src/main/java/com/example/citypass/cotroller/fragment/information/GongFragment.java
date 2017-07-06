@@ -7,8 +7,8 @@ import com.example.citypass.base.BaseFragment;
 
 /**
  * 项目名称: 血压卫士
- * 类描述:
- * 创建人: dell
+ * 类描述: 排行榜页面
+ * 创建人: 马杰
  * 创建时间: 2017/7/3 14:29
  * 修改人:
  * 修改内容:

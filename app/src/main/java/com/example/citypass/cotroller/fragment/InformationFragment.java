@@ -168,6 +168,7 @@ public class InformationFragment extends BaseFragment {
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
         InforAdapter adapter = new InforAdapter(getContext());
         inforList.setAdapter(adapter);
+        image= App.activity.getImg();
         if(login&&a==0){
             getInformation();
         }else{
@@ -295,7 +296,7 @@ public class InformationFragment extends BaseFragment {
                 switch (resultCode){
                     case 111:
                         a=1;
-                        getInformation();
+//                        init();
                         HomeActivity.touTiaoFragment.loginstate();
                         break;
                 }
@@ -329,7 +330,6 @@ public class InformationFragment extends BaseFragment {
         inforFensi.setText(information.getServerInfo().getFansNum()+"粉丝");
         inforGuanzhu.setText(information.getServerInfo().getFrendNum()+"关注");
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(),inforImg,true);
-        image= App.activity.getImg();
         HttpFacory.create().loadImage(information.getServerInfo().getUserFace(), image,true);
 
     }

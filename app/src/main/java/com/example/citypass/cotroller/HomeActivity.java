@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.base.MyViewPager;
@@ -116,7 +117,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        App.activity=this;
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false);
 
     }
@@ -229,8 +230,6 @@ public class HomeActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 100:
-                break;
             case 200:
                 switch (resultCode) {
                     case 201:

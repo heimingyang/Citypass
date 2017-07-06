@@ -40,8 +40,8 @@ import static com.example.citypass.utils.LoginUtils.information;
 
 /**
  * 项目名称: 血压卫士
- * 类描述:
- * 创建人: dell
+ * 类描述: 我的特权
+ * 创建人: 马杰
  * 创建时间: 2017/6/28 9:37
  * 修改人:
  * 修改内容:

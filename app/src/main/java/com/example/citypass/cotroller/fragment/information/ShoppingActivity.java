@@ -53,7 +53,7 @@ import static com.umeng.socialize.utils.ContextUtil.getContext;
 
 /**
  * 项目名称: 血压卫士
- * 类描述: 简单的商城（只是页面）
+ * 类描述: 商城
  * 创建人: 马杰
  * 创建时间: 2017/6/29 10:38
  * 修改人:

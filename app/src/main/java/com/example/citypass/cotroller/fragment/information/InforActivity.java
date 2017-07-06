@@ -3,8 +3,11 @@ package com.example.citypass.cotroller.fragment.information;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +20,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.model.bean.information.City;
+import com.example.citypass.model.bean.information.Image;
+import com.example.citypass.model.bean.information.Login;
 import com.example.citypass.model.bean.toutiao.IsLoad;
 import com.example.citypass.model.biz.infor.IInforModel;
 import com.example.citypass.model.biz.infor.InforModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.LoginUtils;
+import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
+
+import java.io.File;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.example.citypass.utils.LoginUtils.information;
 
 
 /**
@@ -153,6 +166,9 @@ public class InforActivity extends BaseActivity {
     private InforModel model;
     private String ffff, mm, dd;
     private String s;
+    private Uri uri;
+    private File tempFile;
+    private String file;
 
     @Override
     protected int getLayoutId() {
@@ -176,18 +192,18 @@ public class InforActivity extends BaseActivity {
     }
 
     private void initInfor() {
-        String userFace = LoginUtils.information.getServerInfo().getUserFace();
+        String userFace = information.getServerInfo().getUserFace();
         HttpFacory.create().loadImage(userFace, informationHeadPortrait, true);
-        inforNumberTwo.setText(LoginUtils.information.getServerInfo().getUserName());
-        informationNickTwo.setText(LoginUtils.information.getServerInfo().getNick());
-        informationNameTwo.setText(LoginUtils.information.getServerInfo().getName());
-        informationSexTwo.setText(LoginUtils.information.getServerInfo().getSex());
-        informationAgeTwo.setText(LoginUtils.information.getServerInfo().getXingZuo());
-        informationOccupationTwo.setText(LoginUtils.information.getServerInfo().getJob());
-        informationEmotionTwo.setText(LoginUtils.information.getServerInfo().getMarry());
-        informationResidenceTwo.setText(LoginUtils.information.getServerInfo().getLifeAddr());
-        informationAutographTwo.setText(LoginUtils.information.getServerInfo().getInfo());
-        String tel = LoginUtils.information.getServerInfo().getTel();
+        inforNumberTwo.setText(information.getServerInfo().getUserName());
+        informationNickTwo.setText(information.getServerInfo().getNick());
+        informationNameTwo.setText(information.getServerInfo().getName());
+        informationSexTwo.setText(information.getServerInfo().getSex());
+        informationAgeTwo.setText(information.getServerInfo().getXingZuo());
+        informationOccupationTwo.setText(information.getServerInfo().getJob());
+        informationEmotionTwo.setText(information.getServerInfo().getMarry());
+        informationResidenceTwo.setText(information.getServerInfo().getLifeAddr());
+        informationAutographTwo.setText(information.getServerInfo().getInfo());
+        String tel = information.getServerInfo().getTel();
         char[] chars = tel.toCharArray();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < chars.length; i++) {
@@ -198,10 +214,10 @@ public class InforActivity extends BaseActivity {
         }
         String phone = sb.toString();
         informationPhoneTwo.setText("已绑定手机" + phone);
-        informationWeixinTwo.setText(LoginUtils.information.getServerInfo().getWeiXin());
-        informationQQTwo.setText(LoginUtils.information.getServerInfo().getQQ());
-        informationGradeTwo.setText(LoginUtils.information.getServerInfo().getHonorName());
-        int level = LoginUtils.information.getServerInfo().getLevel();
+        informationWeixinTwo.setText(information.getServerInfo().getWeiXin());
+        informationQQTwo.setText(information.getServerInfo().getQQ());
+        informationGradeTwo.setText(information.getServerInfo().getHonorName());
+        int level = information.getServerInfo().getLevel();
         if(level<=10){
             informationDengji.setText("LV."+level);
         }else if(level<=20&&level>10){
@@ -211,11 +227,11 @@ public class InforActivity extends BaseActivity {
             informationDengji.setBackgroundResource(R.drawable.ccoo_bg_dengji3);
             informationDengji.setText("LV."+level);
         }
-        int medalCount = LoginUtils.information.getServerInfo().getMedalCount();
+        int medalCount = information.getServerInfo().getMedalCount();
         if (medalCount == 0) {
             informationMedalTwo.setText("无");
         }
-        informationCityTwo.setText(LoginUtils.information.getServerInfo().getCoin() + "枚");
+        informationCityTwo.setText(information.getServerInfo().getCoin() + "枚");
     }
 
 
@@ -228,8 +244,10 @@ public class InforActivity extends BaseActivity {
                 onBackPressed();
                 break;
             case R.id.informations_Relative:
+                getDialog();
                 break;
             case R.id.information_Number:
+                Toast.makeText(InforActivity.this,"账号不可修改",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.information_Nick:
                 getDialog("个性昵称", informationNickTwo.getText().toString(), "你的个性网名（10字内）", 1, informationNickTwo);
@@ -241,7 +259,7 @@ public class InforActivity extends BaseActivity {
                 Toast.makeText(InforActivity.this, "性别已设置，无法修改~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.information_Age:
-                getDate(LoginUtils.information.getServerInfo().getBirthday(), 4, informationAgeTwo);
+                getDate(information.getServerInfo().getBirthday(), 4, informationAgeTwo);
                 break;
             case R.id.information_Occupation:
                 getDialog("你的职业", informationOccupationTwo.getText().toString(), "你目前从事职业", 14, informationOccupationTwo);
@@ -312,7 +330,7 @@ public class InforActivity extends BaseActivity {
     private void getDate(String title, final int keyId, final TextView v) {
         final View view = LayoutInflater.from(InforActivity.this).inflate(R.layout.date_dialog_moban, null);
         DatePicker Datepicker = (DatePicker) view.findViewById(R.id.infor_dialog_date);
-        Long longTime = TimeUtils.getLongTime(LoginUtils.information.getServerInfo().getBirthday(), "yyyy-MM-dd");
+        Long longTime = TimeUtils.getLongTime(information.getServerInfo().getBirthday(), "yyyy-MM-dd");
         ffff = TimeUtils.getStringTime(longTime, "yyyy");
         mm = TimeUtils.getStringTime(longTime, "MM");
         dd = TimeUtils.getStringTime(longTime, "dd");
@@ -417,5 +435,132 @@ public class InforActivity extends BaseActivity {
             }
         }
     };
+    public void getDialog() {
+        final AlertDialog dialog=new AlertDialog.Builder(App.activity).create();
+        dialog.show();
+        dialog.getWindow().setContentView(R.layout.my_dialog);
+        //打开相机
+        dialog.getWindow().findViewById(R.id.my_textOne).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//action is capture
+                File tempFile=new File("/sdcard/ll1x/"+ Calendar.getInstance().getTimeInMillis()+".jpg");
+                // 以时间秒为文件名
+                File temp = new File("/sdcard/ll1x/");//自已项目 文件夹
+                if (!temp.exists()) {
+                    temp.mkdir();
+                }
+                uri=Uri.fromFile(tempFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
+                App.activity.startActivityForResult(intent, 3);
+                dialog.dismiss();
+            }
+        });
+        //打开相册
+        dialog.getWindow().findViewById(R.id.my_textTwo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                App.activity.startActivityForResult(intent, 1);
+                dialog.dismiss();
+            }
+        });
+        dialog.getWindow().findViewById(R.id.my_textThree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
 
+            }
+        });
+    }
+    
+    private void upLoadImage(){
+        Image image=new Image();
+        image.setKeyID(2);
+        image.setUsiteID(information.getServerInfo().getSiteID());
+        image.setSiteID(information.getServerInfo().getSiteID());
+        image.setUserID(SpUtils.getSp().getString(LoginUtils.USERID,""));
+        image.setUserName(information.getServerInfo().getUserName());
+        String param = LoginUtils.getParam(image, "PHSocket_SetUserBaseInfo");
+        model.UpLoad(param, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                City city = JSON.parseObject(result, City.class);
+                int code = city.getMessageList().getCode();
+                if(code==1000){
+                    Toast.makeText(InforActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
+                    information.getServerInfo().setUserFace(file);
+                    HttpFacory.create().loadImage(file,informationHeadPortrait,true);
+                }else{
+                    Toast.makeText(InforActivity.this,city.getMessageList().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(String errormsg) {
+                Toast.makeText(InforActivity.this,errormsg,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
+            return;
+        }
+        switch (requestCode){
+            case 1:
+                //相册剪裁
+                startPhotoZoom(data.getData());
+                break;
+            case 2:
+                //上传头像的请求
+                upLoadImage();
+                break;
+            case 3:
+                //相机剪裁
+                startPhotoZoom(uri);
+                break;
+        }
+    }
+
+    private void startPhotoZoom(Uri uri) {
+        Intent intent = new Intent("com.android.camera.action.CROP");
+
+        intent.setDataAndType(uri, "image/*");
+
+        intent.putExtra("crop", "true");
+
+        intent.putExtra("aspectX", 2);
+
+        intent.putExtra("aspectY", 2);
+
+        intent.putExtra("outputX", 200);
+
+        intent.putExtra("outputY", 200);
+
+        intent.putExtra("scale", true);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+        intent.putExtra("return-data", false);
+
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+
+        intent.putExtra("noFaceDetection", true); // no face detection
+
+        file="/sdcard/ll1x/"+ Calendar.getInstance().getTimeInMillis()+".jpg";
+        tempFile=new File(file); // 以时间秒为文件名
+        File temp = new File("/sdcard/ll1x/");//自已项目 文件夹
+        if (!temp.exists()) {
+            temp.mkdir();
+        }
+        intent.putExtra("output", Uri.fromFile(tempFile));  // 专入目标文件
+        intent.putExtra("outputFormat", "JPEG"); //输入文件格式
+        Intent wrapperIntent = Intent.createChooser(intent, "头像"); //开始 并设置标题
+        startActivityForResult(wrapperIntent, 2);
+    }
 }

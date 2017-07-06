@@ -198,6 +198,7 @@ public class TouTiaoFragment extends BaseFragment {
     private TextView httLin3;
     private RelativeLayout headerview;
     private SignDialog signDialog;
+    private TextView title;
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -355,6 +356,7 @@ public class TouTiaoFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        title=App.activity.getText();
         ttNestedScrollView = (MyNestedScrollView) view.findViewById(R.id.tt_NestedScrollView);
         ttAppBarLayout = (AppBarLayout) view.findViewById(R.id.tt_AppBarLayout);
 
@@ -917,7 +919,7 @@ public class TouTiaoFragment extends BaseFragment {
             httAfterEntry.setVisibility(View.VISIBLE);
             Information.ServerInfoBean bean = information.getServerInfo();
             if (bean != null) {
-                App.activity.getText().setText(bean.getSiteName());
+                title.setText(bean.getSiteName());
 
                 String sex = bean.getSex();
 
