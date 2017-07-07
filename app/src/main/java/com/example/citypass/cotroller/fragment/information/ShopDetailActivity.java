@@ -1,9 +1,13 @@
 package com.example.citypass.cotroller.fragment.information;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +32,9 @@ import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,6 +107,10 @@ public class ShopDetailActivity extends BaseActivity {
     TextView shoppingDetailCoinOne;
     private MedaModel model;
     private long eTime;
+    private String[] s={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"
+            ,"18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"
+            ,"39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"
+            ,"60"};
 
     @Override
     protected int getLayoutId() {
@@ -138,8 +149,9 @@ public class ShopDetailActivity extends BaseActivity {
                     Glide.with(ShopDetailActivity.this).load(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getShowImages()).into(shoppingDetailImage);
                     shoppingDetailName.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getTitle());
                     shoppingDetailCoinOne.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getSCoin()+"币");
+                    SpannableString spannableString = matcherSearchTitle(Color.parseColor("#ffff0000"),"已兑换" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum() + "个",detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum()+"" );
                     shoppingDetailStock.setText("商品库存：" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getRealSum());
-                    shoppingDetailConverted.setText("已兑换" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum() + "个");
+                    shoppingDetailConverted.setText(spannableString);
                     eTime = detail1.getServerInfo().getCommodityInfo().getContent().get(0).getETime();
                     eTime-=1000*60*60*24;
                     handler.postDelayed(run, 1000);
@@ -172,7 +184,8 @@ public class ShopDetailActivity extends BaseActivity {
                 case 0:
                     eTime -= 1000;
                     String time = TimeUtils.getStringTime(eTime, "dd天hh小时mm分ss秒");
-                    shoppingDetailLastTime.setText(time);
+                    SpannableString spannableString = matcherSearchTitle(Color.parseColor("#ffff0000"), time, s);
+                    shoppingDetailLastTime.setText(spannableString);
                     break;
             }
         }
@@ -202,6 +215,35 @@ public class ShopDetailActivity extends BaseActivity {
                 startActivity(intentOne);
                 break;
         }
+    }
+    public static SpannableString matcherSearchTitle(int color, String text,
+                                                     String keyword) {
+        SpannableString s = new SpannableString(text);
+        Pattern p = Pattern.compile(keyword);
+        Matcher m = p.matcher(s);
+        while (m.find()) {
+            int start = m.start();
+            int end = m.end();
+            s.setSpan(new ForegroundColorSpan(color), start, end,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return s;
+    }
+
+    public static SpannableString matcherSearchTitle(int color, String text,
+                                                     String[] keyword) {
+        SpannableString s = new SpannableString(text);
+        for (int i = 0; i < keyword.length; i++) {
+            Pattern p = Pattern.compile(keyword[i]);
+            Matcher m = p.matcher(s);
+            while (m.find()) {
+                int start = m.start();
+                int end = m.end();
+                s.setSpan(new ForegroundColorSpan(color), start, end,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+        }
+        return s;
     }
 
     private UMShareListener umShareListener = new UMShareListener() {

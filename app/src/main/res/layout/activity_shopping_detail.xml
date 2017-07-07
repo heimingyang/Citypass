@@ -116,7 +116,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:textColor="@color/viewfinder_laser"
                     android:layout_alignParentRight="true"
                     android:text="已兑换0个"
                     android:paddingRight="10dp"/>

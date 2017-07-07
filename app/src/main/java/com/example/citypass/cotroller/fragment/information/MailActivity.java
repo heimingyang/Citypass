@@ -20,6 +20,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.umeng.socialize.a.b.d.m;
+
 /**
  * 项目名称: 血压卫士
  * 类描述: 通讯录
@@ -91,8 +93,12 @@ public class MailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mList.add(new MailFragment());
-        mList.add(new MailFragment());
+        MailFragment mailOnes=new MailFragment();
+        mailOnes.setType(1);
+        MailFragment mailTwos=new MailFragment();
+        mailTwos.setType(2);
+        mList.add(mailOnes);
+        mList.add(mailTwos);
         FragmentAdapter adapter=new FragmentAdapter(getSupportFragmentManager(),MailActivity.this,mList);
         mailViewpager.setAdapter(adapter);
         if(getIntent().getIntExtra("type",1)==2){
