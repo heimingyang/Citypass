@@ -2,8 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 <TextView
+    android:id="@+id/mail_text_order"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:text="还没有任何粉丝~"/>
+    <com.example.citypass.view.MRecyclerView
+        android:id="@+id/mail_text_List"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
 </RelativeLayout>

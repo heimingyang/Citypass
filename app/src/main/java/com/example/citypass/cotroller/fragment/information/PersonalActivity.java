@@ -119,6 +119,7 @@ public class PersonalActivity extends BaseActivity {
     private int sex=0;
     private Personal personal;
     private int id;
+    private int type;
 
     @Override
     protected int getLayoutId() {
@@ -138,6 +139,10 @@ public class PersonalActivity extends BaseActivity {
         model=new IPersonalModel();
         Intent intent=getIntent();
         id=intent.getIntExtra("id",0);
+        type=intent.getIntExtra("type",0);
+        if(type==1) {
+            personalBottom.setVisibility(View.VISIBLE);
+        }
         getData(id);
     }
 
@@ -295,7 +300,6 @@ public class PersonalActivity extends BaseActivity {
             personalRelative.setBackgroundResource(R.drawable.girl_top_bg);
             personalRelativeTwo.setBackgroundResource(R.drawable.girl_bottom_bg);
             personalUser.setVisibility(View.GONE);
-            personalBottom.setVisibility(View.VISIBLE);
             personalTextThree.setText("美女秀—晒美照，秀自我，同城互动交友");
             Drawable draw=getResources().getDrawable(R.drawable.ccoo_icon_girl1);
             draw.setBounds( 0 ,  0 , draw.getMinimumWidth(), draw.getMinimumHeight());

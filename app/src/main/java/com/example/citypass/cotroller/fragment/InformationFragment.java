@@ -202,6 +202,7 @@ public class InformationFragment extends BaseFragment {
                 if(login) {
                     Intent intent = new Intent(getActivity(), PersonalActivity.class);
                     intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    intent.putExtra("type",0);
                     startActivity(intent);
                 }else{
                     Intent intent=new Intent(getActivity(),LoginActivity.class);
@@ -212,6 +213,7 @@ public class InformationFragment extends BaseFragment {
                 if(login) {
                     Intent intent = new Intent(getActivity(), PersonalActivity.class);
                     intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    intent.putExtra("type",0);
                     startActivity(intent);
                 }else{
                     Intent intent=new Intent(getActivity(),LoginActivity.class);
@@ -222,6 +224,7 @@ public class InformationFragment extends BaseFragment {
                 if(login) {
                     Intent intent = new Intent(getActivity(), PersonalActivity.class);
                     intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    intent.putExtra("type",0);
                     startActivity(intent);
                 }else{
                     Intent intent=new Intent(getActivity(),LoginActivity.class);
