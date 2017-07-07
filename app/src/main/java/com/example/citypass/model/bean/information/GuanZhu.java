@@ -23,6 +23,7 @@ public class GuanZhu extends BaseParamBean {
     @JSONField(name = "pageSize")
     private int pageSize;
 
+
     public int getSiteID() {
         return siteID;
     }

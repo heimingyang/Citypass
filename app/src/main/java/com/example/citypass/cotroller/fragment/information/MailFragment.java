@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.adapter.life.MailAdapter;
 import com.example.citypass.model.bean.information.GuanZhu;
 import com.example.citypass.model.bean.information.UpGuanZhu;
 import com.example.citypass.model.biz.infor.IMedalModel;
@@ -63,6 +64,8 @@ public class MailFragment extends BaseFragment {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mailTextList.setLayoutManager(layoutManager);
+        MailAdapter adapter=new MailAdapter(getActivity(),mList);
+        mailTextList.setAdapter(adapter);
         mailTextList.setLoadingListener(new MRecyclerView.LoadingListener() {
             @Override
             public void onRvScrolled(int dx, int dy) {
@@ -71,20 +74,52 @@ public class MailFragment extends BaseFragment {
 
             @Override
             public void onRefresh() {
-
+                curpage=1;
+                mList.clear();
+                getParam(true);
             }
 
             @Override
             public void onLoadMore() {
-
+                curpage++;
+                getParam(false);
             }
         });
+        getParam(true);
     }
 
-    private void getParam(boolean boo) {
-        if(type==1){
+    private void getParam(final boolean boo) {
+        if(type==2){
+            GuanZhu guanZhu=new GuanZhu();
+            guanZhu.setSiteID(LoginUtils.information.getServerInfo().getSiteID());
+            guanZhu.setCurPage(curpage);
+            guanZhu.setPageSize(10);
+            guanZhu.setUserName(LoginUtils.information.getServerInfo().getUserName());
+            String param=LoginUtils.getParam(guanZhu,"PHSocket_GetFansList");
+            model.getMedal(param, new MyCallBack() {
+                @Override
+                public void onSuccess(String result) {
+                    UpGuanZhu upGuanZhu = JSON.parseObject(result, UpGuanZhu.class);
+                    if(upGuanZhu.getMessageList().getCode()==1000){
+                        if(upGuanZhu.getServerInfo()!=null&&upGuanZhu.getServerInfo().size()>0){
+                        mList.addAll(upGuanZhu.getServerInfo());
+                            mailTextOrder.setVisibility(View.GONE);
+                            mailTextList.setVisibility(View.VISIBLE);
+                            if(boo){
+                                mailTextList.refreshComplete();
+                            }else{
+                                mailTextList.loadMoreComplete();
+                            }
+                        }
+                    }
+                }
 
-        }else if(type==2){
+                @Override
+                public void onError(String errormsg) {
+
+                }
+            });
+        }else if(type==1){
             GuanZhu guanZhu=new GuanZhu();
             guanZhu.setSiteID(LoginUtils.information.getServerInfo().getSiteID());
             guanZhu.setCurPage(curpage);
@@ -96,10 +131,15 @@ public class MailFragment extends BaseFragment {
                 public void onSuccess(String result) {
                     UpGuanZhu upGuanZhu = JSON.parseObject(result, UpGuanZhu.class);
                     if(upGuanZhu.getMessageList().getCode()==1000){
+                        if(upGuanZhu.getServerInfo()!=null&&upGuanZhu.getServerInfo().size()>0){
                         mList.addAll(upGuanZhu.getServerInfo());
-                        if(mList.size()>0){
                             mailTextOrder.setVisibility(View.GONE);
                             mailTextList.setVisibility(View.VISIBLE);
+                            if(boo){
+                                mailTextList.refreshComplete();
+                            }else{
+                                mailTextList.loadMoreComplete();
+                            }
                         }
                     }
                 }

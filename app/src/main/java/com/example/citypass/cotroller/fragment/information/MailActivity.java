@@ -94,9 +94,9 @@ public class MailActivity extends BaseActivity {
     @Override
     protected void initView() {
         MailFragment mailOnes=new MailFragment();
-        mailOnes.setType(1);
+        mailOnes.setType(2);
         MailFragment mailTwos=new MailFragment();
-        mailTwos.setType(2);
+        mailTwos.setType(1);
         mList.add(mailOnes);
         mList.add(mailTwos);
         FragmentAdapter adapter=new FragmentAdapter(getSupportFragmentManager(),MailActivity.this,mList);
@@ -105,10 +105,12 @@ public class MailActivity extends BaseActivity {
             mailOne.setChecked(true);
             mailTextOne.setVisibility(View.VISIBLE);
             mailTextTwo.setVisibility(View.INVISIBLE);
+            mailViewpager.setCurrentItem(0);
         }else if(getIntent().getIntExtra("type",1)==1){
             mailTwo.setChecked(true);
             mailTextOne.setVisibility(View.INVISIBLE);
             mailTextTwo.setVisibility(View.VISIBLE);
+            mailViewpager.setCurrentItem(1);
         }
     }
 
