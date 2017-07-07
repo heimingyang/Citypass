@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.App;
@@ -113,7 +114,7 @@ public class InformationFragment extends BaseFragment {
                         }
                         break;
                     case 2:
-//                        login(null,0);
+                        Toast.makeText(getActivity(),"目前我们已将宠物系统关闭，请见谅",Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         login(LevelActivity.class,0);
@@ -198,10 +199,34 @@ public class InformationFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.infor_img:
+                if(login) {
+                    Intent intent = new Intent(getActivity(), PersonalActivity.class);
+                    intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivityForResult(intent,100);
+                }
                 break;
             case R.id.infor_name:
+                if(login) {
+                    Intent intent = new Intent(getActivity(), PersonalActivity.class);
+                    intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivityForResult(intent,100);
+                }
                 break;
             case R.id.infor_order:
+                if(login) {
+                    Intent intent = new Intent(getActivity(), PersonalActivity.class);
+                    intent.putExtra("id", Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
+                    startActivity(intent);
+                }else{
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivityForResult(intent,100);
+                }
                 break;
             case R.id.infor_guanzhu:
                 login(MailActivity.class,1);
