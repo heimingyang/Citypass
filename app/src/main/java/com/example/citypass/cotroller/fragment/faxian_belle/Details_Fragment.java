@@ -155,7 +155,7 @@ public class Details_Fragment extends BaseFragment {
                     belleDetailsAi.setImageResource(R.drawable.cover_info_love2);
                     details1_zan.setImageResource(R.drawable.cover_info_love2);
 
-                    int i = likeTotal++;
+                    int i = likeTotal + 1;
                     details1_tv_ZanCount.setText(i + "");
                     Toast.makeText(getContext(), "点赞成功，成长值+10", Toast.LENGTH_SHORT).show();
                 }
@@ -175,8 +175,7 @@ public class Details_Fragment extends BaseFragment {
                 } else {
                     belleDetailsAi.setImageResource(R.drawable.cover_info_love2);
                     details1_zan.setImageResource(R.drawable.cover_info_love2);
-                    String text = details1_tv_ZanCount.getText().toString();
-                    int i = likeTotal++;
+                    int i = likeTotal + 1;
                     details1_tv_ZanCount.setText(i + "");
                     Toast.makeText(getContext(), "点赞成功，成长值+10", Toast.LENGTH_SHORT).show();
                 }
