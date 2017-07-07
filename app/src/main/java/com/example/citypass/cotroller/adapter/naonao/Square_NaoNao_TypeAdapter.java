@@ -40,7 +40,7 @@ import java.util.List;
  */
 
 public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
-       private List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList;
+    private List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList;
     private View view;
     private Context context;
     private Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean bean;
@@ -132,44 +132,36 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         return holder;
     }
 
-    //处理业务逻辑
+    //处理业务逻辑  //这个position是视图索引。。我需要的是每个点击事件得到position
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case 0:
                 mViewHodlerOne one = (mViewHodlerOne) holder;
-                onePosition = position;
-                oneBind(one, onePosition);
+                oneBind(one, position);
 
                 break;
             case 1:
                 mViewHodlerOne one1 = (mViewHodlerOne) holder;
-
-                onePosition = position;
-                oneBind(one1, onePosition);
-
+                oneBind(one1, position);
                 break;
             case 2:
                 mViewHodlerTwo two = (mViewHodlerTwo) holder;
-                twoPostion = position;
-                twoBind(two, twoPostion);
-
+                twoBind(two, position);
                 break;
             case 3:
                 mViewHodlerThree three = (mViewHodlerThree) holder;
-                ThreePostion = position;
-                threeBind(three, ThreePostion);
+                threeBind(three, position);
                 break;
             case 4:
                 mViewHodlerFour four = (mViewHodlerFour) holder;
-                FourPosition = position;
-                FourBind(four, FourPosition);
+                FourBind(four, position);
                 break;
             case 5:
                 mViewHodlerFive five = (mViewHodlerFive) holder;
-                FivePosition = position;
 
-                FiveBind(five, FivePosition);
+                FiveBind(five, position);
+
                 break;
 
         }
@@ -181,15 +173,15 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
     // TODO: 2017/6/27 第一个子view
     private void oneBind(mViewHodlerOne holder, int position) {
         bean = mList.get(position);
-        holder.mPinLun.setText(this.bean.getDing() + "");
-        holder.mZan.setText(this.bean.getTchild() + "");
-        holder.mAddress.setText(this.bean.getMapName() + "");
-        holder.mBody.setText(this.bean.getTitle() + "");
-        holder.mLevel.setText("lv." + this.bean.getLevel() + "");
-        holder.mName.setText(this.bean.getNick() + "");
-        holder.mTime.setText(this.bean.getLastTime() + "");
+        holder.mPinLun.setText(bean.getDing() + "");
+        holder.mZan.setText(bean.getTchild() + "");
+        holder.mAddress.setText(bean.getMapName() + "");
+        holder.mBody.setText(bean.getTitle() + "");
+        holder.mLevel.setText("lv." + bean.getLevel() + "");
+        holder.mName.setText(bean.getNick() + "");
+        holder.mTime.setText(bean.getLastTime() + "");
         final ImageView img = holder.mTouXiang;
-        Glide.with(context).load(this.bean.getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
+        Glide.with(context).load(bean.getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(App.activity.getResources(), resource);
@@ -198,9 +190,9 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             }
         });
 
-        if (this.bean.getReplyJson1() != null) {
-            holder.mTextPinLunName.setText(this.bean.getReplyJson1().getNick() + " : ");
-            holder.mTextPinLun.setText(this.bean.getReplyJson1().getContent() + "");
+        if (bean.getReplyJson1() != null) {
+            holder.mTextPinLunName.setText(bean.getReplyJson1().getNick() + " : ");
+            holder.mTextPinLun.setText(bean.getReplyJson1().getContent() + "");
         } else {
             holder.mTextPinLun.setVisibility(View.GONE);
             holder.mTextPinLunName.setVisibility(View.GONE);
@@ -211,7 +203,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         } else {
             holder.mOne.setVisibility(View.VISIBLE);
             holder.mHodlerImage.setVisibility(View.VISIBLE);
-            Glide.with(context).load(this.bean.getImage()).into(holder.mHodlerImage);
+            Glide.with(context).load(bean.getImage()).error(R.drawable.ic_loading).into(holder.mHodlerImage);
         }
 
     }
@@ -246,8 +238,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         }
         String[] split = mList.get(position).getImage().split("\\|");
         Log.d("Square_NaoNao_TypeAdapt", "split:" + split);
-        Log.d("Square_NaoNao_TypeAdapt", "第一个" + split[0]);
-        Log.d("Square_NaoNao_TypeAdapt", split[1]);
+
         if (split.length != 0) {
             Glide.with(context).load(split[0]).into(holder.HodlerImage1);
             Glide.with(context).load(split[1]).into(holder.HodlerImage2);
@@ -432,7 +423,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             mOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageIntent(onePosition);
+                    ImageIntent(getLayoutPosition() - 2);
 
                 }
             });
@@ -440,22 +431,8 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    oneBean = mList.get(onePosition);
-                    Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-                    String title = oneBean.getTitle();
-                    String name = oneBean.getNick();
-                    String time = oneBean.getLastTime();
-                    String image = oneBean.getUserFace();
-                    String address = oneBean.getMapName();
-                    String Images = oneBean.getImage();
-                    int id = oneBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-                    EventBus.getDefault().postSticky(detailBean);
-                    intent.putExtra("position", onePosition);
-                    context.startActivity(intent);
+                    getLayoutBean(getLayoutPosition()-2);
 
-//                    mEventbus(bean, onePosition);
-                    Log.d("Square_NaoNao_TypeAdapt", "onePosition:" + onePosition);
                 }
             });
         }
@@ -496,31 +473,15 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             ImageLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageIntent(twoPostion);
+                    ImageIntent(getLayoutPosition() - 2);
 
                 }
             });
-
-
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean twoBean = mList.get(twoPostion);
-                    Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-                    String title = twoBean.getTitle();
-                    String name = twoBean.getNick();
-                    String time = twoBean.getLastTime();
-                    String image = twoBean.getUserFace();
-                    String address = twoBean.getMapName();
-                    String Images = twoBean.getImage();
-                    int id = twoBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-                    EventBus.getDefault().postSticky(detailBean);
-                    intent.putExtra("position", twoPostion);
-                    context.startActivity(intent);
-
-//                    mEventbus(bean, twoPostion);
-                    Log.d("Square_NaoNao_TypeAdapt", "twoPostion:" + twoPostion);
+                    getLayoutBean(getLayoutPosition() - 2);
+                    Log.d("mViewHodlerFive", "getLayoutPosition() 第二 :" + getLayoutPosition());
                 }
             });
 
@@ -565,28 +526,15 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             threeLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageIntent(ThreePostion);
+                    ImageIntent(getLayoutPosition() - 2);
                 }
             });
             getfindId(v);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(ThreePostion);
-                    Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-                    String title = mBean.getTitle();
-                    String name = mBean.getNick();
-                    String time = mBean.getLastTime();
-                    String image = mBean.getUserFace();
-                    String address = mBean.getMapName();
-                    String Images = mBean.getImage();
-                    int id = mBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-                    EventBus.getDefault().postSticky(detailBean);
-                    context.startActivity(intent);
-//                    mEventbus(bean, ThreePostion);
-                    intent.putExtra("position", ThreePostion);
-                    Log.d("Square_NaoNao_TypeAdapt", "ThreePostion:" + ThreePostion);
+                    getLayoutBean(getLayoutPosition() - 2);
+                    Log.d("mViewHodlerFive", "getLayoutPosition() 第三 :" + getLayoutPosition());
                 }
             });
         }
@@ -629,7 +577,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             fourLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageIntent(FourPosition);
+                    ImageIntent(getLayoutPosition() - 2);
                 }
             });
 
@@ -637,22 +585,8 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FourPosition);
-                    Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-                    String title = mBean.getTitle();
-                    String name = mBean.getNick();
-                    String time = mBean.getLastTime();
-                    String image = mBean.getUserFace();
-                    String address = mBean.getMapName();
-                    String Images = mBean.getImage();
-                    int id = mBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-                    EventBus.getDefault().postSticky(detailBean);
-                    context.startActivity(intent);
-//                    mEventbus(bean, FourPosition);
-                    intent.putExtra("position", FourPosition);
-                    Log.d("Square_NaoNao_TypeAdapt", "FourPosition:" + FourPosition);
+                    getLayoutBean(getLayoutPosition() - 2);
+                    Log.d("mViewHodlerFive", "getLayoutPosition() 第四 :" + getLayoutPosition());
                 }
             });
 
@@ -700,7 +634,7 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             fiveLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ImageIntent(FivePosition);
+                    ImageIntent(getLayoutPosition() - 2);
                 }
             });
 
@@ -708,24 +642,9 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean = mList.get(FivePosition);
-                    Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-                    String title = mBean.getTitle();
-                    String name = mBean.getNick();
-                    String time = mBean.getLastTime();
-                    String image = mBean.getUserFace();
-                    String address = mBean.getMapName();
-                    String Images = mBean.getImage();
-                    int id = mBean.getId();
-                    Log.d("Square_NaoNao_TypeAdapt", Images);
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-                    EventBus.getDefault().postSticky(detailBean);
-                    intent.putExtra("position", FivePosition);
-                    context.startActivity(intent);
+                    getLayoutBean(getLayoutPosition() - 2);
+                    Log.d("mViewHodlerFive", "getLayoutPosition() 第五 :" + getLayoutPosition());
 
-
-//                    mEventbus(bean, FivePosition);
-                    Log.d("Square_NaoNao_TypeAdapt", "FivePosition:" + FivePosition);
                 }
             });
 
@@ -749,20 +668,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
 
     }
 
-    private void mEventbus(Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean mBean, int position) {
-        Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
-        String title = mBean.getTitle();
-        String name = mBean.getNick();
-        String time = mBean.getLastTime();
-        String image = mBean.getUserFace();
-        String address = mBean.getMapName();
-        String Images = mBean.getImage();
-        int id = mBean.getId();
-        Log.d("Square_NaoNao_TypeAdapt", Images);
-        SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
-        EventBus.getDefault().postSticky(detailBean);
-        context.startActivity(intent);
-    }
 
     //自定义点击事件
     private List<String> splitList = new ArrayList<>();
@@ -792,7 +697,21 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
 
     }
 
-
-
+    //点击每个view传值
+    private void getLayoutBean(int position) {
+        Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean layBean = mList.get(position);
+        Intent intent = new Intent(context, SquareNaonaoDetailActivity.class);
+        String title = layBean.getTitle();
+        String name = layBean.getNick();
+        String time = layBean.getLastTime();
+        String image = layBean.getUserFace();
+        String address = layBean.getMapName();
+        String Images = layBean.getImage();
+        int id = layBean.getId();
+        String userName = layBean.getUserName();
+        SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id, userName);
+        EventBus.getDefault().postSticky(detailBean);
+        context.startActivity(intent);
+    }
 
 }

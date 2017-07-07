@@ -478,7 +478,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     String address = oneBean.getMapName();
                     String Images = oneBean.getImage();
                     int id = oneBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+                    String userName = oneBean.getUserName();
+                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
                     EventBus.getDefault().postSticky(detailBean);
                     intent.putExtra("position", onePosition);
                     context.startActivity(intent);
@@ -543,7 +544,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     String address = twoBean.getMapName();
                     String Images = twoBean.getImage();
                     int id = twoBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+                    String userName = twoBean.getUserName();
+                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
                     EventBus.getDefault().postSticky(detailBean);
                     intent.putExtra("position", twoPostion);
                     context.startActivity(intent);
@@ -610,7 +612,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     String address = mBean.getMapName();
                     String Images = mBean.getImage();
                     int id = mBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+                    String userName = mBean.getUserName();
+                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
                     EventBus.getDefault().postSticky(detailBean);
                     context.startActivity(intent);
 //                    mEventbus(bean, ThreePostion);
@@ -676,7 +679,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     String address = mBean.getMapName();
                     String Images = mBean.getImage();
                     int id = mBean.getId();
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+                    String userName = mBean.getUserName();
+                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
                     EventBus.getDefault().postSticky(detailBean);
                     context.startActivity(intent);
 //                    mEventbus(bean, FourPosition);
@@ -747,7 +751,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
                     String Images = mBean.getImage();
                     int id = mBean.getId();
                     Log.d("Square_NaoNao_TypeAdapt", Images);
-                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+                    String userName = mBean.getUserName();
+                    SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
                     EventBus.getDefault().postSticky(detailBean);
                     intent.putExtra("position", FivePosition);
                     context.startActivity(intent);
@@ -788,7 +793,8 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         String Images = mBean.getImage();
         int id = mBean.getId();
         Log.d("Square_NaoNao_TypeAdapt", Images);
-        SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+        String userName = mBean.getUserName();
+        SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,userName);
         EventBus.getDefault().postSticky(detailBean);
         context.startActivity(intent);
     }

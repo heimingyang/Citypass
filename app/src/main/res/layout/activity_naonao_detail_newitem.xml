@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
     <RelativeLayout
         android:id="@+id/naonao_item_MainRelative"
@@ -30,7 +32,6 @@
                 android:text="bug" />
 
             <TextView
-                android:textColor="@color/white"
                 android:id="@+id/naonao_item_dengji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +40,31 @@
                 android:layout_toRightOf="@id/naonao_item_titlename"
                 android:background="@drawable/level_bg"
                 android:text="lv:12"
-                />
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/naonao_item_bandeng"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/naonao_item_dengji" />
+
+            <ImageView
+                android:id="@+id/naonao_item_sofaImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/naonao_item_bandeng" />
+
+            <ImageView
+                android:id="@+id/naonao_item_Yizi"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/naonao_item_sofaImage" />
 
             <ImageView
                 android:id="@+id/naonao_item_imageMsg"
@@ -50,7 +75,7 @@
                 android:layout_marginRight="10dp"
                 android:padding="10dp"
                 android:src="@drawable/ccoo_icon_message" />
-            />
+
 
             <TextView
                 android:id="@+id/naonao_item_sofa"
@@ -95,14 +120,43 @@
             android:layout_margin="5dp"
             android:text="666" />
 
+        <LinearLayout
+            android:id="@+id/naonao_item_ImageLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/naonao_item_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/naonao_item_imageContent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp" />
+
+            <ImageView
+                android:id="@+id/naonao_item_imageContent1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp" />
+
+            <ImageView
+                android:id="@+id/naonao_item_imageContent2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp" />
+
+
+        </LinearLayout>
+
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/nanao_item_TwoRelative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/naonao_item_content"
+            android:layout_below="@+id/naonao_item_ImageLinear"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:background="#F0F0F0">
 
             <TextView

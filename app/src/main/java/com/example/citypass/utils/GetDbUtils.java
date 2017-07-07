@@ -1,5 +1,7 @@
 package com.example.citypass.utils;
 
+import android.content.Context;
+
 /**
  * /**
  * 项目名称:City Pass
@@ -36,12 +38,13 @@ package com.example.citypass.utils;
 
 
 public class GetDbUtils {
-    /*
+
     public static DaoSession getdao(Context context){
 
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(context, "updatabloodpressure.db", null);
         DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDb());
         DaoSession daoSession = daoMaster.newSession();
         return  daoSession;
-    }*/
+    }
+
 }

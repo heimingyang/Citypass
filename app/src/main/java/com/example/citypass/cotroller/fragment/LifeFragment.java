@@ -5,11 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -351,52 +349,6 @@ public class LifeFragment extends BaseFragment {
 
     }
 
-    //动态添加viewpager
-    private void NewViewPager() {
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-        ViewPager pager = new ViewPager(getContext());
-        List<LifeFragmentBean.ServerInfoBean.GetPostListBeanX.GetPostListBean> getPostList = bean.getServerInfo().getGetPostList().getGetPostList();
-        mList.addAll(getPostList);
-//        ServerInfoBean.GetPostListBeanX getPostList = bean.getServerInfo().getGetPostList();
-//
-//        mList.add(getPostList);
-
-
-        Log.d("LifeFragment", "mList.size():" + mList.size());
-        GridView gv = new GridView(getContext());
-        gv.setNumColumns(8);
-
-        gv.setLayoutParams(params);
-
-        gv.setGravity(Gravity.CENTER_HORIZONTAL);
-
-        //这是另一个gridview
-//        GridView gv1 = new GridView(getContext());
-//
-//        gv1.setNumColumns(4);
-//
-//        gv1.setGravity(Gravity.CENTER_HORIZONTAL);
-
-
-//        mGvAdapter = new MyGridAdapter(getContext());
-
-        gv.setAdapter(mGvAdapter);
-//        gv1.setAdapter(mGvAdapter);
-
-
-        LinearViewPager.addView(gv);
-//        LinearViewPager.addView(gv1);
-
-        vieList.add(gv);
-//        vieList1.add(gv1);
-        adapter = new Fragment_LifeGVAdapter(vieList);
-        pager.setAdapter(adapter);
-//        adapter = new Fragment_LifeGVAdapter(vieList1);
-//        pager.setAdapter(adapter);
-
-
-    }
 
     @Override
     protected void initView(View view) {
@@ -428,6 +380,7 @@ public class LifeFragment extends BaseFragment {
 
     }
 
+    //跳转发布
     private void clickFabu() {
         final String url = "http://m.yanqing.ccoo.cn/post/fabu/";
 

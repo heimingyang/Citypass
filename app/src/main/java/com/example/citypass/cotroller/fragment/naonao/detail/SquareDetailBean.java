@@ -19,8 +19,15 @@ public class SquareDetailBean {
     private String address;
     private String Images;
     private int id;
+    private String userName;
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public int getId() {
         return id;
@@ -30,7 +37,7 @@ public class SquareDetailBean {
         this.id = id;
     }
 
-    public SquareDetailBean(String title, String body, String time, String image, String address, String Images,int id) {
+    public SquareDetailBean(String title, String body, String time, String image, String address, String Images,int id,String userName) {
         this.Title = title;
         this.body = body;
         this.time = time;
@@ -38,6 +45,7 @@ public class SquareDetailBean {
         this.address = address;
         this.Images = Images;
         this.id = id;
+        this.userName = userName;
     }
 
     public String getImages() {

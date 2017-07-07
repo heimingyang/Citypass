@@ -3,9 +3,9 @@ package com.example.citypass.cotroller.fragment.life;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +27,13 @@ import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.HomeActivity;
 import com.example.citypass.utils.DialogUtils;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMWeb;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -206,6 +210,19 @@ public class WebViewActivity extends BaseActivity {
         });
         relativeThree = (RelativeLayout) view1.findViewById(R.id.Popup_Share);
 
+        relativeThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMWeb web = new UMWeb("http://appnew.ccoo.cn/appserverapi.ashx");
+                web.setTitle("伪摄影师的杰作");//标题
+                web.setDescription("新版本上线，一起来露露脸吧，用小视频打个招呼~");//描述
+                new ShareAction(WebViewActivity.this).withText("hello")
+                        .withMedia(web)
+                        .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
+                        .setCallback(umShareListener).open();
+            }
+        });
+
         mPop = new PopupWindow(view1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
         mPop.setBackgroundDrawable(new ColorDrawable());
@@ -220,12 +237,40 @@ public class WebViewActivity extends BaseActivity {
 
 
     }
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            //分享开始的回调
+        }
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat","platform"+platform);
 
+            Toast.makeText(WebViewActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(WebViewActivity.this,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if(t!=null){
+                Log.d("throw","throw:"+t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(WebViewActivity.this,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
     }
+
+
+
 }

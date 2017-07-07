@@ -107,7 +107,8 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
                String address = bean.getMapName();
                String Images = bean.getImage();
                int id = bean.getId();
-               SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id);
+               String username = bean.getUserName();
+               SquareDetailBean detailBean = new SquareDetailBean(title, name, time, image, address, Images, id,username);
                EventBus.getDefault().postSticky(detailBean);
                intent.putExtra("position", position);
                App.activity.startActivity(intent);

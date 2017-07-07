@@ -104,7 +104,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     @BindView(R.id.carmer_fabu_naonao_emoji)
     ImageView carmerFabuNaonaoEmoji;
     @BindView(R.id.carmer_fabu_naonao_aite)
-    ImageView carmerFabuNaonaoAite;
+    ImageView NaonaoAite;
     @BindView(R.id.carmer_fabu_naonao_yuyin)
     ImageView carmerFabuNaonaoYuyin;
     @BindView(R.id.carmer_fabu_naonao_collect)
@@ -611,7 +611,6 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 
 
         return false;
-
 
     }
 

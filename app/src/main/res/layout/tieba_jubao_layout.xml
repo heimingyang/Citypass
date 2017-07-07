@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/tieba_jubao_layout_ju"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="举报原因"
+            android:textColor="@color/color_333"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" />
+
+        <RadioGroup
+            android:id="@+id/JuBao_RadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/JuBao_but1"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="色情,暴力" />
+
+            <RadioButton
+                android:id="@+id/JuBao_but2"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="诈骗" />
+
+            <RadioButton
+                android:id="@+id/JuBao_but3"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="广告灌水" />
+
+            <RadioButton
+                android:id="@+id/JuBao_but4"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="诽谤造谣" />
+
+            <RadioButton
+                android:id="@+id/JuBao_but5"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="头像昵称非法" />
+
+            <RadioButton
+                android:id="@+id/JuBao_but6"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/my_listview_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/jubao_dialog"
+                android:paddingLeft="10dp"
+                android:text="其它有害" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cancle_textview"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/blue"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="0.5dp"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:background="@color/line" />
+
+            <TextView
+                android:id="@+id/submit_textview"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/blue"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

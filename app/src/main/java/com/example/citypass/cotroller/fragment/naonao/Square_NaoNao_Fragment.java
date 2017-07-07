@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,6 +118,7 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
             a = 1;
         }
     }
+
     private void initParsing() {
         final Map<String, String> map = new HashMap<>();
         String a = "{\"appName\":\"CcooCity\",\"Param\":{\"userID\":0,\"siteID\":2422,\"order\":0,\"gambitid\":0,\"curPage\":";
@@ -132,13 +134,14 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
                 if (mList.size() < 0) {
                     return;
                 }
-                if(square_naoNao_bean.getMessageList().getCode()!=1000){
+                if (square_naoNao_bean.getMessageList().getCode() != 1000) {
                     return;
                 }
+                squareNaonaoRecycle.setVisibility(View.VISIBLE);
                 mList.clear();
                 mList.addAll(square_naoNao_bean.getServerInfo().getGetPostWorkList().getGetPostWorkList());
                 if (Typeadapter == null) {
-                    Typeadapter = new Square_NaoNao_TypeAdapter(mList, getContext());
+                    Typeadapter = new Square_NaoNao_TypeAdapter(mList, getActivity());
                     squareNaonaoRecycle.setAdapter(Typeadapter);
 
                 }else {
@@ -161,25 +164,7 @@ public class Square_NaoNao_Fragment extends BaseFragment implements Square_NaoNa
 
     @Override
     protected void initView(View view) {
-        //添加适配器
-//        if (adapter == null) {
-//            adapter = new Square_NaoNao_Recycle_Adapter(mList);
-//            squareNaonaoRecycle.setAdapter(adapter);
-//        } else {
-//            adapter.setNewData(mList);
-//        }
-//        adapter.setOnItemClikListener(this);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-//
-//        RecyclerType.setLayoutManager(manager);
-//        if (Typeadapter == null) {
-//            Typeadapter = new Square_NaoNao_TypeAdapter(mList, getContext());
-//            RecyclerType.setAdapter(Typeadapter);
-//        }
-//            if (Typeadapter == null) {
-//                Typeadapter = new Square_NaoNao_TypeAdapter(mList, getContext());
-//                squareNaonaoRecycle.setAdapter(Typeadapter);
-//            }
+        LinearLayout mLinear = (LinearLayout) view.findViewById(R.id.NaoNao_FragmentInclude);
 
     }
 

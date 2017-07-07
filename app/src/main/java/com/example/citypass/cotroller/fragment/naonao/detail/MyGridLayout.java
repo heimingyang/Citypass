@@ -3,13 +3,13 @@ package com.example.citypass.cotroller.fragment.naonao.detail;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.citypass.R;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class MyGridLayout extends GridLayout {
                 addItem(s);
                 Log.d("MyGridLayout ", "第一个是s" + s);
             }
-            mList.clear();
+//            mList.clear();  不应该清空集合，否则第一个没添加到集合，就没点击事件了
         } else {
             for (String s : mList) {
                 size = 3;
@@ -71,12 +71,11 @@ public class MyGridLayout extends GridLayout {
         //设置当前Gridlayout每个条目个数
         setColumnCount(size);
         //设置动画
-//        setLayoutTransition(new LayoutTransition());
     }
 
     private int margin = 5;
 
-    public void addItem(String str) {
+    public void addItem(final String str) {
         final ImageView image = new ImageView(getContext());
         LayoutParams lp = new LayoutParams();
 
@@ -88,14 +87,20 @@ public class MyGridLayout extends GridLayout {
 
         image.setLayoutParams(lp);
 
-        Glide.with(getContext()).load(str).into(image);
+        Glide.with(getContext()).load(str).error(R.drawable.ic_loading).into(image);
         lp.setMargins(margin, margin, margin, margin);
         addView(image);
 
         image.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int i = 0; i < mList.size(); i++) {
+                    if (mList.get(i).equals(str)) {
+                        clicklisenter.onItemClick(v, i);
+                        Log.d("MyGridLayout", "i:" + i);
 
+                    }
+                }
             }
         });
 
@@ -108,10 +113,9 @@ public class MyGridLayout extends GridLayout {
 
         lp.width = getResources().getDisplayMetrics().widthPixels / 3 - margin * 2;
 
-        lp.height = LayoutParams.WRAP_CONTENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
 
         image2.setLayoutParams(lp);
-        lp.setGravity(Gravity.CENTER);
         Glide.with(getContext()).load(str).into(image2);
         lp.setMargins(margin, margin, margin, margin);
         addView(image2);
@@ -119,23 +123,12 @@ public class MyGridLayout extends GridLayout {
         image2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                for (int i = 0; i < mList.size(); i++) {
-//
-//                        Intent intent = new Intent(getContext(), DetailImageActivity.class);
-//                        intent.putExtra("image", (Serializable) mList);
-//                        intent.putExtra("position", mList.get(i));
-//                        App.activity.startActivity(intent);
-//                }
-
                 for (int i = 0; i < mList.size(); i++) {
                     if (mList.get(i).equals(str)) {
                         clicklisenter.onItemClick(v, i);
                         Log.d("MyGridLayout", "i:" + i);
-                        clicklisenter.onItemClick(v, i);
 
                     }
-
-
                 }
 
             }

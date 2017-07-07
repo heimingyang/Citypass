@@ -47,8 +47,6 @@ public class DetailHigherSend extends BaseFragment {
     Unbinder unbinder1;
     private int mID;
     private List<DetailSendBean.ServerInfoBean> mList;
-    private DetailSendListAdapter adapter;
-
     @Override
     protected void initData() {
         Map<String, String> map = new HashMap<>();
@@ -65,14 +63,13 @@ public class DetailHigherSend extends BaseFragment {
                 if (bean.getMessageList().getCode() != 1000) {
                     return;
                 }
-                if (bean.getServerInfo() == null) {
+                if (bean.getServerInfo() == null||bean.getServerInfo().size()<0) {
                     ListviewText.setVisibility(View.VISIBLE);
                     return;
-                } else {
+                }
+                else {
                     ListviewText.setVisibility(View.GONE);
                     mList.addAll(bean.getServerInfo());
-
-                    Log.d("DetailHigherSend", "mList     :" + mList);
 
                     adapter = new DetailSendListAdapter(mList, getContext());
                     Mylistview.setAdapter(adapter);
@@ -87,6 +84,8 @@ public class DetailHigherSend extends BaseFragment {
             }
         });
     }
+
+    private DetailSendListAdapter adapter;
 
     @Override
     protected void initListener() {
