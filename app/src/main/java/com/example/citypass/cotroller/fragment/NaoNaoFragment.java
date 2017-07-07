@@ -112,8 +112,8 @@ public class NaoNaoFragment extends BaseFragment {
     protected void initView(View view) {
         if (a == 0) {
             mFraList.add(new Di_NaoNao_Fragment());
-            mFraList.add(new Wang_NaoNao_Fragment());
             mFraList.add(new Star_NaoNao_Fragment());
+            mFraList.add(new Wang_NaoNao_Fragment());
             mFraList.add(new Square_NaoNao_Fragment());
             mFraList.add(new Title_NaoNao_Fragment());
             mFraList.add(new Recommond_NaoNao_Fragment());
@@ -148,6 +148,7 @@ public class NaoNaoFragment extends BaseFragment {
             mStrList.add("晒图");
             mStrList.add("网友自荐");
             naonaoTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+
             NaoNao_Tab_Adapter mAdapter = new NaoNao_Tab_Adapter(getActivity().getSupportFragmentManager(), mFraList, mStrList);
             naonaoViewpager.setAdapter(mAdapter);
             naonaoViewpager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(naonaoTab) {
@@ -157,6 +158,7 @@ public class NaoNaoFragment extends BaseFragment {
                 }
             });
             naonaoTab.setupWithViewPager(naonaoViewpager);
+            naonaoTab.getTabAt(3).select();
             a = 1;
 
         }

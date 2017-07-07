@@ -92,8 +92,8 @@ public class Square_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Square_N
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean bean = mList.get(position);
-        holder.mPinLun.setText(bean.getDing() + "");
-        holder.mZan.setText(bean.getTchild() + "");
+        holder.mPinLun.setText(bean.getTchild() + "");
+        holder.mZan.setText(bean.getDing() + "");
         holder.mAddress.setText(bean.getMapName() + "");
         holder.mBody.setText(bean.getTitle() + "");
         holder.mLevel.setText("lv." + bean.getLevel() + "");

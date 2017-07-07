@@ -46,7 +46,9 @@ public class DetailNewAdapter extends RecyclerView.Adapter<DetailNewAdapter.mVie
 
     public void setNewData(List<DetailNewBean.ServerInfoBean> mList) {
         this.mList = mList;
-        notifyDataSetChanged();
+        if (mList.size()>0){
+            notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -54,7 +56,6 @@ public class DetailNewAdapter extends RecyclerView.Adapter<DetailNewAdapter.mVie
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_naonao_detail_newitem, null);
 
         mViewHolder holder = new mViewHolder(v);
-
         return holder;
     }
 

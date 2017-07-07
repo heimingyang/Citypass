@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.activity.find.FaXianMeiNvActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.fragment.toutiao.show.HshowbabyFragment;
 import com.example.citypass.cotroller.fragment.toutiao.show.HshowbeautyFragment;
@@ -281,7 +283,8 @@ public class HshowFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.hshow_lin1:
-
+                Intent intent=new Intent(getActivity(), FaXianMeiNvActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.hshow_lin2:
                 break;

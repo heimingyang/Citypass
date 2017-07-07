@@ -5,5 +5,14 @@
     <com.example.citypass.view.MRecyclerView
         android:id="@+id/title_naonao_recycle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.example.citypass.view.MRecyclerView>
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        ></com.example.citypass.view.MRecyclerView>
+
+    <include
+        android:id="@+id/NaoNao_FragmentInclude"
+        layout="@layout/fragment_life_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

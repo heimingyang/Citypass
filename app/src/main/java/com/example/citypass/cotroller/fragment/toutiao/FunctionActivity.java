@@ -3,7 +3,6 @@ package com.example.citypass.cotroller.fragment.toutiao;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -17,13 +16,11 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.activity.find.MyWebActivity;
 import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
-import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
 import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
@@ -34,7 +31,6 @@ import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FunctionActivity extends BaseActivity {
@@ -102,7 +98,7 @@ public class FunctionActivity extends BaseActivity {
         } else if (htag.equals("同城爆料")) {
             functionOne.setVisibility(View.VISIBLE);
             functionTwo.setVisibility(View.VISIBLE);
-
+            functionTitleTv.setText("社区");
             functionOne.setImageResource(R.drawable.chazhao_back_normal);
             functionTwo.setImageResource(R.drawable.ccoo_icon_edit_tran);
 

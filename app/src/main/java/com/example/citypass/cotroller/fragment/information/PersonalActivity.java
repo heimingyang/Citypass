@@ -18,13 +18,13 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
 import com.example.citypass.model.bean.information.Personal;
 import com.example.citypass.model.bean.information.PersonalUp;
 import com.example.citypass.model.biz.infor.IPersonalModel;
 import com.example.citypass.model.biz.infor.PersonalModel;
 import com.example.citypass.model.http.HttpFacory;
 import com.example.citypass.model.http.MyCallBack;
-import com.example.citypass.utils.LogUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -38,8 +38,6 @@ import java.lang.reflect.Method;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.example.citypass.R.drawable.cancel;
-import static com.example.citypass.R.drawable.login;
 import static com.example.citypass.utils.LoginUtils.USERID;
 
 /**
@@ -211,12 +209,24 @@ public class PersonalActivity extends BaseActivity {
             case R.id.personal_TextFour:
                 break;
             case R.id.personal_TextFive:
+                //闹闹
+                Intent intentnn=new Intent(PersonalActivity.this, FunctionActivity.class);
+                SpUtils.upSp().putString("htag","闹闹").commit();
+                startActivity(intentnn);
                 break;
             case R.id.personal_TextSix:
+                //社区
+                Intent intentsq=new Intent(PersonalActivity.this, FunctionActivity.class);
+                SpUtils.upSp().putString("htag","同城爆料").commit();
+                startActivity(intentsq);
                 break;
             case R.id.personal_TextSeven:
                 break;
             case R.id.personal_TextEight:
+                //城事
+                Intent intentcs=new Intent(PersonalActivity.this, FunctionActivity.class);
+                SpUtils.upSp().putString("htag","城事").commit();
+                 startActivity(intentcs);
                 break;
             case R.id.personal_back:
                 onBackPressed();

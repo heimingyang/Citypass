@@ -109,6 +109,7 @@ public class DiNaoNao_Recycle_Adapter extends RecyclerView.Adapter<DiNaoNao_Recy
                 if(SpUtils.getSp().getBoolean(LoginUtils.LOGIN, false)){
                     Intent ins = new Intent(App.activity, PersonalActivity.class);
                     ins.putExtra("id", in.getUserID());
+                    ins.putExtra("type",1);
                     App.activity.startActivity(ins);
                 }else {
                     Intent ina = new Intent(App.activity, LoginActivity.class);

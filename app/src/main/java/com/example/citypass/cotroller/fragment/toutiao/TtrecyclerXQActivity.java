@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,7 +34,6 @@ import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.activity.naonao.Carmer_FaBu_AiTe_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.shequ.Emoji;
-import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.adapter.shequ.MyEmojiAdapter;
 import com.example.citypass.cotroller.adapter.shequ.MyPagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HgoodmannerslAdapter;
@@ -51,7 +49,6 @@ import com.example.citypass.model.bean.toutiao.Ttrecycler;
 import com.example.citypass.model.bean.toutiao.Ttrecyclerqq;
 import com.example.citypass.model.bean.toutiao.Ttrecyclertz;
 import com.example.citypass.model.bean.toutiao.Ttxqbean;
-import com.example.citypass.model.bean.toutiao.Tzaommentinter;
 import com.example.citypass.model.bean.toutiao.Tzhueofuinter;
 import com.example.citypass.model.biz.infor.IInforModel;
 import com.example.citypass.model.biz.infor.InforModel;
@@ -64,6 +61,12 @@ import com.example.citypass.utils.TimeUtils;
 import com.example.citypass.view.KeyboardUtils;
 import com.example.citypass.view.MyViewPager;
 import com.google.gson.Gson;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -172,8 +175,17 @@ public class TtrecyclerXQActivity extends BaseActivity {
         });
         xqLin2Tv3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 //分享
+                UMImage img = new UMImage(TtrecyclerXQActivity.this, R.drawable.aaa);
+                UMWeb web = new UMWeb("http://appnew.ccoo.cn/appserverapi.ashx");
+                web.setTitle("伪摄影师的杰作");//标题
+                web.setThumb(img);  //缩略图
+                web.setDescription("新版本上线，一起来露露脸吧，用小视频打个招呼~");//描述
+                new ShareAction(TtrecyclerXQActivity.this).withText("hello")
+                        .withMedia(web)
+                        .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                        .setCallback(umShareListener).open();
 
             }
         });
@@ -182,7 +194,16 @@ public class TtrecyclerXQActivity extends BaseActivity {
             public void onClick(View v) {
 
                 //分享
-
+                //分享
+                UMImage img = new UMImage(TtrecyclerXQActivity.this, R.drawable.aaa);
+                UMWeb web = new UMWeb("http://appnew.ccoo.cn/appserverapi.ashx");
+                web.setTitle("伪摄影师的杰作");//标题
+                web.setThumb(img);  //缩略图
+                web.setDescription("新版本上线，一起来露露脸吧，用小视频打个招呼~");//描述
+                new ShareAction(TtrecyclerXQActivity.this).withText("hello")
+                        .withMedia(web)
+                        .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                        .setCallback(umShareListener).open();
             }
         });
         pouptv2.setOnClickListener(new View.OnClickListener() {
@@ -410,6 +431,40 @@ public class TtrecyclerXQActivity extends BaseActivity {
 
             }
         });
+    }
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            //分享开始的回调
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat", "platform" + platform);
+
+            Toast.makeText(TtrecyclerXQActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(TtrecyclerXQActivity.this, platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(TtrecyclerXQActivity.this, platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void getcomment(String commentdata) {

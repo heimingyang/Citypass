@@ -141,6 +141,7 @@ public class Star_NaoNao_Fragment extends BaseFragment implements View.OnClickLi
                 if (di_naoNao_fragment.getServerInfo() == null) {
                     return;
                 }
+
                 diNaonaoCountFirst.setText(di_naoNao_fragment.getServerInfo().getInfo().get(0).getSum());
                 diNaonaoCountSecond.setText(di_naoNao_fragment.getServerInfo().getInfo().get(1).getSum());
                 diNaonaoCountThird.setText(di_naoNao_fragment.getServerInfo().getInfo().get(2).getSum());
@@ -176,7 +177,7 @@ public class Star_NaoNao_Fragment extends BaseFragment implements View.OnClickLi
                     }
                 });
 
-
+                starNaonaoRecycle.setVisibility(View.VISIBLE);
                 mList.clear();
                 mList.addAll(di_naoNao_fragment.getServerInfo().getInfo());
                 if (adapter == null) {
@@ -227,6 +228,7 @@ public class Star_NaoNao_Fragment extends BaseFragment implements View.OnClickLi
             //如果登录就带着UserId跳转详情页面
             Intent ins = new Intent(App.activity, PersonalActivity.class);
             ins.putExtra("id", id);
+            ins.putExtra("type",1);
             App.activity.startActivity(ins);
         } else {
             //未登录就跳转到登录页面

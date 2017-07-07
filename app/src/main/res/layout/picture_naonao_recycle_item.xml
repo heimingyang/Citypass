@@ -17,6 +17,7 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
+            android:background="@drawable/picture_naonao_recycle_zan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -27,10 +28,13 @@
                 android:id="@+id/pricture_naonao_recycle_item_zan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:src="@drawable/ccoo_icon_zan" />
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/zan" />
 
             <TextView
+                android:layout_gravity="center_vertical"
                 android:id="@+id/pricture_naonao_recycle_item_zan_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

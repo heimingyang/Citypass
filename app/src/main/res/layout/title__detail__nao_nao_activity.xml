@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context="com.example.citypass.cotroller.activity.naonao.Title_Detail_NaoNao_Activity">
     <RelativeLayout
+        android:id="@+id/qqq"
         android:background="#ff0000"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -38,8 +39,18 @@
             android:src="@drawable/new_con_share_2"
             />
     </RelativeLayout>
+
     <com.example.citypass.view.MRecyclerView
+        android:layout_below="@id/qqq"
         android:id="@+id/title_detail_naonao_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.example.citypass.view.MRecyclerView>
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/huati_fabu"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="460dp"
+        android:id="@+id/title_detail_naonao_activity_fabu"
+        />
+</RelativeLayout>

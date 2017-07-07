@@ -82,6 +82,7 @@ public class DetailNewFragment extends BaseFragment {
 
                     List<DetailNewBean.ServerInfoBean> serverInfo = parse.getServerInfo();
 
+
                     if (serverInfo == null) {
                         NaoNaoRecyclerText.setVisibility(View.VISIBLE);
                         return;

@@ -197,13 +197,14 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             holder.mTextPinLun.setVisibility(View.GONE);
             holder.mTextPinLunName.setVisibility(View.GONE);
         }
-        if (bean.getImage() == null) {
+        if (bean.getImage().equals("")) {
             holder.mOne.setVisibility(View.GONE);
             holder.mHodlerImage.setVisibility(View.GONE);
         } else {
             holder.mOne.setVisibility(View.VISIBLE);
             holder.mHodlerImage.setVisibility(View.VISIBLE);
-            Glide.with(context).load(bean.getImage()).error(R.drawable.ic_loading).into(holder.mHodlerImage);
+            Glide.with(context).load(bean.getImage()).error(R.drawable.error).into(holder.mHodlerImage);
+//            Picasso.with(context).load(this.bean.getImage()).error(R.drawable.location_icon).into(holder.mHodlerImage);
         }
 
     }
@@ -211,8 +212,8 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
     // TODO: 2017/6/27   //第二个子view
     public void twoBind(mViewHodlerTwo holder, int position) {
         bean = mList.get(position);
-        holder.mPinLun.setText(this.bean.getDing() + "");
-        holder.mZan.setText(this.bean.getTchild() + "");
+        holder.mPinLun.setText(this.bean.getTchild() + "");
+        holder.mZan.setText(this.bean.getDing() + "");
         holder.mAddress.setText(this.bean.getMapName() + "");
         holder.mBody.setText(this.bean.getTitle() + "");
         holder.mLevel.setText("lv." + this.bean.getLevel() + "");
@@ -675,10 +676,12 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
     public interface mOnItemClickListener {
         void ItemClick(int position);
     }
+
     public void setNewData(List<Square_NaoNao_Bean.ServerInfoBean.GetPostWorkListBeanX.GetPostWorkListBean> mList) {
         this.mList = mList;
         notifyDataSetChanged();
     }
+
     public void ImageIntent(int position) {
         bean = mList.get(position);
         String image = bean.getImage();
@@ -713,5 +716,6 @@ public class Square_NaoNao_TypeAdapter extends RecyclerView.Adapter {
         EventBus.getDefault().postSticky(detailBean);
         context.startActivity(intent);
     }
+
 
 }

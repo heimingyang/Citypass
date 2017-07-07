@@ -82,6 +82,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
     TextView diNaonaoCountSecond;
     TextView diNaonaoCountFirst;
     TextView diNaonaoCountThird;
+    private ImageView mImg;
     Unbinder unbinder;
     private DiNaoNao_Recycle_Adapter adapter;
     private List<Di_NaoNao_Bean.ServerInfoBean.InfoBean> mList = new ArrayList<>();
@@ -97,6 +98,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
 
     // TODO: 2017/6/26 0026 找id 
     private void initViews() {
+        mImg = (ImageView) v.findViewById(R.id.imageView3);
         diNaonaoImageSecond = (ImageView) v.findViewById(R.id.di_naonao_image_second);
         diNaonaoCountThird = (TextView) v.findViewById(R.id.di_naonao_count_third);
         diNaonaoCountFirst = (TextView) v.findViewById(R.id.di_naonao_count_first);
@@ -106,6 +108,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
         diNaonaoNameSecond = (TextView) v.findViewById(R.id.di_naonao_name_second);
         diNaonaoImageFirst = (ImageView) v.findViewById(R.id.di_naonao_image_first);
         diNaonaoNameFirst = (TextView) v.findViewById(R.id.di_naonao_name_first);
+        Glide.with(getContext()).load(R.drawable.cover_homepage_podium3).into(mImg);
     }
 
     // TODO: 2017/6/26 0026 加载数据
@@ -169,7 +172,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
 //                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).into(diNaonaoImageFirst);
 //                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(1).getUserFace()).into(diNaonaoImageSecond);
 //                Glide.with(App.activity).load(di_naoNao_fragment.getServerInfo().getInfo().get(2).getUserFace()).into(diNaonaoImageThird);
-
+                diNaonaoRecycle.setVisibility(View.VISIBLE);
                 //1
                 Glide.with(getContext()).load(di_naoNao_fragment.getServerInfo().getInfo().get(0).getUserFace()).asBitmap().centerCrop().into(new BitmapImageViewTarget(diNaonaoImageFirst) {
                     @Override
@@ -225,6 +228,7 @@ public class Di_NaoNao_Fragment extends BaseFragment implements View.OnClickList
             //如果登录就带着UserId跳转详情页面
             Intent ins = new Intent(App.activity, PersonalActivity.class);
             ins.putExtra("id", id);
+            ins.putExtra("type",1);
             App.activity.startActivity(ins);
         } else {
             //未登录就跳转到登录页面

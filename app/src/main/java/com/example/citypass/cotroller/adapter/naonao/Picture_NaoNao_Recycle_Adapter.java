@@ -91,7 +91,7 @@ public class Picture_NaoNao_Recycle_Adapter extends RecyclerView.Adapter<Picture
             Glide.with(App.activity).load(bean.getImage()).into(holder.mImg);
             Log.d("Picture_NaoNao_Recycle_", bean.getImage());
         }
-        if (bean.getIsLike() == 0) {
+        if (bean.getIsdaka() == 0) {
             holder.mZan.setImageResource(R.drawable.ccoo_icon_zan);
         } else {
             holder.mZan.setImageResource(R.drawable.ccoo_icon_zan_2);

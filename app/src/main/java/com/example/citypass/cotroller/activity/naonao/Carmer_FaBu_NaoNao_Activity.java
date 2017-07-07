@@ -6,25 +6,31 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +39,8 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.adapter.naonao.Carmer_FaBu_NaoNao_Collect_Pop_Adapter;
+import com.example.citypass.model.bean.naonao.Carmer_FaBu_NaoNao_Collect_Pop_Bean;
 import com.example.citypass.model.bean.naonao.Carmer_FaBu_NaoNao_Grid_Adapter;
 import com.example.citypass.model.bean.naonao.Carmer_FaBu_NaoNao_publish_Bean;
 import com.example.citypass.model.http.HttpFacory;
@@ -146,6 +154,11 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
     private List<String> mlist = new ArrayList<>();
     private Carmer_FaBu_NaoNao_Grid_Adapter camer_grid_adapter;
     private String str_count;
+    private PopupWindow pop;
+    private View v;
+    private List<Carmer_FaBu_NaoNao_Collect_Pop_Bean.ServerInfoBean> mList = new ArrayList<Carmer_FaBu_NaoNao_Collect_Pop_Bean.ServerInfoBean>();
+    private Carmer_FaBu_NaoNao_Collect_Pop_Adapter mAdapter;
+    private RecyclerView re;
 
     @Override
     protected int getLayoutId() {
@@ -330,7 +343,7 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             if (i == 0) {
                 imageViews[i].setBackgroundResource(R.drawable.main_tuan_dian1);
             } else {
-                imageViews[i].setBackgroundResource(R.drawable.main_tuan_dian1);
+                imageViews[i].setBackgroundResource(R.drawable.main_tuan_dian2);
             }
             linear02.addView(imageViews[i]);
         }
@@ -338,16 +351,16 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
 
     private void getView() {
 
-        int[] intView = {R.drawable.sys1, R.drawable.sys2, R.drawable.sys4,
-                R.drawable.sys6, R.drawable.sys7, R.drawable.sys8, R.drawable.sys9, R.drawable.sys10,
-                R.drawable.sys11, R.drawable.sys12, R.drawable.sys13, R.drawable.sys14, R.drawable.sys15,
-                R.drawable.sys16, R.drawable.sys17, R.drawable.sys18, R.drawable.sys19, R.drawable.sys20,
-                R.drawable.sys21, R.drawable.sys22, R.drawable.sys23, R.drawable.sys24, R.drawable.sys25, R.drawable.sys26,
-                R.drawable.sys27, R.drawable.sys28, R.drawable.sys29, R.drawable.sys30, R.drawable.sys31, R.drawable.sys32,
-                R.drawable.sys33, R.drawable.sys34, R.drawable.sys35, R.drawable.sys36, R.drawable.sys37, R.drawable.sys38,
-                R.drawable.sys39, R.drawable.sys40, R.drawable.sys41, R.drawable.sys42, R.drawable.sys43, R.drawable.sys44,
-                R.drawable.sys45, R.drawable.sys46, R.drawable.sys47, R.drawable.sys48, R.drawable.sys49, R.drawable.sys50,
-                R.drawable.sys51
+        int[] intView = {R.mipmap.sys1, R.mipmap.sys2, R.mipmap.sys4,
+                R.mipmap.sys6, R.mipmap.sys7, R.mipmap.sys8, R.mipmap.sys9, R.mipmap.sys10,
+                R.mipmap.sys11, R.mipmap.sys12, R.mipmap.sys13, R.mipmap.sys14, R.mipmap.sys15,
+                R.mipmap.sys16, R.mipmap.sys17, R.mipmap.sys18, R.mipmap.sys19, R.mipmap.sys20,
+                R.mipmap.sys21, R.mipmap.sys22, R.mipmap.sys23, R.mipmap.sys24, R.mipmap.sys25, R.mipmap.sys26,
+                R.mipmap.sys27, R.mipmap.sys28, R.mipmap.sys29, R.mipmap.sys30, R.mipmap.sys31, R.mipmap.sys32,
+                R.mipmap.sys33, R.mipmap.sys34, R.mipmap.sys35, R.mipmap.sys36, R.mipmap.sys37, R.mipmap.sys38,
+                R.mipmap.sys39, R.mipmap.sys40, R.mipmap.sys41, R.mipmap.sys42, R.mipmap.sys43, R.mipmap.sys44,
+                R.mipmap.sys45, R.mipmap.sys46, R.mipmap.sys47, R.mipmap.sys48, R.mipmap.sys49, R.mipmap.sys50,
+                R.mipmap.sys51
         };
         for (int i = 0; i < intView.length; i++) {
 //            Integer in = listView.get()
@@ -367,8 +380,8 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             if (listView.size() != 0 && result < listView.size()) {
                 System.out.println("result+kkkkkkkkkk" + result);
                 GridView gridView = new GridView(this);
-                int height = 28;//此处的高度需要动态计算
-                int width = 30;//此处的宽度需要动态计算
+                int height = 20;//此处的高度需要动态计算
+                int width = 20;//此处的宽度需要动态计算
                 LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(width, height);
                 gridView.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
                 gridView.setNumColumns(6);
@@ -387,8 +400,8 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
                     gridlist.add(listView.get(i));
                 }
                 GridView gridView = new GridView(this);
-                int height = 28;//此处的高度需要动态计算
-                int width = 30;//此处的宽度需要动态计算
+                int height = 20;//此处的高度需要动态计算
+                int width = 20;//此处的宽度需要动态计算
                 LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(width, height);
                 gridView.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
                 gridView.setNumColumns(6);
@@ -402,7 +415,6 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             }
         }
         adapter = new AdPageAdapter(gridViewlist);
-
     }
 
     boolean flagDoubleCick = false;
@@ -458,12 +470,77 @@ public class Carmer_FaBu_NaoNao_Activity extends BaseActivity {
             case R.id.carmer_fabu_naonao_yuyin:
                 break;
             case R.id.carmer_fabu_naonao_collect:
+                initPop();
+                pop.showAsDropDown(carmerFabuNaonaoEdit, 0, 0, Gravity.BOTTOM);
                 break;
             case R.id.carmer_fabu_naonao_title:
                 Intent ian = new Intent(Carmer_FaBu_NaoNao_Activity.this, Carmer_FaBu_NaoNao_Title_Activity.class);
                 startActivityForResult(ian, 200);
                 break;
         }
+    }
+
+    private void initPop() {
+        v = LayoutInflater.from(Carmer_FaBu_NaoNao_Activity.this).inflate(R.layout.carmer_fabu_naonao_collect_pop, null);
+        RelativeLayout viewById = (RelativeLayout) v.findViewById(R.id.carmer_fabu_naonao_collect_z);
+        viewById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+            }
+        });
+        pop = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        //popupWindow的背景透明度
+//        v.getBackground().setAlpha(180);
+        //颜色
+        pop.setBackgroundDrawable(new BitmapDrawable());
+        //popupWindow的外部点击
+        pop.setOutsideTouchable(true);
+        Button btn = (Button) v.findViewById(R.id.carmer_fabu_naonao_collect_queding);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pop.dismiss();
+            }
+        });
+        re = (RecyclerView) v.findViewById(R.id.carmer_fabu_naonao_collect_rec);
+        LinearLayoutManager man = new LinearLayoutManager(Carmer_FaBu_NaoNao_Activity.this);
+        re.setLayoutManager(man);
+        initPopParsing();
+    }
+
+    private void initPopParsing() {
+        Map<String,String> map = new HashMap<>();
+        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":50,\"uSiteId\":2422,\"pageIndex\":1,\"userId\":31363437},\"requestTime\":\"2017-07-07 08:26:01\",\"customerKey\":\"8365E0056D9819285A41AA0AEB3E249F\",\"Method\":\"PHSocket_GetUserFunctionPropertyList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":31363437,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        map.put("param",str);
+        HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("Carmer_FaBu_NaoNao_Acti", result);
+                Carmer_FaBu_NaoNao_Collect_Pop_Bean square_naoNao_bean = JSON.parseObject(result, Carmer_FaBu_NaoNao_Collect_Pop_Bean.class);
+                if (mList.size() < 0) {
+                    return;
+                }
+                if(square_naoNao_bean.getMessageList().getCode()!=1000){
+                    return;
+                }
+                mList.clear();
+                mList.addAll(square_naoNao_bean.getServerInfo());
+                if (mAdapter == null) {
+                    mAdapter = new Carmer_FaBu_NaoNao_Collect_Pop_Adapter(Carmer_FaBu_NaoNao_Activity.this,mList);
+
+                    re.setAdapter(mAdapter);
+
+                }else {
+                    re.setAdapter(mAdapter);
+                }
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
     }
 
     @Override

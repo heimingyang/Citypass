@@ -234,13 +234,13 @@ public class Recommond_NaoNao_TypeAdapter extends RecyclerView.Adapter {
             holder.mTextPinLun.setVisibility(View.GONE);
             holder.mTextPinLunName.setVisibility(View.GONE);
         }
-        if (bean.getImage() == null) {
+        if (bean.getImage().equals("")) {
             holder.mOne.setVisibility(View.GONE);
             holder.mHodlerImage.setVisibility(View.GONE);
         } else {
             holder.mOne.setVisibility(View.VISIBLE);
             holder.mHodlerImage.setVisibility(View.VISIBLE);
-            Glide.with(context).load(this.bean.getImage()).into(holder.mHodlerImage);
+            Glide.with(context).load(this.bean.getImage()).error(R.drawable.error).into(holder.mHodlerImage);
         }
 
     }

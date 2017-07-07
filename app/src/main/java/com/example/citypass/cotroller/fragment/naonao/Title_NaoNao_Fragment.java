@@ -121,6 +121,7 @@ public class Title_NaoNao_Fragment extends BaseFragment {
                     return;
                 }
                 mList.clear();
+                titleNaonaoRecycle.setVisibility(View.VISIBLE);
                 mList.addAll(title_naoNao_bean.getServerInfo());
                 if (adapter == null) {
                     mList.addAll(title_naoNao_bean.getServerInfo());

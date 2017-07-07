@@ -104,7 +104,7 @@
             <RelativeLayout
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/imageView">
 
@@ -166,7 +166,7 @@
             android:layout_marginTop="120dp"
             android:src="@drawable/cover_homepage_podium3" />
         <RelativeLayout
-            android:layout_marginLeft="260dp"
+            android:layout_marginLeft="258dp"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="148dp">

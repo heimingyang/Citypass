@@ -10,7 +10,7 @@ package com.example.citypass.cotroller.fragment.naonao.detail;
  * 修改时间:
  */
 
-public class SquareDetailBean {
+public class   SquareDetailBean {
     private String Title;
     private String body;
     private String time;

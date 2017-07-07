@@ -1,7 +1,6 @@
 package com.example.citypass.cotroller.activity.find;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -29,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -191,6 +189,7 @@ public class Find_DetailsActivity extends BaseActivity {
 
                 for (int i = 0; i < coverPhotoDetailsInfo.size(); i++) {
                     details_fragment = new Details_Fragment(coverPhotoDetailsInfo.get(i));
+                    belleXqTitle.setText(coverPhotoDetailsInfo.get(i).getNick()+"");
                     fList.add(details_fragment);
                 }
                 Log.d("Find_DetailsActivity", "coverPhotoDetailsInfo:" + fList.size() + "");

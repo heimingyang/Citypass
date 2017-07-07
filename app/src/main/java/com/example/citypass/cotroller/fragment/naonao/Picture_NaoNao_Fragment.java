@@ -61,7 +61,7 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
     MRecyclerView pictureNaonaoRecycle;
     private List<Picture_NaoNao_Bean.ServerInfoBean> mList = new ArrayList<>();
     private Picture_NaoNao_Recycle_Adapter adapter;
-
+    private int j = 1;
     // TODO: 2017/6/26 0026 晒图的加载数据 
     @Override
     protected void initData() {
@@ -77,6 +77,7 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
                 pictureNaonaoRecycle.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         initParsing();
                         pictureNaonaoRecycle.refreshComplete();
                     }
@@ -90,6 +91,8 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
                 pictureNaonaoRecycle.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        j++;
+                        initParsing();
                         pictureNaonaoRecycle.loadMoreComplete();
                     }
                 },2000);
@@ -100,25 +103,30 @@ public class Picture_NaoNao_Fragment extends BaseFragment {
     // TODO: 2017/6/26 0026 晒图 的网络请求数据
     private void initParsing() {
         Map<String, String> map = new HashMap<>();
-        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":0,\"siteID\":2422,\"flag\":2,\"type\":1,\"gambitid\":0,\"curPage\":1},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"B77E5EE861C72727546387CAD3EFDFA9\",\"Method\":\"PHSocket_GetTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
-        map.put("param", str);
+        String str = "{\"appName\":\"CcooCity\",\"Param\":{\"pageSize\":10,\"userID\":0,\"siteID\":2422,\"flag\":2,\"type\":1,\"gambitid\":0,\"curPage\":";
+        String a = j+"";
+        String b = "},\"requestTime\":\"2017-06-19 11:52:02\",\"customerKey\":\"B77E5EE861C72727546387CAD3EFDFA9\",\"Method\":\"PHSocket_GetTieBaList\",\"Statis\":{\"PhoneId\":\"861677342183129\",\"System_VersionNo\":\"Android 4.4.4\",\"UserId\":0,\"PhoneNum\":\"+8617641727221\",\"SystemNo\":2,\"PhoneNo\":\"GT-P5210\",\"SiteId\":2422},\"customerID\":8001,\"version\":\"4.5\"}";
+        map.put("param", str+a+b);
         HttpFacory.create().POST("http://appnew.ccoo.cn/appserverapi.ashx", map, "", new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.d("Picture_NaoNao_Fragment", result);
                 Picture_NaoNao_Bean picture_naoNao_bean = JSON.parseObject(result, Picture_NaoNao_Bean.class);
+                if (mList.size() < 0) {
+                    return;
+                }
                 if (picture_naoNao_bean.getMessageList().getCode()!=1000) {
                     return;
                 }
-                List<Picture_NaoNao_Bean.ServerInfoBean> serverInfo = new ArrayList<Picture_NaoNao_Bean.ServerInfoBean>();
 
-                    serverInfo.addAll(picture_naoNao_bean.getServerInfo());
-                Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + serverInfo.size());
+                mList.addAll(picture_naoNao_bean.getServerInfo());
+                pictureNaonaoRecycle.setVisibility(View.VISIBLE);
+                Log.d("Picture_NaoNao_Fragment", "serverInfo.size():" + mList.size());
                 if(adapter==null){
-                    adapter = new Picture_NaoNao_Recycle_Adapter(serverInfo);
+                    adapter = new Picture_NaoNao_Recycle_Adapter(mList);
                     pictureNaonaoRecycle.setAdapter(adapter);
                 }else {
-                    adapter.setNewData(serverInfo);
+                    adapter.setNewData(mList);
                 }
                 TextView tv = new TextView(getActivity());
                 tv.setText("没有更多内容啦~");

@@ -1,5 +1,6 @@
 package com.example.citypass.cotroller.fragment.toutiao.show;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
+import com.example.citypass.cotroller.activity.find.FaXianMeiNvActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,5 +93,7 @@ public class HshowbeautyFragment extends BaseFragment {
 
     @OnClick(R.id.showfragmentbeauty_tv)
     public void onViewClicked() {
+        Intent intent=new Intent(getActivity(), FaXianMeiNvActivity.class);
+        getActivity().startActivity(intent);
     }
 }

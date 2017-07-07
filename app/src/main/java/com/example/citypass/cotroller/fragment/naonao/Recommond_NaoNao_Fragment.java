@@ -121,8 +121,10 @@ public class Recommond_NaoNao_Fragment extends BaseFragment implements Recommond
                     return;
                 }
                 if (square_naoNao_bean.getMessageList().getCode()!=1000) {
+
                     return;
                 }
+                recommondNaonaoRecycle.setVisibility(View.VISIBLE);
                 mList.addAll(square_naoNao_bean.getServerInfo());
                 if(Typeadapter==null){
                     Typeadapter = new Recommond_NaoNao_TypeAdapter(mList,getContext());

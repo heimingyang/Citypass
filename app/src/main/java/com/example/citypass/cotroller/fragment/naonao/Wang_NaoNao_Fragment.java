@@ -222,6 +222,7 @@ public class Wang_NaoNao_Fragment extends BaseFragment implements View.OnClickLi
             //如果登录就带着UserId跳转详情页面
             Intent ins = new Intent(getContext(), PersonalActivity.class);
             ins.putExtra("id", id);
+            ins.putExtra("type",1);
             getContext().startActivity(ins);
         } else {
             //未登录就跳转到登录页面

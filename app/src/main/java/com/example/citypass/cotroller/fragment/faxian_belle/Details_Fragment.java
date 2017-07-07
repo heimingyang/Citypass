@@ -3,14 +3,12 @@ package com.example.citypass.cotroller.fragment.faxian_belle;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +26,6 @@ import com.example.citypass.model.bean.beele.Belle_xq1_Bean;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -82,14 +79,13 @@ public class Details_Fragment extends BaseFragment {
     Unbinder unbinder1;
     //头布局1
     private View head1;
-    //头布局2
-    private View head2;
 
     //头布局1中的组件
     private ImageView details1_img, details1_zan, details1_gift, details1_In, details1_Info, details1_danmu;
     private TextView details1_tv_ZanCount, details1_tv_location, details1_tv_time, details1_tv_name, details1_tv_job, details1_tv_age,
             details1_tv_yinxiang, details1_tv_hello, details1_tv_zhuye;
     private ImageView details1_tx, belledetailsai;
+    private TextView mTitle;
 
 
     //头布局2中的组件
@@ -101,6 +97,7 @@ public class Details_Fragment extends BaseFragment {
 
     private Belle_xq1_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean;
     private int likeTotal;
+    private View mtitle;
 
     public Details_Fragment(Belle_xq1_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean) {
         this.coverPhotoDetailsInfoBean = coverPhotoDetailsInfoBean;
@@ -133,6 +130,8 @@ public class Details_Fragment extends BaseFragment {
         details1_tv_job.setText(coverPhotoDetailsInfoBean.getPositionName() + "");
         details1_tv_age.setText(coverPhotoDetailsInfoBean.getAge() + "");
         details1_tv_yinxiang.setText(coverPhotoDetailsInfoBean.getImName() + "");
+
+        mTitle.setText(coverPhotoDetailsInfoBean.getNick());
 
         belle_details1_adapter = new Belle_Details1_Adapter(getContext(), coverPhotoDetailsInfoBean.getCoverReplyList());
 
@@ -191,6 +190,7 @@ public class Details_Fragment extends BaseFragment {
         belleXqRecycle.setLayoutManager(linearLayoutManager);
 
         head1 = LayoutInflater.from(getContext()).inflate(R.layout.belle_details1_head1, null);
+        mtitle = LayoutInflater.from(getContext()).inflate(R.layout.activity_find_details, null);
         findHead1Viewbyid();
 
         belleXqRecycle.addHeaderView(head1);
@@ -241,6 +241,8 @@ public class Details_Fragment extends BaseFragment {
         details1_tv_zhuye = (TextView) head1.findViewById(R.id.xq1_home);
         details1_img_giveGift = (ImageView) head1.findViewById(R.id.xq1_give_gift);
 
+        //activityTitle
+        mTitle = (TextView) mtitle.findViewById(R.id.belle_xq_title);
 
     }
 

@@ -150,31 +150,31 @@
 
                 <ImageView
                     android:id="@+id/carmer_fabu_naonao_emoji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/smile" />
+                    android:src="@drawable/cover_main_laugh_n" />
 
                 <ImageView
                     android:id="@+id/carmer_fabu_naonao_aite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@id/carmer_fabu_naonao_emoji"
-                    android:src="@drawable/aite" />
+                    android:src="@drawable/reply_bottom_aite_noral" />
 
                 <ImageView
                     android:id="@+id/carmer_fabu_naonao_yuyin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@id/carmer_fabu_naonao_aite"
-                    android:src="@drawable/yuyin" />
+                    android:src="@drawable/yuyin_normol" />
 
                 <ImageView
                     android:id="@+id/carmer_fabu_naonao_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@id/carmer_fabu_naonao_yuyin"
                     android:src="@drawable/daoju" />
@@ -221,14 +221,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_margin="8dp"
                     android:src="@drawable/add_biaoqing1" />
 
                 <TextView
+                    android:layout_margin="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:textSize="18dp"
                     android:layout_toRightOf="@id/carmer_fabu_naonao_shangdian"
-                    android:background="#c7c5c5"
                     android:text="默认" />
             </RelativeLayout>
         </LinearLayout>
