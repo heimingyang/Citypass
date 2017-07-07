@@ -194,6 +194,7 @@
         <activity android:name=".cotroller.activity.find.FaXianCityActivity" />
         <activity android:name=".cotroller.fragment.information.CityActivity" />
 
+
     </application>
 
 </manifest>

@@ -2,30 +2,33 @@ package com.example.citypass.cotroller.fragment.faxian_belle;
 
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidkun.PullToRefreshRecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
-import com.example.citypass.base.CircleImageView;
 import com.example.citypass.cotroller.adapter.discover.Belle_Details1_Adapter;
 import com.example.citypass.model.bean.beele.Belle_xq1_Bean;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
@@ -66,6 +69,17 @@ public class Details_Fragment extends BaseFragment {
     @BindView(R.id.belle_xq_recycle)
     PullToRefreshRecyclerView belleXqRecycle;
     Unbinder unbinder;
+    @BindView(R.id.belle_details_ai)
+    ImageView belleDetailsAi;
+    @BindView(R.id.belle_details_jia)
+    ImageView belleDetailsJia;
+    @BindView(R.id.belle_details_edit)
+    EditText belleDetailsEdit;
+    @BindView(R.id.belle_details_btn)
+    Button belleDetailsBtn;
+    @BindView(R.id.nini)
+    LinearLayout nini;
+    Unbinder unbinder1;
     //头布局1
     private View head1;
     //头布局2
@@ -75,7 +89,7 @@ public class Details_Fragment extends BaseFragment {
     private ImageView details1_img, details1_zan, details1_gift, details1_In, details1_Info, details1_danmu;
     private TextView details1_tv_ZanCount, details1_tv_location, details1_tv_time, details1_tv_name, details1_tv_job, details1_tv_age,
             details1_tv_yinxiang, details1_tv_hello, details1_tv_zhuye;
-    private ImageView details1_tx;
+    private ImageView details1_tx, belledetailsai;
 
 
     //头布局2中的组件
@@ -86,6 +100,7 @@ public class Details_Fragment extends BaseFragment {
 
 
     private Belle_xq1_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean;
+    private int likeTotal;
 
     public Details_Fragment(Belle_xq1_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean) {
         this.coverPhotoDetailsInfoBean = coverPhotoDetailsInfoBean;
@@ -110,6 +125,7 @@ public class Details_Fragment extends BaseFragment {
 
 
         //加载各项数据
+        likeTotal = coverPhotoDetailsInfoBean.getLikeTotal();
         details1_tv_ZanCount.setText(coverPhotoDetailsInfoBean.getLikeTotal() + "");
         details1_tv_location.setText(coverPhotoDetailsInfoBean.getMapName() + "");
         details1_tv_time.setText(coverPhotoDetailsInfoBean.getCreateTime() + "");
@@ -130,7 +146,40 @@ public class Details_Fragment extends BaseFragment {
         details1_zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                details1_zan.setImageResource(R.drawable.cover_info_love2);
+                Drawable.ConstantState constantState = getContext().getResources().getDrawable(R.drawable.cover_info_love2).getConstantState();
+
+                if (details1_zan.getDrawable().getCurrent().getConstantState().equals(constantState)) {
+                    Toast.makeText(getContext(), "已经点赞", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    belleDetailsAi.setImageResource(R.drawable.cover_info_love2);
+                    details1_zan.setImageResource(R.drawable.cover_info_love2);
+
+                    int i = likeTotal++;
+                    details1_tv_ZanCount.setText(i + "");
+                    Toast.makeText(getContext(), "点赞成功，成长值+10", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        belleDetailsAi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable.ConstantState constantState = getContext().getResources().getDrawable(R.drawable.cover_info_love2).getConstantState();
+
+                if (details1_zan.getDrawable().getCurrent().getConstantState().equals(constantState)) {
+                    Toast.makeText(getContext(), "已经点赞", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    belleDetailsAi.setImageResource(R.drawable.cover_info_love2);
+                    details1_zan.setImageResource(R.drawable.cover_info_love2);
+                    String text = details1_tv_ZanCount.getText().toString();
+                    int i = likeTotal++;
+                    details1_tv_ZanCount.setText(i + "");
+                    Toast.makeText(getContext(), "点赞成功，成长值+10", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -138,7 +187,7 @@ public class Details_Fragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(App.activity);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);
         belleXqRecycle.setLayoutManager(linearLayoutManager);
 
@@ -195,5 +244,6 @@ public class Details_Fragment extends BaseFragment {
 
 
     }
+
 
 }

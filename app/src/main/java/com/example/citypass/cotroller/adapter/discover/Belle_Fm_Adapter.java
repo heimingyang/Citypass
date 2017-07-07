@@ -1,18 +1,23 @@
 package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.beele.Belle_FM_Bean;
 
 import java.util.List;
+
+import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * /**
@@ -68,7 +73,7 @@ public class Belle_Fm_Adapter extends RecyclerView.Adapter<Belle_Fm_Adapter.Myfm
 
     @Override
     public void onBindViewHolder(MyfmHolder holder, int position) {
-        Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean figureTCoverInfoListBean
+        final Belle_FM_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean figureTCoverInfoListBean
                 = mlist.get(position);
         String nick = figureTCoverInfoListBean.getNick();
         String age = figureTCoverInfoListBean.getAge();
@@ -88,6 +93,15 @@ public class Belle_Fm_Adapter extends RecyclerView.Adapter<Belle_Fm_Adapter.Myfm
         holder.fm_job.setText(positionName);
         holder.fm_count.setText(likeTotal + "");
 
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mcontext, PersonalActivity.class);
+                intent.putExtra("id", figureTCoverInfoListBean.getUserID());
+                mcontext.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -99,11 +113,13 @@ public class Belle_Fm_Adapter extends RecyclerView.Adapter<Belle_Fm_Adapter.Myfm
     class MyfmHolder extends RecyclerView.ViewHolder {
         private ImageView fm_img;
         private TextView fm_name, fm_age, fm_lianai, fm_from, fm_job, fm_count;
+        private RelativeLayout relativeLayout;
 
 
         public MyfmHolder(View itemView) {
             super(itemView);
             fm_img = (ImageView) itemView.findViewById(R.id.fengmian_item_img);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.fm_item_relative);
 
             fm_name = (TextView) itemView.findViewById(R.id.fengmian_item_name);
             fm_age = (TextView) itemView.findViewById(R.id.fengmian_item_age);

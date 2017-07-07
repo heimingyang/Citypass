@@ -77,7 +77,7 @@ public class Find_DetailsActivity extends BaseActivity {
     ImageView belleXqMore;
     @BindView(R.id.meinv_xq_title)
     RelativeLayout meinvXqTitle;
-    @BindView(R.id.belle_details_viewpager)
+    @BindView(R.id.belle_details_viewpagers)
     ViewPager belleDetailsViewpager;
 
     private List<Fragment> fList;
@@ -98,14 +98,14 @@ public class Find_DetailsActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        fList = new ArrayList<>();
-        requestData();
+
 
     }
 
     @Override
     protected void initView() {
-
+        fList = new ArrayList<>();
+        requestData();
 
     }
 
@@ -129,6 +129,7 @@ public class Find_DetailsActivity extends BaseActivity {
         Log.e("Find_DetailsActivity_id", id);
         //siteID
         int siteID = LoginUtils.information.getServerInfo().getSiteID();
+        Log.d("Find_DetailsActivity", "siteID:" + siteID);
         //userid
         String userid = LoginUtils.information.getServerInfo().getId();
         //拼接参数
@@ -187,13 +188,13 @@ public class Find_DetailsActivity extends BaseActivity {
                         = belle_xq1_bean.getServerInfo().getCoverPhotoDetailsInfo().getCoverPhotoDetailsInfo();
 //                Belle_xq1_Bean.ServerInfoBean.CoverPhotoDetailsInfoBeanX.CoverPhotoDetailsInfoBean coverPhotoDetailsInfoBean
 //                        = coverPhotoDetailsInfo.get(0);
-                Log.d("Find_DetailsActivity", "coverPhotoDetailsInfo:" + coverPhotoDetailsInfo);
+
                 for (int i = 0; i < coverPhotoDetailsInfo.size(); i++) {
                     details_fragment = new Details_Fragment(coverPhotoDetailsInfo.get(i));
                     fList.add(details_fragment);
                 }
-
-                belle_xq_adapter = new Belle_Xq_Adapter(getSupportFragmentManager(), App.activity, fList);
+                Log.d("Find_DetailsActivity", "coverPhotoDetailsInfo:" + fList.size() + "");
+                belle_xq_adapter = new Belle_Xq_Adapter(getSupportFragmentManager(), Find_DetailsActivity.this, fList);
                 belleDetailsViewpager.setAdapter(belle_xq_adapter);
 
 //                Log.e("initdata", "请求成功");

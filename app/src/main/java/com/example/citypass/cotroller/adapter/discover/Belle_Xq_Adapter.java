@@ -62,7 +62,9 @@ public class Belle_Xq_Adapter extends FragmentStatePagerAdapter {
         return fList.size();
     }
 
+
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public Object instantiateItem(ViewGroup container, int position) {
+        return super.instantiateItem(container, position);
     }
 }

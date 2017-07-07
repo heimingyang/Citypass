@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.adapter.discover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -9,15 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.information.PersonalActivity;
 import com.example.citypass.model.bean.beele.Belle_Xrx_Bean;
 import com.example.citypass.utils.LogUtils;
 
 import java.util.List;
+
+import static com.umeng.socialize.utils.DeviceConfig.context;
 
 /**
  * /**
@@ -76,7 +81,7 @@ public class Belle_Xrx_Adapter extends RecyclerView.Adapter<Belle_Xrx_Adapter.My
 
     @Override
     public void onBindViewHolder(final MyXrxHolder holder, int position) {
-        Belle_Xrx_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean figureTCoverInfoListBean
+        final Belle_Xrx_Bean.ServerInfoBean.FigureTCoverInfoListBeanX.FigureTCoverInfoListBean figureTCoverInfoListBean
                 = mlist.get(position);
 
         String nick = figureTCoverInfoListBean.getNick();
@@ -121,6 +126,14 @@ public class Belle_Xrx_Adapter extends RecyclerView.Adapter<Belle_Xrx_Adapter.My
         String substring3 = substring1.substring(i1 + 1, substring1.length());
         LogUtils.e("第三章图片", substring3);
         Glide.with(mcontext).load(substring3).into(holder.img_3);
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mcontext, PersonalActivity.class);
+                intent.putExtra("id", figureTCoverInfoListBean.getUserID());
+                mcontext.startActivity(intent);
+            }
+        });
 
 
     }
@@ -133,6 +146,7 @@ public class Belle_Xrx_Adapter extends RecyclerView.Adapter<Belle_Xrx_Adapter.My
     class MyXrxHolder extends RecyclerView.ViewHolder {
         private ImageView img_touxiang;
         private ImageView img_1, img_2, img_3;
+        private LinearLayout linearLayout;
 
 
         private TextView tv_name, tv_age, tv_job, tv_from, tv_time;
@@ -148,6 +162,7 @@ public class Belle_Xrx_Adapter extends RecyclerView.Adapter<Belle_Xrx_Adapter.My
             tv_job = (TextView) itemView.findViewById(R.id.xinrenxiu_item_job);
             tv_from = (TextView) itemView.findViewById(R.id.xinrenxiu_item_from);
             tv_time = (TextView) itemView.findViewById(R.id.xinrenxiu_item_time);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.xrx_item_lin);
 
         }
     }
