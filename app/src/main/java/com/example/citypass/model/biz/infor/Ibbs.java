@@ -11,6 +11,7 @@ import com.example.citypass.model.http.MyCallBack;
  * 修改内容:
  * 修改时间:
  */
-interface Ibbs {
+  public  interface Ibbs {
     void loadBq(MyCallBack callback, String method);
+    void loadSearch(MyCallBack callback, String param);
 }

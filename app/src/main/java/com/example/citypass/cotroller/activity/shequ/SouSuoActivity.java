@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.activity.shequ;
 
 
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.fragment.shequ.BbsSearchFragment;
 import com.example.citypass.cotroller.fragment.shequ.SearchListFragment;
 import com.example.citypass.model.ddb.MyManger;
 
@@ -41,6 +43,8 @@ public class SouSuoActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private MyManger manager;
+    private SharedPreferences mShared;
+    private SharedPreferences.Editor mEditor;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_shequ_sousuo;
@@ -85,6 +89,9 @@ public class SouSuoActivity extends BaseActivity {
     @Override
     protected void initView() {
         fragmentManager = App.activity.getSupportFragmentManager();
+        mShared = getSharedPreferences("bbsdata", MODE_PRIVATE);
+        mEditor = mShared.edit();
+        fragmentManager = App.activity.getSupportFragmentManager();
         initFrag();
     }
 
@@ -107,9 +114,11 @@ public class SouSuoActivity extends BaseActivity {
                     this.finish();
                 } else {
                     boolean insert = manager.insert(sousuoEditext.getText().toString());
-                    /*transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.Search_FrameLayout, new SearchFragment());
-                    transaction.commit();*/
+                    mEditor.putString("bbsname", sousuoEditext.getText().toString());
+                    mEditor.commit();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.Search_FrameLayout, new BbsSearchFragment());
+                    transaction.commit();
                 }
                 break;
         }

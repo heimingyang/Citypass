@@ -10,7 +10,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
@@ -34,10 +33,20 @@ public class BanQuAdapter extends BaseAdapter {
 
     private List<BanQuBean.ServerInfoBean> list;
     private Context context;
+    private int isc = 0;
+    private OnItemClickListener onItemClickListener;
 
+    public interface OnItemClickListener {
+        void on(int position);
+
+    }
+    boolean isUser;
     public BanQuAdapter(Context context, List<BanQuBean.ServerInfoBean> list) {
         this.context = context;
         this.list = list;
+    }
+    public void setIsc(int isc) {
+        this.isc = isc;
     }
 
     @Override
@@ -53,6 +62,10 @@ public class BanQuAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -90,14 +103,23 @@ public class BanQuAdapter extends BaseAdapter {
 
                 if (isChecked) {
 
-                    Toast.makeText(context, "已关注~", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "已关注~", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(context, "已取消关注~", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "已取消关注~", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
+
+        if (list.get(position).isChax()) {
+            holder.itemBbsBqChildGz.setChecked(true);
+            isUser = false;
+
+        } else {
+            holder.itemBbsBqChildGz.setChecked(false);
+            isUser = false;
+        }
 
 
         return convertView;

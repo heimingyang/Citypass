@@ -44,6 +44,8 @@ public class ZuiXinFragment extends BaseFragment {
     private List<ZuiXinBean.ServerInfoBean> data = new ArrayList<>();
 
 
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.shequ_recycler;

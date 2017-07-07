@@ -106,6 +106,7 @@ public class BanQuGroupAdapter extends BaseAdapter {
         @BindView(R.id.item_bbs_bq_group_nametwo)
         TextView itemBbsBqGroupNametwo;
 
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }

@@ -54,6 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".cotroller.activity.shequ.CardDetailActivity"/>
         <activity android:name=".cotroller.fragment.information.LoginActivity" />
         <activity android:name=".cotroller.fragment.information.PasswordActivity" />
         <activity android:name=".cotroller.fragment.information.RegisterActivity" />

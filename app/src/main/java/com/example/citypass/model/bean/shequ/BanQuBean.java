@@ -200,5 +200,9 @@ public class BanQuBean {
         public boolean isShowTwo() {
             return showTwo;
         }
+
+        public void setChax(boolean chax) {
+            this.chax = chax;
+        }
     }
 }

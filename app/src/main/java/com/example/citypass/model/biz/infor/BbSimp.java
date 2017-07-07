@@ -9,6 +9,9 @@ import com.example.citypass.utils.UrlUtils;
 
 import java.util.HashMap;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
 /**
  * 项目名称: 血压卫士
  * 类描述:
@@ -27,5 +30,16 @@ public class BbSimp implements Ibbs{
         params.put("param",method);
         Log.d("Bbsimp", params.get("param"));
         factoryIn.POST(UrlUtils.BaseUrl, params, null,callback);
+    }
+
+    @Override
+    public void loadSearch(MyCallBack callback, String param) {
+        factoryIn = OkHttpUtils.getInstance();
+        HashMap<String, String> pramas = new HashMap<>();
+        pramas.put("param", param);
+        factoryIn.POST(UrlUtils.BaseUrl, pramas,null, callback);
+    }
+    private RequestBody text2RequestBody(String value) {
+        return RequestBody.create(MediaType.parse("text/plain"), value);
     }
 }
