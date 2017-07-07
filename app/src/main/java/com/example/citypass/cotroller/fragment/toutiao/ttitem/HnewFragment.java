@@ -13,9 +13,12 @@ import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.cotroller.adapter.toutiao.Hnew_Adapter;
 import com.example.citypass.cotroller.adapter.toutiao.Hsoc_Adapter;
+import com.example.citypass.cotroller.adapter.toutiao.Htzxq_Adapter;
 import com.example.citypass.model.bean.toutiao.Idbean;
 import com.example.citypass.model.bean.toutiao.Newbean;
 import com.example.citypass.model.bean.toutiao.Newinter;
+import com.example.citypass.model.bean.toutiao.Tzxqbean;
+import com.example.citypass.model.bean.toutiao.Tzxqinter;
 import com.example.citypass.model.biz.infor.IInforModel;
 import com.example.citypass.model.biz.infor.InforModel;
 import com.example.citypass.model.http.MyCallBack;
@@ -82,10 +85,12 @@ public class HnewFragment extends BaseFragment {
     Unbinder unbinder;
     private int page = 1;
     private ArrayList<Newbean.ServerInfoBean> mlist;
+    private ArrayList<Tzxqbean.ServerInfoBean> tzmlist;
     private Hnew_Adapter adapter;
     private TextView textView;
     private View footview;
     private int mid;
+    private Htzxq_Adapter tzadapter;
 
 
     @Override
@@ -106,16 +111,29 @@ public class HnewFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)
     public void getid(Idbean messageEvent) {
         mid = messageEvent.getId();
+        String type=messageEvent.getType();
+
+
         footview = LayoutInflater.from(getActivity()).inflate(R.layout.cityfootview,null);
         textView = (TextView) footview.findViewById(R.id.footview_tv);
         mlist = new ArrayList<Newbean.ServerInfoBean>();
-        Log.e("onSuccess", mid+"");
+        tzmlist=new ArrayList<>();
+//
+//        if(type.equals("html")){
+            getjust(mid);
+            adapter = new Hnew_Adapter(mlist,getActivity());
+            newrecycler.setAdapter(adapter);
+            newrecycler.setFootView(footview);
+//        }
+//        if(type.equals("帖子")){
+//            gettz(mid);
+//            tzadapter = new Htzxq_Adapter(tzmlist,getActivity());
+//            newrecycler.setAdapter(tzadapter);
+//            newrecycler.setFootView(footview);
+//        }
 
-        getjust(mid);
-        adapter = new Hnew_Adapter(mlist,getActivity());
-        newrecycler.setAdapter(adapter);
 
-        newrecycler.setFootView(footview);
+
 
         LinearLayoutManager man = new LinearLayoutManager(getActivity());
         newrecycler.setLayoutManager(man);
@@ -124,6 +142,71 @@ public class HnewFragment extends BaseFragment {
         newrecycler.setPullRefreshEnabled(false);
     }
 
+    private void gettz(int mid) {
+        Tzxqinter.ParamBean  param = new Tzxqinter.ParamBean();
+        param.setCurPage(page);
+        param.setIsDaka(0);
+        param.setOrder(0);
+        param.setPageSize(10);
+        param.setRuserName("");
+        param.setSiteID(2422);
+        param.setTopicID(mid);
+
+        Tzxqinter.StatisBean statis = new Tzxqinter.StatisBean();
+
+        statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(getActivity()));
+        statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
+        statis.setPhoneNum(DeviceUtils.getInstance().getDevicenumber(getActivity()));
+        statis.setSiteId(2422);
+        statis.setSystemNo(2);
+        DeviceUtils.getInstance();
+        statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
+        statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID,"")));
+
+        Tzxqinter toutiao = new Tzxqinter();
+        toutiao.setMethod("PHSocket_GetBBSReplyList");
+        toutiao.setParam(param);
+        toutiao.setStatis(statis);
+        toutiao.setAppName("CcooCity");
+        toutiao.setCustomerID(8001);
+        toutiao.setCustomerKey("7B0A92FF71842D45EC209990285DAE6D");
+        toutiao.setRequestTime(TimeUtils.getdangqianshijian());
+        toutiao.setVersion("4.5");
+        Gson gson = new Gson();
+        String s = gson.toJson(toutiao);
+        Log.e("onSuccess", s);
+
+        InforModel inforModel = new IInforModel();
+        inforModel.UpLoad(s, new MyCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("onSuccess", result);
+
+                Tzxqbean newbean= JSON.parseObject(result,Tzxqbean.class);
+                if(newbean.getServerInfo().size()!=0){
+                    tzmlist.addAll(newbean.getServerInfo());
+                }
+
+
+                if(tzmlist.size()==0){
+                    textView.setText("目前还没有评论，评论强沙发吧--");
+                }else  if(tzmlist.size()==1){
+                    textView.setText("参与评论，抢占板凳吧--");
+                }else if(tzmlist.size()==2){
+                    textView.setText("参与评论，抢占马扎吧--");
+                }else {
+                    textView.setText("没有更多内容了--");
+                }
+                tzadapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onError(String errormsg) {
+
+            }
+        });
+    }
 
 
     public void getjust(int mid) {
@@ -156,13 +239,13 @@ public class HnewFragment extends BaseFragment {
         toutiao.setVersion("4.5");
         Gson gson = new Gson();
         String s = gson.toJson(toutiao);
-        Log.e("onSuccess", s);
+//        Log.e("onSuccess", s);
 
         InforModel inforModel = new IInforModel();
         inforModel.UpLoad(s, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
-                Log.e("onSuccess", result);
+//                Log.e("onSuccess", result);
 
                 Newbean newbean= JSON.parseObject(result,Newbean.class);
                 mlist.addAll(newbean.getServerInfo());

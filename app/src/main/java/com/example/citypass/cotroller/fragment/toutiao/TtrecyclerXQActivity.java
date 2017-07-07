@@ -1,24 +1,43 @@
 package com.example.citypass.cotroller.fragment.toutiao;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_FaBu_AiTe_NaoNao_Activity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
+import com.example.citypass.cotroller.activity.shequ.Emoji;
+import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
+import com.example.citypass.cotroller.adapter.shequ.MyEmojiAdapter;
+import com.example.citypass.cotroller.adapter.shequ.MyPagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.HgoodmannerslAdapter;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.toutiao.ttitem.HdakaFragment;
@@ -33,10 +52,12 @@ import com.example.citypass.model.bean.toutiao.Ttrecyclerqq;
 import com.example.citypass.model.bean.toutiao.Ttrecyclertz;
 import com.example.citypass.model.bean.toutiao.Ttxqbean;
 import com.example.citypass.model.bean.toutiao.Tzaommentinter;
+import com.example.citypass.model.bean.toutiao.Tzhueofuinter;
 import com.example.citypass.model.biz.infor.IInforModel;
 import com.example.citypass.model.biz.infor.InforModel;
 import com.example.citypass.model.http.MyCallBack;
 import com.example.citypass.utils.DeviceUtils;
+import com.example.citypass.utils.EmojiUtils;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
 import com.example.citypass.utils.TimeUtils;
@@ -120,7 +141,21 @@ public class TtrecyclerXQActivity extends BaseActivity {
     private int type;
     private String hotflag;
     private HgoodmannerslAdapter adapter;
-
+    private  boolean isimg=true;
+    private  boolean isviewpager=true;;
+    private PopupWindow window1;
+    private ViewPager viewPager;
+    private List<View> viewList;
+    private ArrayList<Emoji> emojiList;
+    private MyPagerAdapter myPagerAdapter;
+    private int rowCount = 3;
+    private int columCount = 6;
+    private RelativeLayout ttxq;
+    private  String lastString = "";
+    private ViewPager myViewPager;
+    private TextView pouptv1;
+    private TextView pouptv2;
+    private boolean  iscollect=true;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_ttrecycler_xq;
@@ -128,24 +163,136 @@ public class TtrecyclerXQActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+
+        ttxqMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window1.showAsDropDown(v,0,25);
+            }
+        });
+        xqLin2Tv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //分享
+
+            }
+        });
+        pouptv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //分享
+
+            }
+        });
+        pouptv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(iscollect){
+                    Drawable draw1=TtrecyclerXQActivity.this.getResources().getDrawable(R.drawable.ccoo_icon_collect_press);
+                    draw1.setBounds(0, 0, draw1.getMinimumWidth(), draw1.getMinimumHeight());
+                    pouptv2.setCompoundDrawables(draw1,null,null,null);
+                    pouptv2.setText("取消收藏");
+                    Toast.makeText(TtrecyclerXQActivity.this,"收藏成功",Toast.LENGTH_LONG).show();
+                    iscollect=false;
+                }else {
+                    Drawable draw1=TtrecyclerXQActivity.this.getResources().getDrawable(R.drawable.ccoo_icon_collect_noral);
+                    draw1.setBounds(0, 0, draw1.getMinimumWidth(), draw1.getMinimumHeight());
+                    pouptv2.setCompoundDrawables(draw1,null,null,null);
+                    pouptv2.setText("我要收藏");
+                    Toast.makeText(TtrecyclerXQActivity.this,"取消收藏",Toast.LENGTH_LONG).show();
+                    iscollect=true;
+                }
+
+            }
+        });
+
+
+
+        xqLin3Img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isimg){
+                    Animation animation = AnimationUtils.loadAnimation(TtrecyclerXQActivity.this, R.anim.showallimg);
+                    animation.setDuration(300);
+                    xqLin3Img2.startAnimation(animation);
+                    animation.setFillAfter(true);
+                    xqLin3Img3.setVisibility(View.VISIBLE);
+                    xqLin3Img4.setVisibility(View.VISIBLE);
+                    xqLin3Img5.setVisibility(View.VISIBLE);
+                    myViewPager.setVisibility(View.VISIBLE);
+                    isimg=false;
+                }else {
+                    Animation animation = AnimationUtils.loadAnimation(TtrecyclerXQActivity.this, R.anim.disallimg);
+                    animation.setDuration(300);
+                    xqLin3Img2.startAnimation(animation);
+                    animation.setFillAfter(true);
+                    xqLin3Img3.setVisibility(View.GONE);
+                    xqLin3Img4.setVisibility(View.GONE);
+                    xqLin3Img5.setVisibility(View.GONE);
+                    myViewPager.setVisibility(View.GONE);
+                    isimg=true;
+                }
+            }
+        });
+        xqLin3Img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(TtrecyclerXQActivity.this,Carmer_Photo_NaoNao_Activity.class);
+                startActivity(intent);
+            }
+        });
+        xqLin3Img5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(TtrecyclerXQActivity.this,Carmer_FaBu_AiTe_NaoNao_Activity.class);
+                startActivity(intent);
+            }
+        });
+        xqLin3Img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                window1.showAtLocation(TtrecyclerXQActivity.this.findViewById(R.id.ttxq),
+//                        Gravity.BOTTOM, 0, 0);
+                if(isviewpager){
+                    myViewPager.setVisibility(View.VISIBLE);
+                    isviewpager=false;
+                }else {
+                    myViewPager.setVisibility(View.GONE);
+                    isviewpager=true;
+                }
+
+            }
+        });
+
+
+
         xqLin3Tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String commentdata = xqLin3Edt.getText().toString().trim();
-                if (!commentdata.equals("")) {
-                    if (type == 1) {
-                        gettzcomment(commentdata);
-                    } else if (type == 13) {
-                        getcomment(commentdata);
-                    } else if (hotflag.equals("1")) {
-                        getcomment(commentdata);
-                    } else if (hotflag.equals("0")) {
-                        getcomment(commentdata);
+                if(login){
+                    String commentdata = xqLin3Edt.getText().toString().trim();
+                    if (!commentdata.equals("")) {
+                        if (type == 1) {
+                            gettzcomment(commentdata);
+                        } else if (type == 13) {
+                            getcomment(commentdata);
+                        } else if (hotflag.equals("1")) {
+                            getcomment(commentdata);
+                        } else if (hotflag.equals("0")) {
+                            getcomment(commentdata);
+                        }
+                        judgetype(type, hotflag);
+                    } else {
+                        Toast.makeText(TtrecyclerXQActivity.this, "评论内容不能为空！", Toast.LENGTH_LONG).show();
                     }
-                    judgetype(type, hotflag);
-                } else {
-                    Toast.makeText(TtrecyclerXQActivity.this, "评论内容不能为空！", Toast.LENGTH_LONG).show();
+                }else {
+                    Intent intent=new Intent(TtrecyclerXQActivity.this,LoginActivity.class);
+                    startActivity(intent);
                 }
+
             }
         });
         ttxqBack.setOnClickListener(new View.OnClickListener() {
@@ -162,15 +309,57 @@ public class TtrecyclerXQActivity extends BaseActivity {
                 return true;
             }
         });
+
+
+
+        xqLin3Edt.addTextChangedListener(new TextWatcher() {
+            int start;
+            boolean isDelete;
+            int count;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("FragmentComment", "start:" + start + ",before=" + before + "count=" + count);
+                if (!lastString.equals(s.toString())) {
+                    this.start = start;
+                    this.count = count;
+                    if (lastString.length() > s.toString().length()) {
+                        isDelete = true;
+                    } else {
+                        isDelete = false;
+                    }
+                    lastString = s.toString();
+                    EmojiUtils.showEmojiTextView(App.activity, xqLin3Edt, s.toString());
+
+                } else {
+                    if (isDelete) {
+                        xqLin3Edt.setSelection(this.start);
+                    } else {
+                        xqLin3Edt.setSelection(this.start + this.count);
+                    }
+                }
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void gettzcomment(String commentdata) {
-        Tzaommentinter.ParamBean param = new Tzaommentinter.ParamBean();
+        Tzhueofuinter.ParamBean param = new Tzhueofuinter.ParamBean();
         param.setContent(commentdata);
         param.setImages("");
         param.setIsMobile(2);
         param.setLastTime(TimeUtils.getdangqianshijian());
-        param.setMapName(LoginUtils.information.getServerInfo().getLifeAddr());
         param.setMapPoint("40.183373,116.172241");
         param.setReplyID(0);
         param.setReplyUser("");
@@ -180,7 +369,7 @@ public class TtrecyclerXQActivity extends BaseActivity {
         param.setTopicID(id);
         param.setUserName(SpUtils.getSp().getString(LoginUtils.USERNAME, ""));
         param.setUsiteID("2422");
-        Tzaommentinter.StatisBean statis = new Tzaommentinter.StatisBean();
+        Tzhueofuinter.StatisBean statis = new Tzhueofuinter.StatisBean();
 
         statis.setPhoneId(DeviceUtils.getInstance().getDeviceId(this));
         statis.setPhoneNo(DeviceUtils.getInstance().getPhoneModel());
@@ -191,7 +380,7 @@ public class TtrecyclerXQActivity extends BaseActivity {
         statis.setSystem_VersionNo(DeviceUtils.getBuildVersion());
         statis.setUserId(Integer.parseInt(SpUtils.getSp().getString(LoginUtils.USERID, "")));
 
-        Tzaommentinter toutiao = new Tzaommentinter();
+        Tzhueofuinter toutiao = new Tzhueofuinter();
         toutiao.setMethod("PHSocket_SetTopicInfoReply");
         toutiao.setParam(param);
         toutiao.setStatis(statis);
@@ -211,6 +400,7 @@ public class TtrecyclerXQActivity extends BaseActivity {
             public void onSuccess(String result) {
 //              Log.e("comment",result);
                 xqLin3Edt.setText("");
+                KeyboardUtils.closeKeyboard(xqLin3Edt, TtrecyclerXQActivity.this);
                 Toast.makeText(TtrecyclerXQActivity.this, "评论成功！", Toast.LENGTH_LONG).show();
 
             }
@@ -367,10 +557,12 @@ public class TtrecyclerXQActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
-
-        KeyboardUtils.closeKeyboard(xqLin3Edt, this);
         login = SpUtils.getSp().getBoolean(LoginUtils.LOGIN, true);
+        myViewPager = (ViewPager) findViewById(R.id.tt_mviewpager);
+        ttxq = (RelativeLayout) findViewById(R.id.att_item);
+        showPopupWindow();
+        showtitlePopupWindow();
+        KeyboardUtils.closeKeyboard(xqLin3Edt, this);
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
         type = intent.getIntExtra("type", 0);
@@ -399,6 +591,21 @@ public class TtrecyclerXQActivity extends BaseActivity {
         xqTablayout.setTabTextColors
                 (ContextCompat.getColor(this, R.color.black), ContextCompat.getColor(this, R.color.red));
 
+    }
+
+    private void showtitlePopupWindow() {
+        View view = getLayoutInflater().inflate(R.layout.xq_poup_title, null);
+        pouptv1 = (TextView) view.findViewById(R.id.xq_poup_tv1);
+        pouptv2 = (TextView) view.findViewById(R.id.xq_poup_tv2);
+
+        window1 = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT,  WindowManager.LayoutParams.WRAP_CONTENT);
+        // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
+        window1.setFocusable(true);
+        window1.setOutsideTouchable(true);
+        window1.setBackgroundDrawable(new ColorDrawable());
+
+        // 设置popWindow的显示和消失动画
+        //window1.setAnimationStyle(R.style.Animation);
     }
 
     @Override
@@ -449,7 +656,6 @@ public class TtrecyclerXQActivity extends BaseActivity {
                 Ttrecycler ttrecycler = JSON.parseObject(result, Ttrecycler.class);
                 Ttrecycler.ServerInfoBean.NewsInfoBean bean = ttrecycler.getServerInfo().getNewsInfo().get(0);
                 String url = ttrecycler.getServerInfo().getNewsInfo().get(0).getBody();
-                // Log.e("onSuccess", "html" + url);
                 ttxqWebview.loadDataWithBaseURL(null, url.toString(), "text/html", "utf-8", null);
                 xqLin1Title.setText(bean.getTitle());
                 xqLin1Address.setText(bean.getWapSiteName());
@@ -494,12 +700,8 @@ public class TtrecyclerXQActivity extends BaseActivity {
 
                 Idbean idbean = new Idbean();
                 idbean.setId(bean.getNewsID());
+                idbean.setType("html");
                 EventBus.getDefault().postSticky(idbean);
-                //
-//                Bundle bundle=new Bundle();
-//                bundle.putInt("id",bean.getNewsID());
-//                hnewFragment.setArguments(bundle);
-//                SpUtils.upSp().putInt("id",bean.getNewsID());
             }
 
             @Override
@@ -633,7 +835,6 @@ public class TtrecyclerXQActivity extends BaseActivity {
                     xqLin2Tv2.setText("赞");
                 }
 
-
                 Drawable draw1 = TtrecyclerXQActivity.this.getResources().getDrawable(R.drawable.ccoo_icon_zan_noral1);
                 draw1.setBounds(0, 0, draw1.getIntrinsicWidth(), draw1.getIntrinsicHeight());
                 xqLin2Tv2.setCompoundDrawables(null, draw1, null, null);
@@ -657,6 +858,7 @@ public class TtrecyclerXQActivity extends BaseActivity {
 
                 Idbean idbean = new Idbean();
                 idbean.setId(bean.getUserID());
+                idbean.setType("帖子");
                 EventBus.getDefault().postSticky(idbean);
             }
 
@@ -726,6 +928,55 @@ public class TtrecyclerXQActivity extends BaseActivity {
             }
         });
     }
+    private void showPopupWindow() {
+//        View view = getLayoutInflater().inflate(R.layout.fabu_biaoqing_popwindow, null);
+//        viewPager = (ViewPager) view.findViewById(R.id.mViewPager);
+        addBiaoQing();
+//        window1 = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, 400);
+//        // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
+//        window1.setFocusable(true);
+//        window1.setOutsideTouchable(true);
+//        window1.setBackgroundDrawable(new ColorDrawable());
+//
+//        // 设置popWindow的显示和消失动画
+//        window1.setAnimationStyle(R.style.Animation);
+    }
+    private void addBiaoQing() {
+        viewList = new ArrayList<>();
+        emojiList = EmojiUtils.getEmojiList();
+        for (int i = 0; i < getPagerCount(emojiList.size()); i++) {
+            GridView gridView = getPagerItem(i);
+            viewList.add(gridView);
+        }
+        myPagerAdapter = new MyPagerAdapter(viewList);
+        myViewPager.setAdapter(myPagerAdapter);
+    }
+    private int getPagerCount(int length) {
+        return length % (rowCount * columCount) == 0 ? length / (rowCount * columCount) : length / (rowCount * columCount) + 1;
+    }
+    private GridView getPagerItem(int position) {
+        View view = LayoutInflater.from(App.activity).inflate(R.layout.fragment_item_comment1, null);
+        GridView gridView = (GridView) view.findViewById(R.id.mGrid);
+        List<Emoji> subEmojiList = new ArrayList<>();
+        for (int i = 0; i < (columCount * rowCount) - 1; i++) {
+            if (columCount * rowCount * (position + 1) <= 52) {
+                subEmojiList.add(emojiList.get(i + position * (columCount * rowCount)));
+            } else {
+                if (i <= 2) {
+                    subEmojiList.add(emojiList.get(i + position * (columCount * rowCount)));
+                }
+            }
+
+        }
+        subEmojiList.add(new Emoji("[删除]", R.mipmap.face_delete));
+
+        MyEmojiAdapter adapter = new MyEmojiAdapter(App.activity, subEmojiList, R.layout.fragment_comment_grid_item1, xqLin3Edt);
+
+        gridView.setAdapter(adapter);
+
+        return gridView;
+    }
+
 
     @Override
     protected void onDestroy() {

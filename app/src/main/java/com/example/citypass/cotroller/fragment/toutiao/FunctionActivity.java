@@ -21,12 +21,14 @@ import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
 import com.example.citypass.cotroller.activity.find.MyWebActivity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.activity.shequ.SouSuoActivity;
 import com.example.citypass.cotroller.fragment.LifeFragment;
 import com.example.citypass.cotroller.fragment.NaoNaoFragment;
 import com.example.citypass.cotroller.fragment.SheQuFragment;
+import com.example.citypass.cotroller.fragment.information.IssuePostActivity;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.utils.LoginUtils;
 import com.example.citypass.utils.SpUtils;
@@ -114,11 +116,11 @@ public class FunctionActivity extends BaseActivity {
             functionTwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(FunctionActivity.this, ReleaseActivity.class);
+                    Intent intent = new Intent(FunctionActivity.this, IssuePostActivity.class);
                     startActivity(intent);
                 }
             });
-            functionTitleTv.setText("社区");
+
             transaction.replace(R.id.function_framelaout, new SheQuFragment(), "SheQuFragment");
             transaction.commit();
         }else if(htag.equals("闹闹")){
@@ -194,8 +196,8 @@ public class FunctionActivity extends BaseActivity {
         mPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//             Intent intent=new Intent(FunctionActivity.this,NaoNao_Carmer_Activity.class);
-//                startActivity(intent);
+             Intent intent=new Intent(FunctionActivity.this,Carmer_Photo_NaoNao_Activity.class);
+                startActivity(intent);
             }
         });
 

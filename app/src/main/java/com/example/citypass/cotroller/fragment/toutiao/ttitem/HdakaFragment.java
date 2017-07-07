@@ -108,7 +108,7 @@ public class HdakaFragment extends BaseFragment {
         footview = LayoutInflater.from(getActivity()).inflate(R.layout.cityfootview,null);
         textView = (TextView) footview.findViewById(R.id.footview_tv);
         mlist = new ArrayList<Newbean.ServerInfoBean>();
-        Log.e("onSuccess", mid+"");
+//        Log.e("onSuccess", mid+"");
 
         getjust(mid);
         adapter = new Hnew_Adapter(mlist,getActivity());
@@ -155,17 +155,23 @@ public class HdakaFragment extends BaseFragment {
         toutiao.setVersion("4.5");
         Gson gson = new Gson();
         String s = gson.toJson(toutiao);
-        Log.e("onSuccess", s);
+//        Log.e("onSuccess", s);
 
         InforModel inforModel = new IInforModel();
         inforModel.UpLoad(s, new MyCallBack() {
             @Override
             public void onSuccess(String result) {
                 Log.e("onSuccess", result);
-
+                if(result==null){
+                    return;
+                }
 
                 Newbean newbean= JSON.parseObject(result,Newbean.class);
-                mlist.addAll(newbean.getServerInfo());
+                if(newbean.getServerInfo().size()!=0){
+                    mlist.addAll(newbean.getServerInfo());
+                }
+
+
                 SpUtils.upSp().putString("dakanumber",mlist.size()+"").commit();
 
                 if(mlist.size()==0){

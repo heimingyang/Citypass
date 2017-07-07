@@ -281,6 +281,7 @@ public class HshowFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.hshow_lin1:
+
                 break;
             case R.id.hshow_lin2:
                 break;

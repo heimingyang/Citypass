@@ -41,6 +41,7 @@ import com.example.citypass.R;
 import com.example.citypass.base.BaseFragment;
 import com.example.citypass.base.ScanActivity;
 import com.example.citypass.cotroller.activity.find.MyWebActivity;
+import com.example.citypass.cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity;
 import com.example.citypass.cotroller.activity.naonao.NaoNao_Carmer_Activity;
 import com.example.citypass.cotroller.activity.shequ.ReleaseActivity;
 import com.example.citypass.cotroller.adapter.toutiao.HttpurecyclerviewAdapter;
@@ -48,6 +49,7 @@ import com.example.citypass.cotroller.adapter.toutiao.HttviewpagerAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtfourDjGridAdapter;
 import com.example.citypass.cotroller.adapter.toutiao.TtpoupwindowDjGridAdapter;
 import com.example.citypass.cotroller.fragment.information.CityActivity;
+import com.example.citypass.cotroller.fragment.information.IssuePostActivity;
 import com.example.citypass.cotroller.fragment.information.LevelActivity;
 import com.example.citypass.cotroller.fragment.information.LoginActivity;
 import com.example.citypass.cotroller.fragment.information.MedalActivity;
@@ -249,13 +251,13 @@ public class TouTiaoFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
                     // 跳转发帖子
-                    Intent intent = new Intent(getActivity(), ReleaseActivity.class);
+                    Intent intent = new Intent(getActivity(), IssuePostActivity.class);
                     startActivity(intent);
                     //reply();
                 }else if(position==1){
                     //跳转相册
-//                    Intent intent=new Intent(getActivity(),NaoNao_Carmer_Activity.class);
-//                    startActivity(intent);
+                    Intent intent=new Intent(getActivity(),Carmer_Photo_NaoNao_Activity.class);
+                    startActivity(intent);
 //                    reply();
                 } else if(position==2){
                     //跳转视频
@@ -264,7 +266,10 @@ public class TouTiaoFragment extends BaseFragment {
 //                    reply();
                 }else if(position==3){
                     //跳转微爆料
-
+                    final String url = "http://m.yanqing.ccoo.cn/bbs/baoliao.aspx";
+                    Intent in = new Intent(getActivity(), MyWebActivity.class);
+                    in.putExtra("url", url);
+                    startActivity(in);
 //                    reply();
                 }else if(position==4){
                     //跳转分类信息（生活页面）
@@ -936,7 +941,7 @@ public class TouTiaoFragment extends BaseFragment {
 
                 httGrade.setText("Lv." + bean.getLevel());
                 honorname.setText(bean.getHonorName());
-                httRanking1.setText("排名：" + bean.getIntegralRank());
+                httRanking1.setText("排名：第" + bean.getIntegralRank()+"名");
 
                 // TODO: 2017/6/29
                 //签到

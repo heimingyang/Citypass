@@ -37,24 +37,7 @@ package com.example.citypass.model.bean.toutiao;
 
 public class Idbean {
     private int id;
-    private int newnumber;
-    private int dakanumber;
-
-    public int getNewnumber() {
-        return newnumber;
-    }
-
-    public void setNewnumber(int newnumber) {
-        this.newnumber = newnumber;
-    }
-
-    public int getDakanumber() {
-        return dakanumber;
-    }
-
-    public void setDakanumber(int dakanumber) {
-        this.dakanumber = dakanumber;
-    }
+   private String type;
 
     public int getId() {
         return id;
@@ -64,10 +47,17 @@ public class Idbean {
         this.id = id;
     }
 
-    public Idbean(int id, int newnumber, int dakanumber) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Idbean(int id, String type) {
         this.id = id;
-        this.newnumber = newnumber;
-        this.dakanumber = dakanumber;
+        this.type = type;
     }
 
     public Idbean() {

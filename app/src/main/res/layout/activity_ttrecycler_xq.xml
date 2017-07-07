@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/ttxq"
     tools:context=".cotroller.fragment.toutiao.TtrecyclerXQActivity">
 
     <RelativeLayout
@@ -84,7 +85,17 @@
             android:src="@drawable/reply_bottom_aite_noral"
             android:scaleType="fitCenter"
             />
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/tt_mviewpager"
+            android:layout_below="@id/xq_lin3_img5"
+            android:visibility="gone"
+            >
+
+        </android.support.v4.view.ViewPager>
     </RelativeLayout>
+
     <ScrollView
         android:layout_above="@id/xq_lin3"
     android:id="@+id/xq_scrollview"
@@ -106,16 +117,18 @@
                 android:id="@+id/ttxq_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ccoo_icon_back_666"
+                android:src="@drawable/ccoo_icon_back"
                 android:scaleType="fitCenter"
                 />
 
             <TextView
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="城市详情"
+                android:textColor="@color/white"
                 android:textSize="18dp"
                 />
 
@@ -125,9 +138,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ccoo_icon_more"
+                android:src="@drawable/pic_more"
                 android:scaleType="fitCenter"
-                android:layout_margin="20dp"
+                android:layout_marginRight="5dp"
                 />
         </RelativeLayout>
         <RelativeLayout

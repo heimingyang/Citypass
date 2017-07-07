@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="16dp"
-                    android:text="欢迎来到延庆社区(本城居民46687人)"
+                    android:text="欢迎来到延庆社区(本城居民51464人)"
                     android:textColor="@color/color_999"
                     />
             </RelativeLayout>

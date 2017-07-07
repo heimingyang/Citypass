@@ -122,7 +122,7 @@
                                 android:layout_marginLeft="3dp"
                                 android:background="@drawable/di_naonao_recycle_item_level"
                                 android:padding="3dp"
-                                android:text="lv:8"
+                                android:text="lv.8"
                                 android:textColor="#fff" />
 
                             <Button
