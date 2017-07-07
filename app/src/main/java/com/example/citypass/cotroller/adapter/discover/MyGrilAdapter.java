@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.fragment.information.CityActivity;
 import com.example.citypass.cotroller.fragment.toutiao.FunctionActivity;
 import com.example.citypass.utils.LogUtils;
 import com.example.citypass.cotroller.activity.find.FaXianActionActivity;
@@ -123,7 +124,7 @@ class MyGrilAdapter extends BaseAdapter {
                     //抽奖
 
                 } else if (url.equals("/user/my_coin.aspx")) {
-                    Intent intent3 = new Intent(context, FaXianLottoActivity.class);
+                    Intent intent3 = new Intent(context, CityActivity.class);
                     context.startActivity(intent3);
 
 

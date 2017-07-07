@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.citypass">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -29,15 +30,15 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -97,7 +98,7 @@
         <activity
             android:name=".WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -120,7 +121,7 @@
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -136,20 +137,19 @@
 
 
             android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
 
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
-            android:theme="@style/Theme.UMDefault"
             android:excludeFromRecents="true"
-            />
+            android:theme="@style/Theme.UMDefault" />
 
         <meta-data
-        android:name="UMENG_APPKEY"
-        android:value="595a4e13a40fa30f48000132"></meta-data>
+            android:name="UMENG_APPKEY"
+            android:value="595a4e13a40fa30f48000132"></meta-data>
 
         <activity android:name=".cotroller.fragment.information.PrivilegeActivity" />
         <activity android:name=".cotroller.fragment.information.PersonalTwoActivity" />
@@ -163,35 +163,36 @@
         <activity
             android:name=".cotroller.activity.find.PublishActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity"/>
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"
-            android:windowSoftInputMode="adjustNothing"
-            />
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Title_Activity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_Photo_NaoNao_Activity" />
+        <activity
+            android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Activity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_NaoNao_Title_Activity" />
         <activity android:name=".cotroller.fragment.toutiao.FunctionActivity"></activity>
         <activity android:name=".cotroller.fragment.information.ShoppingActivity" />
         <activity android:name=".cotroller.fragment.information.NotifyDeatailActivity" />
         <activity android:name=".cotroller.adapter.naonao.detail.DetailImageActivity" />
         <activity android:name=".cotroller.fragment.toutiao.CityjustActivity" />
         <!-- <activity android:windowSoftInputMode="adjustPan|stateHidden"></activity> -->
-        <activity android:name=".cotroller.fragment.information.GongActivity"/>
-        <activity android:name=".cotroller.fragment.information.ExchangeActivity"/>
-        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity"/>
+        <activity android:name=".cotroller.fragment.information.GongActivity" />
+        <activity android:name=".cotroller.fragment.information.ExchangeActivity" />
+        <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
         <activity android:name=".cotroller.fragment.naonao.detail.DetailImageActivity" />
         <activity android:name=".cotroller.activity.find.MyWebActivity" />
         <activity android:name=".cotroller.fragment.toutiao.PermissionsActivity"></activity>
-        <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
-        <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
+        <activity android:name=".cotroller.fragment.information.IssuePostActivity" />
+        <activity android:name=".cotroller.fragment.information.ShopDetailActivity" />
         <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
-        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_AiTe_NaoNao_Activity"/>
-        <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
-        <activity android:name=".cotroller.fragment.information.ModifyPassActivity"/>
-        <activity android:name=".cotroller.HomeActivity"/>
+        <activity android:name=".cotroller.activity.naonao.Carmer_FaBu_AiTe_NaoNao_Activity" />
+        <activity android:name=".cotroller.fragment.information.TaskDetailActivity" />
+        <activity android:name=".cotroller.fragment.information.ModifyPassActivity" />
+        <activity android:name=".cotroller.HomeActivity" />
         <activity android:name=".cotroller.activity.find.FaXianMeiNvActivity" />
         <activity android:name=".cotroller.activity.find.Find_DetailsActivity" />
         <activity android:name=".cotroller.activity.find.FaXianActionActivity" />
         <activity android:name=".cotroller.activity.find.FaXianLottoActivity" />
         <activity android:name=".cotroller.activity.find.FaXianCityActivity" />
+        <activity android:name=".cotroller.fragment.information.CityActivity" />
 
     </application>
 
