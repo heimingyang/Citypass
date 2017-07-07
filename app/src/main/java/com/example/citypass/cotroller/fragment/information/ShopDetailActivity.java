@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.fragment.information;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -148,9 +149,9 @@ public class ShopDetailActivity extends BaseActivity {
                     Glide.with(ShopDetailActivity.this).load(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getShowImages()).into(shoppingDetailImage);
                     shoppingDetailName.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getTitle());
                     shoppingDetailCoinOne.setText(detail1.getServerInfo().getCommodityInfo().getContent().get(0).getSCoin()+"币");
-                    SpannableString spannableString = matcherSearchTitle(R.color.viewfinder_laser, detail1.getServerInfo().getCommodityInfo().getContent().get(0).getRealSum() + "", "商品库存：" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getRealSum());
-                    shoppingDetailStock.setText(spannableString);
-                    shoppingDetailConverted.setText("已兑换" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum() + "个");
+                    SpannableString spannableString = matcherSearchTitle(Color.parseColor("#ffff0000"),"已兑换" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum() + "个",detail1.getServerInfo().getCommodityInfo().getContent().get(0).getBuySum()+"" );
+                    shoppingDetailStock.setText("商品库存：" + detail1.getServerInfo().getCommodityInfo().getContent().get(0).getRealSum());
+                    shoppingDetailConverted.setText(spannableString);
                     eTime = detail1.getServerInfo().getCommodityInfo().getContent().get(0).getETime();
                     eTime-=1000*60*60*24;
                     handler.postDelayed(run, 1000);
@@ -183,7 +184,7 @@ public class ShopDetailActivity extends BaseActivity {
                 case 0:
                     eTime -= 1000;
                     String time = TimeUtils.getStringTime(eTime, "dd天hh小时mm分ss秒");
-                    SpannableString spannableString = matcherSearchTitle(R.color.viewfinder_laser, time, s);
+                    SpannableString spannableString = matcherSearchTitle(Color.parseColor("#ffff0000"), time, s);
                     shoppingDetailLastTime.setText(spannableString);
                     break;
             }
