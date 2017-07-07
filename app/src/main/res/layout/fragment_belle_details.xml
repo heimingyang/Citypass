@@ -7,48 +7,51 @@
         android:id="@+id/belle_xq_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <LinearLayout
         android:id="@+id/nini"
-        android:background="#fff"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/belle_details_ai"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:src="@drawable/cover_info_love1"
-            android:layout_width="40dp"
-            android:layout_height="50dp" />
+            android:src="@drawable/cover_info_love1" />
+
         <ImageView
             android:id="@+id/belle_details_jia"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:src="@drawable/cover_main_add_n"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:src="@drawable/cover_main_add_n" />
+
         <EditText
-            android:background="#fff"
             android:id="@+id/belle_details_edit"
-            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            />
+            android:background="#fff" />
+
         <Button
             android:id="@+id/belle_details_btn"
-            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发送"
+            android:layout_gravity="center_vertical"
             android:background="#fff"
-            />
+            android:text="发送" />
     </LinearLayout>
+
     <TextView
-        android:layout_above="@id/nini"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-        android:background="#e1dfdf"
-        />
+        android:layout_above="@id/nini"
+        android:background="#e1dfdf" />
 </RelativeLayout>
