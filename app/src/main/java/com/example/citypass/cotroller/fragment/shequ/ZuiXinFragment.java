@@ -84,7 +84,7 @@ public class ZuiXinFragment extends BaseFragment {
         man.setOrientation(LinearLayoutManager.VERTICAL);
         if (shequRecyclerview != null && shequRecyclerview.getId() != 0) {
             RecyclerView.LayoutManager manager = new LinearLayoutManager(App.activity);
-            adapter = new ZuiXinAdapter(data);
+            adapter = new ZuiXinAdapter(data,App.activity);
             shequRecyclerview.setAdapter(adapter);
             init(false);
             shequRecyclerview.setLayoutManager(manager);

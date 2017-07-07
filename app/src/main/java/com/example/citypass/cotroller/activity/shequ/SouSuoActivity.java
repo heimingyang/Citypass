@@ -1,22 +1,21 @@
 package com.example.citypass.cotroller.activity.shequ;
 
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.citypass.App;
 import com.example.citypass.R;
 import com.example.citypass.base.BaseActivity;
-import com.example.citypass.cotroller.fragment.shequ.SouSuoAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.citypass.cotroller.fragment.shequ.SearchListFragment;
+import com.example.citypass.model.ddb.MyManger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,17 +36,11 @@ public class SouSuoActivity extends BaseActivity {
     ImageView qingcu;
     @BindView(R.id.quxiao)
     TextView quxiao;
-    @BindView(R.id.weisousuo)
-    LinearLayout weisousuo;
-    @BindView(R.id.mListView)
-    ListView mListView;
-    @BindView(R.id.qingcu_Btn)
-    Button qingcuBtn;
-    @BindView(R.id.mListView_layout)
-    RelativeLayout mListViewLayout;
-    private List<String> list;
-    private SouSuoAdapter adapter;
-
+    @BindView(R.id.Search_FrameLayout)
+    FrameLayout SearchFrameLayout;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
+    private MyManger manager;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_shequ_sousuo;
@@ -60,14 +53,11 @@ public class SouSuoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        list = new ArrayList<>();
-        adapter = new SouSuoAdapter(this, list);
-        mListView.setAdapter(adapter);
+
         sousuoEditext.addTextChangedListener(new TextWatcher() {
             //改变前
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                weisousuo.setVisibility(View.VISIBLE);
                 qingcu.setVisibility(View.GONE);
                 quxiao.setText("取消");
             }
@@ -75,17 +65,12 @@ public class SouSuoActivity extends BaseActivity {
             //改变中
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                weisousuo.setVisibility(View.GONE);
                 if (count == 0) {
-                    weisousuo.setVisibility(View.VISIBLE);
                     qingcu.setVisibility(View.GONE);
                     quxiao.setText("取消");
-                    mListViewLayout.setVisibility(View.GONE);
                 } else if (count > 0) {
                     qingcu.setVisibility(View.VISIBLE);
                     quxiao.setText("搜索");
-                    weisousuo.setVisibility(View.GONE);
-                    mListViewLayout.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -99,11 +84,19 @@ public class SouSuoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        fragmentManager = App.activity.getSupportFragmentManager();
+        initFrag();
+    }
 
+    private void initFrag() {
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.Search_FrameLayout, new SearchListFragment());
+        transaction.commit();
+        manager = new MyManger(this);
     }
 
 
-    @OnClick({R.id.qingcu, R.id.quxiao, R.id.qingcu_Btn})
+    @OnClick({R.id.qingcu, R.id.quxiao})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.qingcu:
@@ -112,24 +105,14 @@ public class SouSuoActivity extends BaseActivity {
             case R.id.quxiao:
                 if (quxiao.getText().toString().trim().equals("取消")) {
                     this.finish();
-                } else if (quxiao.getText().toString().trim().equals("搜索")) {
-
-                    //Toast.makeText(this, "搜索", Toast.LENGTH_SHORT).show();
-                    list.add(sousuoEditext.getText().toString().trim());
-                    if(list.size()>0){
-                        qingcuBtn.setVisibility(View.VISIBLE);
-                    }
-                    adapter.notifyDataSetChanged();
+                } else {
+                    boolean insert = manager.insert(sousuoEditext.getText().toString());
+                    /*transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.Search_FrameLayout, new SearchFragment());
+                    transaction.commit();*/
                 }
-                break;
-            case R.id.qingcu_Btn:
-                list.removeAll(list);
-
-                if(list.size()==0){
-                    qingcuBtn.setVisibility(View.GONE);
-                }
-                adapter.notifyDataSetChanged();
                 break;
         }
     }
+
 }

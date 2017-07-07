@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+        <ImageView
+            android:id="@+id/zsx_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/zuozhe"
+            />
+        <ImageView
+            android:id="@+id/zsx_top_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/news_discuss_image1"
+
+            />
+
+
+        <TextView
+            android:id="@+id/zsx_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/zsx_img"
+            android:layout_marginLeft="3dp"
+            android:textSize="15dp"
+            android:layout_alignTop="@+id/zsx_img"
+            />
+        <TextView
+            android:id="@+id/zsx_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:layout_alignTop="@+id/zsx_img"
+            android:background="@mipmap/task_mylevel_bg2"
+            android:layout_toRightOf="@+id/zsx_name"
+            />
+        <TextView
+            android:id="@+id/zsx_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/zsx_img"
+            android:layout_marginLeft="3dp"
+            android:layout_alignBottom="@+id/zsx_img"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/zsx_content"
+        android:layout_below="@+id/relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/pang_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="#cccccc"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/relative"
+        android:layout_marginRight="10dp"
+        android:drawableRight="@mipmap/wenshi1"
+        />
+</RelativeLayout>

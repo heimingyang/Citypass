@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.adapter.shequ;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.activity.shequ.TieZiDetialActivity;
 import com.example.citypass.model.bean.shequ.ZhiDeYiKanBean;
 
 import java.util.List;
@@ -143,10 +145,10 @@ public class ZhiDeYiKanAdapter extends RecyclerView.Adapter<ZhiDeYiKanAdapter.Vi
             ZuiXinLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent=new Intent(context, TieZiDetialActivity.class);
-//                    intent.putExtra("id",data.get(getAdapterPosition()-1).getTopicID()+"");
+                    Intent intent=new Intent(context, TieZiDetialActivity.class);
+                    intent.putExtra("id",data.get(getAdapterPosition()-1).getTopicID()+"");
 //                    intent.putExtra("name1",data.get(getAdapterPosition()-1).getUserName());
-//                    context.startActivity(intent);
+                    context.startActivity(intent);
                     Log.i("bbb",data.get(getAdapterPosition()-1).getTopicID()+"");
                     Log.i("bbb",data.get(getAdapterPosition()-1).getUserface());
                 }

@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
 import com.example.citypass.model.bean.shequ.HuoDongBean;
 
 import java.util.List;
+
 
 /**
  * 项目名称: 血压卫士
@@ -119,8 +121,11 @@ public class HuoDongAdapter extends RecyclerView.Adapter<HuoDongAdapter.ViewHold
             HuoDongLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //ToastUtils.showShortToast(getAdapterPosition()+"");
-
+                    Toast.makeText(context, "活动已结束", Toast.LENGTH_SHORT).show();
+//                    Intent intent=new Intent(context, TieZiDetialActivity.class);
+//                    intent.putExtra("id",list.get(getAdapterPosition()-1).getZTID()+"");
+//                    intent.putExtra("name1",data.get(getAdapterPosition()-1).getUserName());
+//                    context.startActivity(intent);
                 }
             });
         }

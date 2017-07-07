@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/cooperation_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000">
+
+        <ImageView
+            android:id="@+id/carmer_fabu_naonao_title_cancel"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_browser_back_press" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="帖子详情"
+            android:textColor="#ffffff"
+            android:textSize="23dp" />
+        <ImageView
+            android:src="@drawable/pic_more"
+            android:layout_centerVertical="true"
+            android:id="@+id/naonao_detail_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            />
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/tz_webview"
+        android:layout_below="@id/cooperation_Relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#FAFAFA">
+
+        <ImageView
+            android:id="@+id/NaoNao_Detail_Zan"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ccoo_icon_zan_noral1" />
+
+        <ImageView
+            android:id="@+id/NaoNao_Detail_Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/NaoNao_Detail_Zan"
+            android:src="@drawable/cover_main_add_n" />
+
+
+        <Button
+            android:id="@+id/NaoNao_Detail_butSendMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/square_naonao_sendbut"
+            android:text="发送" />
+
+        <EditText
+            android:id="@+id/NaoNao_DetailEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/NaoNao_Detail_butSendMsg"
+            android:layout_toRightOf="@+id/NaoNao_Detail_Add"
+            android:background="@drawable/naonao_edit"
+            android:hint="发表回复"
+            android:padding="3dp"
+            android:textColorHint="#A6A6A6" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

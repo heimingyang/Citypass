@@ -1,5 +1,7 @@
 package com.example.citypass.cotroller.adapter.shequ;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -18,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.citypass.App;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.activity.shequ.TieZiDetialActivity;
 import com.example.citypass.model.bean.shequ.ZuiXinBean;
 
 import java.util.ArrayList;
@@ -39,21 +42,20 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
     private OnItemClickListener onItemClickListener;
     private List<String> strList = new ArrayList<>();
     private LinearLayout myLayout;
+    private Context context;
 
     public void setmOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
 
-
-
-
     //define interface
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void ItemClick(int position);
     }
 
-    public ZuiXinAdapter(List<ZuiXinBean.ServerInfoBean> data){
+    public ZuiXinAdapter(List<ZuiXinBean.ServerInfoBean> data,Context context){
         this.data = data;
+        this.context = context;
         Log.e("aaa",data.size()+"");
     }
     public void setNewData(List<ZuiXinBean.ServerInfoBean> data){
@@ -81,7 +83,7 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
         holder.timeTv.setText(bean.getReplyTime()+"");
         holder.replyTv.setText(bean.getReply()+"");
         final ImageView img = holder.headIv;
-        Glide.with(App.activity).load(bean.getUserface()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
+        Glide.with(context).load(bean.getUserface()).asBitmap().centerCrop().into(new BitmapImageViewTarget(img) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable ciDrawable = RoundedBitmapDrawableFactory.create(App.activity.getResources(), resource);
@@ -185,12 +187,18 @@ public class ZuiXinAdapter extends RecyclerView.Adapter<ZuiXinAdapter.ViewHolder
             imageRL = (RelativeLayout) itemView.findViewById(R.id.newest_image_relative);
             imageLL = (LinearLayout) itemView.findViewById(R.id.newest_image_layout);
             headIv = (ImageView) itemView.findViewById(R.id.head_iv);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            ZuiXinLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(getLayoutPosition());
+                    Intent intent=new Intent(context,TieZiDetialActivity.class);
+                    intent.putExtra("id",data.get(getAdapterPosition()-1).getTopicID()+"");
+//                    intent.putExtra("name1",data.get(getAdapterPosition()-1).getUserName());
+                    context.startActivity(intent);
+                    Log.i("bbb",data.get(getAdapterPosition()-1).getTopicID()+"");
+                    Log.i("bbb",data.get(getAdapterPosition()-1).getUserface());
                 }
             });
         }
     }
+
 }

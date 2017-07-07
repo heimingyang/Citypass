@@ -48,7 +48,6 @@ public class SpUtils {
         return shared;
     }
     public static SharedPreferences.Editor upSp() {
-
         return editor;
     }
 }

@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
-    android:layout_height="150dp"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
     android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/Popup_Share"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/mpopup_share"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ccoo_icon_share3" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:layout_toRightOf="@+id/mpopup_share"
-            android:drawableLeft="@drawable/ccoo_icon_share3"
+            android:layout_toRightOf="@id/mpopup_share"
             android:drawablePadding="10dp"
             android:text="分享"
-            android:textSize="18dp" />
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/Popup_ShouYe"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -41,7 +47,10 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/popup_houses"
             android:text="收藏"
-            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:textSize="15dp"
 
             />
     </RelativeLayout>
@@ -58,8 +67,8 @@
 
         <ImageView
             android:id="@+id/mpopup_shua"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:src="@drawable/huan" />
 
@@ -69,7 +78,9 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/mpopup_shua"
             android:text="举报"
-            android:textSize="18dp" />
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:textSize="15dp" />
 
     </RelativeLayout>
 

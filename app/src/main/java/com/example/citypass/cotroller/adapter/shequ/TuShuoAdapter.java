@@ -1,6 +1,7 @@
 package com.example.citypass.cotroller.adapter.shequ;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.citypass.R;
+import com.example.citypass.cotroller.activity.shequ.TieZiDetialActivity;
 import com.example.citypass.model.bean.shequ.TuShuoBean;
 
 import java.util.List;
@@ -29,7 +31,6 @@ public class TuShuoAdapter extends RecyclerView.Adapter<TuShuoAdapter.ViewHolder
 
     public void setNewData(List<TuShuoBean.ServerInfoBean> data) {
         this.data = data;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -78,17 +79,16 @@ public class TuShuoAdapter extends RecyclerView.Adapter<TuShuoAdapter.ViewHolder
             name= (TextView) itemView.findViewById(R.id.shaitu_name);
             imageView= (ImageView) itemView.findViewById(R.id.shaitu_image);
             zanImage = (ImageView) itemView.findViewById(R.id.shaitu_zanImg);
-//            cityheaderview.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // ToastUtils.showShortToast(getAdapterPosition()+"");
-//                    Intent intent = new Intent(context,
-//                            TuShuoDetialActivity.class);
-//                    intent.putExtra("id", bean.getTopicID());
-//                    intent.putExtra("pos", getPosition());
-//                    context.startActivity(intent);
-//                }
-//            });
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // ToastUtils.showShortToast(getAdapterPosition()+"");
+                    Intent intent = new Intent(context,
+                            TieZiDetialActivity.class);
+                    intent.putExtra("id", data.get(getAdapterPosition()-1).getTopicID()+"");
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

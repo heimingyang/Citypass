@@ -195,6 +195,11 @@
         <activity android:name=".cotroller.fragment.information.CityActivity" />
 
 
+        <activity android:name=".cotroller.fragment.information.IssuePostActivity"/>
+        <activity android:name=".cotroller.fragment.information.ShopDetailActivity"/>
+        <activity android:name=".cotroller.fragment.information.TaskDetailActivity"/>
+        <activity android:name=".cotroller.activity.shequ.TieZiDetialActivity"></activity>
+        <activity android:name=".cotroller.fragment.naonao.detail.SquareNaonaoDetailActivity"></activity>
     </application>
 
 </manifest>
